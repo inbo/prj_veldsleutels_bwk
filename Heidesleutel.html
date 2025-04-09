@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heide sleutel</title><style>
+   
+  /* Base styles */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #e6f2f7;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  
+  h1 {
+    color: #1a5276;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1a5276;
+    margin-bottom: 25px;
+  }
+  
+  h2, h3, h4 {
+    color: #2874a6;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+  
+  a {
+    color: #2874a6;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: #1a5276;
+    text-decoration: underline;
+  }
+  
+  /* Table styles */
+  table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  th, td {
+    border: 1px solid #b3d9e6;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #b3d9e6;
+    color: #1a5276;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f9fc;
+  }
+  
+  tr:hover {
+    background-color: #d9ebf2;
+  }
+  
+  /* Step styling */
+  .step-container {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .step-header {
+    background-color: #d9ebf2;
+    padding: 15px;
+    margin: -20px -20px 20px -20px;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+  }
+  
+  .step-number {
+    font-weight: bold;
+    color: #1a5276;
+  }
+  
+  .step-incoming {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .step-remark {
+    background-color: #fff9e0;
+    padding: 10px;
+    border-left: 4px solid #ffd700;
+    margin: 15px 0;
+    font-style: italic;
+  }
+  
+  /* Answer styling */
+  .answer {
+    background-color: #f7f9fa;
+    border-left: 4px solid #2874a6;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+    transition: background-color 0.3s;
+  }
+  
+  .answer:hover {
+    background-color: #e6f2f7;
+  }
+  
+  .answer a {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .answer-remark {
+    font-style: italic;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  .extra-info {
+    background-color: #f0f7fa;
+    border: 1px solid #d1e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .result {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  .other-key {
+    background-color: #e8eaf6;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+  }
+  
+  /* Back to index button */
+  .back-to-index {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2874a6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+  
+  .back-to-index a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px;
+      padding: 10px;
+    }
+    
+    .step-container {
+      padding: 15px;
+    }
+    
+    .step-header {
+      padding: 12px;
+      margin: -15px -15px 15px -15px;
+    }
+    
+    .answer, .step-remark, .extra-info {
+      padding: 12px;
+    }
+  }
+  
+
+.clickable-header {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    cursor: pointer;
+    display: block;
+    color: #2874a6;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-left: 5px solid #2874a6;
+}
+
+.clickable-header:hover {
+    background-color: #f2f9fc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.clickable-header:active {
+    background-color: #e6f2f7;
+    transform: translateY(1px);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .clickable-header {
+        padding: 15px;
+        margin: 12px 0;
+    }
+}
+ 
+</style>
+</head>
+<body>
+<h1>Heide sleutel</h1> 
+<div class="step-container">
+<div class="step-header">
+<h2 id="S0"><span class="step-number">Stap 0:</span> Bedekking bomen en struiken (kroonprojectie; exclusief dwergstruiken):</h2></div>
+<div class="step-remark">dwergstruiken = Calluna, Erica, Vaccinium, Genista</div><div class="answer">
+<a href="#S2">≤ 10% (→ stap 2 )</a><div class="answer-remark">Het verspreid voorkomen van individuele of kleine groepjes (< 400 m²) bomen of struiken vormt integraal onderdeel van de heidebiotoop.</div></div>
+<div class="answer">
+<a href="#S4">> 10% and < 50% (→ stap 4 )</a></div>
+<div class="answer">
+<a href="#S1">≥ 50% (→ stap 1 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S1"><span class="step-number">Stap 1:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S0>0</a></div></div>
+<div class="answer">
+<a href="#S80">Bedekking (kroonprojectie) van wilde gagel ≥ 50% (→ stap 80 )</a></div>
+<div class="answer">
+<a href="#S40">Recent verboste heide: minder dan 10% bedekking van hogere (> 6m) bomen en struiken en soorten van open heide (struikhei, gewone dophei, rode dophei, blauwe bosbes, beenbreek, veenpluis, buntgras) domineren op pijpenstrootje, bochtige smele, struisgras spec, varens en bosplanten (→ stap 40 )</a><div class="answer-remark">Een recent verboste heide wordt nog als een heidehabitat aanzien als de ondergroei gedomineerd wordt door de typisch soorten van open heide.</div></div>
+<div class="answer">
+<a href="#SSLEUTEL">anders (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>BOSSEN_STRUWELEN</strong></div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S2"><span class="step-number">Stap 2:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S0>0</a>, <a href=#S4>4</a></div></div>
+<div class="answer">
+<a href="#S3">jeneverbes: afwezig of < 10 ex. (→ stap 3 )</a><div class="answer-remark">Bij aanwezigheid: het aantal jeneverbessen vermelden in infoveld.</div></div>
+<div class="answer">
+<a href="#S35">jeneverbes: ≥ 10 ex. aanwezig (→ stap 35 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S3"><span class="step-number">Stap 3:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S2>2</a>, <a href=#S36>36</a>, <a href=#S37>37</a></div></div>
+<div class="answer">
+<a href="#S10">Vergraste heide: pijpenstrootje, bochtige smele, fijn schapengras en/of struisgrassen bedekken > 50% of hun aandeel in de kruidlaag is > 50% (→ stap 10 )</a><div class="answer-remark">Kroonprojectie dwergstruiken < 50%.</div></div>
+<div class="answer">
+<a href="#S65">Vegetatie gedomineerd door adelaarsvaren (bedekking > 50%) (= adelaarsvaren gedomineerde heide) (→ stap 65 )</a></div>
+<div class="answer">
+<a href="#S70">Recente plagplekken, brandplekken of pioniervegetaties met witte of bruine snavelbies, moeraswolfsklauw, ronde of kleine zonnedauw (= pioniersvegetaties) (→ stap 70 )</a></div>
+<div class="answer">
+<a href="#S50">anders (= open heide en duin) (→ stap 50 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S4"><span class="step-number">Stap 4:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S0>0</a></div></div>
+<div class="answer">
+<a href="#S2">Open heide met veel verspreide bomen of in evolutie naar verboste heide (→ stap 2 )</a><div class="answer-remark">Noteer de dominante boom- en/of struiksoort en vervolg bij 1a zonder rekening te houden met de beboste delen bij het schatten van verhoudingen.</div><div class="result">BWK: ..b + boomcode</div>
+</div>
+</div>
+<h2>Vergraste heide (< 50% bomen of struiken; grassen dominant en > 50% bedekkend)</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S10"><span class="step-number">Stap 10:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S3>3</a>, <a href=#S72>72</a></div></div>
+<div class="answer">
+<a href="#S11">Struisgras spec en/of fijn schapengras domineert de graslaag (→ stap 11 )</a></div>
+<div class="answer">
+<a href="#S14">Bochtige smele domineert de graslaag (→ stap 14 )</a></div>
+<div class="answer">
+<a href="#S21">Pijpenstrootje domineert de graslaag (→ stap 21 )</a></div>
+</div>
+<h2>Vergraste heide (dominantie van struisgras spec en/of fijn schapengras)</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S11"><span class="step-number">Stap 11:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S10>10</a></div></div>
+<div class="answer">
+<div class="answer-text">Vergraste landduinvegetatie: op profielloos landduin of droge profielloze zandgrond, EN met abundant soorten van het Buntgrasverbond: buntgras, ruig haarmos, vroege haver, zandzegge of korstmossen (o.a. Cladonia's en Cetraria's). Struikhei meestal minder dan 10% bedekkend.</div><div class="answer-remark">Indien ≥ 10% open zand, dan wordt dm als eenh2 (kwaliteitsindicator) toegevoegd.</div><div class="result">Resultaat: 2330_bu (BWK: hac°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Vergraste dwerghavervegetatie: open, grazige vegetatie op kalkarme, droge zandgrond met minstens abundant éénjarigen, waarbij minstens 2 van de typische soorten vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en zandblauwtje tesamen frequent aanwezig zijn, naast de overblijvende soorten zoals struisgras spec, gewoon biggenkruid en schapenzuring.</div><div class="answer-remark">Indien soorten van 2330_bu en 2330_dw samen voorkomen: wordt niet als een complex van beide subtypen gekarteerd; de soorten met het hoogste aandeel in de vegetatie bepalen het subtype.</div><div class="result">Resultaat: 2330_dw (BWK: hat°)</div>
+</div>
+<div class="answer">
+<a href="#S12A">Anders: (→ stap 12A )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S12A"><span class="step-number">Stap 12A:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S11>11</a></div></div>
+<div class="answer">
+<a href="#S13">Bedekking van dwergstruiken ≥ 20% (→ stap 13 )</a></div>
+<div class="answer">
+<a href="#S12B">Anders: (→ stap 12B )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S12B"><span class="step-number">Stap 12B:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S12A>12A</a></div></div>
+<div class="answer">
+<div class="answer-text">Vergraste heide, deel uitmakend van een groter heidegebied</div><div class="result">Resultaat: 2310,4030 (BWK: ha)</div>
+</div>
+<div class="answer">
+<a href="#SSLEUTEL">Struisgrasland (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>GRASLANDEN</strong></div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S13"><span class="step-number">Stap 13:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S12A>12A</a></div></div>
+<div class="answer">
+<div class="answer-text">Open vegetatie op profielloos landduin of droge profielloze zandgrond met aanwezigheid van typische soorten van landduinvegetaties (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div><div class="result">Resultaat: 2310 (BWK: ha+cg)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Anders</div><div class="result">Resultaat: 4030 (BWK: ha+cg)</div>
+</div>
+</div>
+<h2>Vergraste heide (dominantie van bochtige smele)</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S14"><span class="step-number">Stap 14:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S10>10</a></div></div>
+<div class="answer">
+<a href="#S15">Vergraste droge heide met aandeel resterende dwergstruiken ≥ 20% (→ stap 15 )</a><div class="answer-remark">dwergstruiken = Calluna, Erica, Vaccinium, Genista</div></div>
+<div class="answer">
+<a href="#S16">Anders (→ stap 16 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S15"><span class="step-number">Stap 15:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S14>14</a></div></div>
+<div class="answer">
+<div class="answer-text">Open vegetatie op profielloos landduin of droge profielloze zandgrond met aanwezigheid van typische soorten van landduinvegetaties (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div><div class="result">Resultaat: 2310 (BWK: cd + cg)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op andere bodems en blauwe en/of rode bosbes domineren de dwergstruiklaag</div><div class="result">Resultaat: 4030 (BWK: cd + cv)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Anders</div><div class="result">Resultaat: 4030 (BWK: cd + cg)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S16"><span class="step-number">Stap 16:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S14>14</a></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">Grasland of zoom met minstens 3 typische soorten van heischraal grasland elk occasioneel aanwezig: (→ stap SLEUTEL )</a><div class="extra-info">heischrale soorten: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgras, dicht havikskruid, echte guldenroede, fijn schapengras, fraai hertshooi, gaspeldoorn, gelobde maanvaren, gevlekte orchis, heidekartelblad, hondsviooltje, kleine tijm, klokjesgentiaan, knollathyrus, kruipganzerik, liggend walstro, liggende vleugeltjesbloem, mannetjesereprijs, spits havikskruid, stekelbrem, stijf havikskruid, stijve ogentroost, tandjesgras, tormentil, trekrus, tweenervige zegge, veelbloemige veldbies, welriekende nachtorchis, zaagblad.</div><div class="other-key">Gebruik ook sleutel: <strong>GRASLAND_HT6230</strong></div></div>
+<div class="answer">
+<div class="answer-text">Vergraste landduinvegetatie (landduin of droge profielloze zandgrond) en met minstens abundant soorten van het Buntgrasverbond: buntgras, ruig haarmos, vroege haver, zandzegge of korstmossen (o.a. Cladonia's en Cetraria's). Struikhei meestal minder dan 10% bedekkend.</div><div class="answer-remark">Indien ≥ 10% open zand, dan wordt dm als eenh2 (kwaliteitsindicator) toegevoegd.</div><div class="result">Resultaat: 2330_bu (BWK: hac°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Open, grazige vegetatie op kalkarme, droge zandgrond met minstens abundant éénjarigen, waarbij de typische soorten vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en zandblauwtje tesamen minstens frequent aanwezig zijn, naast de soms aanwezige algemenere, overblijvende soorten zoals struisgras spec, gewoon biggenkruid en schapenzuring.</div><div class="answer-remark">Indien soorten van 2330_bu en 2330_dw samen voorkomen, wordt dit niet als een complex van beide subtypen gekarteerd. De soorten met het hoogste aandeel in de vegetatie bepalen het subtype.</div><div class="result">Resultaat: 2330_dw (BWK: hat°)</div>
+</div>
+<div class="answer">
+<a href="#S17">Anders (→ stap 17 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S17"><span class="step-number">Stap 17:</span> De door Bochtige smele gedomineerde vegetatie maakt deel uit van:</h2><div class="step-incoming">Komt van stap: <a href=#S16>16</a></div></div>
+<div class="answer">
+<a href="#S18">een groter heideterrein (→ stap 18 )</a></div>
+<div class="answer">
+<a href="#S19">een open plek omgeven door bos (→ stap 19 )</a></div>
+<div class="answer">
+<a href="#SSLEUTEL">een tijdelijke kapvlakte (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>BOSSEN_STRUWELEN</strong></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">de ondergroei van een (recente) bos(aanplant) (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>BOSSEN_STRUWELEN</strong></div></div>
+<div class="answer">
+<a href="#S20">anders (→ stap 20 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S18"><span class="step-number">Stap 18:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S17>17</a>, <a href=#S20>20</a></div></div>
+<div class="answer">
+<div class="answer-text">Open vegetatie op profielloos landduin of droge profielloze zandgrond met aanwezigheid van typische soorten van landduinvegetaties (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div><div class="result">Resultaat: 2310 (BWK: cd)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Anders</div><div class="result">Resultaat: 4030 (BWK: cd)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S19"><span class="step-number">Stap 19:</span> Open plek in het bos:</h2><div class="step-incoming">Komt van stap: <a href=#S17>17</a></div></div>
+<div class="answer">
+<a href="#Smaakt deel uit van het bos en gaat op in de omliggend bosbiotoop">< 1000 m² en vegetatiesamenstelling sterk gelijkend aan deze van de bosondergroei (→ stap maakt deel uit van het bos en gaat op in de omliggend bosbiotoop )</a></div>
+<div class="answer">
+<a href="#S20">Anders (→ stap 20 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S20"><span class="step-number">Stap 20:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S17>17</a>, <a href=#S19>19</a></div></div>
+<div class="answer">
+<a href="#S18">Struikhei minstens frequent aanwezig (→ stap 18 )</a></div>
+<div class="answer">
+<div class="answer-text">Struikhei afwezig of hooguit occasioneel aanwezig</div><div class="result">Resultaat: geen habitat (BWK: cd)</div>
+</div>
+</div>
+<h2>Vergraste heide (dominantie van pijpenstrootje)</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S21"><span class="step-number">Stap 21:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S10>10</a></div></div>
+<div class="answer">
+<a href="#S22">Bedekking (kroonsluiting) van dwergstruiken ≥ 20% (→ stap 22 )</a></div>
+<div class="answer">
+<a href="#S23">Anders (→ stap 23 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S22"><span class="step-number">Stap 22:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S21>21</a></div></div>
+<div class="answer">
+<div class="answer-text">Op profielloos landduin of met frequent typische soorten van binnenlands (stuif)duin (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div><div class="result">Resultaat: 2310 (BWK: cm + cg)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op drogere bodem, dwergstruiken gedomineerd door struikhei en typische natte heidesoorten (veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) < frequent</div><div class="result">Resultaat: 4030 (BWK: cm + cg)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op natte bodem en dwergstruiken gedomineerd door gewone dophei, de typische natte heidesoorten (veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) of andere vochtindicatoren (bijv. veenmossen, blauwe zegge, bruine snavelbies, pitrus ..)  ≥ frequent</div><div class="result">Resultaat: 4010 (BWK: cm + ce)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op natte bodem met abundant bultvormende veenmossen (S. papillosum, S. magellanicum, S. rubellum); kleine veenbes, lavendelhei of eenarig wollegras kunnen aanwezig zijn</div><div class="answer-remark">andere veenmossoorten zoals S. fallax en S. auriculatum zijn dan meestal ook abundant aanwezig</div><div class="result">Resultaat: 7140_oli (BWK: cm + ces)</div>
+</div>
+<div class="answer">
+<a href="#S28">Rode bosbes frequent aanwezig (→ stap 28 )</a></div>
+<div class="answer">
+<a href="#S28">Dwergstruiken gedomineerd door blauwe bosbes (→ stap 28 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S23"><span class="step-number">Stap 23:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S21>21</a></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">Pijpenstrootje in de grasmat niet pollenvormend, weinig strooisel en aandeel heischrale soorten zoals tandjesgras, borstelgras, tormentil, liggende vleugeltjesbloem, heidekartelblad, trekrus, stekelbrem, gevlekte orchis, tweenervige zegge > aandeel typische soorten natte heide: gewone dophei, veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>GRASLAND_HT6230</strong></div></div>
+<div class="answer">
+<a href="#S27">Anders (→ stap 27 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S24"><span class="step-number">Stap 24:</span> </h2></div>
+<div class="answer">
+<a href="#S25">Op profielloos landduin of met frequent typische soorten van binnenlands (stuif)duin (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver) (→ stap 25 )</a></div>
+<div class="answer">
+<div class="answer-text">Met ≥ 20% gewone dophei, beenbreek, veenpluis, veenbies, snavelbiezen en/of zonnedauw</div><div class="answer-remark">indien permanent natte slenken met snavelbies-vegetaties: aandeel 7150 toevoegen (zie 21)</div><div class="result">Resultaat: 4010 (BWK: cm+ce)</div>
+</div>
+<div class="answer">
+<a href="#SSLEUTEL">Ven(oever): pijpenstro vormt (hoge) verspreid staande bulten met ruime open slenken; de gezamenlijke bedekking van deze slenken met open water, waterveenmos, veelstengelige waterbies, knolrus is ≥ 70% (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>WATEREN</strong></div></div>
+<div class="answer">
+<div class="answer-text">Verland ven: pijpenstro vormt (hoge) verspreid staande bulten met ertussen permanent natte slenken; de gezamenlijke bedekking van deze slenken met open water, waterveenmos, veelstengelige waterbies, knolrus is 50 à 70%</div><div class="answer-remark">Raadpleeg de watersleutel (Scheers et al. 2016) om het waterbiotoop te typeren</div><div class="result">BWK: cm/ao…</div>
+</div>
+<div class="answer">
+<a href="#S26">anders (→ stap 26 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S25"><span class="step-number">Stap 25:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S24>24</a></div></div>
+<div class="answer">
+<div class="answer-text">Op profielloos landduinen, met aandeel pioniersvegetaties van korstmossen, ruig haarmos, grijs kronkelsteeltje, buntgras, zandstruisgras, zandzegge, heidespurrie, klein tasjeskruid, vroege haver > aandeel struikhei.</div><div class="answer-remark">Indien ≥ 10% open zand, dan wordt dm als eenh2 (kwaliteitsindicator) toegevoegd.</div><div class="result">Resultaat: 2330_bu (BWK: cm)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Anders</div><div class="result">Resultaat: 2310 (BWK: cm)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S26"><span class="step-number">Stap 26:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S24>24</a></div></div>
+<div class="answer">
+<div class="answer-text">Op vochtige tot natte bodem; pijpenstro vormt een ogenschijnlijk alles bedekkend geheel van hoge bulten met natte slenken waarin veenmossen, gewone dophei of typische soorten van natte heide (veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) aanwezig zijn</div><div class="result">Resultaat: 4010 (BWK: cm)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op natte bodem met abundant bultvormende veenmossen (S. papillosum, S. magellanicum, S. rubellum); kleine veenbes, lavendelhei of eenarig wollegras kunnen aanwezig zijn</div><div class="answer-remark">andere veenmossoorten zoals S. fallax en S. auriculatum zijn dan meestal ook abundant aanwezig</div><div class="result">Resultaat: 7140_oli (BWK: cm + ces°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op droge bodem; geen uitgesproeken bulten-slenkenpatroon; soorten van droge heide (struikhei, blauwe bosbes, rode dophei, …) min. frequent aanwezig en typische soorten van natte heide (veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies ) afwezig</div><div class="result">Resultaat: 4030 (BWK: cm)</div>
+</div>
+<div class="answer">
+<a href="#S27">Anders (→ stap 27 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S27"><span class="step-number">Stap 27:</span> De door Pijpenstrootje gedomineerde vegetatie maakt deel uit van:</h2><div class="step-incoming">Komt van stap: <a href=#S23>23</a>, <a href=#S26>26</a></div></div>
+<div class="answer">
+<div class="answer-text">een groter heideterrein</div><div class="result">Resultaat: 4010,4030 (BWK: cm)</div>
+</div>
+<div class="answer">
+<a href="#S29">een open plek omgeven door bos (→ stap 29 )</a></div>
+<div class="answer">
+<a href="#SSLEUTEL">een tijdelijke kapvlakte op kleine open plek (< 1000 m²) in het bos (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>BOSSEN_STRUWELEN</strong></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">de ondergroei van een (recente) bos(aanplant) (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>BOSSEN_STRUWELEN</strong></div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S28"><span class="step-number">Stap 28:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S22>22</a></div></div>
+<div class="answer">
+<div class="answer-text">Aanwezigheid van rode bosbes, in combinatie met grote wolfsklauw, klein wintergroen, veenmossen, gewone dophei, dubbelloof, stippelvaren.</div><div class="result">Resultaat: 4010 (BWK: cm + cv)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Anders</div><div class="result">Resultaat: 4030 (BWK: cm + cv)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S29"><span class="step-number">Stap 29:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S27>27</a></div></div>
+<div class="answer">
+<div class="answer-text">Struikhei minstens frequent aanwezig</div><div class="result">Resultaat: 4030 (BWK: cm)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Struikhei afwezig of hooguit occasioneel aanwezig</div><div class="result">Resultaat: geen habitat (BWK: cm)</div>
+</div>
+</div>
+<h2>heide met jeneverbes - Juniperus heathland</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S35"><span class="step-number">Stap 35:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S2>2</a></div></div>
+<div class="answer">
+<a href="#S36">Bedekking boomlaag (excl. jeneverbes) < 50% (→ stap 36 )</a></div>
+<div class="answer">
+<a href="#SSLEUTEL">Bedekking boomlaag  (excl. jeneverbes) ≥ 50% (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>BOSSEN_STRUWELEN</strong></div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S36"><span class="step-number">Stap 36:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S35>35</a></div></div>
+<div class="answer">
+<div class="answer-text">Minimaal 10 jeneverbesstruiken komen (deels) gegroepeerd voor en bedekken ≥ 10% (minimum oppervlakte = 400 m²)</div><div class="answer-remark">Volg ook stap 1b voor het bepalen van het BWK-deel c..</div><div class="result">Resultaat: 5130_hei (BWK: c.. + jun)</div>
+</div>
+<div class="answer">
+<a href="#S3">Jeneverbes aanwezig, maar in lagere aantallen of zeer ijl verspreid (→ stap 3 )</a><div class="answer-remark">Bij aanwezigheid, het aantal Jeneverbessen vermelden in infoveld.</div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S37"><span class="step-number">Stap 37:</span> </h2></div>
+<div class="answer">
+<div class="answer-text">Autochtone populatie binnen het gekende areal (zie Figuur 1)</div><div class="answer-remark">Volg ook stap 1b voor het bepalen van het BWK-deel c..</div><div class="result">Resultaat: 5130_hei (BWK: c.. + jun)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Geen zeer recente (< 10j) aanplant EN er is een plan tot herintrodoctie EN er is (actie tot het bevorderen van) verjonging</div><div class="answer-remark">Volg ook stap 1b voor het bepalen van het BWK-deel c..</div><div class="result">Resultaat: 5130_hei (BWK: c.. + jun)</div>
+</div>
+<div class="answer">
+<a href="#S3">Anders (→ stap 3 )</a><div class="answer-remark">Vermeld het aantal Jeneverbessen in infoveld</div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S38"><span class="step-number">Stap 38:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S40>40</a></div></div>
+<div class="answer">
+<div class="answer-text">Recent verbost jeneverbesstruweel: minimaal 10 jeneverbesstruiken komen gegroepeerd voor en bedekken ≥ 10%</div><div class="answer-remark">Volg ook stap 1b voor het bepalen van het BWK-deel c..</div><div class="result">Resultaat: 5130_hei (BWK: sz/c. + jun)</div>
+</div>
+<div class="answer">
+<a href="#S41">Recent verboste heide met jeneverbes, maar < 10 exemplaren of zeer ijl verspreid (→ stap 41 )</a><div class="answer-remark">Bij aanwezigheid, het aantal Jeneverbessen vermelden in infoveld.</div></div>
+</div>
+<h2>Recent verboste heide</h2><h3>Bedekking van struiken en jonge bomen (< 6m) ≥ 50% met minder dan 10% bedekking van hogere (> 6m) bomen en struiken en aandeel typisch soorten van open heide (dwergstruiken, beenbreek, veenpluis, buntgras) ≥ pijpenstrootje, bochtige smele, struisgras, varens en bosplanten</h3><div class="step-container">
+<div class="step-header">
+<h2 id="S40"><span class="step-number">Stap 40:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S1>1</a></div></div>
+<div class="answer">
+<a href="#S38">Jeneverbes aanwezig (→ stap 38 )</a></div>
+<div class="answer">
+<a href="#S41">Jeneverbes afwezig (→ stap 41 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S41"><span class="step-number">Stap 41:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S38>38</a>, <a href=#S40>40</a></div></div>
+<div class="answer">
+<div class="answer-text">Op profielloos landduin of met frequent typische soorten van binnenlands (stuif)duin (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div><div class="result">Resultaat: gh (BWK: sz/cg + boomcode)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op andere droge bodems; ondergroei gedomineerd door struikhei en/of blauwe bosbes</div><div class="answer-remark">Vermeld meest aanwezige (max. 2) boom- en/of struiksoort(en)</div><div class="result">Resultaat: gh (BWK: sz/cg + boomcode)</div>
+</div>
+<div class="answer">
+<a href="#S42">Op vochtige tot natte bodems; ondergroei gedomineerd door gewone dophei, veenpluis, gagel, veenmossen (→ stap 42 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S42"><span class="step-number">Stap 42:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S41>41</a></div></div>
+<div class="answer">
+<a href="#S80">Gagel is (co)dominant in struiklaag (→ stap 80 )</a></div>
+<div class="answer">
+<div class="answer-text">Anders</div><div class="answer-remark">Vermeld meest aanwezige (max. 2) boom- en/of struiksoort(en)</div><div class="result">Resultaat: gh (BWK: sz/ce + boomcode)</div>
+</div>
+</div>
+<h2>Open heide en landduin</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S50"><span class="step-number">Stap 50:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S3>3</a></div></div>
+<div class="answer">
+<a href="#S51">De vegetatie wordt vooral gedomineerd door dwergstruiken, pijpenstrootje, veenmossen en/of veenpluis (→ stap 51 )</a><div class="answer-remark">dwergstruiken = Calluna, Erica, Vaccinium, Genista</div></div>
+<div class="answer">
+<a href="#S60">Onbegroeid tot grotendeels gefixeerd landduin en pioniersvegetaties op weinig humeuze zand- (of lichte leem)grond. De aanwezige vegetatie wordt vooral gedomineerd door grijs kronkelsteeltje, haarmossen, korstmossen, éénjarigen, zandstruisgras, buntgras en/of zandzegge. (→ stap 60 )</a></div>
+<div class="answer">
+<a href="#S70">Open (pioniers)vegetaties op brand- en plagplekken (→ stap 70 )</a><div class="answer-remark">Indien duidelijke sporen van recente brand of plagwerken; bij twijfel -> 60</div></div>
+</div>
+<h3>Open heide</h3><div class="step-container">
+<div class="step-header">
+<h2 id="S51"><span class="step-number">Stap 51:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S50>50</a></div></div>
+<div class="answer">
+<div class="answer-text">Veenmosrijke heide met Sphagnum rubellum + slijkzegge</div><div class="answer-remark">Enkel bekend van Ven onder de Berg</div><div class="result">Resultaat: 7110 (BWK: t)</div>
+</div>
+<div class="answer">
+<a href="#S52">Veenmosrijke heide met bultvormende veenmossen abundant (dikwijls is ook Beenbreek abundant aanwezig) (→ stap 52 )</a></div>
+<div class="answer">
+<a href="#SSLEUTEL">Heischraal grasland: aandeel heischrale soorten (tandjesgras, borstelgras, fijn schapenras, trekrus, tormentil, kruipganzerik, liggende vleugeltjesbloem, heidekartelblad, bleke zegge, veelbloemige veldbies, liggend walstro, tweenervige zegge, gevlekte orchis) > heidesoorten (dwergstruiken, veenmos, beenbreek, zonnedauw, snavelbiezen, veenbies) (→ stap SLEUTEL )</a><div class="result">Resultaat: 6230</div>
+<div class="other-key">Gebruik ook sleutel: <strong>GRASLAND</strong></div></div>
+<div class="answer">
+<a href="#S53">Anders (→ stap 53 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S52"><span class="step-number">Stap 52:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S51>51</a></div></div>
+<div class="answer">
+<div class="answer-text">Veenmosrijke heide met aanwezigheid van kleine veenbes, lavendelheide en/of eenarig wollegras</div><div class="result">Resultaat: 7140_oli (BWK: ces)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Veenmosrijke heide met hoogveenveenmossen (Sphagnum magellanicum en/of S. rubellum)</div><div class="result">Resultaat: 7140_oli (BWK: ces)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Veenmosrijke heide met abundant voorkomen van veenmosbulten van S. papillosum, zonder de hierboven vermelde soorten</div><div class="answer-remark">andere veenmossen zoals S. auriculatum en S. fallax zijn meestal ook abundant aanwezig</div><div class="result">Resultaat: 7140_oli (BWK: ces°)</div>
+</div>
+<div class="answer">
+<a href="#S53">Anders (→ stap 53 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S53"><span class="step-number">Stap 53:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S51>51</a>, <a href=#S52>52</a></div></div>
+<div class="answer">
+<a href="#S54">Struikhei dominant en typische natte heidesoorten (veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) < frequent (→ stap 54 )</a></div>
+<div class="answer">
+<a href="#S55">Blauwe en/of rode bosbes (co)dominant in de dwergstruiklaag (→ stap 55 )</a></div>
+<div class="answer">
+<a href="#S56">Vochtige/natte bodem met dwergstruikenvegetatie van gewone dophei (dikwijls ook struikhei), vaak met goed ontwikkelde moslaag met veenmossen (o.a. S. compactum, S. molle, S. tenellum); ook pijpenstrootje, kleine en ronde zonnedauw, veenpluis, witte snavelbies, veenbies, beenbreek, klokjesgentiaan en/of tweenervige zegge (→ stap 56 )</a></div>
+<div class="answer">
+<a href="#SSLEUTEL">Ven: tijdens het groeiseizoen is de gezamenlijke bedekking van het open water, waterveenmos, veelstengelige waterbies en knolrus > 70% (→ stap SLEUTEL )</a><div class="answer-remark">opgelet, tijdens de winter kunnen ook natte heiden (4010, 7150) tijdelijk onder water staan.</div><div class="other-key">Gebruik ook sleutel: <strong>WATEREN</strong></div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S54"><span class="step-number">Stap 54:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S53>53</a></div></div>
+<div class="answer">
+<div class="answer-text">Op profielloos landduin of met frequent typische soorten van binnenlands (stuif)duin (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div><div class="result">Resultaat: 2310 (BWK: cg)</div>
+</div>
+<div class="answer">
+<div class="answer-text">op andere bodems</div><div class="result">Resultaat: 4030 (BWK: cg)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S55"><span class="step-number">Stap 55:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S53>53</a></div></div>
+<div class="answer">
+<div class="answer-text">Op stenige noordhellingen, met abundant rode bosbes, in combinatie met gewone dophei, veenmossen, dubbelloof, stippelvaren, grote wolfsklauw, klein wintergroen</div><div class="answer-remark">vochtige bosbeshei</div><div class="result">Resultaat: 4010 (BWK: cv)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op (noordhelling van) landduinen; meestal met abundant rode bosbes</div><div class="result">Resultaat: 2310 (BWK: cv)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Anders</div><div class="result">Resultaat: 4030 (BWK: cv)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S56"><span class="step-number">Stap 56:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S53>53</a></div></div>
+<div class="answer">
+<div class="answer-text">Aanwezigheid van vegetatievlekken van minstens 4 m² met open, natte pioniersvegetaties, gekenmerkt door het samen minstens abundant aanwezig zijn van moeraswolfsklauw, kleine zonnedauw, witte en/of bruine snavelbies (op plagplekken, langs venoevers of in natte laagten). Typische soorten van natte heide (gewone dophei, veenpluis, beenbreek, klokjesgentiaan, veenbies, pijpenstrootje) nemen in deze zones een kleiner aandeel in dan de vermelde pioniersoorten.</div><div class="answer-remark">Aandeel van beide habitattypen inschatten</div><div class="result">Resultaat: 4010 + 7150 (BWK: ce)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Afwezigheid van de hierboven beschreven vegetatievlekken; de vermelde soorten komen verspreid in de natte heide voor, de vegetatievlekken zijn < 4 m²  of zijn afwezig</div><div class="result">Resultaat: 4010 (BWK: ce)</div>
+</div>
+</div>
+<h3>Binnenlands (stuif)duin</h3><div class="step-container">
+<div class="step-header">
+<h2 id="S60A"><span class="step-number">Stap 60A:</span> </h2></div>
+<div class="answer">
+<a href="#S61">Open, onbegroeid of (deels) gefixeerde landduin gekenmerkt door korstmossen, ruig haarmos, grijs kronkelsteeltje, buntgras, zandstruisgras, zandzegge, heidespurrie, klein tasjeskruid, vroege haver en struikhei. (→ stap 61 )</a></div>
+<div class="answer">
+<a href="#S60b">Anders (→ stap 60b )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S60B"><span class="step-number">Stap 60B:</span> </h2></div>
+<div class="answer">
+<a href="#S64">aandeel éénjarigen in de vegetatie 10% of meer (→ stap 64 )</a></div>
+<div class="answer">
+<a href="#SSLEUTEL">aandeel éénjarigen in de vegetatie < 10% (→ stap SLEUTEL )</a><div class="extra-info">Niet-limitatieve opsomming van veel voorkomende éénjarigen: veldereprijs, hazenpootje, Canadese fijnstraal, eenjarige hardbloem, rode schijnspurrie, akkerviooltje, zandmuur, reigersbek, heidespurrie, straatgras, zandraket, vroegeling, kleine leeuwenklauw, zachte ooievaarsbek, klein streepzaad, eekhoorngras, gewoon langbaardgras, zandhoornbloem, slofhak, …</div><div class="other-key">Gebruik ook sleutel: <strong>GRASLANDEN</strong></div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S61"><span class="step-number">Stap 61:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S60A>60A</a></div></div>
+<div class="answer">
+<a href="#S62">Open, zandplekken ≥ 50% (→ stap 62 )</a></div>
+<div class="answer">
+<a href="#S63">Open, zandplekken < 50% en aandeel struikhei < 50% (→ stap 63 )</a></div>
+<div class="answer">
+<div class="answer-text">Open, zandplekken < 50% en aandeel struikhei ≥ 50%</div><div class="result">Resultaat: 2310 (BWK: cg)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S62"><span class="step-number">Stap 62:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S61>61</a></div></div>
+<div class="answer">
+<div class="answer-text">Open, zand > 90%</div><div class="result">Resultaat: 2330_bu (BWK: dm°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Open, zandplekken ≥ 50% en ≤ 90%</div><div class="result">Resultaat: 2330_bu (BWK: dm + hac)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S63"><span class="step-number">Stap 63:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S61>61</a></div></div>
+<div class="answer">
+<div class="answer-text">Open, zandplekken < 10%</div><div class="result">Resultaat: 2330_bu (BWK: hac)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Open, zandplekken ≥ 10%</div><div class="result">Resultaat: 2330_bu (BWK: hac + dm)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S64"><span class="step-number">Stap 64:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S60B>60B</a></div></div>
+<div class="answer">
+<div class="answer-text">Open grazige vegetatie op van nature kalkarme, droge zandgrond met minstens 2 kensoorten van het dwerghaververbond tezamen frequent aanwezig</div><div class="answer-remark">Indien soorten van 2330_bu en 2330_dw samen voorkomen: wordt niet als een complex van beide subtypen gekarteerd; de soorten met het hoogste aandeel in de vegetatie bepalen het subtype.</div><div class="result">Resultaat: 2330_dw (BWK: hat)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Open grazige vegetatie op van nature kalkarme, droge zandgrond met in de kruidlaag een aandeel van minstens 30% kensoorten van het dwerghaververbond</div><div class="result">Resultaat: 2330_dw (BWK: hat)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Open grazige vegetatie met soorten van dwerghaververbond zoals in 2 vorige keuzes beschreven, maar op een ander bodemtype</div><div class="result">Resultaat: rbbha (BWK: ha)</div>
+</div>
+<div class="answer">
+<a href="#SSLEUTEL">Anders (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>GRASLANDEN</strong></div></div>
+</div>
+<h2>heide met dominantie van adelaarsvaren</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S65"><span class="step-number">Stap 65:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S3>3</a></div></div>
+<div class="answer">
+<div class="answer-text">Kleine vlek (≤ 400 m²) in een groter heideterrein</div><div class="result">Resultaat: gaat op in de omliggend heide</div>
+</div>
+<div class="answer">
+<a href="#S66">Grotere vlek (> 400m²) in een groter heideterrein en met minstens frequent dwergstruikenb (struikhei, dophei, bosbes) (→ stap 66 )</a></div>
+<div class="answer">
+<a href="#SSLEUTEL">Anders (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>RUIGTEN_PIONIER</strong></div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S66"><span class="step-number">Stap 66:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S65>65</a></div></div>
+<div class="answer">
+<div class="answer-text">Op profielloos landduin</div><div class="result">Resultaat: 2310 (BWK: cp)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op andere bodems</div><div class="result">Resultaat: 4030 (BWK: cp)</div>
+</div>
+</div>
+<h2>Open (pioniers)vegetaties op brandvlekken of plagplekken in de hei</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S70"><span class="step-number">Stap 70:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S3>3</a>, <a href=#S50>50</a></div></div>
+<div class="answer">
+<a href="#S71">Brandplek/plagplek nagenoeg vegetatieloos (< 5% bedekking) en geen permanent water vormend (→ stap 71 )</a></div>
+<div class="answer">
+<a href="#S72">Anders (→ stap 72 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S71"><span class="step-number">Stap 71:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S70>70</a></div></div>
+<div class="answer">
+<div class="answer-text">Brand/plagplek in een natte heide</div><div class="answer-remark">info: 'plagplek' of 'brandvlek'</div><div class="result">Resultaat: 4010,7150 (BWK: c)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Brand/plagplek in een droge heide op een profielloos landduin</div><div class="answer-remark">info: 'plagplek' of 'brandvlek'</div><div class="result">Resultaat: 2310,2330 (BWK: c)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Brand/plagplek in een droge heide op andere bodems</div><div class="answer-remark">info: 'plagplek' of 'brandvlek'</div><div class="result">Resultaat: 4030 (BWK: c)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Plagplek op een kapvlakte van een bos of struweel</div><div class="answer-remark">info: plagplek</div><div class="result">Resultaat: gh (BWK: se)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Plagplek op een grasland, akker of ander niet-heide biotoop</div><div class="answer-remark">info: plagplek</div><div class="result">Resultaat: gh (BWK: ku)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S72"><span class="step-number">Stap 72:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S70>70</a></div></div>
+<div class="answer">
+<div class="answer-text">Pioniersvegetatie met een kruidlaag gedomineerd door witte en/of bruine snavelbies, moeraswolfsklauw en kleine zonnedauw; meestal met een hoog aandeel open bodem (al dan niet met wieren). De soorten van natte heide (gewone dophei, veenpluis, beenbreek, klokjesgentiaan, veenbies, pijpenstrootje) nemen een kleiner aandeel in dan de vermelde pionierssoorten.</div><div class="answer-remark">In periodiek droogvallende heideslenken en op venoevers; Vaak tijdelijk op plagplekken = deel van omliggende heide.</div><div class="result">Resultaat: 7150 (BWK: ce)</div>
+</div>
+<div class="answer">
+<a href="#S10">Vegetatiebedekking ≥ 30% EN aandeel van grassen in de kruidlaag is > 50%  (= vergraste heide) (→ stap 10 )</a><div class="answer-remark">info: 'plagplek' of 'brandvlek'</div></div>
+<div class="answer">
+<a href="#S73">Anders (→ stap 73 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S73"><span class="step-number">Stap 73:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S72>72</a></div></div>
+<div class="answer">
+<div class="answer-text">Een jonge heide op vochtige tot natte bodem met abundant gewone dophei, veenpluis, veenbies, blauwe zegge, snavelbiezen, zonnedauw, … (aandeel natte heidesoorten > aandeel droge heidesoorten)</div><div class="answer-remark">info: 'plagplek' of 'brandvlek'</div><div class="result">Resultaat: 4010 (BWK: ce°)</div>
+</div>
+<div class="answer">
+<a href="#S74">Een jonge heide op droge bodem met abundant struikhei, stekelbrem, vroege haver, buntgras, ruig haarmos, … (aandeel droge heidesoorten > aandeel natte heidesoorten) (→ stap 74 )</a></div>
+<div class="answer">
+<div class="answer-text">Bij gelijk aandeel van kenmerkende soorten van droge en natte heide en deze samen ministens abundant</div><div class="answer-remark">info: 'plagplek' of 'brandvlek'</div><div class="result">Resultaat: 4010,4030 (BWK: c)</div>
+</div>
+<div class="answer">
+<a href="#S75">Anders (→ stap 75 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S74"><span class="step-number">Stap 74:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S73>73</a></div></div>
+<div class="answer">
+<div class="answer-text">Op profielloos landduinen met aandeel struikhei > aandeel pioniersoorten</div><div class="answer-remark">info: 'plagplek' of 'brandvlek'</div><div class="result">Resultaat: 2310 (BWK: cg°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op profielloos landduinen met aandeel pioniersoorten (buntgras, grijs kronkelsteeltje, vroege haver, heidespurrie, ruig haarmos) > aandeel struikhei</div><div class="answer-remark">Indien ≥ 10% open zand, dan wordt dm als eenh2 toegevoegd; info: plagplek</div><div class="result">Resultaat: 2330_bu (BWK: hac)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Op andere bodems</div><div class="answer-remark">info: 'plagplek' of 'brandvlek'</div><div class="result">Resultaat: 4030 (BWK: cg°)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S75"><span class="step-number">Stap 75:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S73>73</a></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">Een plagplek op zeer natte bodem, bijna jaar rand onder water en hoofdzakelijk soorten van voedselarme wateren: open water, waterveenmos, vensikkelmos, knolrus (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>WATEREN</strong></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">Plagplek met vnl. opslag van jonge bomen, struiken en bramen; indicatieve heidesoorten hoogstens frequent aanwezig (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>BOSSEN_STRUWELEN</strong></div></div>
+<div class="answer">
+<div class="answer-text">Plagplek op van nature kalkarme, droge zandgrond met een kruidlaag gekenmerkt door een hoog aandeel éénjarigen (minstens 10%) waaronder minstens 2 kensoorten van het dwerghaververbond</div><div class="answer-remark">info: 'plagplek'</div><div class="result">Resultaat: 2330_dw (BWK: hat)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S76"><span class="step-number">Stap 76:</span> </h2></div>
+<div class="answer">
+<div class="answer-text">Soortenrijke, bloemrijke vegetaties met meerdere bijzondere soortensamen frequent aanwezig:</div><div class="answer-remark">Indien deze soortenlijst in combinatie met hoge bedekking aan invasieve planten, wordt de karteringseenheid intermediair: ku</div><div class="result">Resultaat: gh (BWK: ku*)</div>
+</div>
+</div>
+<h2>heide met wilde gagel (kroonprojectie ≥ 50% gagel)</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S80"><span class="step-number">Stap 80:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S1>1</a>, <a href=#S42>42</a></div></div>
+<div class="answer">
+<a href="#S81">Gemiddelde hoogte van de gagelstruiken ≥ 1m boven maaiveld (→ stap 81 )</a></div>
+<div class="answer">
+<a href="#S82">Gemiddelde hoogte van de gagelstruiken < 1m boven maaiveld (→ stap 82 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S81"><span class="step-number">Stap 81:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S80>80</a></div></div>
+<div class="answer">
+<div class="answer-text">Boomlaag (≥ 6 m) < 10% bedekkend</div><div class="result">Resultaat: rbbsm (BWK: sm)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Boomlaag (≥ 6 m) ≥ 10%, maar < 50% bedekkend</div><div class="result">Resultaat: rbbsm (BWK: smb)</div>
+</div>
+<div class="answer">
+<a href="#SSLEUTEL">Boomlaag (≥ 6 m) ≥ 50% bedekkend (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>BOSSEN_STRUWELEN</strong></div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S82"><span class="step-number">Stap 82:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S80>80</a></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">Boomlaag (≥ 6 m) ≥ 50% bedekkend (→ stap SLEUTEL )</a><div class="other-key">Gebruik ook sleutel: <strong>BOSSEN_STRUWELEN</strong></div></div>
+<div class="answer">
+<a href="#S83">Anders (→ stap 83 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S83"><span class="step-number">Stap 83:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S82>82</a></div></div>
+<div class="answer">
+<div class="answer-text">Typische soorten van natte heide (gewone dophei, veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) minstens abundant in de ondergroei</div><div class="answer-remark">gagelrijke natte heide</div><div class="result">Resultaat: 4010 (BWK: ce+myr)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Typische soorten van natte heide (gewone dophei, veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) hooguit frequent in de ondergroei</div><div class="answer-remark">gagelrijke natte heide</div><div class="result">Resultaat: 4010 (BWK: cm+myr)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Venige natte heide met abundant bultvormende veenmossen (S. papillosum, S. magellanicum, S. rubellum) en/of aanwezigheid van kleine veenbes, lavendelhei of eenarig wollegras</div><div class="answer-remark">gagelrijk overgangsveen</div><div class="result">Resultaat: 7140_oli (BWK: ces+myr)</div>
+</div>
+</div>
+<div class="back-to-index"><a href="index.html">Terug naar Index</a></div>
+</body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moeras sleutel</title><style>
+   
+  /* Base styles */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #e6f2f7;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  
+  h1 {
+    color: #1a5276;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1a5276;
+    margin-bottom: 25px;
+  }
+  
+  h2, h3, h4 {
+    color: #2874a6;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+  
+  a {
+    color: #2874a6;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: #1a5276;
+    text-decoration: underline;
+  }
+  
+  /* Table styles */
+  table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  th, td {
+    border: 1px solid #b3d9e6;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #b3d9e6;
+    color: #1a5276;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f9fc;
+  }
+  
+  tr:hover {
+    background-color: #d9ebf2;
+  }
+  
+  /* Step styling */
+  .step-container {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .step-header {
+    background-color: #d9ebf2;
+    padding: 15px;
+    margin: -20px -20px 20px -20px;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+  }
+  
+  .step-number {
+    font-weight: bold;
+    color: #1a5276;
+  }
+  
+  .step-incoming {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .step-remark {
+    background-color: #fff9e0;
+    padding: 10px;
+    border-left: 4px solid #ffd700;
+    margin: 15px 0;
+    font-style: italic;
+  }
+  
+  /* Answer styling */
+  .answer {
+    background-color: #f7f9fa;
+    border-left: 4px solid #2874a6;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+    transition: background-color 0.3s;
+  }
+  
+  .answer:hover {
+    background-color: #e6f2f7;
+  }
+  
+  .answer a {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .answer-remark {
+    font-style: italic;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  .extra-info {
+    background-color: #f0f7fa;
+    border: 1px solid #d1e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .result {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  .other-key {
+    background-color: #e8eaf6;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+  }
+  
+  /* Back to index button */
+  .back-to-index {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2874a6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+  
+  .back-to-index a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px;
+      padding: 10px;
+    }
+    
+    .step-container {
+      padding: 15px;
+    }
+    
+    .step-header {
+      padding: 12px;
+      margin: -15px -15px 15px -15px;
+    }
+    
+    .answer, .step-remark, .extra-info {
+      padding: 12px;
+    }
+  }
+  
+
+.clickable-header {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    cursor: pointer;
+    display: block;
+    color: #2874a6;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-left: 5px solid #2874a6;
+}
+
+.clickable-header:hover {
+    background-color: #f2f9fc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.clickable-header:active {
+    background-color: #e6f2f7;
+    transform: translateY(1px);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .clickable-header {
+        padding: 15px;
+        margin: 12px 0;
+    }
+}
+ 
+</style>
+</head>
+<body>
+<h1>Moeras sleutel</h1> 
+<div class="step-container">
+<div class="step-header">
+<h2 id="S0"><span class="step-number">Stap 0:</span> </h2></div>
+<div class="answer">
+<a href="#S1">vegetatie met minimaal abundant helofyten (zie begrippenlijst) in bijlage 4; en/of freatofyten (zie begrippenlijst) zie lijst in bijlage 4) (→ stap 1 )</a><div class="answer-remark">Helofyt: moerasplant die in de waterbodem wortelt, maar met de stengel en bladeren boven het water</div></div>
+<div class="answer">
+<a href="#SSLEUTEL">ga terug naar de hoofdsleutel (→ stap SLEUTEL )</a><div class="answer-remark">Freatofyt: soort die in haar voorkomen voornamelijk beperkt is tot standplaatsen waar de invloed van</div><div class="other-key">Gebruik ook sleutel: <strong>HOOFDSLEUTEL</strong></div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S1"><span class="step-number">Stap 1:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S0>0</a></div></div>
+<div class="step-remark">dergelijke plaatsen.</div><div class="answer">
+<a href="#SSLEUTEL">(oever)vegetatie in (permanent) contact met een oppervlaktewaterlichaam (kreek, poel, plas, waterloop) EN bestaat voor meer dan 70% uit waterplanten (→ stap SLEUTEL )</a><div class="answer-remark">(G): verzameling van soorten die tot eenzelfde plantengeslacht (Genus) gerekend worden.</div><div class="extra-info">waterplanten: kikkerbeet, fonteinkruid (G)2, geleplomp, kroos (G), ...) en/of aquatische mossen (waterveenmos, dof veenmos, vensikkelmos,
+moerassikkelmos, ...</div><div class="other-key">Gebruik ook sleutel: <strong>WATEREN</strong></div></div>
+<div class="answer">
+<a href="#S700">(oever)vegetatie in (permanent) contact met een oppervlaktewaterlichaam (kreek, poel, plas, waterloop) EN gedomineerd door pitrus, zeegroene rus en/of biezenknoppen EN geen drijftil (→ stap 700 )</a><div class="answer-remark">door russen gedomineerde moerassen</div></div>
+<div class="answer">
+<a href="#SSLEUTEL">oevervegetatie in (permanent) contact met een oppervlaktewaterlichaam (kreek, poel, plas, waterloop) EN gedomineerd door geoord veenmos, fraai veenmos, ondergedoken veenmos) EN geen drijftil (→ stap SLEUTEL )</a><div class="answer-remark">onderdeel van het waterlichaam</div><div class="other-key">Gebruik ook sleutel: <strong>WATEREN</strong></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">oevervegetatie in (permanent) contact met een oppervlaktewaterlichaam (kreek, poel, plas, waterloop) met soorten als wijdbloeiende rus, naaldwaterbies, geel cypergras, glaskroos, eivormige waterbies, draadgentiaan, dwergbloem, koprus, priemkruid, dwergrus, gewone waternavel, knolrus (→ stap SLEUTEL )</a><div class="answer-remark">onderdeel van het waterlichaam</div><div class="other-key">Gebruik ook sleutel: <strong>WATEREN</strong></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">oevervegetatie in ecoregio kust en polders in (permanent) contact met een zilt of brak oppervlaktewaterlichaam (kreek, poel, plas, waterloop) met soorten als zilte waterranonkel, ruppia (G), gesteelde zannichellia, zulte, kweldergrassen, melkkruid, zilt torkruid, zilte schijnspurrie, gerande schijnspurrie, zilte rus, zeerus, zeekraal-soorten, schorrenzoutgras (→ stap SLEUTEL )</a><div class="answer-remark">rbbah</div><div class="other-key">Gebruik ook sleutel: <strong>WATEREN</strong></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">pioniergemeenschap gedomineerd door éénjarige soorten op oevers met slik of slib langs de Maas (inclusief (grind)plassen in permanente verbinding met de Maas) met soorten als spiesmelde, knikkend tandzaad, smal tandzaad, zwart tandzaad, veerdelig tandzaad, zwarte mosterd, kleine leeuwenbek, stippelganzenvoet, zeegroene ganzenvoet, rode ganzenvoet, korrelganzenvoet, riempjes, bruin cypergras, naaldwaterbies, rijstgras, slijkgroen, watertorkruid, goudzuring, moeraszuring, blauwe waterereprijs of rode waterereprijs (→ stap SLEUTEL )</a><div class="answer-remark">3270</div><div class="other-key">Gebruik ook sleutel: <strong>WATEREN</strong></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">door riet of lisdodde gedomineerd vegetatie die met de voeten in een (habitatwaardig) waterlichaam staat, maar (nog) geen drijftil vormt (→ stap SLEUTEL )</a><div class="answer-remark">waterhabitattype te bepalen met de watersleutel</div><div class="result">Resultaat: 31x0_rbbmr (BWK: mr)</div>
+<div class="other-key">Gebruik ook sleutel: <strong>WATEREN</strong></div></div>
+<div class="answer">
+<a href="#S10">anders (→ stap 10 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S10"><span class="step-number">Stap 10:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S1>1</a></div></div>
+<div class="answer">
+<a href="#S20">drijftillen of verlandingszomen: vegetatie wortelend vanuit een min of meer drijvende mat, in de onmiddellijke omgeving vaak nog open water aanwezig; naast zeggesoorten en enkele andere typische verlandingssoorten (slangenwortel, wateraardbei, holpijp, waterdrieblad, russen, riet,
+lisdodde ...) kunnen (veen)mossen een belangrijk deel van de vegetatie uitmaken. (→ stap 20 )</a></div>
+<div class="answer">
+<a href="#S30">geen drijftillen of bij twijfel (→ stap 30 )</a></div>
+</div>
+<h2>DRIJFTILLEN</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S20"><span class="step-number">Stap 20:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S10>10</a></div></div>
+<div class="answer">
+<div class="answer-text">drijftillen of verlandingszomen gedomineerd door sleutelsoorten van het Snavelbies-verbond</div><div class="answer-remark">vaak in complex met veenmosvegetaties en/of overige overgangsveensoorten van 7140_oli</div><div class="result">Resultaat: 7150 (BWK: md +ce)</div>
+</div>
+<div class="answer">
+<div class="answer-text">drijftillen of verlandingszomen met één of meer sleutelsoorten van het overgangsveen aanwezig en/of minimaal abundant (> 10% bedekkend) wrattig veenmos aanwezig</div><div class="result">Resultaat: 7140_oli (BWK: md + ces)</div>
+</div>
+<div class="answer">
+<div class="answer-text">drijfillen of verlandingszomen met sleutelsoorten van zuur laagveen samen minimaal frequent voorkomend EN/OF begeleidende soorten samen minstens abundant aanwezig</div><div class="answer-remark">aanzienlijke veenmosontwikkeling is mogelijk maar het betreft niet de (hoogveen)veenmossen uit 7140_oli</div><div class="result">Resultaat: 7140_meso (BWK: md + ms)</div>
+</div>
+<div class="answer">
+<div class="answer-text">drijftillen of verlandingszomen met sleutelsoorten van het alkalisch en/of neutraal trilveen.</div><div class="answer-remark">Veenmosontwikkeling is mogelijk (bv. glanzend veenmos, gewoon veenmos,trilveenveenmos ...)</div><div class="result">Resultaat: 7140_mk (BWK: md + mk)</div>
+</div>
+<div class="answer">
+<a href="#S23">anders (→ stap 23 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S23"><span class="step-number">Stap 23:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S20>20</a></div></div>
+<div class="answer">
+<a href="#S24">drijftillen of verlandingszomen met minimaal abundant grote zeggesoorten (→ stap 24 )</a><div class="extra-info">grote zeggesoorten: oeverzegge, moeraszegge, scherpe zegge, hoge cyperzegge, stijve zegge, blaaszegge</div><div class="result">Resultaat: rbbmc</div>
+</div>
+<div class="answer">
+<a href="#S25">drijftillen of verlandingszomen gedomineerd door 1 of meer sleutelsoorten van het Riet-verbond (Phragmition); grote zeggesoorten zijn minder dan abundant aanwezig (→ stap 25 )</a><div class="answer-remark">veenmosontwikkeling is in enkele zeldzame gevallen mogelijk, alsook aanwezigheid kam- en/of moerasvaren; sleutelsoorten van andere groepen zijn niet of hoogstens schaars aanwezig</div><div class="result">BWK: md + mr</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders (bv. pitrus gedomineerde drijftil, met minder of geen van de bovenvermelde sleutelsoorten)</div><div class="result">Resultaat: gh (BWK: md)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S24"><span class="step-number">Stap 24:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S23>23</a></div></div>
+<div class="answer">
+<div class="answer-text">eutrofiëringsindicatoren bedekken meer dan 30%</div><div class="result">Resultaat: rbbmc (BWK: md + mc°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">Resultaat: rbbmc (BWK: md + mc)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S25"><span class="step-number">Stap 25:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S23>23</a></div></div>
+<div class="answer">
+<a href="#S26">drijftillen of -zomen van het Riet-verbond (Phragmition) met moerasvaren en/of kamvaren (→ stap 26 )</a><div class="answer-remark">veenmosontwikkeling is mogelijk</div><div class="extra-info">Riet-verbond: gele lis, grote egelskop, grote lisdodde, kalmoes, kleine lisdodde, liesgras, mattenbies, riet, ruwe bies, vlotgras (G), watertorkruid, waterzuring, lidsteng, zwanenbloem, grote boterbloem</div><div class="result">Resultaat: 7140_mrd</div>
+</div>
+<div class="answer">
+<a href="#S26">drijftillen of -zomen van het Riet-verbond (Phragmition) met veenmosontwikkeling; ijle rietvegetaties met veenmossen in combinatie met sleutelsoorten van matig tot laag productieve standplaatsen in bv. de Kempen worden hier niet bedoeld en classificeren doorgaans tot zure of overgangsvenen (→ stap 26 )</a><div class="result">Resultaat: 7140_mrd</div>
+</div>
+<div class="answer">
+<a href="#S26">anders (→ stap 26 )</a><div class="result">Resultaat: rbbmr</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S26"><span class="step-number">Stap 26:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S25>25</a></div></div>
+<div class="answer">
+<div class="answer-text">eutrofiëringsindicatoren bedekken meer dan 10%</div><div class="result">BWK: md + mr°</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">BWK: md + mr</div>
+</div>
+</div>
+<h2>ZILTE MOERASSEN</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S30"><span class="step-number">Stap 30:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S10>10</a></div></div>
+<div class="answer">
+<a href="#S31">ecoregio polders of Schelde-estuarium. Zeebies (co)-dominant en vaak in combinatie met veel riet; soms ook veel spiesmelde en/of zilte rus; eventuele overige zilte soorten (bv. zulte, melkkruid, kweldergrassen, klein schorrenkruid) hooguit occasioneel aanwezig (→ stap 31 )</a></div>
+<div class="answer">
+<a href="#S33">anders (→ stap 33 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S31"><span class="step-number">Stap 31:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S30>30</a></div></div>
+<div class="answer">
+<div class="answer-text">langs de Zeeschelde stroomafwaarts Burcht (mesohaliene deel)</div><div class="result">Resultaat: 1330_da (BWK: mz)</div>
+</div>
+<div class="answer">
+<div class="answer-text">in/langs zilte schorvegetaties (IJzermonding, Zwin...)</div><div class="result">Resultaat: 1330_da (BWK: mz)</div>
+</div>
+<div class="answer">
+<div class="answer-text">in kustpolders in/langs zilte poldergraslanden</div><div class="result">Resultaat: 1330_da (BWK: mz)</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">Resultaat: rbbmr (BWK: mr)</div>
+</div>
+</div>
+<h2>GALIGAANVEGETATIES</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S33"><span class="step-number">Stap 33:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S30>30</a></div></div>
+<div class="answer">
+<a href="#S34">galigaan (co)dominant EN eventueel ook soorten van alkalisch laag -of trilveen. Meestal soortenarme gemeenschappen met mogelijks begeleiders uit het Riet-verbond. Vaak is er een aanzienlijke strooisellaag aanwezig. (→ stap 34 )</a><div class="answer-remark">Gekende locaties zijn Hageven, Warmbeek, Buitengoor, Torfbroek en Rosse Beemden in Lummen</div><div class="extra-info">soorten van alkalisch laag -of trilveen: alpenrus, armbloemige waterbies, blonde zegge, breed wollegras, geveerd diknerfmos, groenknolorchis, knopbies, slank wollegras, parnassia, schorpioenmos (G), schubzegge, teer guichelheil, tweehuizige zegge, wolfsklauwmos, gele zegge, goudmos (G), veenmosorchis, vlozegge, vleeskleurige orchis</div><div class="result">Resultaat: 7210</div>
+</div>
+<div class="answer">
+<a href="#S40">anders (→ stap 40 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S34"><span class="step-number">Stap 34:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S33>33</a></div></div>
+<div class="answer">
+<div class="answer-text">verruigingsindicatoren bedekken meer dan 10%</div><div class="result">Resultaat: 7210 (BWK: mm°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">bedekking riet hoger dan 30%</div><div class="result">Resultaat: 7210 (BWK: mm°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">Resultaat: 7210 (BWK: mm)</div>
+</div>
+</div>
+<h2>ALKALISCHE VENEN</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S40"><span class="step-number">Stap 40:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S33>33</a>, <a href=#S205>205</a></div></div>
+<div class="answer">
+<a href="#SSLEUTEL">ecoregio Kustduinen; sleutelsoorten alkalische duinpanvegetaties en/of begeleiders aanwezig (→ stap SLEUTEL )</a><div class="answer-remark">2190_mp</div><div class="extra-info">sleutelsoorten alkalische duinpanvegetaties en/of begeleiders: bonte paardenstaart, drienervige zegge, duinrus, honingorchis, echt vetmos, goudmos (G), vierkantsmos, moeraswespenorchis, parnassia, rond wintergroen, weegbreefonteinkruid, blauwe zegge, dwergzegge, zeegroene zegge, moeraszoutgras, kruipwilg, paddenrus</div><div class="other-key">Gebruik ook sleutel: <strong>DUINEN</strong></div></div>
+<div class="answer">
+<a href="#S44">sleutelsoorten van alkalisch en neutrale (tril)venen samen minstens occasioneel aanwezig EN/OF mossleutelsoorten samen minimaal frequent aanwezig (→ stap 44 )</a><div class="extra-info">sleutelsoorten van alkalisch en neutrale (tril)venen: alpenrus, galigaan, armbloemige waterbies, blonde zegge, breed wollegras, groenknolorchis, knopbies, slank wollegras, parnassia, schubzegge, tweehuizige zegge, gele zegge, veenmosorchis, vlozegge, vleeskleurige orchis, moeraskartelblad, plat blaasjeskruid, ronde zegge</div></div>
+<div class="answer">
+<a href="#S60">anders (→ stap 60 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S44"><span class="step-number">Stap 44:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S40>40</a></div></div>
+<div class="answer">
+<a href="#S45">watertafel quasi jaarrond t.h.v het maaiveld (+/_ 20 cm) of trilveen (verlandingsvegetaties); onveraarde veenbodem van minimaal 10 cm dikte (→ stap 45 )</a><div class="answer-remark">Onderscheid 7230 en 7140_mk is niet altijd even duidelijk op basis van deze kenmerken. Hou hierbij in het achterhoofd dat 7140 verlandingsvegetaties zijn! Associatie van ronde zegge dient geclassificeerd onder 7140_mk</div></div>
+<div class="answer">
+<a href="#S48">watertafel (in delen van) zomerperiode duidelijk onder het maaiveld (> 20cm), onveraarde veenbodems minder dan 10 cm dik, of mineraal substraat (→ stap 48 )</a><div class="answer-remark">Onderscheid 7230 en 7140_mk is niet altijd even duidelijk op basis van deze kenmerken. Hou hierbij in het achterhoofd dat 7140 verlandingsvegetaties zijn! Associatie van ronde zegge dient geclassificeerd onder 7140_mk</div></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S45"><span class="step-number">Stap 45:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S44>44</a></div></div>
+<div class="answer">
+<a href="#S46">sleutelsoorten alkalisch en neutraal trilveen ≥ frequent aanwezig (→ stap 46 )</a><div class="extra-info">sleutelsoorten alkalisch en neutraal trilveen: armbloemige waterbies, tweehuizige zegge, galigaan, groen schorpioenmos, groenknolorchis, moeraskartelblad, parnassia, plat blaasjeskruid, purper schorpioenmos, ronde zegge, rood schorpioenmos, slank wollegras, goudmos (G), trilveenveenmos</div><div class="result">Resultaat: 7140_mk</div>
+</div>
+<div class="answer">
+<a href="#S46">sleutelsoorten alkalisch en neutraal trilveen minder dan frequent aanwezig EN begeleiders minimaal abundant aanwezig (→ stap 46 )</a><div class="extra-info">sleutelsoorten alkalisch en neutraal trilveen: armbloemige waterbies, tweehuizige zegge, galigaan, groen schorpioenmos, groenknolorchis, moeraskartelblad, parnassia, plat blaasjeskruid, purper schorpioenmos, ronde zegge, rood schorpioenmos, slank wollegras, goudmos (G), trilveenveenmos</div><div class="result">Resultaat: 7140_mk</div>
+</div>
+<div class="answer">
+<a href="#S46">sleutelsoorten alkalisch en neutraal trilveen (zie lijst bij a.) minder dan frequent aanwezig EN begeleiders (zie lijst bij b.) minder dan abundant aanwezig (→ stap 46 )</a><div class="result">Resultaat: 7140_mk (BWK: mk°)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S46"><span class="step-number">Stap 46:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S45>45</a></div></div>
+<div class="answer">
+<div class="answer-text">eutrofiëringsindicatoren bedekken meer dan 10%</div><div class="result">Resultaat: 7140_mk (BWK: mk°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">Resultaat: 7140_mk (BWK: mk)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S48"><span class="step-number">Stap 48:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S44>44</a></div></div>
+<div class="answer">
+<a href="#S49">sleutelsoorten alkalisch laagveen minimaal frequent aanwezig (→ stap 49 )</a><div class="extra-info">sleutelsoorten alkalisch laagveen: alpenrus, armbloemige waterbies, blonde zegge, breed wollegras, geveerd diknerfmos, groenknolorchis, knopbies, slank wollegras, parnassia, schorpioenmos (G), schubzegge, tweehuizige zegge, wolfsklauwmos, gele zegge, goudmos (G), veenmosorchis, vlozegge, vleeskleurige orchis</div><div class="result">Resultaat: 7230</div>
+</div>
+<div class="answer">
+<a href="#S49">sleutelsoorten alkalisch laagveen samen minder dan frequent aanwezig EN begeleiders minimaal abundant aanwezig (→ stap 49 )</a><div class="extra-info">sleutelsoorten alkalisch laagveen: alpenrus, armbloemige waterbies, blonde zegge, breed wollegras, geveerd diknerfmos, groenknolorchis, knopbies, slank wollegras, parnassia, schorpioenmos (G), schubzegge, tweehuizige zegge, wolfsklauwmos, gele zegge, goudmos (G), veenmosorchis, vlozegge, vleeskleurige orchis</div><div class="result">Resultaat: 7230</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">Resultaat: 7230 (BWK: mk°)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S49"><span class="step-number">Stap 49:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S48>48</a></div></div>
+<div class="answer">
+<div class="answer-text">eutrofiëringsindicatoren bedekken meer dan 10%</div><div class="result">Resultaat: 7230 (BWK: mk°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Anders</div><div class="result">Resultaat: 7230 (BWK: mk)</div>
+</div>
+</div>
+<h2>SNAVELBIESVEGETATIES EN OVERGANGSVENEN</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S60"><span class="step-number">Stap 60:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S40>40</a>, <a href=#S305>305</a></div></div>
+<div class="answer">
+<div class="answer-text">witte EN/OF bruine snavelbies EN/OF kleine EN/OF ronde zonnedauw EN/OF moeraswolfsklauw samen aspectbepalend (samen met open water, moslaag of open bodem co-dominant of dominant t.o.v. de overige vegetatie)</div><div class="answer-remark">kan voorkomen in complex met overgangsveenvegetaties (zie beschrijving onder 65)</div><div class="result">Resultaat: 7150 (BWK: ce)</div>
+</div>
+<div class="answer">
+<a href="#S65">anders (→ stap 65 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S65"><span class="step-number">Stap 65:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S60>60</a></div></div>
+<div class="answer">
+<a href="#S66">sleutelsoorten van overgangsveen aanwezig EN/OF wrattig veenmos minimaal abundant aanwezig, (zie 'beschrijving onder 60 a.) (→ stap 66 )</a><div class="answer-remark">lokaal kunnen hier delen gedomineerd worden door snavelbies (G), zonnedauw of moeraswolfsklauw</div><div class="extra-info">sleutelsoorten van overgangsveen: kleine veenbes, lavendelheide, éénarig wollegras, rood veenmos, hoogveenveenmos, stijf veenmos</div><div class="result">Resultaat: 7140_oli</div>
+</div>
+<div class="answer">
+<a href="#S70">anders (→ stap 70 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S66"><span class="step-number">Stap 66:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S65>65</a></div></div>
+<div class="answer">
+<div class="answer-text">bedekking pijpenstrootje 50% of meer</div><div class="result">Resultaat: 7140_oli (BWK: cm + ces)</div>
+</div>
+<div class="answer">
+<a href="#S67">bedekking pijpenstrootje < 50% (→ stap 67 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S67"><span class="step-number">Stap 67:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S66>66</a></div></div>
+<div class="answer">
+<div class="answer-text">sleutelsoorten van overgangsveen hooguit occasioneel aanwezig</div><div class="result">Resultaat: 7140_oli (BWK: ces°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">sleutelsoorten van overgangsveen minimaal frequent aanwezig</div><div class="result">Resultaat: 7140_oli (BWK: ces)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S70"><span class="step-number">Stap 70:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S65>65</a></div></div>
+<div class="answer">
+<a href="#S600">minimaal occasionele aanwezigheid van (een) sleutelsoort(en) van zuur laagveen EN/OF minimaal abundant begeleidende soort(en) van zure laagveenvegetaties (→ stap 600 )</a><div class="extra-info">sleutelsoorten van zuur laagveen: draadrus, draadzegge, haakveenmos, moerasbasterdwederik, moerasviooltje, moeraswederik, slangenwortel, wateraardbei, waterdrieblad, waterscheerling, zompzegge</div></div>
+<div class="answer">
+<a href="#S100">anders (→ stap 100 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S100"><span class="step-number">Stap 100:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S70>70</a></div></div>
+<div class="answer">
+<a href="#S200">dominantie van grote zeggen (→ stap 200 )</a><div class="answer-remark">belangrijk aandeel rietverbond en/of natte ruigte soorten mogelijk</div><div class="extra-info">grote zeggen: oeverzegge, scherpe zegge, moeraszegge, stijve zegge, hoge cyperzegge, blaaszegge</div></div>
+<div class="answer">
+<a href="#S400">dominantie van sleutelsoorten en/of begeleiders van natte ruigten (→ stap 400 )</a><div class="answer-remark">geen regelmatig maaibeheer of hooguit extensieve begrazingsdruk.</div></div>
+<div class="answer">
+<a href="#S300">sleutelsoorten van het riet-verbond bedekken minimaal 30% van de vegetatielaag (dus zonder eventueel open water) EN geen dominantie van sleutelsoorten van natte ruigte noch grote zeggen. (→ stap 300 )</a><div class="answer-remark">Let op: veel natte en vochtige vegetatietypes kunnen verruigen met riet (oa. dotterbloemhooilanden, moerasspirearuigte, grote zeggenvegetaties, ...) ga dus niet alleen af op een door riet gedomineerde bovenetage van de kruidlaag maar controleer ook de onderetage op sleutelsoorten van andere types (zie stappen hierboven). Riet-verbondvegetaties in strikte zin staan doorgaans jaarrond met ‘de voeten in het water’, er is dan veelal geen gesloten vegetatiedek ter hoogte van het maaiveld, mogelijks wel een strooisellaag. Minder natte of tijdelijk droogvallenden of verruigde situaties met ≥30% bedekking van riet-verbondsoorten (veelal riet, al dan niet vergezeld door een aanzienlijk aandeel (natte) ruigtesoorten) sleutelen eveneens langs hier uit.)</div><div class="extra-info">sleutelsoorten van het riet-verbond bedekken: gele lis, grote egelskop, grote lisdodde, kalmoes, kleine lisdodde, liesgras, mattenbies, riet, ruwe bies, vlotgras (G), watertorkruid, waterzuring, lidsteng, zwanebloem, grote boterbloem</div></div>
+<div class="answer">
+<a href="#S700">pitrus, zeegroene rus, biezenknoppen zijn dominant aanwezig (→ stap 700 )</a><div class="answer-remark">paddenrus en/of veldrus gedomineerde vegetaties dienen elders uitgesleuteld te worden</div></div>
+<div class="answer">
+<a href="#S110">anders (→ stap 110 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S110"><span class="step-number">Stap 110:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S100>100</a></div></div>
+<div class="answer">
+<a href="#S500">vegetatie (tot voor kort) onder begrazings- of maaibeheer (→ stap 500 )</a></div>
+<div class="answer">
+<a href="#S400">anders (rietverbond soorten bedekken minder dan 30%, geen dominantie van grote zeggen of natte ruigtesoorten, geen maai- of begrazingsbeheer, ...) (→ stap 400 )</a></div>
+</div>
+<h2>GROTE ZEGGENVEGETATIES</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S200"><span class="step-number">Stap 200:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S100>100</a>, <a href=#S310>310</a></div></div>
+<div class="answer">
+<a href="#S600">sleutelsoorten van zuur laagveen minimaal occasioneel aanwezig (→ stap 600 )</a><div class="answer-remark">indien in drijftilverband: zie stap 15</div><div class="extra-info">sleutelsoorten van zuur laagveen: draadrus, draadzegge, haakveenmos, moerasbasterdwederik, moerasviooltje, moeraswederik, slangenwortel, wateraardbei, waterdrieblad, waterscheerling, zompzegge</div></div>
+<div class="answer">
+<a href="#S600">begeleidende soorten van zuur laagveen minimaal abundant aanwezig (→ stap 600 )</a><div class="extra-info">begeleidende soorten van zuur laagveen: gewimperd veenmos, gewoon veenmos, slank veenmos, holpijp, veenpluis, gewone waternavel, zeegroene muur, melkeppe, moerasstruisgras, koningsvaren, schildereprijs, grote wederik, zwarte zegge, hennegras, snavelzegge, blaaszegge, pluimzegge, roodviltmos, sterzegge, stijve zegge</div></div>
+<div class="answer">
+<a href="#S205">anders (→ stap 205 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S205"><span class="step-number">Stap 205:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S200>200</a></div></div>
+<div class="answer">
+<a href="#S40">sleutelsoorten van alkalische laag- en trilvenen minimaal occasioneel EN/OF mossen van alkalische venenminimaal frequent aanwezig (→ stap 40 )</a><div class="extra-info">sleutelsoorten van alkalische laag- en trilvenen: alpenrus, armbloemige waterbies, blonde zegge, breed wollegras, groenknolorchis, knopbies, slank wollegras, parnassia, schubzegge, tweehuizige zegge, gele zegge, veenmosorchis, vlozegge, vleeskleurige orchis, moeraskartelblad, plat blaasjeskruid, ronde zegge</div></div>
+<div class="answer">
+<a href="#S210">anders (→ stap 210 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S210"><span class="step-number">Stap 210:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S205>205</a></div></div>
+<div class="answer">
+<a href="#S400">meer dan 10% bedekking van sleutelsoorten natte ruigten exclusief grote zegges en niet (tot voor kort) onder intensieve begrazing of jaarlijks maaibeheer (→ stap 400 )</a><div class="extra-info">sleutelsoorten natte ruigten: adderwortel, echte valeriaan, grote kattenstaart, melkeppe, gewone engelwortel, grote wederik, harig wilgenroosje, heemst, hennegras, kale jonker, moeraslathyrus, moerasmelkdistel, moerasspirea, moesdistel, poelruit, reuzenpaardenstaart, gewone smeerwortel, zomerklokje, wilde bertram, koninginnekruid</div></div>
+<div class="answer">
+<a href="#S512">(tot voor kort) onder een jaarlijks maai-of begrazingsbeheer en minimaal 10% bedekking sleutelsoorten van dotterbloem-verbond EN/OF minimaal 1 van de kerngroepsoorten (k) frequent en minimaal 2 bijkomende soorten occasioneel aanwezig. (→ stap 512 )</a><div class="extra-info">sleutelsoorten van dotterbloem-verbond: veldrus, bosbies (k), echte koekoeksbloem, lidrus (k), grote ratelaar, ruwe smele, adderwortel (k), moeras/zompvergeet-me-nietje, kruipend zenegroen, moesdistel (k), tweerijige zegge (k), dotterbloem (k), brede orchis (k), gevleugeld hertshooi (k), herfsttijloos, kale jonker (k), moerasrolklaver, moerasstreepzaad (k), paddenrus (k), rietorchis, slanke sleutelbloem (k), waterkruiskruid</div><div class="result">Resultaat: rbbhc</div>
+</div>
+<div class="answer">
+<a href="#S515">(tot voor kort) onder een jaarlijks begrazingsbeheer en minimaal >10% bedekking sleutelsoorten van zilverschoon-verbond aanwezig EN/OF minimaal 3 van deze soorten elk minstens occasioneel aanwezig. (→ stap 515 )</a><div class="answer-remark">algemenere begeleiders zijn geknikte vossenstaart, fioringras, krulzuring en/of ruige zegge</div><div class="extra-info">sleutelsoorten van zilverschoon-verbond aanwezig: aardbeiklaver, akkerkers, getand vlotgras, gewone waterbies, heelblaadjes, klein vlooienkruid, kruipend moerasscherm, moeras-/zompvergeet-me-nietje, moeraszoutgras (polderstreek), penningkruid, pijptorkruid, platte rus, polei, rode ogentroost, slanke waterbies, smalle rolklaver (polderstreek), valse voszegge, watermunt, zeegroene rus, zilte rus, zilte zegge (polderstreek), zilverschoon, zomprus, ...</div><div class="result">Resultaat: rbbzil</div>
+</div>
+<div class="answer">
+<a href="#S500">(tot voor kort) onder een jaarlijks maai- of begrazingsbeheer en minimaal abundant sleutelsoorten van schraalgrasland aanwezig EN/OF minimaal 3 van deze soorten occasioneel EN/OF minimaal 2 soorten frequent aanwezig. (→ stap 500 )</a><div class="extra-info">sleutelsoorten van schraalgrasland: blonde zegge, bosorchis, brede orchis, gele zegge, karwijselie, moerasstreepzaad, parnassia, schubzegge, teer guichelheil, addertong, blauwe knoop, blauwe zegge, bleke zegge, bosanemoon, geelgroene zegge, gevlekte orchis s.l., klein glidkruid, kleine schorseneer, kleine valeriaan, klimopklokje, kranskarwij, melkviooltje, moerasviooltje, pijpenstrootje (excl. zandige bodems), ruw walstro, Spaanse ruiter, tormentil, veelbloemige veldbies, vlozegge, zaagblad, borstelgras, gevlekte orchis, klokjesgentiaan, sterzegge, tandjesgras, welriekende nachtorchis, stekelbrem, heidekartelblad, dopheide, dwerzegge, trekrus</div></div>
+<div class="answer">
+<a href="#S220">anders (→ stap 220 )</a><div class="answer-remark">bv. bijna co-dominantie met riet-verbond soorten, met eerder beperkte overgangen met natte ruigte, vochtige graslanden, ....</div><div class="result">Resultaat: rbbmc</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S220"><span class="step-number">Stap 220:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S210>210</a></div></div>
+<div class="answer">
+<div class="answer-text">bedekking eutrofiëringsindicatoren hoger dan 30%</div><div class="result">Resultaat: rbbmc (BWK: mc°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">BWK: mc</div>
+</div>
+</div>
+<h2>RIETLANDEN</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S300"><span class="step-number">Stap 300:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S100>100</a></div></div>
+<div class="answer">
+<a href="#S301">heemst, moeraslathyrus en/of moerasmelkdistel minimaal occasioneel aanwezig (→ stap 301 )</a><div class="answer-remark">zwaartepunt van verspreiding in Meetjesland en Scheldevallei</div><div class="result">Resultaat: 6430_mr</div>
+</div>
+<div class="answer">
+<a href="#S411">riet-verbond vegetatie met zomerklokje (→ stap 411 )</a><div class="answer-remark">zwaartepunt van de verspreiding benedenloop Kleine Nete-vallei; Zomerklokjes worden meer en meer in tuinen gehouden en durven wel eens te verwilderen. Gelieve steeds te controleren dat het een wilde populatie van de juiste ondersoort betreft.</div><div class="result">Resultaat: 6430_hw</div>
+</div>
+<div class="answer">
+<a href="#S302">aanwezigheid van moerasvaren en/of kamvaren EN/OF buiten de Kempen met veenmosontwikkeling (→ stap 302 )</a><div class="result">Resultaat: 7140_mrd</div>
+</div>
+<div class="answer">
+<a href="#S303">zwanenbloem, kalmoes, grote boterbloem, mattenbies, ruwe bies minimaal occasioneel en van nature aanwezig (→ stap 303 )</a><div class="result">Resultaat: rbbmr</div>
+</div>
+<div class="answer">
+<a href="#S305">anders (→ stap 305 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S301"><span class="step-number">Stap 301:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S300>300</a></div></div>
+<div class="answer">
+<div class="answer-text">verruigingsindicatoren bedekken meer dan 30%</div><div class="result">Resultaat: 6430_mr (BWK: mr°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">Resultaat: 6430_mr (BWK: mr)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S302"><span class="step-number">Stap 302:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S300>300</a></div></div>
+<div class="answer">
+<div class="answer-text">eutrofiëringsindicatoren bedekken meer dan 10%</div><div class="result">Resultaat: 7140_mrd (BWK: mr°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">Anders</div><div class="result">Resultaat: 7140_mrd (BWK: mr)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S303"><span class="step-number">Stap 303:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S300>300</a></div></div>
+<div class="answer">
+<div class="answer-text">eutrofiëringsindicatoren bedekken meer dan 30%</div><div class="answer-remark">Aandeel van beide habitattypen inschatten</div><div class="result">Resultaat: rbbmr (BWK: mr°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">Resultaat: rbbmr (BWK: mr)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S305"><span class="step-number">Stap 305:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S300>300</a></div></div>
+<div class="answer">
+<a href="#S60">één of meer sleutelsoorten van overgangsveen aanwezig EN/OF wrattig veenmos ≥ 10% bedekkend (→ stap 60 )</a><div class="answer-remark">zie ook beschreven onder stap 20</div><div class="extra-info">sleutelsoorten van overgangsveen: kleine veenbes, lavendelheide, éénarig wollegras, rood veenmos, hoogveenveenmos, stijf veenmos</div><div class="result">Resultaat: 7140_oli</div>
+</div>
+<div class="answer">
+<a href="#S600">minimaal occasionele aanwezigheid van (een) sleutelsoort(en) van zuur laagveen EN/OF minimaal abundant begeleidende soort(en) van zure laagveenvegetaties (→ stap 600 )</a><div class="extra-info">sleutelsoorten van zuur laagveen: draadrus, draadzegge, haakveenmos, moerasbasterdwederik, moerasviooltje, moeraswederik, slangenwortel, wateraardbei, waterdrieblad waterscheerling, zompzegge</div></div>
+<div class="answer">
+<a href="#S310">anders (→ stap 310 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S310"><span class="step-number">Stap 310:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S305>305</a></div></div>
+<div class="answer">
+<a href="#S400">minimaal 10% bedekking van sleutelsoorten van natte ruigte exclusief grote zeggen (→ stap 400 )</a><div class="extra-info">sleutelsoorten van natte ruigte: adderwortel, echte valeriaan, gewone engelwortel, melkeppe, grote wederik, harig wilgenroosje, heemst, hennegras, kale jonker, moeraslathyrus, moerasmelkdistel, moerasspirea, moesdistel, poelruit, reuzenpaardenstaart, grote kattenstaart, gewone smeerwortel, wilde bertram, zomerklokje, koninginnekruid</div></div>
+<div class="answer">
+<a href="#S200">grote zeggen minimaal co-dominant (→ stap 200 )</a><div class="extra-info">grote zeggen: oeverzegge, scherpe zegge, moeraszegge, stijve zegge, hoge cyperzegge, blaaszegge</div></div>
+<div class="answer">
+<a href="#S512">(tot voor kort) onder een jaarlijks maai-of begrazingsbeheer en minimaal abundant (>10%) sleutelsoorten van het dotterbloem-verbond EN/OF minimaal 1 van de kerngroepsoorten (k) frequent en minimaal 2 soorten occasioneel aanwezig. (→ stap 512 )</a><div class="extra-info">sleutelsoorten van het dotterbloem-verbond: veldrus, bosbies (k), echte koekoeksbloem, lidrus (k), grote ratelaar, ruwe smele, adderwortel (k), moeras/zompvergeet-me-nietje, kruipend zenegroen, moesdistel (k), tweerijige zegge (k), dotterbloem (k), brede orchis (k), gevleugeld hertshooi (k), herfsttijloos, kale jonker (k), moerasrolklaver, moerasstreepzaad (k), paddenrus (k), rietorchis, slanke sleutelbloem (k), waterkruiskruid</div><div class="result">Resultaat: rbbhc</div>
+</div>
+<div class="answer">
+<a href="#S400">periodiek overstroomde rietruigten met minimaal abundant harige wilgenroosje (→ stap 400 )</a></div>
+<div class="answer">
+<a href="#S315">anders (→ stap 315 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S315"><span class="step-number">Stap 315:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S310>310</a></div></div>
+<div class="answer">
+<a href="#S320">naast riet, andere soorten van het riet-verbond samen minimaal frequent aanwezig, en in elk geval niet beperkt tot eventueel aanwezige grachten en sloten in het perceel (→ stap 320 )</a><div class="extra-info">riet-verbond: gele lis, grote boterbloem, grote egelskop, grote lisdodde, kalmoes, kleine lisdodde, lidsteng, liesgras, mattenbies, riet, ruwe bies, vlotgras (G), watertorkruid, waterzuring, zwanebloem</div></div>
+<div class="answer">
+<div class="answer-text">behalve riet zijn soorten van het rietverbond samen minder dan frequent aanwezig of is hun voorkomen hoofdzakelijk beperkt tot grachten en sloten in het perceel. Het betreft veelal situaties met een graslandhistoriek</div><div class="answer-remark">Indien de oorspronkelijke (grasland)vegetatie kan afgeleid worden o.b.v. voorkomen sleutelsoorten kan dergelijke situatie met behulp van een /-verhouding worden weergegeven. Hierbij dient wel voldaan aan de sleutelcriteria van dat specifieke graslandtype, bv. rietbedekking=80%, ondergroei met occasioneel dotterbloem en bosbies: hr/hc°</div><div class="result">Resultaat: gh (BWK: hr)</div>
+</div>
+<div class="answer">
+<div class="answer-text">behalve riet zijn soorten van het rietverbond samen minder dan frequent aanwezig of is hun voorkomen hoofdzakelijk beperkt tot grachten en sloten in het perceel. Het betreft een situatie met een historische of recente antropogene bodemverstoring</div><div class="result">Resultaat: gh (BWK: ku)</div>
+</div>
+<div class="answer">
+<a href="#S320">soortenarme vegetaties gedomineerd door rietgras onder invloed van rivierdynamiek (→ stap 320 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S320"><span class="step-number">Stap 320:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S315>315</a></div></div>
+<div class="answer">
+<div class="answer-text">bedekking brandnetel EN/OF kleefkruid EN/OF akkerdistel EN/OF braam >30%</div><div class="result">Resultaat: rbbmr (BWK: mru)</div>
+</div>
+<div class="answer">
+<a href="#S321">anders (→ stap 321 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S321"><span class="step-number">Stap 321:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S320>320</a></div></div>
+<div class="answer">
+<div class="answer-text">bedekking eutrofiëringsindicatoren meer dan 50%</div><div class="result">Resultaat: rbbmr (BWK: mr°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">buitendijks gelegen en gedomineerd door invasieve exoten (reuzenbalsemien, Fallopia soorten)</div><div class="result">Resultaat: gh (BWK: ku°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">Resultaat: rbbmr (BWK: mr)</div>
+</div>
+</div>
+<h2>NATTE RUIGTEN</h2><div class="step-container">
+<div class="step-header">
+<h2 id="S400"><span class="step-number">Stap 400:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S100>100</a>, <a href=#S110>110</a>, <a href=#S210>210</a>, <a href=#S310>310</a></div></div>
+<div class="answer">
+<a href="#S600">zure laagveensoorten occasioneel of meer aanwezig (→ stap 600 )</a><div class="extra-info">sleutelsoorten van zuur laagveen: draadrus, draadzegge, haakveenmos, moerasbasterdwederik, moerasviooltje, moeraswederik, slangenwortel, wateraardbei, waterdrieblad, waterscheerling, zompzegge</div></div>
+<div class="answer">
+<a href="#S401">heemst, moeraslathyrus en/of moerasmelkdistel minimaal occasioneel aanwezig (→ stap 401 )</a><div class="answer-remark">zwaartepunt van verspreiding in Meetjesland en Scheldevallei</div><div class="result">Resultaat: 6430_mr</div>
+</div>
+<div class="answer">
+<a href="#S411">natte ruigtevegetatie met zomerklokje (→ stap 411 )</a><div class="answer-remark">zwaartepunt van de verspreiding benedenloop Kleine Nete-vallei; Zomerklokjes worden meer en meer in tuinen gehouden en durven wel eens te verwilderen. Gelieve steeds te controleren dat het een wilde populatie van de juiste ondersoort betreft.</div><div class="result">Resultaat: 6430_hw</div>
+</div>
+<div class="answer">
+<a href="#S403">hennegras, wilde bertram, melkeppe en grote wederik samen minimaal abundant (→ stap 403 )</a><div class="answer-remark">zwaartepunt van voorkomen in Kempische beekdalen</div><div class="result">Resultaat: rbbhf</div>
+</div>
+<div class="answer">
+<a href="#S500">schraallandsoorten aanwezig (→ stap 500 )</a><div class="answer-remark">zie ook graslandsleutel vanaf stap 220</div><div class="extra-info">schraallandsoorten: addertong, bosorchis, bleke zegge, blonde zegge, gele zegge, moerasstreepzaad, karwijselie, parnassia, teer guichelheil, tormentil, blauwe zegge, pijpenstrootje, stekelbrem, klimopklokje, blauwe knoop, tandjesgras, heidekartelblad, kleine schorseneer, kranskarwij, melkviooltje, ruw walstro, klokjesgentiaan, kleine valeriaan, geelgroene zegge, dopheide, dwergzegge, gevlekte orchis, trekrus, spaanse ruiter, veelbloemige veldbies, bosanemoon, klein glidkruid, ...</div></div>
+<div class="answer">
+<a href="#S410">anders (→ stap 410 )</a></div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S401"><span class="step-number">Stap 401:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S400>400</a></div></div>
+<div class="answer">
+<div class="answer-text">verruigingsindicatoren bedekken meer dan 30%</div><div class="result">Resultaat: 6430_mr (BWK: mr°)</div>
+</div>
+<div class="answer">
+<div class="answer-text">anders</div><div class="result">Resultaat: 6430_mr (BWK: mr)</div>
+</div>
+</div>
+<div class="step-container">
+<div class="step-header">
+<h2 id="S403"><span class="step-number">Stap 403:</span> </h2><div class="step-incoming">Komt van stap: <a href=#S400>400</a></div></div>
+<div class="answer">
+<div class="answer-text">wilde bertram, grote wederik, melkeppe, hennegras, ruw walstro, wateraardbei, veenpluis, veenmos en zwarte zegge zijn samen minimaal (co)-dominant</div><div class="result">Resultaat: rbbhf (BWK: hfl)</div>
+</div>
+<div class="answer">
+<div class="answer-text">wilde bertram, grote wederik, melkeppe, hennegras, ruw walstro, wateraardbei, veenpluis, veenmos en zwarte zegge zijn samen minder dan (co)-dominant</div><div class="result">Resultaat: rbbhf (BWK: hfl°)</div>
+</div>
+</div>
+<div class="back-to-index"><a href="index.html">Terug naar Index</a></div>
+</body>
+</html>

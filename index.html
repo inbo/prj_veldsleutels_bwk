@@ -1,6 +1,248 @@
-<html>
-  <title>Veldsleutels</title>
-  <body>
-Initialization    
-  </body>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veldsleutels</title><style>
+   
+  /* Base styles */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #e6f2f7;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  
+  h1 {
+    color: #1a5276;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1a5276;
+    margin-bottom: 25px;
+  }
+  
+  h2, h3, h4 {
+    color: #2874a6;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+  
+  a {
+    color: #2874a6;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: #1a5276;
+    text-decoration: underline;
+  }
+  
+  /* Table styles */
+  table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  th, td {
+    border: 1px solid #b3d9e6;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #b3d9e6;
+    color: #1a5276;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f9fc;
+  }
+  
+  tr:hover {
+    background-color: #d9ebf2;
+  }
+  
+  /* Step styling */
+  .step-container {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .step-header {
+    background-color: #d9ebf2;
+    padding: 15px;
+    margin: -20px -20px 20px -20px;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+  }
+  
+  .step-number {
+    font-weight: bold;
+    color: #1a5276;
+  }
+  
+  .step-incoming {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .step-remark {
+    background-color: #fff9e0;
+    padding: 10px;
+    border-left: 4px solid #ffd700;
+    margin: 15px 0;
+    font-style: italic;
+  }
+  
+  /* Answer styling */
+  .answer {
+    background-color: #f7f9fa;
+    border-left: 4px solid #2874a6;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+    transition: background-color 0.3s;
+  }
+  
+  .answer:hover {
+    background-color: #e6f2f7;
+  }
+  
+  .answer a {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .answer-remark {
+    font-style: italic;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  .extra-info {
+    background-color: #f0f7fa;
+    border: 1px solid #d1e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .result {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  .other-key {
+    background-color: #e8eaf6;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+  }
+  
+  /* Back to index button */
+  .back-to-index {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2874a6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+  
+  .back-to-index a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px;
+      padding: 10px;
+    }
+    
+    .step-container {
+      padding: 15px;
+    }
+    
+    .step-header {
+      padding: 12px;
+      margin: -15px -15px 15px -15px;
+    }
+    
+    .answer, .step-remark, .extra-info {
+      padding: 12px;
+    }
+  }
+  
+
+.clickable-header {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    cursor: pointer;
+    display: block;
+    color: #2874a6;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-left: 5px solid #2874a6;
+}
+
+.clickable-header:hover {
+    background-color: #f2f9fc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.clickable-header:active {
+    background-color: #e6f2f7;
+    transform: translateY(1px);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .clickable-header {
+        padding: 15px;
+        margin: 12px 0;
+    }
+}
+ 
+</style>
+</head>
+<body>
+<h1>Veldsleutels</h1> 
+<p>Selecteer een van de onderstaande sleutels om te beginnen met determineren:</p> 
+<a href='Moerassleutel.html' class='clickable-header'> Moerassleutel</a>
+<a href='Heidesleutel.html' class='clickable-header'> Heidesleutel</a> 
+<div style='margin-top: 50px; font-size: 0.9em; color: #666; text-align: center;'> 
+<p>© 2025 Veldsleutels</p> 
+</div> 
+<div class="back-to-index"><a href="index.html">Terug naar Index</a></div>
+</body>
 </html>
