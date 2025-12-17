@@ -53,3 +53,7 @@ documents/
 
 #interim data
 interim/
+
+#file types
+*.pdf
+
