@@ -1,53 +1,3 @@
-prepare_data <- function(data) {
-  colnames <- c(
-    "STEP", "TYPE", "NAME", "NEXT_STEP",
-    "CLASSIFICATION", "BWK_CODE", "SUBKEY", "REMARK"
-  )
-  if (!all(names(data) %in% colnames)) {
-    stop(paste(
-      "all columns must be present",
-      paste(colnames, collapse = ", ")
-    ))
-  }
-  data <- data |>
-    select(all_of(colnames)) |>
-    filter(
-      !is.na(STEP),
-      !(STEP %in% c("x", "X"))
-    )
-
-  if (any(is.na(data$STEP))) stop("every row needs a step definition")
-  if (any(is.na(data$TYPE))) stop("every row needs a type")
-
-  data <- data |>
-    mutate(
-      .prev = replace_na(lag(.data$STEP), "-1"),
-      .type =
-        case_when(
-          TYPE == "T1" ~ "h2",
-          TYPE == "T2" ~ "h3",
-          TYPE == "T3" ~ "h4",
-          TYPE == "I" ~ "info",
-          TYPE == "BI" ~ "background",
-          TYPE == "Q" ~ "question",
-          TYPE == "A" ~ "answer",
-          .default = "undefined"
-        )
-    )
-
-  if (any(data$.type == "undefined")) stop("undefined TYPE found")
-
-  # incoming steps
-  incoming_steps <- data |>
-    distinct(STEP, NEXT_STEP) |>
-    group_by(NEXT_STEP) |>
-    summarize(.incoming = list(STEP))
-
-  data <- data |> left_join(incoming_steps, join_by(STEP == NEXT_STEP))
-
-  return(data)
-}
-
 ###############################################################
 
 parse_data <- function(data) {
@@ -70,6 +20,7 @@ parse_data <- function(data) {
     bwkcode <- row$BWK_CODE
     otherkey <- row$SUBKEY
     remark <- row$REMARK
+    key <- row$KEY
     prevstep <- row$.prev
     logictype <- row$.type
     incoming <- row$.incoming

@@ -8,6 +8,8 @@ read_gsheet_data <- function(df) {
     key <- df[i, ] |>
       pull("sheet_id") |>
       as.character()
+    sleutel_kort <- df[i, ] |>
+      pull("afkorting")
     sheet <- 1
     df_meta <- read_sheet(
       ss = key,
@@ -21,7 +23,8 @@ read_gsheet_data <- function(df) {
       range = "A5:H1000",
       col_types = "cccccccc"
     ) %>%
-      filter(!is.na(STEP))
+      filter(!is.na(STEP)) |>
+      mutate(KEY = sleutel_kort)
     attr(sheet_data, "meta") <- df_meta
     sleutels[[sleutel]] <- sheet_data
   }
