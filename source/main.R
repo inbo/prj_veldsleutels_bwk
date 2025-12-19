@@ -57,6 +57,11 @@ veldsleutels_yaml <- yaml::as.yaml(veldsleutels)
 cat(veldsleutels_yaml, file = "test.yaml")
 
 
+# // check logic
+#--------------
+
+check_logic(veldsleutels)
+
 # //html render
 #---------------
 data <- veldsleutels
