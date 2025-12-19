@@ -135,21 +135,21 @@ write_index <- function(keys) {
   cat("</body>\n</html>", file = fn, append = TRUE)
 }
 
-# 5. Run
-main_keys <- names(data)
-for (k in main_keys) write_key_page(k, data[[k]])
-write_index(main_keys)
-# 5. Execution
-
-library(yaml)
-library(glue)
-
-# 1. Load your data
-# data <- yaml::yaml.read_file("test.yaml")
-
-data <- veldsleutels
-main_keys <- names(data) # bos, mrs, grl, wtr, hei
-for (k in main_keys) {
-  write_key_page(k, data[[k]])
-}
-write_index_page(main_keys)
+# # 5. Run
+# main_keys <- names(data)
+# for (k in main_keys) write_key_page(k, data[[k]])
+# write_index(main_keys)
+# # 5. Execution
+#
+# library(yaml)
+# library(glue)
+#
+# # 1. Load your data
+# # data <- yaml::yaml.read_file("test.yaml")
+#
+# data <- veldsleutels
+# main_keys <- names(data) # bos, mrs, grl, wtr, hei
+# for (k in main_keys) {
+#   write_key_page(k, data[[k]])
+# }
+# write_index_page(main_keys)

@@ -48,7 +48,27 @@ veldsleutels_raw <- readRDS(file.path("interim", "veldsleuteldata.RDS"))
 veldsleutels_prep <- lapply(veldsleutels_raw, prepare_data)
 sapply(veldsleutels_prep, dim) # check the amount of records
 
+
+# //parse data
+#--------------
+
 veldsleutels <- lapply(veldsleutels_prep, parse_data)
-veldsleutels_json <- jsonlite::toJSON(veldsleutels, pretty = TRUE)
 veldsleutels_yaml <- yaml::as.yaml(veldsleutels)
 cat(veldsleutels_yaml, file = "test.yaml")
+
+
+# //html render
+#---------------
+data <- veldsleutels
+main_keys <- names(data) # bos, mrs, grl, wtr, hei
+for (k in main_keys) {
+  write_key_page(k, data[[k]])
+}
+write_index_page(main_keys)
+
+
+# //pdf render
+#-------------
+
+create_pdf_markdown(data, "veldsleutels.Rmd")
+rmarkdown::render("veldsleutels.Rmd", )
