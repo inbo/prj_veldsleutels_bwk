@@ -45,7 +45,7 @@ parse_data <- function(data) {
   records_list
 }
 
-parse_data(veldsleutels$bos)
+# parse_data(veldsleutels$bos)  # Example usage - commented out for production
 
 # nog omgaan met lege rijen (bossleutel, 501 is erafgekapt
 # nog invullen van antwoorden

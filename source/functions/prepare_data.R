@@ -69,7 +69,7 @@ prepare_data <- function(data) {
     group_by(.nextstep) |>
     summarize(.incoming = list(.step))
 
-  view(incoming_steps)
+  # view(incoming_steps)  # Debugging only - removed for production
 
   data <- data |> left_join(incoming_steps, join_by(.step == .nextstep))
 
