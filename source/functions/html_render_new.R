@@ -23,6 +23,9 @@ get_style <- function() {
   .result-box { background: #d4edda; color: #155724; padding: 10px 15px; border-radius: 0 0 4px 4px; font-size: 0.95em; border: 1px solid #c3e6cb; border-top: none; margin-left: 10px; margin-right: 10px; }
 
   .background-box { background: #eef9f1; padding: 15px; border-radius: 5px; font-size: 0.9em; margin-bottom: 15px; border: 1px solid #c3e6cb; white-space: pre-wrap; }
+  .extra-info { background: #f0f7fa; border: 1px solid #d1e8f0; border-radius: 8px; padding: 15px; margin: 15px 0; font-size: 0.9em; }
+  .answer-remark { font-style: italic; color: #666; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #bbb; }
+  .other-key { background: #fff3cd; border: 1px solid #ffc107; border-radius: 5px; padding: 10px; margin-top: 10px; font-size: 0.9em; }
   .question { font-size: 1.2em; font-weight: bold; margin: 15px 0 20px 0; }
   .back-to-index { display: inline-block; margin: 20px 0; padding: 10px; background: #eee; text-decoration: none; border-radius: 4px; color: #333; }
   .index-btn { display: block; padding: 20px; margin: 10px 0; background: white; border: 1px solid #ddd; border-radius: 8px; font-size: 1.2em; text-decoration: none; color: #2c3e50; font-weight: bold; text-align: center; }
@@ -111,6 +114,24 @@ write_key_page <- function(key_name, key_data) {
           if (n2000 != "") cat(glue("      <strong>Natura 2000:</strong> {n2000}<br>\n"), file = fn, append = TRUE)
           if (bwk != "") cat(glue("      <strong>BWK:</strong> {bwk}\n"), file = fn, append = TRUE)
           cat("    </div>\n", file = fn, append = TRUE)
+        }
+
+        # Extra Info (from I type rows)
+        info <- if (!is.null(ans$info)) ans$info else ""
+        if (info != "" && !is.na(info)) {
+          cat(glue('    <div class="extra-info">{info}</div>\n'), file = fn, append = TRUE)
+        }
+
+        # Answer Remark
+        remark <- if (!is.null(ans$remark)) ans$remark else ""
+        if (remark != "" && !is.na(remark)) {
+          cat(glue('    <div class="answer-remark">{remark}</div>\n'), file = fn, append = TRUE)
+        }
+
+        # Other Key reference
+        otherkey <- if (!is.null(ans$otherkey)) ans$otherkey else ""
+        if (otherkey != "" && !is.na(otherkey)) {
+          cat(glue('    <div class="other-key">Gebruik ook sleutel: <strong>{otherkey}</strong></div>\n'), file = fn, append = TRUE)
         }
 
         cat("  </div>\n", file = fn, append = TRUE) # End answer-block
