@@ -135,6 +135,9 @@ write_index <- function(keys) {
   cat("</body>\n</html>", file = fn, append = TRUE)
 }
 
+# Alias for compatibility with main.R
+write_index_page <- write_index
+
 # # 5. Run
 # main_keys <- names(data)
 # for (k in main_keys) write_key_page(k, data[[k]])
