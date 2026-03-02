@@ -2,147 +2,137 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GRASLAND Sleutel</title><style>
 
   body {
     font-family: -apple-system, system-ui, sans-serif;
     line-height: 1.4;
-    max-width: 900px;
+    max-width: 850px;
     margin: 0 auto;
-    padding: 20px 15px 80px 15px;
+    padding: 15px 15px 60px 15px;
     color: #000000;
-    background: #f1f5f9; /* Subtle blue-gray background */
-    font-size: 27px;
+    background: #f1f5f9;
+    font-size: 19px; /* Reduced by 30% from 27px */
   }
 
-  h1 { font-size: 2.2rem; color: #1e293b; border-bottom: 6px solid #27ae60; padding-bottom: 10px; margin-top: 30px; }
-  h2 { font-size: 1.8rem; margin-top: 1.5rem; color: #0f172a; }
+  h1 { font-size: 1.8rem; color: #1e293b; border-bottom: 4px solid #27ae60; padding-bottom: 8px; margin-top: 20px; }
+  h2 { font-size: 1.4rem; margin-top: 1.2rem; color: #0f172a; }
 
   /* Index Grid */
   .index-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
   }
 
   .index-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 130px;
+    height: 90px;
     background: #ffffff;
-    border: 4px solid #1e293b;
-    border-radius: 20px;
-    font-size: 1.8rem;
+    border: 3px solid #1e293b;
+    border-radius: 15px;
+    font-size: 1.3rem;
     text-decoration: none;
     color: #1e293b;
-    font-weight: 900;
-    box-shadow: 0 8px 0 #1e293b;
+    font-weight: 800;
+    box-shadow: 0 5px 0 #1e293b;
     transition: all 0.1s ease;
   }
 
-  /* Hover & Active States */
   .index-btn:hover, .answer-link:hover {
-    background: #dbeafe; /* Soft light blue on hover */
+    background: #dbeafe;
     border-color: #2563eb;
     color: #1e3a8a;
-    cursor: pointer;
   }
+
   .index-btn:active, .answer-link:active {
-    transform: translateY(6px);
-    box-shadow: 0 2px 0 #1e293b;
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1e293b;
   }
 
   /* Step Cards */
   .step-container {
     background: #ffffff;
-    padding: 30px;
-    margin-bottom: 40px;
-    border-radius: 20px;
-    border: 4px solid #e2e8f0;
-    border-left: 18px solid #27ae60;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    border: 2px solid #e2e8f0;
+    border-left: 12px solid #27ae60;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 
-  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-  .step-number { background: #27ae60; color: white; padding: 10px 20px; border-radius: 12px; font-weight: bold; font-size: 1.3rem; }
-  .incoming-link { background: #334155; color: white; text-decoration: none; padding: 8px 16px; border-radius: 10px; font-size: 1.1rem; font-weight: bold; border-bottom: 4px solid #000; }
+  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+  .step-number { background: #27ae60; color: white; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; }
+  .incoming-link { background: #334155; color: white; text-decoration: none; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; }
 
   /* Question & Background */
-  .question { font-size: 1.8rem; font-weight: 800; margin: 30px 0; color: #000; line-height: 1.2; }
-  .background-box { background: #f0fdf4; border: 4px solid #27ae60; padding: 20px; border-radius: 12px; font-size: 1.2rem; color: #064e3b; margin-bottom: 25px; }
+  .question { font-size: 1.3rem; font-weight: 800; margin: 15px 0; color: #000; line-height: 1.2; }
+  .background-box { background: #f0fdf4; border: 2px solid #27ae60; padding: 15px; border-radius: 10px; font-size: 0.9rem; color: #064e3b; margin-bottom: 15px; }
 
   /* Answers */
-  .answer-block { margin-bottom: 40px; }
+  .answer-block { margin-bottom: 25px; }
 
   .answer-link, .answer-link-terminal {
     display: block;
     background: #ffffff;
-    border: 4px solid #334155;
-    padding: 25px;
+    border: 3px solid #334155;
+    padding: 15px 20px;
     text-decoration: none;
     color: #1e293b;
-    border-radius: 18px;
+    border-radius: 12px;
     font-weight: 700;
-    font-size: 1.5rem;
-    box-shadow: 0 8px 0 #334155;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 0 #334155;
     transition: all 0.1s ease;
   }
 
-  .answer-link-terminal {
-    color: #000;
-    background: #f0fdf4;
-    border-color: #059669;
-    box-shadow: none;
-    cursor: default;
-    border-style: solid;
-  }
+  .answer-link-terminal { background: #f0fdf4; border-color: #059669; box-shadow: none; cursor: default; }
 
-  /* Connector for Info Grouping */
-  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 4px dashed #334155; }
+  /* Info Grouping */
+  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 3px dashed #334155; }
 
   .answer-details-group {
     background: #f8fafc;
-    border: 4px solid #334155;
+    border: 3px solid #334155;
     border-top: none;
-    border-radius: 0 0 18px 18px;
-    padding: 20px;
-    margin-top: -4px;
+    border-radius: 0 0 12px 12px;
+    padding: 15px;
+    margin-top: -3px;
   }
 
   .extra-info {
     background: #fff;
-    border-left: 12px solid #2563eb;
-    padding: 18px;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+    border-left: 8px solid #2563eb;
+    padding: 12px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
     color: #1e3a8a;
     font-weight: 600;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
   }
 
   .result-box {
     background: #064e3b;
     color: #ffffff;
-    padding: 25px;
-    border-radius: 15px;
-    font-size: 1.4rem;
-    margin-top: 20px;
-    border: 3px solid #000;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    border: 2px solid #000;
   }
-  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 1rem; display: block; margin-bottom: 8px; letter-spacing: 1px; }
+  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 0.75rem; display: block; margin-bottom: 4px; }
 
-  .answer-remark { font-style: italic; font-size: 1.1rem; color: #475569; padding-top: 15px; border-top: 2px solid #e2e8f0; }
-  .other-key { background: #fffbeb; border: 4px solid #b45309; color: #78350f; padding: 15px; border-radius: 12px; font-size: 1.1rem; margin-top: 15px; font-weight: bold;}
+  .answer-remark { font-style: italic; font-size: 0.85rem; color: #475569; padding-top: 10px; border-top: 1px solid #e2e8f0; }
+  .other-key { background: #fffbeb; border: 2px solid #b45309; color: #78350f; padding: 10px; border-radius: 8px; font-size: 0.85rem; margin-top: 10px; }
 
-  .back-to-index { display: inline-block; padding: 20px 40px; background: #1e293b; text-decoration: none; border-radius: 15px; color: #ffffff; font-weight: 900; font-size: 1.4rem; border-bottom: 8px solid #000; }
-  .back-to-index:active { transform: translateY(4px); border-bottom-width: 4px; }
+  .back-to-index { display: inline-block; padding: 12px 24px; background: #1e293b; text-decoration: none; border-radius: 10px; color: #ffffff; font-weight: 900; font-size: 1rem; border-bottom: 5px solid #000; }
   
   </style>
 </head>
-<body><h1>Sleutel: GRASLAND</h1><div style="margin-bottom:30px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>
+<body><h1>Sleutel: GRASLAND</h1><div style="margin-bottom:20px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>
 <div class="step-container" id="step0">  <div class="step-header">
 <span class="step-number">STAP 0</span>  </div>
 <h2>Graslandsleutel</h2><div class="question">Je heb een goede kennis van de graslandsleutel en wil ineens naar een specifiek graslandtype?</div>  <div class="answer-block">
@@ -173,7 +163,7 @@
 <div class="question">Is het een open biotoop waarbij (schijn)grassen en kruiden meer dan 50% van de vegetatiebedekking uitmaken ?</div>  <div class="answer-block">
 <a href="#step2" class="answer-link">Ja (→ 2)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Nee (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Nee (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>HOOFD</strong></div>    </div>
   </div>
 </div>
@@ -191,7 +181,7 @@
 <span class="step-number">STAP 3</span>    <div class="incoming-steps">Van: <a href="#step2" class="incoming-link">2</a></div>
   </div>
 <div class="question">Is de bedekking van bomen en struiken (kroonprojectie) ≥ 50% ?</div>  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ja (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOS</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -210,11 +200,11 @@
 <div class="extra-info">Zilte soorten: blauw, stomp, gewoon en bleek kweldergras, beursjesganzenvoet, dunstaart, gerande en zilte schijnspurrie, klein schorrenkruid, kortarige en langarige zeekraal, melkkruid, moeraszoutgras, schorrenzoutgras, zilte rus, zilte zegge en zulte.</div><div class="answer-remark">Dynamisch vegetatietype dat pas in de zomer goed tot ontwikkeling komt en waarvan de ontwikkeling kan veschillen van jaar tot jaar ifv grondwaterstand.</div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Binnen de ecoregio 'Duinen': (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Binnen de ecoregio 'Duinen': (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>Duingraslanden (in opmaak)</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Net buiten de ecoregio 'Duinen' (= in de overgangszone tussen kustduinen en -polders) EN typische soort(en) van duingrasland samen frequent aanwezig: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Net buiten de ecoregio 'Duinen' (= in de overgangszone tussen kustduinen en -polders) EN typische soort(en) van duingrasland samen frequent aanwezig: (→ Index)</a>    <div class="answer-details-group">
 <div class="extra-info">Duingrasland hogere planten: duindravik, duinfakkelgras, duinviooltje, duin-, dicht en zandlangbaardgras, geel walstro, geel zonneroosje, gestreepte klaver, grote tijm, kalkbedstro, kegelsilene, kleverige reigersbek, kruipend stalkruid, liggende asperge, lathyruswikke, liggend bergvlas, nachtsilene, ruwe klaver, ruw vergeet-mij-nietje, voorjaarsganzerik, walstrobremraap, wondklaver, zachte haver, zanddoddengras en zandhoornbloem.
 Duingrasland mossen: groot duinsterretje (Syntrichia ruralis var. arenicola) en duinklauwtjesmos (Hypnum cupressiforme var. lacunosum)</div><div class="other-key">Sleutel: <strong>Duingraslanden (in opmaak)</strong></div>    </div>
   </div>
@@ -226,11 +216,11 @@ Duingrasland mossen: groot duinsterretje (Syntrichia ruralis var. arenicola) en 
 <span class="step-number">STAP 20</span>    <div class="incoming-steps">Van: <a href="#step10" class="incoming-link">10</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Bedekking van grote zeggen, liesgras, riet, gele lis, holpijp, lisdodde, mattenbies, ruwe bies en/of egelskop ≥ 70% : (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Bedekking van grote zeggen, liesgras, riet, gele lis, holpijp, lisdodde, mattenbies, ruwe bies en/of egelskop ≥ 70% : (→ Index)</a>    <div class="answer-details-group">
 <div class="extra-info">Grote zeggen: moeraszegge, oeverzegge, blaaszegge, pluimzegge, hoge cyperzegge, scherpe zegge</div><div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Bedekking soorten uit de moerasgroep > overige planten (beide uitgezonderd pitrus, riet, scherpe en moeraszegge): (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Bedekking soorten uit de moerasgroep > overige planten (beide uitgezonderd pitrus, riet, scherpe en moeraszegge): (→ Index)</a>    <div class="answer-details-group">
 <div class="extra-info">Moerasgroep: bittere veldkers, blaaszegge, draadrus, draadzegge, galigaan, gele lis, gele waterkers, hennegras, hoge cyperzegge, holpijp, kleine watereppe, liesgras, melkeppe, moerasbasterdwederik, moerasstruisgras, moerasviooltje, moeraswalstro, moeraswederik, oeverzegge, pluimzegge, riet, snavelzegge, sterrenkroossoorten, sterzegge, stijve zegge, veenpluis, wateraardbei, waterdrieblad, watermunt, waternavel, zomp- en zwarte zegge</div><div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -261,7 +251,7 @@ Duingrasland mossen: groot duinsterretje (Syntrichia ruralis var. arenicola) en 
 <span class="step-number">STAP 30</span>    <div class="incoming-steps">Van: <a href="#step29" class="incoming-link">29</a></div>
   </div>
 <div class="question">Is het een zoomvormende, ruderale vegetatie langs een vochtig bos of een waterloop, waarbij zowel kensoorten als  begeleidende soorten van het verbond look-zonder-look voorkomen EN deze samen de vegetatie domineren ?</div>  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ja (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOS</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -672,7 +662,7 @@ hu-kerngroep: aardaker, beemdkroon, beemdooievaarsbek, bevertjes, gele morgenste
 <span class="step-number">STAP 103</span>    <div class="incoming-steps">Van: <a href="#step102" class="incoming-link">102</a></div>
   </div>
 <div class="question">Zijn helofyten (grote zeggen, riet, liesgras, lisdodde, galigaan, mattenbies, ruwe bies of grote egelskop) dominant ?</div>  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ja (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -685,7 +675,7 @@ hu-kerngroep: aardaker, beemdkroon, beemdooievaarsbek, bevertjes, gele morgenste
 <span class="step-number">STAP 104</span>    <div class="incoming-steps">Van: <a href="#step103" class="incoming-link">103</a>, <a href="#step247" class="incoming-link">247</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">bochtige smele en/of pijpenstrootje zijn dominant: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">bochtige smele en/of pijpenstrootje zijn dominant: (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -812,7 +802,7 @@ Vb. verruigd, soortenrijk glanshavergrasland met nog frequent knoopkruid en occa
 <span class="step-number">STAP 121</span>    <div class="incoming-steps">Van: <a href="#step120" class="incoming-link">120</a></div>
   </div>
 <div class="question">Is er een soort uit de mk-groep occasioneel aanwezig ?</div>  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ja (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1158,7 +1148,7 @@ Basenminners: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene, bokkeno
 <div class="extra-info">hm-groep: addertong, blauwe knoop, blauwe zegge, bleke zegge, blonde zegge, bosanemoon, bosorchis, geelgroene zegge, gele zegge, gevlekte orchis s.l., klein glidkruid, kleine schorseneer, klimopklokje, klokjesgentiaan, kleine valeriaan, klimopklokje, kranskarwij, moerasstreepzaad, moerasviooltje, parnassia, pijpenstrootje (excl. zandige bodems), ruw walstro, schubzegge, spaanse ruiter, sterzegge, tandjesgras, teer guichelheil, tormentil, veelbloemige veldbies, veenmelkviooltje, vlozegge, welriekende nachtorchis, zaagblad</div><div class="answer-remark">Moerasviooltje en sterzegge behoren ook tot de moerasgroep</div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">De bedekking van moerasgroep > overige vegetatie (hoge russen, moerasviooltje en sterzegge niet meegerekend): (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">De bedekking van moerasgroep > overige vegetatie (hoge russen, moerasviooltje en sterzegge niet meegerekend): (→ Index)</a>    <div class="answer-details-group">
 <div class="extra-info">Moerasgroep: bittere veldkers, blaaszegge, draadrus, draadzegge, galigaan, gele lis, gele waterkers, hennegras, hoge cyperzegge, holpijp, liesgras, melkeppe, moerasbasterdwederik, moerasstruisgras, moerasviooltje, moeraswalstro, moeraswederik, oeverzegge, pluimzegge, riet, snavelzegge, sterrenkroossoorten, sterzegge, stijve zegge, veenpluis, wateraardbei, waterdrieblad, watermunt, waternavel, zomp- en zwarte zegge</div><div class="answer-remark">hoge russen: pitrus, biezenknoppen, veldrus, paddenrus en zeegroene rus</div><div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1169,7 +1159,7 @@ Basenminners: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene, bokkeno
 <span class="step-number">STAP 232</span>    <div class="incoming-steps">Van: <a href="#step231" class="incoming-link">231</a></div>
   </div>
 <div class="question">Zijn uit de rbbms-groep OFWEL 3 soorten elk occasioneel OFWEL 2 elk frequent aanwezig ?</div>  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ja (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1205,7 +1195,7 @@ heischrale groep: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgr
 <span class="step-number">STAP 241</span>    <div class="incoming-steps">Van: <a href="#step240" class="incoming-link">240</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Het is een grazige vegetatie op kalkarme, profielloze droge zandgrond (vnl. binnenlandse landduinen) met abundant éénjarigen (ongeacht hun bedekking), waarbij de typische soorten vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en/of zandblauwtje tezamen frequent aanwezig zijn: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Het is een grazige vegetatie op kalkarme, profielloze droge zandgrond (vnl. binnenlandse landduinen) met abundant éénjarigen (ongeacht hun bedekking), waarbij de typische soorten vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en/of zandblauwtje tezamen frequent aanwezig zijn: (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1234,11 +1224,11 @@ heischrale groep: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgr
 <span class="step-number">STAP 243</span>    <div class="incoming-steps">Van: <a href="#step51" class="incoming-link">51</a>, <a href="#step101" class="incoming-link">101</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Aandeel buntgras (en zandzegge) in de vegetatie ≥ 50% : (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Aandeel buntgras (en zandzegge) in de vegetatie ≥ 50% : (→ Index)</a>    <div class="answer-details-group">
 <div class="answer-remark">stap 25</div><div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Bedekking bochtige smele ≥ 50% : (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Bedekking bochtige smele ≥ 50% : (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1246,7 +1236,7 @@ heischrale groep: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgr
   <div class="answer-block">
 <a href="#step245" class="answer-link">Bedekking pijpenstrootje ≥ 30% : (→ 245)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Abundant éénjarigen (ongeacht hun bedekking), waarbij vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en/of zandblauwtje tezamen frequent aanwezig zijn: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Abundant éénjarigen (ongeacht hun bedekking), waarbij vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en/of zandblauwtje tezamen frequent aanwezig zijn: (→ Index)</a>    <div class="answer-details-group">
 <div class="extra-info">Niet-limitatieve opsomming van veel voorkomende éénjarigen: veldereprijs, hazenpootje, Canadese fijnstraal, eenjarige hardbloem, rode schijnspurrie, akkerviooltje, zandmuur, reigersbek, heidespurrie, straatgras, zandraket, vroegeling, kleine leeuwenklauw, zachte ooievaarsbek, klein streepzaad, eekhoorngras, gewoon langbaardgras, zandhoornbloem, slofhak, …</div><div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
 </div>
@@ -1264,7 +1254,7 @@ heischrale groep: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgr
 <span class="step-number">STAP 246</span>    <div class="incoming-steps">Van: <a href="#step245" class="incoming-link">245</a></div>
   </div>
 <div class="question">Is het aandeel in de vegetatie van pijpenstrootje tezamen met soorten van natte heide (dophei, blauwe zegge, veenpluis, veenbies, beenbreek, bruine en witte snavelbies, veenmos) ≥ 50% ?</div>  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ja (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1359,7 +1349,7 @@ heidesoorten: struikhei, rode/gewone dophei, trekrus, pilzegge, zandzegge, zands
 <span class="step-number">STAP 254</span>    <div class="incoming-steps">Van: <a href="#step253" class="incoming-link">253</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">De bedekking van de mk-groep > hm-groep : (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">De bedekking van de mk-groep > hm-groep : (→ Index)</a>    <div class="answer-details-group">
 <div class="answer-remark">Bij twijfel: indien een goed ontwikkelde moslaag (uitgez. veenmos, klauwtjesmos, gewoon puntmos, groot laddermos en haakmos) aanwezig is, kies dan voor de moerassleutel.</div><div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1428,7 +1418,7 @@ heidesoorten: struikhei, rode/gewone dophei, trekrus, pilzegge, zandzegge, zands
 <div class="answer-remark">Binnendijks = niet rechtstreeks onder invloed van het getij, het betreft dus geen beweid schor.</div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders: (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>MARIENE biotopen</strong></div>    </div>
   </div>
 </div>
@@ -1470,6 +1460,6 @@ heidesoorten: struikhei, rode/gewone dophei, trekrus, pilzegge, zandzegge, zands
   </div>
 </div>
 
-<div style="text-align:center; margin-top: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
+<div style="text-align:center; margin-top: 40px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
 </body>
 </html>

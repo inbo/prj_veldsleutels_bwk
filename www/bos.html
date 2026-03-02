@@ -2,147 +2,137 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOS Sleutel</title><style>
 
   body {
     font-family: -apple-system, system-ui, sans-serif;
     line-height: 1.4;
-    max-width: 900px;
+    max-width: 850px;
     margin: 0 auto;
-    padding: 20px 15px 80px 15px;
+    padding: 15px 15px 60px 15px;
     color: #000000;
-    background: #f1f5f9; /* Subtle blue-gray background */
-    font-size: 27px;
+    background: #f1f5f9;
+    font-size: 19px; /* Reduced by 30% from 27px */
   }
 
-  h1 { font-size: 2.2rem; color: #1e293b; border-bottom: 6px solid #27ae60; padding-bottom: 10px; margin-top: 30px; }
-  h2 { font-size: 1.8rem; margin-top: 1.5rem; color: #0f172a; }
+  h1 { font-size: 1.8rem; color: #1e293b; border-bottom: 4px solid #27ae60; padding-bottom: 8px; margin-top: 20px; }
+  h2 { font-size: 1.4rem; margin-top: 1.2rem; color: #0f172a; }
 
   /* Index Grid */
   .index-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
   }
 
   .index-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 130px;
+    height: 90px;
     background: #ffffff;
-    border: 4px solid #1e293b;
-    border-radius: 20px;
-    font-size: 1.8rem;
+    border: 3px solid #1e293b;
+    border-radius: 15px;
+    font-size: 1.3rem;
     text-decoration: none;
     color: #1e293b;
-    font-weight: 900;
-    box-shadow: 0 8px 0 #1e293b;
+    font-weight: 800;
+    box-shadow: 0 5px 0 #1e293b;
     transition: all 0.1s ease;
   }
 
-  /* Hover & Active States */
   .index-btn:hover, .answer-link:hover {
-    background: #dbeafe; /* Soft light blue on hover */
+    background: #dbeafe;
     border-color: #2563eb;
     color: #1e3a8a;
-    cursor: pointer;
   }
+
   .index-btn:active, .answer-link:active {
-    transform: translateY(6px);
-    box-shadow: 0 2px 0 #1e293b;
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1e293b;
   }
 
   /* Step Cards */
   .step-container {
     background: #ffffff;
-    padding: 30px;
-    margin-bottom: 40px;
-    border-radius: 20px;
-    border: 4px solid #e2e8f0;
-    border-left: 18px solid #27ae60;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    border: 2px solid #e2e8f0;
+    border-left: 12px solid #27ae60;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 
-  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-  .step-number { background: #27ae60; color: white; padding: 10px 20px; border-radius: 12px; font-weight: bold; font-size: 1.3rem; }
-  .incoming-link { background: #334155; color: white; text-decoration: none; padding: 8px 16px; border-radius: 10px; font-size: 1.1rem; font-weight: bold; border-bottom: 4px solid #000; }
+  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+  .step-number { background: #27ae60; color: white; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; }
+  .incoming-link { background: #334155; color: white; text-decoration: none; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; }
 
   /* Question & Background */
-  .question { font-size: 1.8rem; font-weight: 800; margin: 30px 0; color: #000; line-height: 1.2; }
-  .background-box { background: #f0fdf4; border: 4px solid #27ae60; padding: 20px; border-radius: 12px; font-size: 1.2rem; color: #064e3b; margin-bottom: 25px; }
+  .question { font-size: 1.3rem; font-weight: 800; margin: 15px 0; color: #000; line-height: 1.2; }
+  .background-box { background: #f0fdf4; border: 2px solid #27ae60; padding: 15px; border-radius: 10px; font-size: 0.9rem; color: #064e3b; margin-bottom: 15px; }
 
   /* Answers */
-  .answer-block { margin-bottom: 40px; }
+  .answer-block { margin-bottom: 25px; }
 
   .answer-link, .answer-link-terminal {
     display: block;
     background: #ffffff;
-    border: 4px solid #334155;
-    padding: 25px;
+    border: 3px solid #334155;
+    padding: 15px 20px;
     text-decoration: none;
     color: #1e293b;
-    border-radius: 18px;
+    border-radius: 12px;
     font-weight: 700;
-    font-size: 1.5rem;
-    box-shadow: 0 8px 0 #334155;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 0 #334155;
     transition: all 0.1s ease;
   }
 
-  .answer-link-terminal {
-    color: #000;
-    background: #f0fdf4;
-    border-color: #059669;
-    box-shadow: none;
-    cursor: default;
-    border-style: solid;
-  }
+  .answer-link-terminal { background: #f0fdf4; border-color: #059669; box-shadow: none; cursor: default; }
 
-  /* Connector for Info Grouping */
-  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 4px dashed #334155; }
+  /* Info Grouping */
+  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 3px dashed #334155; }
 
   .answer-details-group {
     background: #f8fafc;
-    border: 4px solid #334155;
+    border: 3px solid #334155;
     border-top: none;
-    border-radius: 0 0 18px 18px;
-    padding: 20px;
-    margin-top: -4px;
+    border-radius: 0 0 12px 12px;
+    padding: 15px;
+    margin-top: -3px;
   }
 
   .extra-info {
     background: #fff;
-    border-left: 12px solid #2563eb;
-    padding: 18px;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+    border-left: 8px solid #2563eb;
+    padding: 12px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
     color: #1e3a8a;
     font-weight: 600;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
   }
 
   .result-box {
     background: #064e3b;
     color: #ffffff;
-    padding: 25px;
-    border-radius: 15px;
-    font-size: 1.4rem;
-    margin-top: 20px;
-    border: 3px solid #000;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    border: 2px solid #000;
   }
-  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 1rem; display: block; margin-bottom: 8px; letter-spacing: 1px; }
+  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 0.75rem; display: block; margin-bottom: 4px; }
 
-  .answer-remark { font-style: italic; font-size: 1.1rem; color: #475569; padding-top: 15px; border-top: 2px solid #e2e8f0; }
-  .other-key { background: #fffbeb; border: 4px solid #b45309; color: #78350f; padding: 15px; border-radius: 12px; font-size: 1.1rem; margin-top: 15px; font-weight: bold;}
+  .answer-remark { font-style: italic; font-size: 0.85rem; color: #475569; padding-top: 10px; border-top: 1px solid #e2e8f0; }
+  .other-key { background: #fffbeb; border: 2px solid #b45309; color: #78350f; padding: 10px; border-radius: 8px; font-size: 0.85rem; margin-top: 10px; }
 
-  .back-to-index { display: inline-block; padding: 20px 40px; background: #1e293b; text-decoration: none; border-radius: 15px; color: #ffffff; font-weight: 900; font-size: 1.4rem; border-bottom: 8px solid #000; }
-  .back-to-index:active { transform: translateY(4px); border-bottom-width: 4px; }
+  .back-to-index { display: inline-block; padding: 12px 24px; background: #1e293b; text-decoration: none; border-radius: 10px; color: #ffffff; font-weight: 900; font-size: 1rem; border-bottom: 5px solid #000; }
   
   </style>
 </head>
-<body><h1>Sleutel: BOS</h1><div style="margin-bottom:30px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>
+<body><h1>Sleutel: BOS</h1><div style="margin-bottom:20px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>
 <div class="step-container" id="step1">  <div class="step-header">
 <span class="step-number">STAP 1</span>  </div>
 <h2>BOOM & STRUWEELSOORTEN</h2><div class="background-box"><strong>INFO:</strong><br>De vegetatie voldoet aan de wettelijke definitie van een bos (conform bosdecreet). Ook bospercelen in woon- en kasteelparken, arboreta in bosverband, … voldoen aan de wettelijke definitie van een bos, en moeten dus via de bossleutel toegewezen worden. Sierbeplanting, korte omloophoutteelt, fruitboomgaard, kerstbomenkweek, boom- en plantenkwekerij en arboreta buiten het bos behoren niet tot de bosbiotopen, zie hoofdsleutel.
@@ -153,8 +143,7 @@ Voor kapvlaktes en verjonging geldt de regel voor minimale bedekking van 50% ‘
 </div>
 
 <div class="step-container" id="step2">  <div class="step-header">
-<span class="step-number">STAP 2</span>    <div class="incoming-steps">Van: <a href="#step251" class="incoming-link">251</a></div>
-  </div>
+<span class="step-number">STAP 2</span>  </div>
 <div class="question">Heb je ervaring met deze sleutel en je wenst direct naar een bepaald hoofdstuk te gaan ?</div>  <div class="answer-block">
 <a href="#step9" class="answer-link">Habitatwaardige droge tot matig vochtige bossen: (→ 9)</a>  </div>
   <div class="answer-block">
@@ -167,6 +156,8 @@ Voor kapvlaktes en verjonging geldt de regel voor minimale bedekking van 50% ‘
 <a href="#step100" class="answer-link">Struwelen: (→ 100)</a>  </div>
   <div class="answer-block">
 <a href="#step200" class="answer-link">Kapvlakten, open plekken in bos: (→ 200)</a>  </div>
+  <div class="answer-block">
+<a href="#step250" class="answer-link">Boszoom: (→ 250)</a>  </div>
 </div>
 
 <div class="step-container" id="step3">  <div class="step-header">
@@ -180,7 +171,7 @@ Voor kapvlaktes en verjonging geldt de regel voor minimale bedekking van 50% ‘
 Ook hoge (+1m) struwelen van bramen (agg. , inclusief framboos) worden hiertoe gerekend.</div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">De vegetatie bestaat uit opgaande bomen, maar voldoet niet aan de definitie van een bos: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">De vegetatie bestaat uit opgaande bomen, maar voldoet niet aan de definitie van een bos: (→ Index)</a>    <div class="answer-details-group">
 <div class="extra-info">kerstboomaanplanten, boomkwekerijen, laagstamboomgaarden, (zaad)boomgaarden, sierbeplanting, korte omloophoutteelt...</div><div class="answer-remark">geen bos, controle hoofdsleutel voor bepalen van de juiste biotoopgroep</div><div class="other-key">Sleutel: <strong>HOOFDSLEUTEL</strong></div>    </div>
   </div>
 </div>
@@ -208,9 +199,9 @@ Ook hoge (+1m) struwelen van bramen (agg. , inclusief framboos) worden hiertoe g
   <div class="answer-block">
 <a href="#step200" class="answer-link">Kapvlakte, recent afgezet hakhout of (al dan niet tijdelijke) open plek in het bos: (→ 200)</a>  </div>
   <div class="answer-block">
-<a href="#step500" class="answer-link">Boszoom: ruigere gras- en kruidenvegetatie gelegen in een gradiënt van een bos naar een open terrein: (→ 500)</a>  </div>
+<a href="#step250" class="answer-link">Boszoom: ruigere gras- en kruidenvegetatie gelegen in een gradiënt van een bos naar een open terrein: (→ 250)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders: (→ Index)</a>    <div class="answer-details-group">
 <div class="extra-info">Ga naar de hoofdsleutel om uit te maken of de vegetatie onder een andere sleutel thuishoort (moeras, heide…). Zie echter stap 2c en voetnoot 2.</div><div class="other-key">Sleutel: <strong>HOOFDSLEUTEL</strong></div>    </div>
   </div>
 </div>
@@ -249,7 +240,7 @@ Ook hoge (+1m) struwelen van bramen (agg. , inclusief framboos) worden hiertoe g
   <div class="answer-block">
 <a href="#step10" class="answer-link">Droge tot matig vochtige (niet vallei) bossen op zand, (zand)leem, klei en mergelbodems van vlakte of plateau. Bossen op standplaatsen van het Quercion, Fagion en Carpinion. Er is een kruidlaag aanwezig maar de hierboven genoemde vochtindicatoren zijn niet of slechts occasioneel aanwezig: (→ 10)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Duinbossen: droge tot matig vochtige bossen in (de ecoregio van) de kustduinen: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Duinbossen: droge tot matig vochtige bossen in (de ecoregio van) de kustduinen: (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>KUSTDUINEN</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1160,7 +1151,7 @@ Let op:
   <div class="answer-block">
 <a href="#step150" class="answer-link">in een bosrand (mantel): (→ 150)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">in een heidegebied met ≥ 10 jeneverbessen (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">in een heidegebied met ≥ 10 jeneverbessen (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>heidesleutel</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1326,7 +1317,7 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
 <span class="step-number">STAP 117</span>    <div class="incoming-steps">Van: <a href="#step116" class="incoming-link">116</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Gagelstruweel ijl EN ≤ 1m (boven maaiveld) in een natte heide EN boomlaag (≥ 6 m) < 50% bedekkend (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Gagelstruweel ijl EN ≤ 1m (boven maaiveld) in een natte heide EN boomlaag (≥ 6 m) < 50% bedekkend (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>heidesleutel</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1496,7 +1487,7 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
 <span class="step-number">STAP 136</span>    <div class="incoming-steps">Van: <a href="#step7" class="incoming-link">7</a>, <a href="#step60" class="incoming-link">60</a>, <a href="#step135" class="incoming-link">135</a></div>
   </div>
 <div class="question">Het perceel/de vegetatievlek is een:</div>  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">recent verboste open heide: minder dan 10% kroonsluiting van hogere bomen (> 6m) en in de kruidlaag in het aandeel struikhei, gewone dophei, rode dophei, beenbreek, veenpluis > het aandeel aan grassen, varens en bosplanten: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">recent verboste open heide: minder dan 10% kroonsluiting van hogere bomen (> 6m) en in de kruidlaag in het aandeel struikhei, gewone dophei, rode dophei, beenbreek, veenpluis > het aandeel aan grassen, varens en bosplanten: (→ Index)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>heidesleutel</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1665,7 +1656,7 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
 <strong>NATURA 2000:</strong> gaat op in de omliggende bosbiotoop<br>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">vegetatie van de open plek is duidelijk verschillend van de ondergroei van het omliggende bos (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">vegetatie van de open plek is duidelijk verschillend van de ondergroei van het omliggende bos (→ Index)</a>    <div class="answer-details-group">
 <div class="answer-remark">Anders, geen bosbiotoop: sleutel eerst verder met de hoofdsleutel om de juiste biotoopgroep te bepalen</div><div class="other-key">Sleutel: <strong>hoofdsleutel</strong></div>    </div>
   </div>
 </div>
@@ -1676,7 +1667,7 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
   <div class="answer-block">
 <a href="#step213" class="answer-link">onbeheerde kapvlakte (> 5j), kroonsluiting < 50% en gedomineerd door adelaarsvaren (→ 213)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders, geen bosbiotoop (→ Hoofdsleutel)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders, geen bosbiotoop (→ Index)</a>    <div class="answer-details-group">
 <div class="answer-remark">Anders, geen bosbiotoop: sleutel eerst verder met de hoofdsleutel om de juiste biotoopgroep te bepalen</div><div class="other-key">Sleutel: <strong>hoofdsleutel</strong></div>    </div>
   </div>
 </div>
@@ -1699,37 +1690,31 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
 </div>
 
 <div class="step-container" id="step250">  <div class="step-header">
-<span class="step-number">STAP 250</span>  </div>
+<span class="step-number">STAP 250</span>    <div class="incoming-steps">Van: <a href="#step2" class="incoming-link">2</a>, <a href="#step5" class="incoming-link">5</a></div>
+  </div>
 <h2>Boszomen</h2><div class="background-box"><strong>INFO:</strong><br>De overgang tussen een open terrein en het eigenlijke bos is de bosrand. Als deze overgang geleidelijk is, gaat het open veld over in een zone met hogere meerjarige kruiden, de zogenaamde zoomvegetatie. Vanuit deze boszoom volgt opnieuw een geleidelijke overgang naar een brede zone van struiken (de mantelvegetatie) die uiteindelijk aansluit op de hoogte van de bomen van het bos zelf. De mantels behoren tot het aanliggende bos(habitat) of tot de struwelen (zie stap 100).
-Boszomen op voedselrijke, vochtige bodems kunnen in bepaalde gevallen tot habitattype 6430 gerekend worden.</div><div class="question">Habitattype 6430_bz betreft boszomen op voedselrijke, vochtige bodems (valleibodems). Het zijn vegetaties van het verbond van look-zonder-look (Galio-Alliarion) waarin minder algemene plantensoorten voorkomen.
-Om een boszoom tot habitattype 6430_bz te kunnen rekenen moet deze aan volgende voorwaarden voldoen:</div>  <div class="answer-block">
-<div class="answer-link-terminal has-details">- zoomvegetatie langs een waterloop of een boszoom; kan ook langs brede onverharde bospaden of op open plekken in het bos;
-- de zoom is minstens 1 m breed en 30m lang of het betreft een permanente open plek van min. 400m² ;
-- gelegen in valleigebied;
-- Kroonsluiting bomen en struiken (+2m) < 50%;
-- de vegetatie behoort tot het verbond van look-zonder-look en wordt gedomineerd door de ken- en begeleidende soorten van dit verbond, waarbij grote brandnetel niet domineerd (bedekking <75%);
-- voorkomen van minstens 1 van de differentiërende soorten.</div>    <div class="answer-details-group">
-<div class="extra-info">Kensoorten verbond look-zonder-look: hondsdraf, look-zonder-look, zevenblad, kruisbladwalstro, heggenwikke, kruidvlier, groot hoefblad, grote brandnetel, kleefkruid en grote muur.
-Begeleidende soorten verbond van look- zonder-look: geel nagelkruid, dagkoekoeksbloem, speenkruid, robertskruid, witte dovenetel, hop, schaduwgras, klimopereprijs, boskortsteel, bosandoorn, ruig klokje, maarts viooltje, donkersporig bosviooltje, gewone salomonszegel, gewoon schaduwkruiskruid, slanke sleutelbloem, kraailook, gewone agrimonie, heggenrank, dolle kervel, heggendoornzaad en heggenwikke.
+Boszomen op voedselrijke, vochtige bodems kunnen in bepaalde gevallen tot habitattype 6430 gerekend worden.</div><div class="question">Habitattype 6430_bz betreft boszomen op voedselrijke, vochtige bodems (valleibodems). Het zijn vegetaties van het verbond van look-zonder-look (Galio-Alliarion) waarin minder algemene plantensoorten voorkomen. Om een boszoom tot habitattype 6430_bz te kunnen rekenen moet deze aan volgende voorwaarden voldoen:</div>  <div class="answer-block">
+<div class="answer-link-terminal has-details">- een boszoom is een overgang van een bos naar een open biotoop;
+- de boszoom kan ook gelegen zijn langs een waterloop, in een wastine of langs brede onverharde bospaden (geen kroonsluiting boven het pad) of op open plekken in het bos zolang het geen regelmatig gemaaide of verlaten/verruigde graslandvegetaties (vb. in wegbermen) betreft;
+- de zoom is minstens 1 m breed en 30m²;
+- gelegen in een valleigebied;
+- bedekking bomen en struiken < 50% (uitgezonderd eventueel overhangende takken uit het aangrenzende bos);
+- de vegetatie behoort tot het verbond van look-zonder-look en wordt dus gedomineerd door de ken- en begeleidende soorten van dit verbond (tabel 1), waarbij grote brandnetel, zevenblad of kleefkruid niet meer dan 50% bedekt;
+- voorkomen van minstens 1 van de in tabel 1 opgesomde differentiërende soorten.</div>    <div class="answer-details-group">
+<div class="extra-info">Kensoorten en begeleidende soorten verbond van look- zonder-look: bosandoorn, boskortsteel, dagkoekoeksbloem, dolle kervel, donkersporig bosviooltje, geel nagelkruid, gewoon schaduwkruiskruid, gewone agrimonie, groot hoefblad, grote brandnetel, grote muur, heggendoornzaad, heggenrank, heggenwikke, hondsdraf, hop, kleefkruid, klimopereprijs, kraailook, kruisbladwalstro, kruidvlier, look-zonder-look, maarts viooltje, robertskruid, schaduwgras, speenkruid, witte dovenetel en zevenblad.
 
-Differentiërende soorten 6430_bz: steeneppe, kruidvlier, gevlekte dovenetel, kruisbladwalstro, groot glaskruid, muursla, reuzenzwenkgras, gewone vogelmelk, groot hoefblad, hondstarwegras, maarts viooltje, bosaardbei, grote bosaardbei, aardbeiganzerik, gulden boterbloem, ruig klokje, schaduwkruiskruid, groot warkruid, kleine kaardenbol, welriekende agrimonie, bosklit, donzige klit</div><div class="answer-remark">Boszomen die vegetatiekundig tot het moerasspireaverbond (Filipendulion) of het verbond van harig wilgenroosje (Epilobion hirsuti) behoren, worden respectievelijk tot de habitatsubtypen 6430_hf en 6430_hw gerekend (zie moerassleutel).</div>    </div>
+Differentiërende soorten 6430_bz: aardbeiganzerik, bosklit, donzige klit, gevlekte dovenetel, gewone vogelmelk, groot glaskruid, groot hoefblad, groot warkruid, gulden boterbloem, hondstarwegras, heggenvogelmuur, kleine kaardenbol, kruisbladwalstro, kruidvlier, maarts viooltje, reuzenzwenkgras, ruig klokje, schaduwkruiskruid, steeneppe, en welriekende agrimonie</div><div class="answer-remark">Boszomen die vegetatiekundig tot het moerasspireaverbond (Filipendulion) of het verbond van harig wilgenroosje (Epilobion hirsuti) behoren, worden respectievelijk tot de habitatsubtypen 6430_hf en 6430_hw gerekend (zie moerassleutel).</div>    </div>
     <div class="result-box">
 <strong>NATURA 2000:</strong> 6430_bz<br><strong>BWK CODE:</strong> hr*    </div>
   </div>
   <div class="answer-block">
-<a href="#step501" class="answer-link">Anders: (→ 501)</a>  </div>
-</div>
-
-<div class="step-container" id="step251">  <div class="step-header">
-<span class="step-number">STAP 251</span>  </div>
-  <div class="answer-block">
-<a href="#step2" class="answer-link">Bedekking bomen en hoge struiken (> 6m) ≥ 50%: (→ 2)</a>  </div>
-  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
-<div class="answer-remark">Geen habitatwaardige boszoom</div><div class="other-key">Sleutel: <strong>graslandsleutel</strong></div>    </div>
+<div class="answer-link-terminal has-details">Anders:</div>    <div class="answer-details-group">
+<div class="answer-remark">Geen habitatwaardige boszoom, gebruikeen andere sleutel om het vegetatietype te bepalen.</div>    </div>
+    <div class="result-box">
+<strong>NATURA 2000:</strong> geen habitat<br>    </div>
   </div>
 </div>
 
-<div style="text-align:center; margin-top: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
+<div style="text-align:center; margin-top: 40px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
 </body>
 </html>
