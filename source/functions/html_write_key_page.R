@@ -7,7 +7,7 @@ html_write_key_page <- function(key_name, key_data, folder = "") {
   cat(glue("  <title>{toupper(key_name)} Sleutel</title>\n"), file = fn, append = TRUE)
   cat(glue("  <style>\n{html_get_style()}\n  </style>\n</head>\n<body>\n"), file = fn, append = TRUE)
   cat(glue("<h1>Sleutel: {toupper(key_name)}</h1>\n"), file = fn, append = TRUE)
-  cat('<a href="index.html" class="back-to-index">← Terug naar Index</a><hr>\n', file = fn, append = TRUE)
+  cat('<a href="../index.html" class="back-to-index">← Terug naar Index</a><hr>\n', file = fn, append = TRUE)
 
   for (id in names(key_data)) {
     step <- key_data[[id]]
@@ -106,6 +106,6 @@ html_write_key_page <- function(key_name, key_data, folder = "") {
     cat("</div>\n\n", file = fn, append = TRUE)
   }
 
-  cat('<div class="back-to-index"><a href="index.html">Terug naar Index</a></div>\n', file = fn, append = TRUE)
+  cat('<div class="back-to-index"><a href="../index.html">Terug naar Index</a></div>\n', file = fn, append = TRUE)
   cat("</body>\n</html>", file = fn, append = TRUE)
 }

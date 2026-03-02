@@ -33,13 +33,10 @@ docs/
 po/*~
 # RStudio Connect folder
 rsconnect/
-
 #documentatiefolder
 documents/
-
 #interim data
 interim/
-
 #file types
 *.pdf
-
+test.yaml
