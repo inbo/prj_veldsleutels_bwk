@@ -1,79 +1,75 @@
-###############################################################
-
 parse_data <- function(data) {
   records_list <- list()
-  rec <- list() # current record
+  rec <- list()
   record_counter <- 0
   answer_counter <- 0
 
-  # // iterate row per row through data
   for (i in 1:nrow(data)) {
-    # print(paste(i, "of", nrow(sheet_data), ":", sheet_data[i, "NAME"]))
-
-    # define short names
     row <- data[i, ]
+
+    # Identify the current step and the previous one
     step <- row$STEP
-    type <- row$TYPE
-    name <- row$NAME
-    nextstep <- row$NEXT_STEP
-    classif <- row$CLASSIFICATION
-    bwkcode <- row$BWK_CODE
-    otherkey <- row$SUBKEY
-    remark <- row$REMARK
-    key <- row$KEY
     prevstep <- row$.prev
     logictype <- row$.type
-    incoming <- row$.incoming
-    step_intern <- row$.step
+    step_intern <- row$.step # e.g., "bos0001"
 
-    # start new current record if .prev is not equal to step
-    # save the current record in the records list
+    # Detect step change
     if (step != prevstep) {
-      # when first record do not save previous record but set new record
-      if (prevstep == -1) {
-        rec <- list()
-        record_counter <- record_counter + 1
-        answer_counter <- 0
-        # save previous record and reset new record
-      } else {
-        records_list[[record_counter]] <- rec
-        names(records_list)[record_counter] <- step_intern
-        rec <- list()
-        record_counter <- record_counter + 1
-        answer_counter <- 0
+      # Save the completed record using its stored ID
+      if (prevstep != "-1") {
+        records_list[[rec$html_id]] <- rec
       }
+
+      # Reset for the NEW record
+      rec <- list()
+      answer_counter <- 0
+
+      # Store identification inside the record
+      rec$step_number <- step
+      rec$html_id <- step_intern
+      rec$incoming_step <- row$.incoming[[1]] # row$.incoming is a list column
     }
 
-    # create contents for record
+    # Fill content for Headers (h2, h3), Questions (q), or Background (b)
     if (substring(logictype, 1, 1) %in% c("h", "q", "b")) {
-      rec[[logictype]]$name <- name
-      rec[[logictype]]$remark <- remark
+      rec[[logictype]]$name <- row$NAME
+      rec[[logictype]]$remark <- row$REMARK
     }
-    rec$step_number <- step
-    rec$html_id <- step_intern
-    rec$incoming_step <- incoming
 
+    # Handle Answer rows
     if (logictype == "answer") {
       answer_counter <- answer_counter + 1
-      rec$answer[[answer_counter]] <- list()
-      rec$answer[[answer_counter]]$name <- name
-      rec$answer[[answer_counter]]$nextstep <- nextstep
-      rec$answer[[answer_counter]]$n2000 <- classif
-      rec$answer[[answer_counter]]$bwk <- bwkcode
-      rec$answer[[answer_counter]]$otherkey <- otherkey
-      rec$answer[[answer_counter]]$remark <- remark
+      rec$answer[[answer_counter]] <- list(
+        name = row$NAME,
+        nextstep = row$NEXT_STEP,
+        n2000 = row$CLASSIFICATION,
+        bwk = row$BWK_CODE,
+        otherkey = row$SUBKEY,
+        remark = row$REMARK,
+        info = "" # Initialize empty info string
+      )
     }
+
+    # Handle Info (Type I) rows - Grouping them with the previous Answer
     if (logictype == "info") {
-      rec$answer[[answer_counter]]$info <- name
+      if (answer_counter > 0) {
+        existing_info <- rec$answer[[answer_counter]]$info
+        new_info <- row$NAME
+
+        if (is.null(existing_info) || existing_info == "") {
+          rec$answer[[answer_counter]]$info <- new_info
+        } else {
+          # Append multiple info rows with a newline for clarity
+          rec$answer[[answer_counter]]$info <- paste(existing_info, new_info, sep = "\n")
+        }
+      }
     }
   }
-  records_list
+
+  # Final Save: Capture the last record after the loop finishes
+  if (length(rec) > 0) {
+    records_list[[rec$html_id]] <- rec
+  }
+
+  return(records_list)
 }
-
-# parse_data(veldsleutels_prep$bos)
-
-# nog omgaan met lege rijen (bossleutel, 501 is erafgekapt
-# nog invullen van antwoorden
-
-
-#########################################################################

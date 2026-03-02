@@ -1,28 +1,117 @@
-# 2. CSS Styling (Added .answer-block and refined result-box)
 html_get_style <- function() {
   "
-  body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; color: #333; background: #f4f7f6; }
-  h1 { color: #2c3e50; border-bottom: 2px solid #2c3e50; }
-  .step-container { background: white; padding: 20px; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-left: 5px solid #27ae60; }
-  .step-header { margin-bottom: 10px; display: flex; justify-content: space-between; align-items: baseline; }
-  .step-number { font-weight: bold; color: #27ae60; font-size: 1.2em; }
-  .incoming-steps { font-size: 0.85em; color: #7f8c8d; }
-  .incoming-link { color: #2980b9; text-decoration: none; margin-left: 5px; }
+  body {
+    font-family: -apple-system, system-ui, sans-serif;
+    line-height: 1.5;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    color: #334155;
+    background: #f8fafc;
+  }
 
-  /* Answer Grouping */
-  .answer-block { margin-bottom: 25px; padding-bottom: 10px; }
-  .answer-link { display: block; background: #fff; border: 1px solid #ddd; padding: 12px 15px; text-decoration: none; color: #2980b9; border-radius: 4px; transition: 0.2s; font-weight: 500; }
-  .answer-link:hover { background: #3498db; color: white; border-color: #3498db; }
+  h1 { color: #1e293b; border-bottom: 3px solid #27ae60; padding-bottom: 10px; text-align: center; }
 
-  /* Result specific styling */
-  .result-box { background: #d4edda; color: #155724; padding: 10px 15px; border-radius: 0 0 4px 4px; font-size: 0.95em; border: 1px solid #c3e6cb; border-top: none; margin-left: 10px; margin-right: 10px; }
+  /* Index Page Grid Layout */
+  .index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
 
-  .background-box { background: #eef9f1; padding: 15px; border-radius: 5px; font-size: 0.9em; margin-bottom: 15px; border: 1px solid #c3e6cb; white-space: pre-wrap; }
-  .extra-info { background: #f0f7fa; border: 1px solid #d1e8f0; border-radius: 8px; padding: 15px; margin: 15px 0; font-size: 0.9em; }
-  .answer-remark { font-style: italic; color: #666; margin-top: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #bbb; }
-  .other-key { background: #fff3cd; border: 1px solid #ffc107; border-radius: 5px; padding: 10px; margin-top: 10px; font-size: 0.9em; }
-  .question { font-size: 1.2em; font-weight: bold; margin: 15px 0 20px 0; }
-  .back-to-index { display: inline-block; margin: 20px 0; padding: 10px; background: #eee; text-decoration: none; border-radius: 4px; color: #333; }
-  .index-btn { display: block; padding: 20px; margin: 10px 0; background: white; border: 1px solid #ddd; border-radius: 8px; font-size: 1.2em; text-decoration: none; color: #2c3e50; font-weight: bold; text-align: center; }
+  .index-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1.1em;
+    text-decoration: none;
+    color: #1e293b;
+    font-weight: 800;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+  }
+  .index-btn:hover { border-color: #27ae60; color: #27ae60; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+
+  /* Key Page Containers */
+  .step-container {
+    background: white;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-left: 6px solid #27ae60;
+  }
+
+  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+  .step-number { background: #27ae60; color: white; padding: 3px 10px; border-radius: 15px; font-weight: bold; font-size: 0.9em; }
+  .incoming-link { background: #e2e8f0; color: #2563eb; text-decoration: none; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; margin-left: 5px; }
+
+  .answer-block { margin-bottom: 15px; }
+
+  .answer-link, .answer-link-terminal {
+    display: block;
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: #2563eb;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+  .answer-link:hover { background: #eff6ff; border-color: #3b82f6; }
+
+  /* Terminal result is styled differently (Green border) */
+  .answer-link-terminal {
+    color: #1a202c;
+    background: #f0fdf4;
+    border-color: #b91c1c; /* Changed to red/brown to indicate 'stop' or leave as green for success */
+    border: 2px solid #27ae60;
+    cursor: default;
+  }
+
+  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 1px solid #e2e8f0; }
+
+  .answer-details-group {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 12px;
+  }
+
+  .extra-info {
+    background: #f0f9ff;
+    border-left: 4px solid #0ea5e9;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #0369a1;
+    white-space: pre-wrap;
+  }
+
+  /* Result Box - Only shown at the very end */
+  .result-box {
+    background: #27ae60;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    margin-top: 10px;
+  }
+  .result-box strong { color: #dcfce7; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .answer-remark { font-style: italic; font-size: 0.85em; color: #64748b; padding: 5px 10px; }
+  .other-key { background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 8px; border-radius: 6px; font-size: 0.85em; margin-top: 5px;}
+
+  .question { font-size: 1.25em; font-weight: bold; margin: 15px 0; color: #0f172a; }
+  .background-box { background: #f0fdf4; border: 1px solid #dcfce7; padding: 15px; border-radius: 8px; font-size: 0.9em; margin-bottom: 15px; }
+  .back-to-index { display: inline-block; padding: 10px 20px; background: #e2e8f0; text-decoration: none; border-radius: 8px; color: #475569; font-weight: bold; }
   "
 }
