@@ -2,28 +2,28 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GRASLAND Sleutel</title><style>
 
   body {
     font-family: -apple-system, system-ui, sans-serif;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 15px;
-    color: #334155;
+    line-height: 1.4;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 15px 15px 60px 15px;
+    color: #000000;
     background: #f1f5f9;
-    font-size: 18px; /* Increased base size */
+    font-size: 19px; /* Reduced by 30% from 27px */
   }
 
-  h1 { font-size: 1.8rem; color: #1e293b; border-bottom: 3px solid #27ae60; padding-bottom: 10px; text-align: center; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.3rem; }
+  h1 { font-size: 1.8rem; color: #1e293b; border-bottom: 4px solid #27ae60; padding-bottom: 8px; margin-top: 20px; }
+  h2 { font-size: 1.4rem; margin-top: 1.2rem; color: #0f172a; }
 
   /* Index Grid */
   .index-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
     margin-top: 30px;
   }
 
@@ -31,935 +31,955 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px; /* Larger touch target */
-    background: white;
-    border: 2px solid #e2e8f0;
+    height: 90px;
+    background: #ffffff;
+    border: 3px solid #1e293b;
     border-radius: 15px;
-    font-size: 1.4rem; /* Big text for index */
+    font-size: 1.3rem;
     text-decoration: none;
     color: #1e293b;
     font-weight: 800;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 0 #1e293b;
+    transition: all 0.1s ease;
   }
 
-  /* Containers */
+  .index-btn:hover, .answer-link:hover {
+    background: #dbeafe;
+    border-color: #2563eb;
+    color: #1e3a8a;
+  }
+
+  .index-btn:active, .answer-link:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1e293b;
+  }
+
+  /* Step Cards */
   .step-container {
-    background: white;
+    background: #ffffff;
     padding: 20px;
     margin-bottom: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    border-left: 8px solid #27ae60;
+    border-radius: 15px;
+    border: 2px solid #e2e8f0;
+    border-left: 12px solid #27ae60;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 
   .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-  .step-number { background: #27ae60; color: white; padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
-  .incoming-link { background: #e2e8f0; color: #2563eb; text-decoration: none; padding: 4px 10px; border-radius: 6px; font-size: 0.9rem; margin-left: 5px; }
+  .step-number { background: #27ae60; color: white; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; }
+  .incoming-link { background: #334155; color: white; text-decoration: none; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; }
 
-  /* Answers & Navigation */
+  /* Question & Background */
+  .question { font-size: 1.3rem; font-weight: 800; margin: 15px 0; color: #000; line-height: 1.2; }
+  .background-box { background: #f0fdf4; border: 2px solid #27ae60; padding: 15px; border-radius: 10px; font-size: 0.9rem; color: #064e3b; margin-bottom: 15px; }
+
+  /* Answers */
   .answer-block { margin-bottom: 25px; }
 
   .answer-link, .answer-link-terminal {
     display: block;
-    background: #fff;
-    border: 2px solid #cbd5e1;
-    padding: 18px 20px; /* Larger padding for fingers */
+    background: #ffffff;
+    border: 3px solid #334155;
+    padding: 15px 20px;
     text-decoration: none;
-    color: #2563eb;
+    color: #1e293b;
     border-radius: 12px;
-    font-weight: 600;
-    font-size: 1.1rem; /* Clear answer text */
-    transition: 0.2s;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 0 #334155;
+    transition: all 0.1s ease;
   }
 
-  .answer-link-terminal { color: #1e293b; background: #f0fdf4; border-color: #27ae60; cursor: default; }
-  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 1px dashed #cbd5e1; }
+  .answer-link-terminal { background: #f0fdf4; border-color: #059669; box-shadow: none; cursor: default; }
+
+  /* Info Grouping */
+  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 3px dashed #334155; }
 
   .answer-details-group {
-    background: #ffffff;
-    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    border: 3px solid #334155;
     border-top: none;
     border-radius: 0 0 12px 12px;
     padding: 15px;
+    margin-top: -3px;
   }
 
   .extra-info {
-    background: #f0f9ff;
-    border-left: 5px solid #0ea5e9;
+    background: #fff;
+    border-left: 8px solid #2563eb;
     padding: 12px;
     margin-bottom: 10px;
-    font-size: 1rem;
-    color: #0369a1;
+    font-size: 0.9rem;
+    color: #1e3a8a;
+    font-weight: 600;
   }
 
   .result-box {
-    background: #27ae60;
-    color: white;
+    background: #064e3b;
+    color: #ffffff;
     padding: 15px;
     border-radius: 10px;
-    font-size: 1.05rem;
-    margin-top: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 1.1rem;
+    margin-top: 15px;
+    border: 2px solid #000;
   }
-  .result-box strong { color: #dcfce7; font-size: 0.85rem; text-transform: uppercase; }
+  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 0.75rem; display: block; margin-bottom: 4px; }
 
-  .answer-remark { font-style: italic; font-size: 0.95rem; color: #64748b; padding-top: 5px; }
-  .other-key { background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 10px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px; }
+  .answer-remark { font-style: italic; font-size: 0.85rem; color: #475569; padding-top: 10px; border-top: 1px solid #e2e8f0; }
+  .other-key { background: #fffbeb; border: 2px solid #b45309; color: #78350f; padding: 10px; border-radius: 8px; font-size: 0.85rem; margin-top: 10px; }
 
-  .question { font-size: 1.4rem; font-weight: bold; margin: 20px 0; color: #0f172a; line-height: 1.3; }
-  .background-box { background: #f0fdf4; border: 1px solid #dcfce7; padding: 15px; border-radius: 8px; font-size: 1rem; margin-bottom: 15px; }
-  .back-to-index { display: inline-block; padding: 12px 24px; background: #e2e8f0; text-decoration: none; border-radius: 10px; color: #475569; font-weight: bold; font-size: 1rem; }
+  .back-to-index { display: inline-block; padding: 12px 24px; background: #1e293b; text-decoration: none; border-radius: 10px; color: #ffffff; font-weight: 900; font-size: 1rem; border-bottom: 5px solid #000; }
   
   </style>
 </head>
-<body><h1>Sleutel: GRASLAND</h1><a href="../index.html" class="back-to-index">← Terug naar Index</a><hr>
+<body><h1>Sleutel: GRASLAND</h1><div style="margin-bottom:20px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>
 <div class="step-container" id="step0">  <div class="step-header">
-<span class="step-number">Stap 0</span>  </div>
+<span class="step-number">STAP 0</span>  </div>
 <h2>Graslandsleutel</h2><div class="question">Je heb een goede kennis van de graslandsleutel en wil ineens naar een specifiek graslandtype?</div>  <div class="answer-block">
-<a href="#step1" class="answer-link">Nee (→ Stap 1)</a>  </div>
+<a href="#step1" class="answer-link">Nee (→ 1)</a>  </div>
   <div class="answer-block">
-<a href="#step100" class="answer-link">Soortenarme graslanden (→ Stap 100)</a>  </div>
+<a href="#step100" class="answer-link">Soortenarme graslanden (→ 100)</a>  </div>
   <div class="answer-block">
-<a href="#step110" class="answer-link">Verruigde en verstoorde graslanden (→ Stap 110)</a>  </div>
+<a href="#step110" class="answer-link">Verruigde en verstoorde graslanden (→ 110)</a>  </div>
   <div class="answer-block">
-<a href="#step55" class="answer-link">Valleigraslanden (permanent en soortenrijk) (→ Stap 55)</a>  </div>
+<a href="#step55" class="answer-link">Valleigraslanden (permanent en soortenrijk) (→ 55)</a>  </div>
   <div class="answer-block">
-<a href="#step130" class="answer-link">Natte ruigten (→ Stap 130)</a>  </div>
+<a href="#step130" class="answer-link">Natte ruigten (→ 130)</a>  </div>
   <div class="answer-block">
-<a href="#step200" class="answer-link">Glanshaver-/Vossenstaartgraslanden (→ Stap 200)</a>  </div>
+<a href="#step200" class="answer-link">Glanshaver-/Vossenstaartgraslanden (→ 200)</a>  </div>
   <div class="answer-block">
-<a href="#step220" class="answer-link">Vochtig schraalgrasland (→ Stap 220)</a>  </div>
+<a href="#step220" class="answer-link">Vochtig schraalgrasland (→ 220)</a>  </div>
   <div class="answer-block">
-<a href="#step240" class="answer-link">Zure graslanden (→ Stap 240)</a>  </div>
+<a href="#step240" class="answer-link">Zure graslanden (→ 240)</a>  </div>
   <div class="answer-block">
-<a href="#step250" class="answer-link">Kalkhoudende graslanden (→ Stap 250)</a>  </div>
+<a href="#step250" class="answer-link">Kalkhoudende graslanden (→ 250)</a>  </div>
   <div class="answer-block">
-<a href="#step280" class="answer-link">Zilte graslanden (→ Stap 280)</a>  </div>
+<a href="#step280" class="answer-link">Zilte graslanden (→ 280)</a>  </div>
 </div>
 
 <div class="step-container" id="step1">  <div class="step-header">
-<span class="step-number">Stap 1</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a></div>
+<span class="step-number">STAP 1</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a></div>
   </div>
 <div class="question">Is het een open biotoop waarbij (schijn)grassen en kruiden meer dan 50% van de vegetatiebedekking uitmaken ?</div>  <div class="answer-block">
-<a href="#step2" class="answer-link">Ja (→ Stap 2)</a>  </div>
+<a href="#step2" class="answer-link">Ja (→ 2)</a>  </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Nee (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>HOOFD</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>HOOFD</strong></div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step2">  <div class="step-header">
-<span class="step-number">Stap 2</span>    <div class="incoming-steps">Komt van: <a href="#step1" class="incoming-link">1</a></div>
+<span class="step-number">STAP 2</span>    <div class="incoming-steps">Van: <a href="#step1" class="incoming-link">1</a></div>
   </div>
 <div class="question">Is de bedekking van bomen en struiken (kroonprojectie) in het grasland > 10% ?</div>  <div class="answer-block">
-<a href="#step3" class="answer-link">Ja (→ Stap 3)</a>  </div>
+<a href="#step3" class="answer-link">Ja (→ 3)</a>  </div>
   <div class="answer-block">
-<a href="#step10" class="answer-link">Nee (→ Stap 10)</a>  </div>
+<a href="#step10" class="answer-link">Nee (→ 10)</a>  </div>
 </div>
 
 <div class="step-container" id="step3">  <div class="step-header">
-<span class="step-number">Stap 3</span>    <div class="incoming-steps">Komt van: <a href="#step2" class="incoming-link">2</a></div>
+<span class="step-number">STAP 3</span>    <div class="incoming-steps">Van: <a href="#step2" class="incoming-link">2</a></div>
   </div>
 <div class="question">Is de bedekking van bomen en struiken (kroonprojectie) ≥ 50% ?</div>  <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>BOS</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>BOS</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step10" class="answer-link has-details">Nee (→ Stap 10)</a>    <div class="answer-details-group">
+<a href="#step10" class="answer-link has-details">Nee (→ 10)</a>    <div class="answer-details-group">
 <div class="answer-remark">toevoegen van suffix b aan de BWK-eenheid en verder sleutelen vanaf 10</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step10">  <div class="step-header">
-<span class="step-number">Stap 10</span>    <div class="incoming-steps">Komt van: <a href="#step2" class="incoming-link">2</a>, <a href="#step3" class="incoming-link">3</a></div>
+<span class="step-number">STAP 10</span>    <div class="incoming-steps">Van: <a href="#step2" class="incoming-link">2</a>, <a href="#step3" class="incoming-link">3</a></div>
   </div>
   <div class="answer-block">
-<a href="#step280" class="answer-link">Binnen de ecoregio 'Polders' EN minstens 2 zilte soorten tezamen frequent aanwezig: (→ Stap 280)</a>  </div>
+<a href="#step280" class="answer-link">Binnen de ecoregio 'Polders' EN minstens 2 zilte soorten tezamen frequent aanwezig: (→ 280)</a>  </div>
   <div class="answer-block">
-<a href="#step280" class="answer-link has-details">Binnen de ecoregio 'Polders' EN zeekraalsoorten + klein schorrenkruid nemen in de aanwezige vegetatie een groter aandeel in dan de andere hogere planten: (→ Stap 280)</a>    <div class="answer-details-group">
+<a href="#step280" class="answer-link has-details">Binnen de ecoregio 'Polders' EN zeekraalsoorten + klein schorrenkruid nemen in de aanwezige vegetatie een groter aandeel in dan de andere hogere planten: (→ 280)</a>    <div class="answer-details-group">
 <div class="extra-info">Zilte soorten: blauw, stomp, gewoon en bleek kweldergras, beursjesganzenvoet, dunstaart, gerande en zilte schijnspurrie, klein schorrenkruid, kortarige en langarige zeekraal, melkkruid, moeraszoutgras, schorrenzoutgras, zilte rus, zilte zegge en zulte.</div><div class="answer-remark">Dynamisch vegetatietype dat pas in de zomer goed tot ontwikkeling komt en waarvan de ontwikkeling kan veschillen van jaar tot jaar ifv grondwaterstand.</div>    </div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Binnen de ecoregio 'Duinen': (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>Duingraslanden (in opmaak)</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>Duingraslanden (in opmaak)</strong></div>    </div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Net buiten de ecoregio 'Duinen' (= in de overgangszone tussen kustduinen en -polders) EN typische soort(en) van duingrasland samen frequent aanwezig: (→ Index)</a>    <div class="answer-details-group">
 <div class="extra-info">Duingrasland hogere planten: duindravik, duinfakkelgras, duinviooltje, duin-, dicht en zandlangbaardgras, geel walstro, geel zonneroosje, gestreepte klaver, grote tijm, kalkbedstro, kegelsilene, kleverige reigersbek, kruipend stalkruid, liggende asperge, lathyruswikke, liggend bergvlas, nachtsilene, ruwe klaver, ruw vergeet-mij-nietje, voorjaarsganzerik, walstrobremraap, wondklaver, zachte haver, zanddoddengras en zandhoornbloem.
-Duingrasland mossen: groot duinsterretje (Syntrichia ruralis var. arenicola) en duinklauwtjesmos (Hypnum cupressiforme var. lacunosum)</div><div class="other-key">Gebruik sleutel: <strong>Duingraslanden (in opmaak)</strong></div>    </div>
+Duingrasland mossen: groot duinsterretje (Syntrichia ruralis var. arenicola) en duinklauwtjesmos (Hypnum cupressiforme var. lacunosum)</div><div class="other-key">Sleutel: <strong>Duingraslanden (in opmaak)</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step20" class="answer-link">Anders: (→ Stap 20)</a>  </div>
+<a href="#step20" class="answer-link">Anders: (→ 20)</a>  </div>
 </div>
 
 <div class="step-container" id="step20">  <div class="step-header">
-<span class="step-number">Stap 20</span>    <div class="incoming-steps">Komt van: <a href="#step10" class="incoming-link">10</a></div>
+<span class="step-number">STAP 20</span>    <div class="incoming-steps">Van: <a href="#step10" class="incoming-link">10</a></div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Bedekking van grote zeggen, liesgras, riet, gele lis, holpijp, lisdodde, mattenbies, ruwe bies en/of egelskop ≥ 70% : (→ Index)</a>    <div class="answer-details-group">
-<div class="extra-info">Grote zeggen: moeraszegge, oeverzegge, blaaszegge, pluimzegge, hoge cyperzegge, scherpe zegge</div><div class="other-key">Gebruik sleutel: <strong>MOERAS</strong></div>    </div>
+<div class="extra-info">Grote zeggen: moeraszegge, oeverzegge, blaaszegge, pluimzegge, hoge cyperzegge, scherpe zegge</div><div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Bedekking soorten uit de moerasgroep > overige planten (beide uitgezonderd pitrus, riet, scherpe en moeraszegge): (→ Index)</a>    <div class="answer-details-group">
-<div class="extra-info">Moerasgroep: bittere veldkers, blaaszegge, draadrus, draadzegge, galigaan, gele lis, gele waterkers, hennegras, hoge cyperzegge, holpijp, kleine watereppe, liesgras, melkeppe, moerasbasterdwederik, moerasstruisgras, moerasviooltje, moeraswalstro, moeraswederik, oeverzegge, pluimzegge, riet, snavelzegge, sterrenkroossoorten, sterzegge, stijve zegge, veenpluis, wateraardbei, waterdrieblad, watermunt, waternavel, zomp- en zwarte zegge</div><div class="other-key">Gebruik sleutel: <strong>MOERAS</strong></div>    </div>
+<div class="extra-info">Moerasgroep: bittere veldkers, blaaszegge, draadrus, draadzegge, galigaan, gele lis, gele waterkers, hennegras, hoge cyperzegge, holpijp, kleine watereppe, liesgras, melkeppe, moerasbasterdwederik, moerasstruisgras, moerasviooltje, moeraswalstro, moeraswederik, oeverzegge, pluimzegge, riet, snavelzegge, sterrenkroossoorten, sterzegge, stijve zegge, veenpluis, wateraardbei, waterdrieblad, watermunt, waternavel, zomp- en zwarte zegge</div><div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step28" class="answer-link">Anders: (→ Stap 28)</a>  </div>
+<a href="#step28" class="answer-link">Anders: (→ 28)</a>  </div>
 </div>
 
 <div class="step-container" id="step28">  <div class="step-header">
-<span class="step-number">Stap 28</span>    <div class="incoming-steps">Komt van: <a href="#step20" class="incoming-link">20</a></div>
+<span class="step-number">STAP 28</span>    <div class="incoming-steps">Van: <a href="#step20" class="incoming-link">20</a></div>
   </div>
 <div class="question">Is het perceel/de vegetatievlek onbeheerd en verruigd EN zijn wilde bertram, grote wederik, melkeppe, hennegras, ruw walstro, wateraardbei, veenpluis, veenmos en/of zwarte zegge samen abundant aanwezig ?</div>  <div class="answer-block">
-<a href="#step131" class="answer-link">Ja (→ Stap 131)</a>  </div>
+<a href="#step131" class="answer-link">Ja (→ 131)</a>  </div>
   <div class="answer-block">
-<a href="#step29" class="answer-link">Nee (→ Stap 29)</a>  </div>
+<a href="#step29" class="answer-link">Nee (→ 29)</a>  </div>
 </div>
 
 <div class="step-container" id="step29">  <div class="step-header">
-<span class="step-number">Stap 29</span>    <div class="incoming-steps">Komt van: <a href="#step28" class="incoming-link">28</a></div>
+<span class="step-number">STAP 29</span>    <div class="incoming-steps">Van: <a href="#step28" class="incoming-link">28</a></div>
   </div>
 <div class="question">Zijn grote russen (co)dominant ?</div>  <div class="answer-block">
-<a href="#step120" class="answer-link">Ja (→ Stap 120)</a>  </div>
+<a href="#step120" class="answer-link">Ja (→ 120)</a>  </div>
   <div class="answer-block">
-<a href="#step30" class="answer-link has-details">Nee (→ Stap 30)</a>    <div class="answer-details-group">
+<a href="#step30" class="answer-link has-details">Nee (→ 30)</a>    <div class="answer-details-group">
 <div class="extra-info">Grote russen: pitrus, biezenknoppen, veldrus, paddenrus en zeegroene rus</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step30">  <div class="step-header">
-<span class="step-number">Stap 30</span>    <div class="incoming-steps">Komt van: <a href="#step29" class="incoming-link">29</a></div>
+<span class="step-number">STAP 30</span>    <div class="incoming-steps">Van: <a href="#step29" class="incoming-link">29</a></div>
   </div>
 <div class="question">Is het een zoomvormende, ruderale vegetatie langs een vochtig bos of een waterloop, waarbij zowel kensoorten als  begeleidende soorten van het verbond look-zonder-look voorkomen EN deze samen de vegetatie domineren ?</div>  <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>BOS</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>BOS</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step31" class="answer-link has-details">Nee (→ Stap 31)</a>    <div class="answer-details-group">
+<a href="#step31" class="answer-link has-details">Nee (→ 31)</a>    <div class="answer-details-group">
 <div class="extra-info">Kensoorten verbond look-zonder-look: grote brandnetel, kleefkruid, hondsdraf, look-zonder-look, zevenblad, kruisbladwalstro, heggenwikke, kruidvlier, groot hoefblad en grote muur.
 Begeleidende soorten verbond look-zonder-look: bosklimopereprijs, boskortsteel, bosandoorn, dagkoekoeksbloem, dolle kervel, donkersporig bosviooltje, geel nagelkruid, gewoon schaduwkruiskruid, gewone agrimonie, gewone salomonszegel, heggenrank, heggendoornzaad, heggenwikke, hondstarwegras, hop, kraailook, maarts viooltje, robertskruid, ruig klokje, schaduwgras, slanke sleutelbloem, speenkruid, witte dovenetel.</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step31">  <div class="step-header">
-<span class="step-number">Stap 31</span>    <div class="incoming-steps">Komt van: <a href="#step30" class="incoming-link">30</a></div>
+<span class="step-number">STAP 31</span>    <div class="incoming-steps">Van: <a href="#step30" class="incoming-link">30</a></div>
   </div>
 <div class="question">Zijn grote brandnetel, kleefkruid, ridderzuring, akkerdistel, speerdistel, bramen, klit, jacobskruiskruid, kropaar en/of een vervilte laag samen (co-)dominant ?</div>  <div class="answer-block">
-<a href="#step110" class="answer-link">Ja (→ Stap 110)</a>  </div>
+<a href="#step110" class="answer-link">Ja (→ 110)</a>  </div>
   <div class="answer-block">
-<a href="#step32" class="answer-link">Nee (→ Stap 32)</a>  </div>
+<a href="#step32" class="answer-link">Nee (→ 32)</a>  </div>
 </div>
 
 <div class="step-container" id="step32">  <div class="step-header">
-<span class="step-number">Stap 32</span>    <div class="incoming-steps">Komt van: <a href="#step31" class="incoming-link">31</a></div>
+<span class="step-number">STAP 32</span>    <div class="incoming-steps">Van: <a href="#step31" class="incoming-link">31</a></div>
   </div>
   <div class="answer-block">
-<a href="#step110" class="answer-link has-details">Het perceel is onbeheerd (niet regelmatig gemaaid of begraasd) en verruigd EN minstens 2 verruigers komen samen abundant voor: grote brandnetel, kleefkruid, akkerdistel, speerdistel, ridderzuring, gewone berenklauw, fluitenkruid, bramen, klit en/of jacobskruiskruid: (→ Stap 110)</a>    <div class="answer-details-group">
+<a href="#step110" class="answer-link has-details">Het perceel is onbeheerd (niet regelmatig gemaaid of begraasd) en verruigd EN minstens 2 verruigers komen samen abundant voor: grote brandnetel, kleefkruid, akkerdistel, speerdistel, ridderzuring, gewone berenklauw, fluitenkruid, bramen, klit en/of jacobskruiskruid: (→ 110)</a>    <div class="answer-details-group">
 <div class="answer-remark">Meestal halen enkel de meer competitieve grassoorten (kropaar, grote vossenstaart, glanshaver) nog een hoge bedekking. Ook bramenkoepels, jonge boom- en/of struikopslag kan voorkomen.</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step150" class="answer-link has-details">Het is een ruderale plaats (plek waar de bodem verstoord, vergraven of aangevoerd is of waar inert materiaal aan toegevoegd is) EN de soorten uit de ruderale groep hebben een aandeel van ≥ 30% in de vegetatie: (→ Stap 150)</a>    <div class="answer-details-group">
+<a href="#step150" class="answer-link has-details">Het is een ruderale plaats (plek waar de bodem verstoord, vergraven of aangevoerd is of waar inert materiaal aan toegevoegd is) EN de soorten uit de ruderale groep hebben een aandeel van ≥ 30% in de vegetatie: (→ 150)</a>    <div class="answer-details-group">
 <div class="extra-info">Ruderaalgroep: akkerdistel, akkerwinde, bijvoet, boerenwormkruid, Canadese/late guldenroede, duinriet, fijnstraal spec., gewone raket, grote kaardebol, heermoes, Japanse/Boheemse/Sachalinse duizendknoop, ijle dravik, Hongaarse raket, kamille (Matricaria spec.), klein hoefblad, kleine ooievaarsbek, kompassla, kruipertje, kleine brandnetel, klein kaasjeskruid, knopige duizendknoop, kruldistel, kweek, moerasdroogbloem, slangenkruid, stinkende ballote, teunisbloem spec., varkensgras, wilde reseda, witte honingklaver, zeepkruid, ...</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step33" class="answer-link">Anders: (→ Stap 33)</a>  </div>
+<a href="#step33" class="answer-link">Anders: (→ 33)</a>  </div>
 </div>
 
 <div class="step-container" id="step33">  <div class="step-header">
-<span class="step-number">Stap 33</span>    <div class="incoming-steps">Komt van: <a href="#step32" class="incoming-link">32</a></div>
+<span class="step-number">STAP 33</span>    <div class="incoming-steps">Van: <a href="#step32" class="incoming-link">32</a></div>
   </div>
 <div class="question">Is de bedekking van soorten van natte strooiselruigten ≥ 30% ?</div>  <div class="answer-block">
-<a href="#step130" class="answer-link">Ja (→ Stap 130)</a>  </div>
+<a href="#step130" class="answer-link">Ja (→ 130)</a>  </div>
   <div class="answer-block">
-<a href="#step40" class="answer-link has-details">Nee (→ Stap 40)</a>    <div class="answer-details-group">
+<a href="#step40" class="answer-link has-details">Nee (→ 40)</a>    <div class="answer-details-group">
 <div class="extra-info">Natte strooiselruigten: adderwortel, blauw glidkruid, bitterzoet, echte valeriaan, gevleugeld helmkruid, gewone engelwortel, gewone smeerwortel, grote kattenstaart, grote wederik, harig wilgenroosje, heemst, kale jonker, koninginnenkruid, melkeppe, moesdistel, moerasandoorn, moerasspirea, poelruit, reuzenpaardenstaart, wilde bertram en zomerklokje</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step40">  <div class="step-header">
-<span class="step-number">Stap 40</span>    <div class="incoming-steps">Komt van: <a href="#step33" class="incoming-link">33</a></div>
+<span class="step-number">STAP 40</span>    <div class="incoming-steps">Van: <a href="#step33" class="incoming-link">33</a></div>
   </div>
 <div class="question">Zijn meerjarige kruiden (uitgez. ridderzuring, paardenbloem en witte klaver) frequent aanwezig ?</div>  <div class="answer-block">
-<a href="#step41" class="answer-link">Ja (→ Stap 41)</a>  </div>
+<a href="#step41" class="answer-link">Ja (→ 41)</a>  </div>
   <div class="answer-block">
-<a href="#step100" class="answer-link has-details">Nee (→ Stap 100)</a>    <div class="answer-details-group">
+<a href="#step100" class="answer-link has-details">Nee (→ 100)</a>    <div class="answer-details-group">
 <div class="answer-remark">soortenarme graslanden</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step41">  <div class="step-header">
-<span class="step-number">Stap 41</span>    <div class="incoming-steps">Komt van: <a href="#step40" class="incoming-link">40</a></div>
+<span class="step-number">STAP 41</span>    <div class="incoming-steps">Van: <a href="#step40" class="incoming-link">40</a></div>
   </div>
 <div class="question">Komen er OFWEL 3 basenminnende soorten elk occasioneel OFWEL 1 basenminnende soort frequent voor ?</div>  <div class="answer-block">
-<a href="#step250" class="answer-link has-details">Ja (→ Stap 250)</a>    <div class="answer-details-group">
+<a href="#step250" class="answer-link has-details">Ja (→ 250)</a>    <div class="answer-details-group">
 <div class="answer-remark">kalkhoudende graslanden</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step45" class="answer-link has-details">Nee (→ Stap 45)</a>    <div class="answer-details-group">
+<a href="#step45" class="answer-link has-details">Nee (→ 45)</a>    <div class="answer-details-group">
 <div class="extra-info">Basenminners: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene, bokkenorchis, borstelkrans, geel zonneroosje, gele morgenster, gevinde kortsteel, gewone agrimonie, goudhaver, grote centaurie, grote muggenorchis, grote pimpernel, gulden sleutelbloem, harlekijn, heelblaadjes, herfsttijloos, hokjespeul, hondskruid, klavervreter, kleine pimpernel, knikkende distel, mannetjesorchis, naakte lathyrus, paddenrus, ruige leeuwentand, ruige weegbree, schubzegge, sikkelklaver, soldaatje, veldsalie, wilde marjolein en zeegroene zegge.</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step45">  <div class="step-header">
-<span class="step-number">Stap 45</span>    <div class="incoming-steps">Komt van: <a href="#step41" class="incoming-link">41</a>, <a href="#step253" class="incoming-link">253</a></div>
+<span class="step-number">STAP 45</span>    <div class="incoming-steps">Van: <a href="#step41" class="incoming-link">41</a>, <a href="#step253" class="incoming-link">253</a></div>
   </div>
 <div class="question">Is de bedekking van borstelgras ≥ 30% ?</div>  <div class="answer-block">
-<a href="#step210" class="answer-link has-details">Ja (→ Stap 210)</a>    <div class="answer-details-group">
+<a href="#step210" class="answer-link has-details">Ja (→ 210)</a>    <div class="answer-details-group">
 <div class="answer-remark">heischraal grasland</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step46" class="answer-link">Nee (→ Stap 46)</a>  </div>
+<a href="#step46" class="answer-link">Nee (→ 46)</a>  </div>
 </div>
 
 <div class="step-container" id="step46">  <div class="step-header">
-<span class="step-number">Stap 46</span>    <div class="incoming-steps">Komt van: <a href="#step45" class="incoming-link">45</a></div>
+<span class="step-number">STAP 46</span>    <div class="incoming-steps">Van: <a href="#step45" class="incoming-link">45</a></div>
   </div>
 <div class="question">Is het een grasland op een arme, meestal zure bodem met minstens 3 soorten uit de heischrale groep elk occasioneel EN zijn heidesoorten aanwezig?</div>  <div class="answer-block">
-<a href="#step210" class="answer-link has-details">Ja (→ Stap 210)</a>    <div class="answer-details-group">
+<a href="#step210" class="answer-link has-details">Ja (→ 210)</a>    <div class="answer-details-group">
 <div class="answer-remark">heischraal grasland</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step48" class="answer-link has-details">Nee (→ Stap 48)</a>    <div class="answer-details-group">
+<a href="#step48" class="answer-link has-details">Nee (→ 48)</a>    <div class="answer-details-group">
 <div class="extra-info">Heischrale groep: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgras, dicht havikskruid, echte guldenroede, gewone vleugeltjesbloem, fijn schapengras, fraai hertshooi, gaspeldoorn, gelobde maanvaren, gevlekte orchis, heidekartelblad, hondsviooltje, kleine tijm, klokjesgentiaan, knollathyrus, kruipganzerik, liggend walstro, liggende vleugeltjesbloem, mannetjesereprijs, spits havikskruid, stekelbrem, stijf havikskruid, stijve ogentroost, tandjesgras, tormentil, trekrus, tweenervige zegge, veelbloemige veldbies, zaagblad, welriekende nachtorchis.
 Heidesoorten: struikhei, rode en gewone dophei, trekrus, pilzegge, zandzegge, zandstruisgras, stekel- en kruipbrem, (blauwe/rode) bosbes, veenbies, bochtige smele en gaspeldoorn</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step48">  <div class="step-header">
-<span class="step-number">Stap 48</span>    <div class="incoming-steps">Komt van: <a href="#step46" class="incoming-link">46</a></div>
+<span class="step-number">STAP 48</span>    <div class="incoming-steps">Van: <a href="#step46" class="incoming-link">46</a></div>
   </div>
 <div class="question">Zijn er van de soorten uit de hm-groep OFWEL minstens 3 soorten elk occasioneel OFWEL 2 soorten elk frequent aanwezig ?</div>  <div class="answer-block">
-<a href="#step220" class="answer-link has-details">Ja (→ Stap 220)</a>    <div class="answer-details-group">
+<a href="#step220" class="answer-link has-details">Ja (→ 220)</a>    <div class="answer-details-group">
 <div class="answer-remark">vochtig schraalgrasland</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step50" class="answer-link has-details">Nee (→ Stap 50)</a>    <div class="answer-details-group">
+<a href="#step50" class="answer-link has-details">Nee (→ 50)</a>    <div class="answer-details-group">
 <div class="extra-info">hm-groep: addertong, blauwe knoop, blauwe zegge, bleke zegge, blonde zegge, bosanemoon, bosorchis, geelgroene zegge, gele zegge, gevlekte orchis s.l., klein glidkruid, kleine schorseneer, klimopklokje, klokjesgentiaan, kleine valeriaan, klimopklokje, kranskarwij, moerasstreepzaad, moerasviooltje, parnassia, pijpenstrootje (excl. zandige bodems), ruw walstro, schubzegge, spaanse ruiter, sterzegge, tandjesgras, teer guichelheil, tormentil, veelbloemige veldbies, veenmelkviooltje, vlozegge, welriekende nachtorchis, zaagblad</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step50">  <div class="step-header">
-<span class="step-number">Stap 50</span>    <div class="incoming-steps">Komt van: <a href="#step48" class="incoming-link">48</a></div>
+<span class="step-number">STAP 50</span>    <div class="incoming-steps">Van: <a href="#step48" class="incoming-link">48</a></div>
   </div>
 <div class="question">Bedekken de hu-basisgroep en hu-kerngroep samen > 50% EN komen er van de hu-kerngroep minimaal 3 soorten voor, waarvan 1 soort frequent en 2 soorten occasioneel ?</div>  <div class="answer-block">
-<a href="#step200" class="answer-link">Ja (→ Stap 200)</a>  </div>
+<a href="#step200" class="answer-link">Ja (→ 200)</a>  </div>
   <div class="answer-block">
-<a href="#step51" class="answer-link has-details">Nee (→ Stap 51)</a>    <div class="answer-details-group">
+<a href="#step51" class="answer-link has-details">Nee (→ 51)</a>    <div class="answer-details-group">
 <div class="extra-info">hu-basisgroep: beemdlangbloem, fluitenkruid, gewone berenklauw, gewoon reukgras, glanshaver, grasmuur, grote vossenstaart, hopklaver, pastinaak, peen, rietzwenkgras, rode klaver, rood zwenkgras, scherpe boterbloem, sint-janskruid, timoteegras, veldbeemdgras en veldzuring
 hu-kerngroep: aardaker, beemdkroon, beemdooievaarsbek, bevertjes, gele morgenster, gewone agrimonie, gewone rolklaver, gewone vogelmelk, glad walstro, goudhaver, graslathyrus, groot streepzaad, grote bevernel, grote pimpernel, grote tijm, gulden sleutelbloem, herfsttijloos, karwijselie, klavervreter, kleine bevernel, kleine ratelaar, knolboterbloem, knolsteenbreek, knoopkruid, kraailook, margriet, muskuskaasjeskruid, naakte lathyrus, rapunzelklokje, ruige leeuwentand, veldlathyrus, veldsalie, vijfdelig kaasjeskruid, wilde marjolein en zachte haver</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step51">  <div class="step-header">
-<span class="step-number">Stap 51</span>    <div class="incoming-steps">Komt van: <a href="#step50" class="incoming-link">50</a></div>
+<span class="step-number">STAP 51</span>    <div class="incoming-steps">Van: <a href="#step50" class="incoming-link">50</a></div>
   </div>
 <div class="question">Is de bodem zandig EN zijn bochtige smele, borstelgras, buntgras, schapengras, zilverhaver, vroege haver, zandzegge, pijpenstrootje samen frequent aanwezig ?</div>  <div class="answer-block">
-<a href="#step243" class="answer-link">Ja (→ Stap 243)</a>  </div>
+<a href="#step243" class="answer-link">Ja (→ 243)</a>  </div>
   <div class="answer-block">
-<a href="#step52" class="answer-link">Nee (→ Stap 52)</a>  </div>
+<a href="#step52" class="answer-link">Nee (→ 52)</a>  </div>
 </div>
 
 <div class="step-container" id="step52">  <div class="step-header">
-<span class="step-number">Stap 52</span>    <div class="incoming-steps">Komt van: <a href="#step51" class="incoming-link">51</a></div>
+<span class="step-number">STAP 52</span>    <div class="incoming-steps">Van: <a href="#step51" class="incoming-link">51</a></div>
   </div>
   <div class="answer-block">
-<a href="#step53" class="answer-link has-details">De bedekking van soorten uit de ha-basisgroep ≥ 30% EN deze bedekken meer dan de soorten uit de hu-basisgroep: (→ Stap 53)</a>    <div class="answer-details-group">
+<a href="#step53" class="answer-link has-details">De bedekking van soorten uit de ha-basisgroep ≥ 30% EN deze bedekken meer dan de soorten uit de hu-basisgroep: (→ 53)</a>    <div class="answer-details-group">
 <div class="extra-info">ha-basisgroep: akkerhoornbloem, gewone veldbies, gewoon biggenkruid, gewoon struisgras, hazenpootje, klein vogelpootje, kleine leeuwentand, knolboterbloem, muizenoor, schapenzuring, vroege haver, zilverhaver
 hu-basisgroep: beemdlangbloem, fluitenkruid, gewone berenklauw, gewoon reukgras, glanshaver, grasmuur, grote vossenstaart, hopklaver, pastinaak, peen, rietzwenkgras, rode klaver, rood zwenkgras, scherpe boterbloem, sint-janskruid, timoteegras, veldbeemdgras en veldzuring</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step230" class="answer-link">De bedekking van veldrus > 10%: (→ Stap 230)</a>  </div>
+<a href="#step230" class="answer-link">De bedekking van veldrus > 10%: (→ 230)</a>  </div>
   <div class="answer-block">
-<a href="#step55" class="answer-link">Anders: (→ Stap 55)</a>  </div>
+<a href="#step55" class="answer-link">Anders: (→ 55)</a>  </div>
 </div>
 
 <div class="step-container" id="step53">  <div class="step-header">
-<span class="step-number">Stap 53</span>    <div class="incoming-steps">Komt van: <a href="#step52" class="incoming-link">52</a></div>
+<span class="step-number">STAP 53</span>    <div class="incoming-steps">Van: <a href="#step52" class="incoming-link">52</a></div>
   </div>
 <div class="question">Is er minstens 1 soort uit de ha-basisgroep frequent aanwezig (excl duizendblad en kleine klaver, smalle weegbree en gewoon struisgras) EN zijn freatofyten afwezig ?</div>  <div class="answer-block">
-<a href="#step240" class="answer-link">Ja (→ Stap 240)</a>  </div>
+<a href="#step240" class="answer-link">Ja (→ 240)</a>  </div>
   <div class="answer-block">
-<a href="#step55" class="answer-link">Nee (→ Stap 55)</a>  </div>
+<a href="#step55" class="answer-link">Nee (→ 55)</a>  </div>
 </div>
 
 <div class="step-container" id="step55">  <div class="step-header">
-<span class="step-number">Stap 55</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a>, <a href="#step52" class="incoming-link">52</a>, <a href="#step53" class="incoming-link">53</a></div>
+<span class="step-number">STAP 55</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a>, <a href="#step52" class="incoming-link">52</a>, <a href="#step53" class="incoming-link">53</a></div>
   </div>
 <h2>Valleigraslanden</h2><div class="question">Is de bedekking van grote vossenstaart ≥ 30%  en/of trosdravik ≥ 5% ?</div>  <div class="answer-block">
-<a href="#step62" class="answer-link">Ja (→ Stap 62)</a>  </div>
+<a href="#step62" class="answer-link">Ja (→ 62)</a>  </div>
   <div class="answer-block">
-<a href="#step56" class="answer-link">Nee (→ Stap 56)</a>  </div>
+<a href="#step56" class="answer-link">Nee (→ 56)</a>  </div>
 </div>
 
 <div class="step-container" id="step56">  <div class="step-header">
-<span class="step-number">Stap 56</span>    <div class="incoming-steps">Komt van: <a href="#step55" class="incoming-link">55</a></div>
+<span class="step-number">STAP 56</span>    <div class="incoming-steps">Van: <a href="#step55" class="incoming-link">55</a></div>
   </div>
   <div class="answer-block">
-<a href="#step65" class="answer-link has-details">De hc-(kern)groep bedekt >10% EN deze soorten bedekken meer dan de rbbzil-groep EN ze bedekken meer dan de hu-kerngroep: (→ Stap 65)</a>    <div class="answer-details-group">
+<a href="#step65" class="answer-link has-details">De hc-(kern)groep bedekt >10% EN deze soorten bedekken meer dan de rbbzil-groep EN ze bedekken meer dan de hu-kerngroep: (→ 65)</a>    <div class="answer-details-group">
 <div class="answer-remark">Dotterbloemgrasland; typisch als hooiland, kan ook onder begrazing</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step65" class="answer-link has-details">Er is minstens 1 soort van de hc-kerngroep frequent en minstens 2 soorten van de hc-(kern)groep elk occasioneel aanwezig EN de soorten van de hc-groep bedekken meer dan deze van de rbbzil-groep en de hu-kerngroep (zie stap 50): (→ Stap 65)</a>    <div class="answer-details-group">
+<a href="#step65" class="answer-link has-details">Er is minstens 1 soort van de hc-kerngroep frequent en minstens 2 soorten van de hc-(kern)groep elk occasioneel aanwezig EN de soorten van de hc-groep bedekken meer dan deze van de rbbzil-groep en de hu-kerngroep (zie stap 50): (→ 65)</a>    <div class="answer-details-group">
 <div class="extra-info">hc-groep: echte koekoeksbloem, grote ratelaar, heelblaadjes, herfsttijloos, kruipend zenegroen, moerasrolklaver, weide-/moeras-/zompvergeet-mij-nietje, rietorchis, ruwe smele, veldrus, waterkruiskruid.
 hc-kerngroep: adderwortel, bosbies, brede orchis, dotterbloem, gevleugeld hertshooi, kale jonker, lidrus, moerasstreepzaad, moesdistel, paddenrus, slanke sleutelbloem, tweerijige zegge.</div><div class="answer-remark">Let op voor verwarring met Vossenstaartgrasland (rbbvos). Dotterbloemgrasland (rbbhc) is gebonden aan gronden met permanent hoge grondwatertafel. In een rbbvos zakt het grondwaterpeil in de zomer sterk en treedt worteldrainage op. Een hoge bedekking van o.a. Engels raaigras, gestreepte witbol, glanshaver, ruw beemdgras, scherpe boterbloem... kan hier op wijzen.</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step75" class="answer-link has-details">De rbbzil-groep bedekt >10% EN ze bedekt meer dan de hc-groep: (→ Stap 75)</a>    <div class="answer-details-group">
+<a href="#step75" class="answer-link has-details">De rbbzil-groep bedekt >10% EN ze bedekt meer dan de hc-groep: (→ 75)</a>    <div class="answer-details-group">
 <div class="answer-remark">Zilverschoongrasland; typisch onder begrazing; Typische begeleiders zijn geknikte vossenstaart, fioringras, krulzuring en/of ruige zegge.</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step75" class="answer-link has-details">Er zijn minstens 3 soorten van de rbbzil-groep elk occasioneel aanwezig EN de rbbzil-groep bedekt meer dan de hc-groep: (→ Stap 75)</a>    <div class="answer-details-group">
+<a href="#step75" class="answer-link has-details">Er zijn minstens 3 soorten van de rbbzil-groep elk occasioneel aanwezig EN de rbbzil-groep bedekt meer dan de hc-groep: (→ 75)</a>    <div class="answer-details-group">
 <div class="extra-info">rbbzil-groep: aardbeiklaver, akkerkers, getand vlotgras, gewone waterbies, heelblaadjes, klein vlooienkruid, kruipend moerasscherm, lidrus, moeras-/zompvergeet-mij-nietje, penningkruid, pijptorkruid, platte rus, polei, rode ogentroost, valse voszegge, watermunt, zeegroene rus, zilte rus en  zilverschoon, zomprus + voor de kustpolders ook moeraszoutgras, slanke waterbies, smalle rolklaver, zilte rus en zilte zegge</div><div class="answer-remark">Zilverschoongrasland; typisch onder begrazing; Typische begeleiders zijn geknikte vossenstaart, fioringras, krulzuring en/of ruige zegge.</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step57" class="answer-link">Anders: (→ Stap 57)</a>  </div>
+<a href="#step57" class="answer-link">Anders: (→ 57)</a>  </div>
 </div>
 
 <div class="step-container" id="step57">  <div class="step-header">
-<span class="step-number">Stap 57</span>    <div class="incoming-steps">Komt van: <a href="#step56" class="incoming-link">56</a></div>
+<span class="step-number">STAP 57</span>    <div class="incoming-steps">Van: <a href="#step56" class="incoming-link">56</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Uit de rbbms-groep zijn OFWEL 3 soorten elk occasioneel OFWEL 2 soorten elk frequent aanwezig:</div>    <div class="answer-details-group">
 <div class="extra-info">rbbms-groep: zwarte zegge, zompzegge, snavelzegge, sterzegge, draadzegge, moerasviooltje, gewone waternavel, veenmossen, zeegroene muur, wateraardbei, waterdrieblad, melkeppe, draadrus, veenpluis, moerasbasterdwederik, groot nerfpuntmos, holpijp, hennegras</div><div class="answer-remark">Typische begeleiders zijn o.a. Moerasstruisgras, Egelboterbloem, Zompvergeet-mij-nietje, ...</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbms<br><strong>BWK:</strong> ms    </div>
+<strong>NATURA 2000:</strong> rbbms<br><strong>BWK CODE:</strong> ms    </div>
   </div>
   <div class="answer-block">
-<a href="#step60" class="answer-link">Anders: (→ Stap 60)</a>  </div>
+<a href="#step60" class="answer-link">Anders: (→ 60)</a>  </div>
 </div>
 
 <div class="step-container" id="step60">  <div class="step-header">
-<span class="step-number">Stap 60</span>    <div class="incoming-steps">Komt van: <a href="#step57" class="incoming-link">57</a></div>
+<span class="step-number">STAP 60</span>    <div class="incoming-steps">Van: <a href="#step57" class="incoming-link">57</a></div>
   </div>
 <h2>Grote vossenstaartgraslanden</h2><div class="question">Is het een valleigrasland op veelal zandleem, leem of kleiige bodem EN is grote vossenstaart abundant OF trosdravik frequent aanwezig ?</div>  <div class="answer-block">
-<a href="#step61" class="answer-link">Ja (→ Stap 61)</a>  </div>
+<a href="#step61" class="answer-link">Ja (→ 61)</a>  </div>
   <div class="answer-block">
-<a href="#step70" class="answer-link">Nee (→ Stap 70)</a>  </div>
+<a href="#step70" class="answer-link">Nee (→ 70)</a>  </div>
 </div>
 
 <div class="step-container" id="step61">  <div class="step-header">
-<span class="step-number">Stap 61</span>    <div class="incoming-steps">Komt van: <a href="#step60" class="incoming-link">60</a></div>
+<span class="step-number">STAP 61</span>    <div class="incoming-steps">Van: <a href="#step60" class="incoming-link">60</a></div>
   </div>
 <div class="question">Is weidekerveltorkruid, wilde kievitsbloem, grote pimpernel of weidekervel aanwezig ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6510_hua<br><strong>BWK:</strong> hc    </div>
+<strong>NATURA 2000:</strong> 6510_hua<br><strong>BWK CODE:</strong> hc    </div>
   </div>
   <div class="answer-block">
-<a href="#step64" class="answer-link">Nee (→ Stap 64)</a>  </div>
+<a href="#step64" class="answer-link">Nee (→ 64)</a>  </div>
 </div>
 
 <div class="step-container" id="step62">  <div class="step-header">
-<span class="step-number">Stap 62</span>    <div class="incoming-steps">Komt van: <a href="#step55" class="incoming-link">55</a></div>
+<span class="step-number">STAP 62</span>    <div class="incoming-steps">Van: <a href="#step55" class="incoming-link">55</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Trosdravik is frequent aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbvos<br><strong>BWK:</strong> hc°    </div>
+<strong>NATURA 2000:</strong> rbbvos<br><strong>BWK CODE:</strong> hc°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Minstens 2 soorten uit de rbbvos-, rbbzil-groep, hc-groep of moerasgroep zijn aanwezig EN deze soorten zijn samen abundant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbvos<br><strong>BWK:</strong> hc°    </div>
+<strong>NATURA 2000:</strong> rbbvos<br><strong>BWK CODE:</strong> hc°    </div>
   </div>
   <div class="answer-block">
-<a href="#step70" class="answer-link has-details">Anders: (→ Stap 70)</a>    <div class="answer-details-group">
+<a href="#step70" class="answer-link has-details">Anders: (→ 70)</a>    <div class="answer-details-group">
 <div class="extra-info">rbbvos-groep: beemdlangbloem, echte koekoeksbloem, grote ratelaar, kruipend zenegroen, lidrus, moerasrolklaver, moerasspirea, weide-/moeras-/zompvergeet-mij-nietje, moesdistel, penningkruid, pinksterbloem, ruwe smele, gewone smeerwortel, tweerijige zegge, vogelwikke, waterkruiskruid</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step65">  <div class="step-header">
-<span class="step-number">Stap 65</span>    <div class="incoming-steps">Komt van: <a href="#step56" class="incoming-link">56</a>, <a href="#step233" class="incoming-link">233</a></div>
+<span class="step-number">STAP 65</span>    <div class="incoming-steps">Van: <a href="#step56" class="incoming-link">56</a>, <a href="#step233" class="incoming-link">233</a></div>
   </div>
 <h2>Dotterbloemgraslanden</h2><div class="question">Is veldrus abundant EN is klein glidkruid aanwezig ?</div>  <div class="answer-block">
-<a href="#step67" class="answer-link">Ja (→ Stap 67)</a>  </div>
+<a href="#step67" class="answer-link">Ja (→ 67)</a>  </div>
   <div class="answer-block">
-<a href="#step66" class="answer-link">Nee (→ Stap 66)</a>  </div>
+<a href="#step66" class="answer-link">Nee (→ 66)</a>  </div>
 </div>
 
 <div class="step-container" id="step66">  <div class="step-header">
-<span class="step-number">Stap 66</span>    <div class="incoming-steps">Komt van: <a href="#step65" class="incoming-link">65</a></div>
+<span class="step-number">STAP 66</span>    <div class="incoming-steps">Van: <a href="#step65" class="incoming-link">65</a></div>
   </div>
 <div class="question">Komen er minstens 5 soorten uit de hc-(kern)groep, elk minstens occasioneel voor?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhc<br><strong>BWK:</strong> hc    </div>
+<strong>NATURA 2000:</strong> rbbhc<br><strong>BWK CODE:</strong> hc    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Nee</div>    <div class="answer-details-group">
 <div class="extra-info">hc-groep: echte koekoeksbloem, grote ratelaar, heelblaadjes, herfsttijloos, kruipend zenegroen, moerasrolklaver, weide-/moeras-/zompvergeet-mij-nietje, rietorchis, ruwe smele, veldrus, waterkruiskruid.
 hc-kerngroep: adderwortel, bosbies, brede orchis, dotterbloem, gevleugeld hertshooi, kale jonker, lidrus, moerasstreepzaad, moesdistel, paddenrus, slanke sleutelbloem, tweerijige zegge.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbhc<br><strong>BWK:</strong> hc°    </div>
+<strong>NATURA 2000:</strong> rbbhc<br><strong>BWK CODE:</strong> hc°    </div>
   </div>
 </div>
 
 <div class="step-container" id="step67">  <div class="step-header">
-<span class="step-number">Stap 67</span>    <div class="incoming-steps">Komt van: <a href="#step65" class="incoming-link">65</a></div>
+<span class="step-number">STAP 67</span>    <div class="incoming-steps">Van: <a href="#step65" class="incoming-link">65</a></div>
   </div>
 <div class="question">Zijn er minstens 4 soorten uit de hm(e/m) groep aanwezig ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6410_ve<br><strong>BWK:</strong> hm    </div>
+<strong>NATURA 2000:</strong> 6410_ve<br><strong>BWK CODE:</strong> hm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Nee</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6410_ve<br><strong>BWK:</strong> hm°    </div>
+<strong>NATURA 2000:</strong> 6410_ve<br><strong>BWK CODE:</strong> hm°    </div>
   </div>
 </div>
 
 <div class="step-container" id="step70">  <div class="step-header">
-<span class="step-number">Stap 70</span>    <div class="incoming-steps">Komt van: <a href="#step60" class="incoming-link">60</a>, <a href="#step62" class="incoming-link">62</a></div>
+<span class="step-number">STAP 70</span>    <div class="incoming-steps">Van: <a href="#step60" class="incoming-link">60</a>, <a href="#step62" class="incoming-link">62</a></div>
   </div>
 <h2>Kamgrasweiden</h2><div class="question">Zijn kamgras en/of veldgerst abundant aanwezig ?</div>  <div class="answer-block">
-<a href="#step71" class="answer-link">Ja (→ Stap 71)</a>  </div>
+<a href="#step71" class="answer-link">Ja (→ 71)</a>  </div>
   <div class="answer-block">
-<a href="#step80" class="answer-link">Nee (→ Stap 80)</a>  </div>
+<a href="#step80" class="answer-link">Nee (→ 80)</a>  </div>
 </div>
 
 <div class="step-container" id="step71">  <div class="step-header">
-<span class="step-number">Stap 71</span>    <div class="incoming-steps">Komt van: <a href="#step70" class="incoming-link">70</a></div>
+<span class="step-number">STAP 71</span>    <div class="incoming-steps">Van: <a href="#step70" class="incoming-link">70</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Zijn wilde peterselie, kattendoorn en/of knopig doornzaad aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbkam+<br><strong>BWK:</strong> hp*    </div>
+<strong>NATURA 2000:</strong> rbbkam+<br><strong>BWK CODE:</strong> hp*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Komen de typische kruiden (gewone brunel, madeliefje, tijmereprijs, vertakte leeuwentand) samen abundant in het perceel/vegetatievlak voor:</div>    <div class="answer-details-group">
 <div class="answer-remark">rbbkam* -graslanden krijgen in de BWK een opwaardering tot 'zeer waardevol'</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbkam+<br><strong>BWK:</strong> hp*    </div>
+<strong>NATURA 2000:</strong> rbbkam+<br><strong>BWK CODE:</strong> hp*    </div>
   </div>
 </div>
 
 <div class="step-container" id="step75">  <div class="step-header">
-<span class="step-number">Stap 75</span>    <div class="incoming-steps">Komt van: <a href="#step56" class="incoming-link">56</a></div>
+<span class="step-number">STAP 75</span>    <div class="incoming-steps">Van: <a href="#step56" class="incoming-link">56</a></div>
   </div>
 <h2>Zilverschoongraslanden</h2>  <div class="answer-block">
 <div class="answer-link-terminal">Uit de rbbzil-groep zijn 5 soorten elk frequent aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbzil+<br><strong>BWK:</strong> hc    </div>
+<strong>NATURA 2000:</strong> rbbzil+<br><strong>BWK CODE:</strong> hc    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Uit de rbbzil-groep zijn 6 soorten elk minstens occasioneel aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbzil+<br><strong>BWK:</strong> hc    </div>
+<strong>NATURA 2000:</strong> rbbzil+<br><strong>BWK CODE:</strong> hc    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Uit de rbbzil-groep zijn 2 soorten elk minstens occasioneel aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbzil<br><strong>BWK:</strong> hc°    </div>
+<strong>NATURA 2000:</strong> rbbzil<br><strong>BWK CODE:</strong> hc°    </div>
   </div>
   <div class="answer-block">
-<a href="#step80" class="answer-link has-details">Nee (→ Stap 80)</a>    <div class="answer-details-group">
+<a href="#step80" class="answer-link has-details">Nee (→ 80)</a>    <div class="answer-details-group">
 <div class="extra-info">rbbzil-groep: aardbeiklaver, akkerkers, getand vlotgras, gewone waterbies, heelblaadjes, klein vlooienkruid, kruipend moerasscherm, lidrus, moeras-/zompvergeet-mij-nietje,  penningkruid, pijptorkruid, platte rus, polei, rode ogentroost, valse voszegge, watermunt, zeegroene rus, zilte rus en  zilverschoon, zomprus + voor de kustpolders ook moeraszoutgras, slanke waterbies, smalle rolklaver, zilte rus en zilte zegge
 Algemenere begeleiders zijn geknikte vossenstaart, fioringras, krulzuring en/of ruige zegge.</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step80">  <div class="step-header">
-<span class="step-number">Stap 80</span>    <div class="incoming-steps">Komt van: <a href="#step70" class="incoming-link">70</a>, <a href="#step75" class="incoming-link">75</a></div>
+<span class="step-number">STAP 80</span>    <div class="incoming-steps">Van: <a href="#step70" class="incoming-link">70</a>, <a href="#step75" class="incoming-link">75</a></div>
   </div>
 <h2>Permanente (soortenrijke) graslanden</h2><div class="question">Zijn wilde bertram, grote wederik, melkeppe, hennegras, ruw walstro, wateraardbei, veenpluis, veenmos en/of zwarte zegge samen abundant aanwezig ?</div>  <div class="answer-block">
-<a href="#step131" class="answer-link">Ja (→ Stap 131)</a>  </div>
+<a href="#step131" class="answer-link">Ja (→ 131)</a>  </div>
   <div class="answer-block">
-<a href="#step81" class="answer-link">Nee (→ Stap 81)</a>  </div>
+<a href="#step81" class="answer-link">Nee (→ 81)</a>  </div>
 </div>
 
 <div class="step-container" id="step81">  <div class="step-header">
-<span class="step-number">Stap 81</span>    <div class="incoming-steps">Komt van: <a href="#step80" class="incoming-link">80</a></div>
+<span class="step-number">STAP 81</span>    <div class="incoming-steps">Van: <a href="#step80" class="incoming-link">80</a></div>
   </div>
 <div class="question">Bedekken de hu-basisgroep en -kerngroep samen > 50% EN is er van de hu-kerngroep minimaal 1 soort frequent of 2 soorten occasioneel aanwezig ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hu°    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hu°    </div>
   </div>
   <div class="answer-block">
-<a href="#step82" class="answer-link has-details">Nee (→ Stap 82)</a>    <div class="answer-details-group">
+<a href="#step82" class="answer-link has-details">Nee (→ 82)</a>    <div class="answer-details-group">
 <div class="extra-info">hu-basisgroep: beemdlangbloem, fluitenkruid, gewone berenklauw, gewoon reukgras, glanshaver, grasmuur, grote vossenstaart, hopklaver, pastinaak, peen, rietzwenkgras, rode klaver, rood zwenkgras, scherpe boterbloem, sint-janskruid, timoteegras, veldbeemdgras en veldzuring
 hu-kerngroep: aardaker, beemdkroon, beemdooievaarsbek, bevertjes, gele morgenster, gewone agrimonie, gewone rolklaver, gewone vogelmelk, glad walstro, goudhaver, graslathyrus, groot streepzaad, grote bevernel, grote pimpernel, grote tijm, gulden sleutelbloem, herfsttijloos, karwijselie, klavervreter, kleine bevernel, kleine ratelaar, knolboterbloem, knolsteenbreek, knoopkruid, kraailook, margriet, muskuskaasjeskruid, naakte lathyrus, rapunzelklokje, ruige leeuwentand, veldlathyrus, veldsalie, vijfdelig kaasjeskruid, wilde marjolein en zachte haver</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step82">  <div class="step-header">
-<span class="step-number">Stap 82</span>    <div class="incoming-steps">Komt van: <a href="#step81" class="incoming-link">81</a></div>
+<span class="step-number">STAP 82</span>    <div class="incoming-steps">Van: <a href="#step81" class="incoming-link">81</a></div>
   </div>
 <div class="question">Zijn meerdere kruiden (uitgez. akkerdistel, gewone hoornbloem, grote weegbree, grote brandnetel, kruipende boterbloem, paardenbloem, ridderzuring, vogelmuur, witte klaver en hondsdraf) en/of reukgras, kamgras of schijngrassen elk frequent aanwezig ?</div>  <div class="answer-block">
-<a href="#step83" class="answer-link">Ja (→ Stap 83)</a>  </div>
+<a href="#step83" class="answer-link">Ja (→ 83)</a>  </div>
   <div class="answer-block">
-<a href="#step84" class="answer-link has-details">Nee (→ Stap 84)</a>    <div class="answer-details-group">
+<a href="#step84" class="answer-link has-details">Nee (→ 84)</a>    <div class="answer-details-group">
 <div class="extra-info">Typische hp*-kruiden zijn o.a. scherpe boterbloem, pinksterbloem, hazenzegge, gewoon biggenkruid, duizendblad, veldzuring, ruige zegge, veenwortel, grasmuur, smalle weegbree, ...</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step83">  <div class="step-header">
-<span class="step-number">Stap 83</span>    <div class="incoming-steps">Komt van: <a href="#step82" class="incoming-link">82</a></div>
+<span class="step-number">STAP 83</span>    <div class="incoming-steps">Van: <a href="#step82" class="incoming-link">82</a></div>
   </div>
 <div class="question">Is het perceel rijk aan microreliëf en/of grachten/greppels ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hpr*    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hpr*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Nee</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hp*    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hp*    </div>
   </div>
 </div>
 
 <div class="step-container" id="step84">  <div class="step-header">
-<span class="step-number">Stap 84</span>    <div class="incoming-steps">Komt van: <a href="#step82" class="incoming-link">82</a></div>
+<span class="step-number">STAP 84</span>    <div class="incoming-steps">Van: <a href="#step82" class="incoming-link">82</a></div>
   </div>
 <div class="question">Is het perceel rijk aan microreliëf en/of grachten/greppels ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hpr    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hpr    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Nee</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hp    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hp    </div>
   </div>
 </div>
 
 <div class="step-container" id="step100">  <div class="step-header">
-<span class="step-number">Stap 100</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a>, <a href="#step40" class="incoming-link">40</a></div>
+<span class="step-number">STAP 100</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a>, <a href="#step40" class="incoming-link">40</a></div>
   </div>
 <h2>Soortenarme graslanden</h2><div class="question">Is het een soortenarm (her)ingrasland gedomineerd door hoogproductieve raaigrassen en/of ruw beemdgras (alle met blinkende bladeren) ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hx    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hx    </div>
   </div>
   <div class="answer-block">
-<a href="#step101" class="answer-link">Nee (→ Stap 101)</a>  </div>
+<a href="#step101" class="answer-link">Nee (→ 101)</a>  </div>
 </div>
 
 <div class="step-container" id="step101">  <div class="step-header">
-<span class="step-number">Stap 101</span>    <div class="incoming-steps">Komt van: <a href="#step100" class="incoming-link">100</a></div>
+<span class="step-number">STAP 101</span>    <div class="incoming-steps">Van: <a href="#step100" class="incoming-link">100</a></div>
   </div>
 <div class="question">Is de bodem zandig EN zijn borstelgras, fijn schapengras, zilverhaver, vroege haver, buntgras en/of zandzegge samen dominant ?</div>  <div class="answer-block">
-<a href="#step243" class="answer-link">Ja (→ Stap 243)</a>  </div>
+<a href="#step243" class="answer-link">Ja (→ 243)</a>  </div>
   <div class="answer-block">
-<a href="#step102" class="answer-link">Nee (→ Stap 102)</a>  </div>
+<a href="#step102" class="answer-link">Nee (→ 102)</a>  </div>
 </div>
 
 <div class="step-container" id="step102">  <div class="step-header">
-<span class="step-number">Stap 102</span>    <div class="incoming-steps">Komt van: <a href="#step101" class="incoming-link">101</a></div>
+<span class="step-number">STAP 102</span>    <div class="incoming-steps">Van: <a href="#step101" class="incoming-link">101</a></div>
   </div>
 <div class="question">Zijn grote russen (pitrus, biezenknoppen, veldrus, paddenrus, zeegroene rus) co-dominant ?</div>  <div class="answer-block">
-<a href="#step105" class="answer-link">Ja (→ Stap 105)</a>  </div>
+<a href="#step105" class="answer-link">Ja (→ 105)</a>  </div>
   <div class="answer-block">
-<a href="#step103" class="answer-link">Nee (→ Stap 103)</a>  </div>
+<a href="#step103" class="answer-link">Nee (→ 103)</a>  </div>
 </div>
 
 <div class="step-container" id="step103">  <div class="step-header">
-<span class="step-number">Stap 103</span>    <div class="incoming-steps">Komt van: <a href="#step102" class="incoming-link">102</a></div>
+<span class="step-number">STAP 103</span>    <div class="incoming-steps">Van: <a href="#step102" class="incoming-link">102</a></div>
   </div>
 <div class="question">Zijn helofyten (grote zeggen, riet, liesgras, lisdodde, galigaan, mattenbies, ruwe bies of grote egelskop) dominant ?</div>  <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>MOERAS</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step104" class="answer-link has-details">Nee (→ Stap 104)</a>    <div class="answer-details-group">
+<a href="#step104" class="answer-link has-details">Nee (→ 104)</a>    <div class="answer-details-group">
 <div class="extra-info">Grote zeggen: moeraszegge, oeverzegge, blaaszegge, pluimzegge, hoge cyperzegge, scherpe zegge</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step104">  <div class="step-header">
-<span class="step-number">Stap 104</span>    <div class="incoming-steps">Komt van: <a href="#step103" class="incoming-link">103</a>, <a href="#step247" class="incoming-link">247</a></div>
+<span class="step-number">STAP 104</span>    <div class="incoming-steps">Van: <a href="#step103" class="incoming-link">103</a>, <a href="#step247" class="incoming-link">247</a></div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">bochtige smele en/of pijpenstrootje zijn dominant: (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>HEIDE</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">ruwe smele is dominant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhc<br><strong>BWK:</strong> hc°    </div>
+<strong>NATURA 2000:</strong> rbbhc<br><strong>BWK CODE:</strong> hc°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">rietgras is dominant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hr    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hr    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">liesgras is dominant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> mr°    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> mr°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">kropaar en/of kweek zijn samen dominant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hr    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hr    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Italiaans raaigras is dominant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hx    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hx    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">duinriet is dominant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> ku    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ku    </div>
   </div>
   <div class="answer-block">
-<a href="#step106" class="answer-link">Anders: (→ Stap 106)</a>  </div>
+<a href="#step106" class="answer-link">Anders: (→ 106)</a>  </div>
 </div>
 
 <div class="step-container" id="step105">  <div class="step-header">
-<span class="step-number">Stap 105</span>    <div class="incoming-steps">Komt van: <a href="#step102" class="incoming-link">102</a></div>
+<span class="step-number">STAP 105</span>    <div class="incoming-steps">Van: <a href="#step102" class="incoming-link">102</a></div>
   </div>
 <div class="question">Zijn veldrus en/of paddenrus (co)dominant?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhc<br><strong>BWK:</strong> hc°    </div>
+<strong>NATURA 2000:</strong> rbbhc<br><strong>BWK CODE:</strong> hc°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Nee</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hj    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hj    </div>
   </div>
 </div>
 
 <div class="step-container" id="step106">  <div class="step-header">
-<span class="step-number">Stap 106</span>    <div class="incoming-steps">Komt van: <a href="#step104" class="incoming-link">104</a></div>
+<span class="step-number">STAP 106</span>    <div class="incoming-steps">Van: <a href="#step104" class="incoming-link">104</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Kamgras en/of veldgerst zijn abundant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbkam<br><strong>BWK:</strong> hp*    </div>
+<strong>NATURA 2000:</strong> rbbkam<br><strong>BWK CODE:</strong> hp*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Gewoon reukgras is abundant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hp*    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hp*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Anders:</div>    <div class="answer-details-group">
 <div class="extra-info">Is het perceel rijk aan microreliëf en/of grachten/greppels --> hpr(*)</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hp    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hp    </div>
   </div>
 </div>
 
 <div class="step-container" id="step110">  <div class="step-header">
-<span class="step-number">Stap 110</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a>, <a href="#step31" class="incoming-link">31</a>, <a href="#step32" class="incoming-link">32</a></div>
+<span class="step-number">STAP 110</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a>, <a href="#step31" class="incoming-link">31</a>, <a href="#step32" class="incoming-link">32</a></div>
   </div>
 <h2>Verruigde en verstoorde graslanden</h2><div class="question">Zijn er minstens 2 soorten van natte strooiselruigten samen abundant aanwezig ?</div>  <div class="answer-block">
-<a href="#step131" class="answer-link">Ja (→ Stap 131)</a>  </div>
+<a href="#step131" class="answer-link">Ja (→ 131)</a>  </div>
   <div class="answer-block">
-<a href="#step111" class="answer-link has-details">Nee (→ Stap 111)</a>    <div class="answer-details-group">
+<a href="#step111" class="answer-link has-details">Nee (→ 111)</a>    <div class="answer-details-group">
 <div class="extra-info">Natte strooiselruigten: adderwortel, blauw glidkruid, bitterzoet, echte valeriaan, gevleugeld helmkruid, gewone engelwortel, gewone smeerwortel, grote kattenstaart, grote wederik, harig wilgenroosje, heemst, kale jonker, koninginnenkruid, melkeppe, moesdistel, moerasandoorn, moerasspirea, poelruit, reuzenpaardenstaart, wilde bertram en zomerklokje</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step111">  <div class="step-header">
-<span class="step-number">Stap 111</span>    <div class="incoming-steps">Komt van: <a href="#step110" class="incoming-link">110</a>, <a href="#step130" class="incoming-link">130</a></div>
+<span class="step-number">STAP 111</span>    <div class="incoming-steps">Van: <a href="#step110" class="incoming-link">110</a>, <a href="#step130" class="incoming-link">130</a></div>
   </div>
   <div class="answer-block">
-<a href="#step112" class="answer-link">In de vegetatie komen nog grazige, niet of weinig verruigde zones voor EN deze hebben een aandeel van min 10% : (→ Stap 112)</a>  </div>
+<a href="#step112" class="answer-link">In de vegetatie komen nog grazige, niet of weinig verruigde zones voor EN deze hebben een aandeel van min 10% : (→ 112)</a>  </div>
   <div class="answer-block">
-<a href="#step113" class="answer-link">De vegetatie is homogeen verruigd, met verspreid nog typische soorten van elders in deze sleutel beschreven graslandtypen (excl. hp en hx): (→ Stap 113)</a>  </div>
+<a href="#step113" class="answer-link">De vegetatie is homogeen verruigd, met verspreid nog typische soorten van elders in deze sleutel beschreven graslandtypen (excl. hp en hx): (→ 113)</a>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hr    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hr    </div>
   </div>
 </div>
 
 <div class="step-container" id="step112">  <div class="step-header">
-<span class="step-number">Stap 112</span>    <div class="incoming-steps">Komt van: <a href="#step111" class="incoming-link">111</a></div>
+<span class="step-number">STAP 112</span>    <div class="incoming-steps">Van: <a href="#step111" class="incoming-link">111</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Doorloop de sleutel afzonderlijk voor de niet of weinig verruigde zones en noteer de uitkomst als tweede eenheid.</div>    <div class="answer-details-group">
 <div class="extra-info">Vb. in de vegetatie komen nog lokaal frequent pinksterbloem, gewoon reukgras, scherpe boterbloem en veldzuring voor:</div><div class="answer-remark">Indien de niet of weinig verruigde zones uitsleutelen naar een rbb of habitat: aandeel in te schatten en vermelden in de habitatvelden</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh (+ habitat of rbb)<br><strong>BWK:</strong> hr + h    </div>
+<strong>NATURA 2000:</strong> gh (+ habitat of rbb)<br><strong>BWK CODE:</strong> hr + h    </div>
   </div>
 </div>
 
 <div class="step-container" id="step113">  <div class="step-header">
-<span class="step-number">Stap 113</span>    <div class="incoming-steps">Komt van: <a href="#step111" class="incoming-link">111</a></div>
+<span class="step-number">STAP 113</span>    <div class="incoming-steps">Van: <a href="#step111" class="incoming-link">111</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Doorloop de sleutel vanaf stap 30 zonder rekening te houden met de verruigingsindicatoren om het oorspronkelijke graslandtype te bepalen. Noteer, als er voldoende sleutelsoorten aanwezig zijn, de uitkomst als tweede eenheid met /-verhouding:</div>    <div class="answer-details-group">
 <div class="extra-info">Vb. verruigd glanshavergrasland met nog frequent groot streepzaad
 Vb. verruigd, soortenrijk glanshavergrasland met nog frequent knoopkruid en occasioneel margriet en glad walstro</div><div class="answer-remark">Het perceel krijgt dezelfde habitataanduiding als het verruigde graslandtype</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> (gh of hab of rbb)<br><strong>BWK:</strong> hr/h    </div>
+<strong>NATURA 2000:</strong> (gh of hab of rbb)<br><strong>BWK CODE:</strong> hr/h    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Perceel bevat geen of onvoldoende sleutelsoorten van het oorspronkelijke graslandtype:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hr    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hr    </div>
   </div>
 </div>
 
 <div class="step-container" id="step120">  <div class="step-header">
-<span class="step-number">Stap 120</span>    <div class="incoming-steps">Komt van: <a href="#step29" class="incoming-link">29</a></div>
+<span class="step-number">STAP 120</span>    <div class="incoming-steps">Van: <a href="#step29" class="incoming-link">29</a></div>
   </div>
 <h2>Door russen gedomineerde vegetaties</h2><div class="question">Is paddenrus abundant ?</div>  <div class="answer-block">
-<a href="#step121" class="answer-link">Ja (→ Stap 121)</a>  </div>
+<a href="#step121" class="answer-link">Ja (→ 121)</a>  </div>
   <div class="answer-block">
-<a href="#step122" class="answer-link">Nee (→ Stap 122)</a>  </div>
+<a href="#step122" class="answer-link">Nee (→ 122)</a>  </div>
 </div>
 
 <div class="step-container" id="step121">  <div class="step-header">
-<span class="step-number">Stap 121</span>    <div class="incoming-steps">Komt van: <a href="#step120" class="incoming-link">120</a></div>
+<span class="step-number">STAP 121</span>    <div class="incoming-steps">Van: <a href="#step120" class="incoming-link">120</a></div>
   </div>
 <div class="question">Is er een soort uit de mk-groep occasioneel aanwezig ?</div>  <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>MOERAS</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step122" class="answer-link has-details">Nee (→ Stap 122)</a>    <div class="answer-details-group">
+<a href="#step122" class="answer-link has-details">Nee (→ 122)</a>    <div class="answer-details-group">
 <div class="extra-info">mk-groep: alpenrus, blonde zegge, breed wollegras, gele zegge, geveerd diknerfmos, groenknolorchis, grote muggenorchis, knopbies, moeraswespenorchis, moeraszoutgras, parnassia, schubzegge, teer guichelheil, tweehuizige zegge, vleeskleurige orchis</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step122">  <div class="step-header">
-<span class="step-number">Stap 122</span>    <div class="incoming-steps">Komt van: <a href="#step120" class="incoming-link">120</a>, <a href="#step121" class="incoming-link">121</a></div>
+<span class="step-number">STAP 122</span>    <div class="incoming-steps">Van: <a href="#step120" class="incoming-link">120</a>, <a href="#step121" class="incoming-link">121</a></div>
   </div>
 <div class="question">Is veldrus is abundant EN pitrus niet (co)dominant ?</div>  <div class="answer-block">
-<a href="#step230" class="answer-link">Ja (→ Stap 230)</a>  </div>
+<a href="#step230" class="answer-link">Ja (→ 230)</a>  </div>
   <div class="answer-block">
-<a href="#step123" class="answer-link">Nee (→ Stap 123)</a>  </div>
+<a href="#step123" class="answer-link">Nee (→ 123)</a>  </div>
 </div>
 
 <div class="step-container" id="step123">  <div class="step-header">
-<span class="step-number">Stap 123</span>    <div class="incoming-steps">Komt van: <a href="#step122" class="incoming-link">122</a></div>
+<span class="step-number">STAP 123</span>    <div class="incoming-steps">Van: <a href="#step122" class="incoming-link">122</a></div>
   </div>
   <div class="answer-block">
-<a href="#step124" class="answer-link">In de vegetatie komen nog grazige, niet door pitrus, biezenknoppen en/of zeegroene rus gedomineerde zones voor EN deze hebben een aandeel van min 10% : (→ Stap 124)</a>  </div>
+<a href="#step124" class="answer-link">In de vegetatie komen nog grazige, niet door pitrus, biezenknoppen en/of zeegroene rus gedomineerde zones voor EN deze hebben een aandeel van min 10% : (→ 124)</a>  </div>
   <div class="answer-block">
-<a href="#step125" class="answer-link">De vegetatie is eerder homogeen verstoord, met verspreid nog voldoende typische soorten van een elders in deze sleutel beschreven graslandtype: (→ Stap 125)</a>  </div>
+<a href="#step125" class="answer-link">De vegetatie is eerder homogeen verstoord, met verspreid nog voldoende typische soorten van een elders in deze sleutel beschreven graslandtype: (→ 125)</a>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hj    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hj    </div>
   </div>
 </div>
 
 <div class="step-container" id="step124">  <div class="step-header">
-<span class="step-number">Stap 124</span>    <div class="incoming-steps">Komt van: <a href="#step123" class="incoming-link">123</a></div>
+<span class="step-number">STAP 124</span>    <div class="incoming-steps">Van: <a href="#step123" class="incoming-link">123</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Doorloop de sleutel afzonderlijk voor de niet of weinig verruigde zones en noteer de uitkomst als tweede eenheid.</div>    <div class="answer-details-group">
 <div class="extra-info">Vb. in niet of weinig pitrus gedomineerde zones komen abundant echte koekoeksbloem, moerasvergeet-mij-nietje en bosbies voor.</div><div class="answer-remark">Indien de niet of weinig verruigde zones uitsleutelen naar een rbb of habitat: aandeel in te schatten en vermelden in de habitatvelden</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh (+habitat of rbb)<br><strong>BWK:</strong> hj + h    </div>
+<strong>NATURA 2000:</strong> gh (+habitat of rbb)<br><strong>BWK CODE:</strong> hj + h    </div>
   </div>
 </div>
 
 <div class="step-container" id="step125">  <div class="step-header">
-<span class="step-number">Stap 125</span>    <div class="incoming-steps">Komt van: <a href="#step123" class="incoming-link">123</a></div>
+<span class="step-number">STAP 125</span>    <div class="incoming-steps">Van: <a href="#step123" class="incoming-link">123</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Doorloop de sleutel vanaf stap 40 zonder rekening te houden met pitrus, biezenknoppen en zeegroene rus om het oorspronkelijke graslandtype te bepalen. Noteer als er voldoende sleutelsoorten aanwezig zijn de uitkomst als tweede eenheid met /-verhouding:</div>    <div class="answer-details-group">
 <div class="extra-info">Vb. Over het hele perceel verspreid komen nog abundant echte koekoeksbloem, moerasvergeet-mij-nietje en bosbies voor.</div><div class="answer-remark">Het perceel krijgt dezelfde habitataanduiding als het verruigde graslandtype</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> (gh of habitat of rbb)<br><strong>BWK:</strong> hj/h    </div>
+<strong>NATURA 2000:</strong> (gh of habitat of rbb)<br><strong>BWK CODE:</strong> hj/h    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Perceel bevat geen of onvoldoende sleutelsoorten van het oorspronkelijke graslandtype:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> hj    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hj    </div>
   </div>
 </div>
 
 <div class="step-container" id="step130">  <div class="step-header">
-<span class="step-number">Stap 130</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a>, <a href="#step33" class="incoming-link">33</a></div>
+<span class="step-number">STAP 130</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a>, <a href="#step33" class="incoming-link">33</a></div>
   </div>
 <h2>Natte ruigten</h2><div class="question">Zijn de soorten van natte strooiselruigten samen abundant EN zijn er minstens 2 soorten elk frequent ?</div>  <div class="answer-block">
-<a href="#step131" class="answer-link">Ja (→ Stap 131)</a>  </div>
+<a href="#step131" class="answer-link">Ja (→ 131)</a>  </div>
   <div class="answer-block">
-<a href="#step111" class="answer-link has-details">Nee (→ Stap 111)</a>    <div class="answer-details-group">
+<a href="#step111" class="answer-link has-details">Nee (→ 111)</a>    <div class="answer-details-group">
 <div class="extra-info">Natte strooiselruigten: adderwortel, blauw glidkruid, bitterzoet, echte valeriaan, gevleugeld helmkruid, gewone engelwortel, gewone smeerwortel, grote kattenstaart, grote wederik, harig wilgenroosje, heemst, kale jonker, koninginnenkruid, melkeppe, moesdistel, moerasandoorn, moerasspirea, poelruit, reuzenpaardenstaart, wilde bertram en zomerklokje</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step131">  <div class="step-header">
-<span class="step-number">Stap 131</span>    <div class="incoming-steps">Komt van: <a href="#step28" class="incoming-link">28</a>, <a href="#step80" class="incoming-link">80</a>, <a href="#step110" class="incoming-link">110</a>, <a href="#step130" class="incoming-link">130</a>, <a href="#step233" class="incoming-link">233</a></div>
+<span class="step-number">STAP 131</span>    <div class="incoming-steps">Van: <a href="#step28" class="incoming-link">28</a>, <a href="#step80" class="incoming-link">80</a>, <a href="#step110" class="incoming-link">110</a>, <a href="#step130" class="incoming-link">130</a>, <a href="#step233" class="incoming-link">233</a></div>
   </div>
 <div class="question">Zijn wilde bertram, grote wederik, melkeppe, hennegras, ruw walstro en/of zwarte zegge samen abundant EN bedekken ze samen meer dan moerasspirea ?</div>  <div class="answer-block">
-<a href="#step138" class="answer-link">Ja (→ Stap 138)</a>  </div>
+<a href="#step138" class="answer-link">Ja (→ 138)</a>  </div>
   <div class="answer-block">
-<a href="#step132" class="answer-link">Nee (→ Stap 132)</a>  </div>
+<a href="#step132" class="answer-link">Nee (→ 132)</a>  </div>
 </div>
 
 <div class="step-container" id="step132">  <div class="step-header">
-<span class="step-number">Stap 132</span>    <div class="incoming-steps">Komt van: <a href="#step131" class="incoming-link">131</a></div>
+<span class="step-number">STAP 132</span>    <div class="incoming-steps">Van: <a href="#step131" class="incoming-link">131</a></div>
   </div>
   <div class="answer-block">
-<a href="#step133" class="answer-link">Buitendijks langs Schelde of Maas EN harig wilgenroosje frequent: (→ Stap 133)</a>  </div>
+<a href="#step133" class="answer-link">Buitendijks langs Schelde of Maas EN harig wilgenroosje frequent: (→ 133)</a>  </div>
   <div class="answer-block">
-<a href="#step133" class="answer-link">Zomerklokje is frequent aanwezig (vnl. benedenloop Kleine Nete): (→ Stap 133)</a>  </div>
+<a href="#step133" class="answer-link">Zomerklokje is frequent aanwezig (vnl. benedenloop Kleine Nete): (→ 133)</a>  </div>
   <div class="answer-block">
-<a href="#step133" class="answer-link">Harig wilgenroosje abundant EN de soort bedekt meer dan de overige soorten van natte strooiselruigtenn samen EN gelegen in directe omgeving van een waterloop: (→ Stap 133)</a>  </div>
+<a href="#step133" class="answer-link">Harig wilgenroosje abundant EN de soort bedekt meer dan de overige soorten van natte strooiselruigtenn samen EN gelegen in directe omgeving van een waterloop: (→ 133)</a>  </div>
   <div class="answer-block">
-<a href="#step134" class="answer-link">Anders: (→ Stap 134)</a>  </div>
+<a href="#step134" class="answer-link">Anders: (→ 134)</a>  </div>
 </div>
 
 <div class="step-container" id="step133">  <div class="step-header">
-<span class="step-number">Stap 133</span>    <div class="incoming-steps">Komt van: <a href="#step132" class="incoming-link">132</a></div>
+<span class="step-number">STAP 133</span>    <div class="incoming-steps">Van: <a href="#step132" class="incoming-link">132</a></div>
   </div>
 <div class="question">Is de bedekking van akkerdistel, braam, ridderzuring, liesgras, grote brandnetel en rietgras samen > 30% ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6430_hw<br><strong>BWK:</strong> hfe°    </div>
+<strong>NATURA 2000:</strong> 6430_hw<br><strong>BWK CODE:</strong> hfe°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Nee</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6430_hw<br><strong>BWK:</strong> hfe    </div>
+<strong>NATURA 2000:</strong> 6430_hw<br><strong>BWK CODE:</strong> hfe    </div>
   </div>
 </div>
 
 <div class="step-container" id="step134">  <div class="step-header">
-<span class="step-number">Stap 134</span>    <div class="incoming-steps">Komt van: <a href="#step132" class="incoming-link">132</a></div>
+<span class="step-number">STAP 134</span>    <div class="incoming-steps">Van: <a href="#step132" class="incoming-link">132</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Bedekking sleutelsoorten van natte strooiselruigten > 70% EN gelegen binnen de invloedssfeer en de overstromingszone van een waterloop:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6430_hf<br><strong>BWK:</strong> hf*    </div>
+<strong>NATURA 2000:</strong> 6430_hf<br><strong>BWK CODE:</strong> hf*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">De bedekking van grassen (uitgezonderd riet- en liesgras) is < 30% EN gelegen binnen de invloedssfeer en de overstromingszone van een waterloop:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6430_hf<br><strong>BWK:</strong> hf    </div>
+<strong>NATURA 2000:</strong> 6430_hf<br><strong>BWK CODE:</strong> hf    </div>
   </div>
   <div class="answer-block">
-<a href="#step135" class="answer-link">Anders: (→ Stap 135)</a>  </div>
+<a href="#step135" class="answer-link">Anders: (→ 135)</a>  </div>
 </div>
 
 <div class="step-container" id="step135">  <div class="step-header">
-<span class="step-number">Stap 135</span>    <div class="incoming-steps">Komt van: <a href="#step134" class="incoming-link">134</a></div>
+<span class="step-number">STAP 135</span>    <div class="incoming-steps">Van: <a href="#step134" class="incoming-link">134</a></div>
   </div>
   <div class="answer-block">
-<a href="#step136" class="answer-link has-details">Soorten van natte strooiselruigten zijn (co)dominant: (→ Stap 136)</a>    <div class="answer-details-group">
+<a href="#step136" class="answer-link has-details">Soorten van natte strooiselruigten zijn (co)dominant: (→ 136)</a>    <div class="answer-details-group">
 <div class="answer-remark">soortenlijst zie stap 130</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step137" class="answer-link">Anders: (→ Stap 137)</a>  </div>
+<a href="#step137" class="answer-link">Anders: (→ 137)</a>  </div>
 </div>
 
 <div class="step-container" id="step136">  <div class="step-header">
-<span class="step-number">Stap 136</span>    <div class="incoming-steps">Komt van: <a href="#step135" class="incoming-link">135</a></div>
+<span class="step-number">STAP 136</span>    <div class="incoming-steps">Van: <a href="#step135" class="incoming-link">135</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Poelruit is frequent aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK:</strong> hft    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hft    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Moesdistel en/of reuzenpaardenstaart zijn frequent aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK:</strong> hfc    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hfc    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK:</strong> hf    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hf    </div>
   </div>
 </div>
 
 <div class="step-container" id="step137">  <div class="step-header">
-<span class="step-number">Stap 137</span>    <div class="incoming-steps">Komt van: <a href="#step135" class="incoming-link">135</a></div>
+<span class="step-number">STAP 137</span>    <div class="incoming-steps">Van: <a href="#step135" class="incoming-link">135</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Poelruit is frequent aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK:</strong> hft°    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hft°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Moesdistel en/of reuzenpaardenstaart zijn frequent aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK:</strong> hfc°    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hfc°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK:</strong> hf°    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hf°    </div>
   </div>
 </div>
 
 <div class="step-container" id="step138">  <div class="step-header">
-<span class="step-number">Stap 138</span>    <div class="incoming-steps">Komt van: <a href="#step131" class="incoming-link">131</a></div>
+<span class="step-number">STAP 138</span>    <div class="incoming-steps">Van: <a href="#step131" class="incoming-link">131</a></div>
   </div>
 <div class="question">Zijn wilde bertram, grote wederik, melkeppe, hennegras, ruw walstro en/of zwarte zegge (inclusief soorten van natte strooiselruigten) samen (co)dominant ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK:</strong> hfl    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hfl    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Nee</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK:</strong> hfl°    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hfl°    </div>
   </div>
 </div>
 
 <div class="step-container" id="step150">  <div class="step-header">
-<span class="step-number">Stap 150</span>    <div class="incoming-steps">Komt van: <a href="#step32" class="incoming-link">32</a></div>
+<span class="step-number">STAP 150</span>    <div class="incoming-steps">Van: <a href="#step32" class="incoming-link">32</a></div>
   </div>
 <h2>Ruderale ruigten</h2>  <div class="answer-block">
 <div class="answer-link-terminal has-details">Soortenrijke, bloemrijke vegetaties met meerdere bijzondere soorten, samen frequent aanwezig:</div>    <div class="answer-details-group">
@@ -968,299 +988,299 @@ Duingraslandsoorten (zie stap 10) buiten de ecoregio van de kustduinen.
 Aanwezigheid van zeldzamere doelsoorten bij recente natuurontwikkeling.
 Zaadbankverschijnselen van zeldzame doelsoorten na bodemverstoring.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> ku*    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ku*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Aandeel aan uitheemse invasieve planten in de vegetatie ≥ 50% :</div>    <div class="answer-details-group">
 <div class="extra-info">Uitheemse (zeer) invasieve planten: aardpeer, Afghaanse duizendknoop, alsemambrosia, beklierde basterdwederik, bezemkruiskruid, bleek cypergras, Canadese en late guldenroede, Japanse/Boheemse/Sachalinse duizendknoop, kokardebloem, Nieuw-nederlandse aster, reuzenbalsemien, reuzenberenklauw, rimpelroos, schijnaardbei, smalle aster, slipbladige rudbeckia, struikaster, teunisbloem spec., (valse) wingerd, vaste lupine, vlakke dwergmispel, vlinderstruik, wilgaster, zwart tandzaad.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> ku°    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ku°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> ku    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ku    </div>
   </div>
 </div>
 
 <div class="step-container" id="step200">  <div class="step-header">
-<span class="step-number">Stap 200</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a>, <a href="#step50" class="incoming-link">50</a></div>
+<span class="step-number">STAP 200</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a>, <a href="#step50" class="incoming-link">50</a></div>
   </div>
 <h2>Glanshaver-/Vossenstaartgraslanden</h2><div class="question">Is het een valleigrasland in de alluviale vlakte van de grote rivieren (uitgezonderd vallei van de Grote Nete) ?</div>  <div class="answer-block">
-<a href="#step201" class="answer-link">Ja (→ Stap 201)</a>  </div>
+<a href="#step201" class="answer-link">Ja (→ 201)</a>  </div>
   <div class="answer-block">
-<a href="#step202" class="answer-link">Nee (→ Stap 202)</a>  </div>
+<a href="#step202" class="answer-link">Nee (→ 202)</a>  </div>
 </div>
 
 <div class="step-container" id="step201">  <div class="step-header">
-<span class="step-number">Stap 201</span>    <div class="incoming-steps">Komt van: <a href="#step200" class="incoming-link">200</a></div>
+<span class="step-number">STAP 201</span>    <div class="incoming-steps">Van: <a href="#step200" class="incoming-link">200</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Trosdravik is frequent aanwezig?</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6510_hua<br><strong>BWK:</strong> hc    </div>
+<strong>NATURA 2000:</strong> 6510_hua<br><strong>BWK CODE:</strong> hc    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Minstens 2 soorten uit de rbbvos-, rbbzil-groep, hc-groep of moerasgroep zijn aanwezig EN deze soorten zijn samen abundant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6510_hua<br><strong>BWK:</strong> hc    </div>
+<strong>NATURA 2000:</strong> 6510_hua<br><strong>BWK CODE:</strong> hc    </div>
   </div>
   <div class="answer-block">
-<a href="#step202" class="answer-link has-details">Anders: (→ Stap 202)</a>    <div class="answer-details-group">
+<a href="#step202" class="answer-link has-details">Anders: (→ 202)</a>    <div class="answer-details-group">
 <div class="extra-info">rbbvos-groep: beemdlangbloem, echte koekoeksbloem, grote ratelaar, kruipend zenegroen, lidrus, moerasrolklaver, moerasspirea, weide-/moeras-/zompvergeet-mij-nietje, moesdistel, penningkruid, pinksterbloem, ruwe smele, gewone smeerwortel, tweerijige zegge, vogelwikke, waterkruiskruid</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step202">  <div class="step-header">
-<span class="step-number">Stap 202</span>    <div class="incoming-steps">Komt van: <a href="#step200" class="incoming-link">200</a>, <a href="#step201" class="incoming-link">201</a></div>
+<span class="step-number">STAP 202</span>    <div class="incoming-steps">Van: <a href="#step200" class="incoming-link">200</a>, <a href="#step201" class="incoming-link">201</a></div>
   </div>
 <div class="question">Zijn er minstens 7 soorten uit de hu-kerngroep aanwezig ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6510_hu<br><strong>BWK:</strong> hu*    </div>
+<strong>NATURA 2000:</strong> 6510_hu<br><strong>BWK CODE:</strong> hu*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Nee</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6510_hu<br><strong>BWK:</strong> hu    </div>
+<strong>NATURA 2000:</strong> 6510_hu<br><strong>BWK CODE:</strong> hu    </div>
   </div>
 </div>
 
 <div class="step-container" id="step210">  <div class="step-header">
-<span class="step-number">Stap 210</span>    <div class="incoming-steps">Komt van: <a href="#step45" class="incoming-link">45</a>, <a href="#step46" class="incoming-link">46</a>, <a href="#step243" class="incoming-link">243</a>, <a href="#step245" class="incoming-link">245</a></div>
+<span class="step-number">STAP 210</span>    <div class="incoming-steps">Van: <a href="#step45" class="incoming-link">45</a>, <a href="#step46" class="incoming-link">46</a>, <a href="#step243" class="incoming-link">243</a>, <a href="#step245" class="incoming-link">245</a></div>
   </div>
 <h2>Heischrale graslanden</h2><div class="question">Zijn vochtindicatoren (bijv. dopheide, heidekartelblad, gevlekte orchis, klokjesgentiaan, zwarte zegge, blauwe zegge, geelgroene zegge, moerasstruisgras, gewone waternavel, veldrus, ...) samen frequent aanwezig ?</div>  <div class="answer-block">
-<a href="#step211" class="answer-link has-details">Ja (→ Stap 211)</a>    <div class="answer-details-group">
+<a href="#step211" class="answer-link has-details">Ja (→ 211)</a>    <div class="answer-details-group">
 <div class="answer-remark">Voor BWKeenheid => 211</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step212" class="answer-link has-details">Nee (→ Stap 212)</a>    <div class="answer-details-group">
+<a href="#step212" class="answer-link has-details">Nee (→ 212)</a>    <div class="answer-details-group">
 <div class="answer-remark">Voor BWKeenheid => 212</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step211">  <div class="step-header">
-<span class="step-number">Stap 211</span>    <div class="incoming-steps">Komt van: <a href="#step210" class="incoming-link">210</a>, <a href="#step222" class="incoming-link">222</a></div>
+<span class="step-number">STAP 211</span>    <div class="incoming-steps">Van: <a href="#step210" class="incoming-link">210</a>, <a href="#step222" class="incoming-link">222</a></div>
   </div>
 <div class="question">Zijn er minstens 3 soorten uit de hmo-groep, elk occasioneel, aanwezig ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6230_hmo<br><strong>BWK:</strong> hmo    </div>
+<strong>NATURA 2000:</strong> 6230_hmo<br><strong>BWK CODE:</strong> hmo    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Nee</div>    <div class="answer-details-group">
 <div class="extra-info">hmo-groep: blauwe knoop, blauwe zegge, bleke zegge, borstelgras, geelgroene zegge, gevlekte orchis, heidekartelblad, klein glidkruid, klokjesgentiaan, liggende vleugeltjesbloem, tandjesgras, trekrus, tweenervige zegge, veelbloemige veldbies, welriekende nachtorchis, zaagblad</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6230_hmo<br><strong>BWK:</strong> hmo°    </div>
+<strong>NATURA 2000:</strong> 6230_hmo<br><strong>BWK CODE:</strong> hmo°    </div>
   </div>
 </div>
 
 <div class="step-container" id="step212">  <div class="step-header">
-<span class="step-number">Stap 212</span>    <div class="incoming-steps">Komt van: <a href="#step210" class="incoming-link">210</a></div>
+<span class="step-number">STAP 212</span>    <div class="incoming-steps">Van: <a href="#step210" class="incoming-link">210</a></div>
   </div>
 <div class="question">Zijn er minstens 4 soorten uit de heischrale of uit de ha* groep aanwezig EN bedekken deze samen minstens 10% ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6230_hn<br><strong>BWK:</strong> hn    </div>
+<strong>NATURA 2000:</strong> 6230_hn<br><strong>BWK CODE:</strong> hn    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Nee</div>    <div class="answer-details-group">
 <div class="extra-info">heischrale groep: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgras, dicht havikskruid, echte guldenroede, fijn/genaald schapengras, fraai hertshooi, gaspeldoorn, gelobde maanvaren, gevlekte orchis, gewone vleugeltjesbloem, heidekartelblad, hondsviooltje, kleine tijm, klokjesgentiaan, knollathyrus, kruipganzerik, liggend walstro, liggende vleugeltjesbloem, mannetjesereprijs, spits havikskruid, stekelbrem, stijf havikskruid, stijve ogentroost s.l., tandjesgras, tormentil, trekrus, tweenervige zegge, veelbloemige veldbies, zaagblad, klokjesgentiaan, welriekende nachtorchis.
 ha*-groep: bosdroogbloem, dicht havikskruid, dwergviltkruid, geel walstro, grasklokje, kleine tijm, steenanjer, viltganzerik, zandblauwtje, klein tasjeskruid + soorten van de Festuca guestfalica-groep van zure milieus</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6230_hn<br><strong>BWK:</strong> hn°    </div>
+<strong>NATURA 2000:</strong> 6230_hn<br><strong>BWK CODE:</strong> hn°    </div>
   </div>
 </div>
 
 <div class="step-container" id="step220">  <div class="step-header">
-<span class="step-number">Stap 220</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a>, <a href="#step48" class="incoming-link">48</a></div>
+<span class="step-number">STAP 220</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a>, <a href="#step48" class="incoming-link">48</a></div>
   </div>
 <h2>Vochtig schraalgrasland</h2><div class="question">Is er minstens één soort uit de hme-groep en/of zijn twee basenminnende soorten aanwezig ?</div>  <div class="answer-block">
-<a href="#step223" class="answer-link">Ja (→ Stap 223)</a>  </div>
+<a href="#step223" class="answer-link">Ja (→ 223)</a>  </div>
   <div class="answer-block">
-<a href="#step222" class="answer-link has-details">Nee (→ Stap 222)</a>    <div class="answer-details-group">
+<a href="#step222" class="answer-link has-details">Nee (→ 222)</a>    <div class="answer-details-group">
 <div class="extra-info">hme-groep: blonde zegge, bosorchis, brede orchis, gele zegge, karwijselie, moerasstreepzaad, parnassia, schubzegge, teer guichelheil
 Basenminners: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene, bokkenorchis, borstelkrans, geel zonneroosje, gele morgenster, gevinde kortsteel, gewone agrimonie, goudhaver, grote centaurie, grote muggenorchis, grote pimpernel, gulden sleutelbloem, harlekijn, heelblaadjes, herfsttijloos, hokjespeul, hondskruid, klavervreter, kleine pimpernel, knikkende distel, mannetjesorchis, naakte lathyrus, paddenrus, ruige leeuwentand, ruige weegbree, schubzegge, sikkelklaver, soldaatje, veldsalie, wilde marjolein, zeegroene zegge.</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step222">  <div class="step-header">
-<span class="step-number">Stap 222</span>    <div class="incoming-steps">Komt van: <a href="#step220" class="incoming-link">220</a>, <a href="#step231" class="incoming-link">231</a></div>
+<span class="step-number">STAP 222</span>    <div class="incoming-steps">Van: <a href="#step220" class="incoming-link">220</a>, <a href="#step231" class="incoming-link">231</a></div>
   </div>
   <div class="answer-block">
-<a href="#step223" class="answer-link has-details">Er is minstens één onderlijnde soort uit de hm-groep aanwezig: (→ Stap 223)</a>    <div class="answer-details-group">
+<a href="#step223" class="answer-link has-details">Er is minstens één onderlijnde soort uit de hm-groep aanwezig: (→ 223)</a>    <div class="answer-details-group">
 <div class="extra-info">hm-groep: addertong, blauwe knoop, blauwe zegge, bleke zegge, blonde zegge, bosanemoon, bosorchis, geelgroene zegge, gele zegge, gevlekte orchis s.l., klein glidkruid, kleine schorseneer, klimopklokje, klokjesgentiaan, kleine valeriaan, klimopklokje, kranskarwij, moerasstreepzaad, moerasviooltje, parnassia, pijpenstrootje (excl. zandige bodems), ruw walstro, schubzegge, spaanse ruiter, sterzegge, tandjesgras, teer guichelheil, tormentil, veelbloemige veldbies, veenmelkviooltje, vlozegge, welriekende nachtorchis, zaagblad</div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step211" class="answer-link has-details">Er is minstens één onderlijnde soort uit de hmo-groep aanwezig: (→ Stap 211)</a>    <div class="answer-details-group">
+<a href="#step211" class="answer-link has-details">Er is minstens één onderlijnde soort uit de hmo-groep aanwezig: (→ 211)</a>    <div class="answer-details-group">
 <div class="extra-info">hmo-groep: blauwe knoop, blauwe zegge, bleke zegge, borstelgras, geelgroene zegge, gevlekte orchis, heidekartelblad, klein glidkruid, klokjesgentiaan, liggende vleugeltjesbloem, tandjesgras, trekrus, tweenervige zegge, veelbloemige veldbies, welriekende nachtorchis, zaagblad</div>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Anders:</div>    <div class="answer-details-group">
 <div class="answer-remark">Rompgemeenschap vochtig schraalgrasland; het bepalen van het juiste habitattype (6230 of 6410) vereist kennis van hydrologie, bodem, historiek, landschapscontext, ...</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6230, 6410<br><strong>BWK:</strong> hm°    </div>
+<strong>NATURA 2000:</strong> 6230, 6410<br><strong>BWK CODE:</strong> hm°    </div>
   </div>
 </div>
 
 <div class="step-container" id="step223">  <div class="step-header">
-<span class="step-number">Stap 223</span>    <div class="incoming-steps">Komt van: <a href="#step220" class="incoming-link">220</a>, <a href="#step222" class="incoming-link">222</a>, <a href="#step254" class="incoming-link">254</a></div>
+<span class="step-number">STAP 223</span>    <div class="incoming-steps">Van: <a href="#step220" class="incoming-link">220</a>, <a href="#step222" class="incoming-link">222</a>, <a href="#step254" class="incoming-link">254</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Er zijn 4 soorten uit de hm-groep aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6410_mo<br><strong>BWK:</strong> hm    </div>
+<strong>NATURA 2000:</strong> 6410_mo<br><strong>BWK CODE:</strong> hm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Anders:</div>    <div class="answer-details-group">
 <div class="extra-info">hm-groep: addertong, blauwe knoop, blauwe zegge, bleke zegge, blonde zegge, bosanemoon, bosorchis, geelgroene zegge, gele zegge, gevlekte orchis s.l., klein glidkruid, kleine schorseneer, klimopklokje, klokjesgentiaan, kleine valeriaan, klimopklokje, kranskarwij, moerasstreepzaad, moerasviooltje, parnassia, pijpenstrootje (excl. zandige bodems), ruw walstro, schubzegge, spaanse ruiter, sterzegge, tandjesgras, teer guichelheil, tormentil, veelbloemige veldbies, veenmelkviooltje, vlozegge, welriekende nachtorchis, zaagblad</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6410_mo<br><strong>BWK:</strong> hm°    </div>
+<strong>NATURA 2000:</strong> 6410_mo<br><strong>BWK CODE:</strong> hm°    </div>
   </div>
 </div>
 
 <div class="step-container" id="step230">  <div class="step-header">
-<span class="step-number">Stap 230</span>    <div class="incoming-steps">Komt van: <a href="#step52" class="incoming-link">52</a>, <a href="#step122" class="incoming-link">122</a></div>
+<span class="step-number">STAP 230</span>    <div class="incoming-steps">Van: <a href="#step52" class="incoming-link">52</a>, <a href="#step122" class="incoming-link">122</a></div>
   </div>
 <h2>Veldrusgraslanden</h2><div class="question">Is klein glidkruid aanwezig ?</div>  <div class="answer-block">
-<a href="#step225" class="answer-link">Ja (→ Stap 225)</a>  </div>
+<a href="#step225" class="answer-link">Ja (→ 225)</a>  </div>
   <div class="answer-block">
-<a href="#step231" class="answer-link">Nee (→ Stap 231)</a>  </div>
+<a href="#step231" class="answer-link">Nee (→ 231)</a>  </div>
 </div>
 
 <div class="step-container" id="step231">  <div class="step-header">
-<span class="step-number">Stap 231</span>    <div class="incoming-steps">Komt van: <a href="#step230" class="incoming-link">230</a></div>
+<span class="step-number">STAP 231</span>    <div class="incoming-steps">Van: <a href="#step230" class="incoming-link">230</a></div>
   </div>
   <div class="answer-block">
-<a href="#step222" class="answer-link has-details">Uit de hm-groep zijn OFWEL 3 soorten elk occasioneel aanwezig OFWEL 2 soorten elk frequent aanwezig; beide uitgezonderd moerasviooltje en sterzegge: (→ Stap 222)</a>    <div class="answer-details-group">
+<a href="#step222" class="answer-link has-details">Uit de hm-groep zijn OFWEL 3 soorten elk occasioneel aanwezig OFWEL 2 soorten elk frequent aanwezig; beide uitgezonderd moerasviooltje en sterzegge: (→ 222)</a>    <div class="answer-details-group">
 <div class="extra-info">hm-groep: addertong, blauwe knoop, blauwe zegge, bleke zegge, blonde zegge, bosanemoon, bosorchis, geelgroene zegge, gele zegge, gevlekte orchis s.l., klein glidkruid, kleine schorseneer, klimopklokje, klokjesgentiaan, kleine valeriaan, klimopklokje, kranskarwij, moerasstreepzaad, moerasviooltje, parnassia, pijpenstrootje (excl. zandige bodems), ruw walstro, schubzegge, spaanse ruiter, sterzegge, tandjesgras, teer guichelheil, tormentil, veelbloemige veldbies, veenmelkviooltje, vlozegge, welriekende nachtorchis, zaagblad</div><div class="answer-remark">Moerasviooltje en sterzegge behoren ook tot de moerasgroep</div>    </div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">De bedekking van moerasgroep > overige vegetatie (hoge russen, moerasviooltje en sterzegge niet meegerekend): (→ Index)</a>    <div class="answer-details-group">
-<div class="extra-info">Moerasgroep: bittere veldkers, blaaszegge, draadrus, draadzegge, galigaan, gele lis, gele waterkers, hennegras, hoge cyperzegge, holpijp, liesgras, melkeppe, moerasbasterdwederik, moerasstruisgras, moerasviooltje, moeraswalstro, moeraswederik, oeverzegge, pluimzegge, riet, snavelzegge, sterrenkroossoorten, sterzegge, stijve zegge, veenpluis, wateraardbei, waterdrieblad, watermunt, waternavel, zomp- en zwarte zegge</div><div class="answer-remark">hoge russen: pitrus, biezenknoppen, veldrus, paddenrus en zeegroene rus</div><div class="other-key">Gebruik sleutel: <strong>MOERAS</strong></div>    </div>
+<div class="extra-info">Moerasgroep: bittere veldkers, blaaszegge, draadrus, draadzegge, galigaan, gele lis, gele waterkers, hennegras, hoge cyperzegge, holpijp, liesgras, melkeppe, moerasbasterdwederik, moerasstruisgras, moerasviooltje, moeraswalstro, moeraswederik, oeverzegge, pluimzegge, riet, snavelzegge, sterrenkroossoorten, sterzegge, stijve zegge, veenpluis, wateraardbei, waterdrieblad, watermunt, waternavel, zomp- en zwarte zegge</div><div class="answer-remark">hoge russen: pitrus, biezenknoppen, veldrus, paddenrus en zeegroene rus</div><div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step232" class="answer-link">Anders: (→ Stap 232)</a>  </div>
+<a href="#step232" class="answer-link">Anders: (→ 232)</a>  </div>
 </div>
 
 <div class="step-container" id="step232">  <div class="step-header">
-<span class="step-number">Stap 232</span>    <div class="incoming-steps">Komt van: <a href="#step231" class="incoming-link">231</a></div>
+<span class="step-number">STAP 232</span>    <div class="incoming-steps">Van: <a href="#step231" class="incoming-link">231</a></div>
   </div>
 <div class="question">Zijn uit de rbbms-groep OFWEL 3 soorten elk occasioneel OFWEL 2 elk frequent aanwezig ?</div>  <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>MOERAS</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step233" class="answer-link has-details">Nee (→ Stap 233)</a>    <div class="answer-details-group">
+<a href="#step233" class="answer-link has-details">Nee (→ 233)</a>    <div class="answer-details-group">
 <div class="extra-info">rbbms-groep: zwarte zegge, zompzegge, snavelzegge, sterzegge, draadzegge, moerasviooltje, gewone waternavel, veenmossen, zeegroene muur, wateraardbei, waterdrieblad, melkeppe, draadrus, veenpluis, moerasbasterdwederik, groot nerfpuntmos, holpijp, hennegras</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step233">  <div class="step-header">
-<span class="step-number">Stap 233</span>    <div class="incoming-steps">Komt van: <a href="#step232" class="incoming-link">232</a></div>
+<span class="step-number">STAP 233</span>    <div class="incoming-steps">Van: <a href="#step232" class="incoming-link">232</a></div>
   </div>
 <div class="question">Bedekken de soorten van natte strooiselruigten ≥ 30% ?</div>  <div class="answer-block">
-<a href="#step131" class="answer-link">Ja (→ Stap 131)</a>  </div>
+<a href="#step131" class="answer-link">Ja (→ 131)</a>  </div>
   <div class="answer-block">
-<a href="#step65" class="answer-link has-details">Nee (→ Stap 65)</a>    <div class="answer-details-group">
+<a href="#step65" class="answer-link has-details">Nee (→ 65)</a>    <div class="answer-details-group">
 <div class="extra-info">Natte strooiselruigten: adderwortel, blauw glidkruid, bitterzoet, echte valeriaan, gevleugeld helmkruid, gewone engelwortel, gewone smeerwortel, grote kattenstaart, grote wederik, harig wilgenroosje, heemst, kale jonker, koninginnenkruid, melkeppe, moesdistel, moerasandoorn, moerasspirea, poelruit, reuzenpaardenstaart, wilde bertram en zomerklokje</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step240">  <div class="step-header">
-<span class="step-number">Stap 240</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a>, <a href="#step53" class="incoming-link">53</a></div>
+<span class="step-number">STAP 240</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a>, <a href="#step53" class="incoming-link">53</a></div>
   </div>
 <h2>Zure graslanden</h2><div class="question">Zijn er kensoorten van soortenrijke struisgraslanden (ha*-groep en heischrale groep) aanwezig ?</div>  <div class="answer-block">
-<a href="#step241" class="answer-link">Ja (→ Stap 241)</a>  </div>
+<a href="#step241" class="answer-link">Ja (→ 241)</a>  </div>
   <div class="answer-block">
-<a href="#step247" class="answer-link has-details">Nee (→ Stap 247)</a>    <div class="answer-details-group">
+<a href="#step247" class="answer-link has-details">Nee (→ 247)</a>    <div class="answer-details-group">
 <div class="extra-info">ha*-groep: bosdroogbloem, dicht havikskruid, dwergviltkruid, geel walstro, grasklokje, kleine tijm, steenanjer, viltganzerik, zandblauwtje, klein tasjeskruid + soorten van de Festuca guestfalica-groep van zure milieus
 heischrale groep: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgras, dicht havikskruid, echte guldenroede, fijn/genaald schapengras, fraai hertshooi, gaspeldoorn, gelobde maanvaren, gevlekte orchis, gewone vleugeltjesbloem, heidekartelblad, hondsviooltje, kleine tijm, klokjesgentiaan, knollathyrus, kruipganzerik, liggend walstro, liggende vleugeltjesbloem, mannetjesereprijs, spits havikskruid, stekelbrem, stijf havikskruid, stijve ogentroost s.l., tandjesgras, tormentil, trekrus, tweenervige zegge, veelbloemige veldbies, zaagblad, klokjesgentiaan, welriekende nachtorchis.</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step241">  <div class="step-header">
-<span class="step-number">Stap 241</span>    <div class="incoming-steps">Komt van: <a href="#step240" class="incoming-link">240</a></div>
+<span class="step-number">STAP 241</span>    <div class="incoming-steps">Van: <a href="#step240" class="incoming-link">240</a></div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Het is een grazige vegetatie op kalkarme, profielloze droge zandgrond (vnl. binnenlandse landduinen) met abundant éénjarigen (ongeacht hun bedekking), waarbij de typische soorten vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en/of zandblauwtje tezamen frequent aanwezig zijn: (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>HEIDE</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step242" class="answer-link has-details">Anders: (→ Stap 242)</a>    <div class="answer-details-group">
+<a href="#step242" class="answer-link has-details">Anders: (→ 242)</a>    <div class="answer-details-group">
 <div class="extra-info">Niet-limitatieve opsomming van veel voorkomende éénjarigen: veldereprijs, hazenpootje, Canadese fijnstraal, eenjarige hardbloem, rode schijnspurrie, akkerviooltje, zandmuur, reigersbek, heidespurrie, straatgras, zandraket, vroegeling, kleine leeuwenklauw, zachte ooievaarsbek, klein streepzaad, eekhoorngras, gewoon langbaardgras, zandhoornbloem, slofhak, …</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step242">  <div class="step-header">
-<span class="step-number">Stap 242</span>    <div class="incoming-steps">Komt van: <a href="#step241" class="incoming-link">241</a></div>
+<span class="step-number">STAP 242</span>    <div class="incoming-steps">Van: <a href="#step241" class="incoming-link">241</a></div>
   </div>
 <div class="question">OFWEL komt er minstens 1 kensoort van de ha*-groep frequent voor OFWEL zijn minstens 3 kensoorten van de soortenrijke struisgraslanden (ha* en heischrale groep) elk occasioneel ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6230_ha<br><strong>BWK:</strong> ha*    </div>
+<strong>NATURA 2000:</strong> 6230_ha<br><strong>BWK CODE:</strong> ha*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Nee</div>    <div class="answer-details-group">
 <div class="extra-info">ha*-groep: bosdroogbloem, dicht havikskruid, dwergviltkruid, geel walstro, grasklokje, kleine tijm, steenanjer, viltganzerik, zandblauwtje, klein tasjeskruid
 heischrale groep: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgras, dicht havikskruid, echte guldenroede, fijn/genaald schapengras, fraai hertshooi, gaspeldoorn, gelobde maanvaren, gevlekte orchis, gewone vleugeltjesbloem, heidekartelblad, hondsviooltje, kleine tijm, klokjesgentiaan, knollathyrus, kruipganzerik, liggend walstro, liggende vleugeltjesbloem, mannetjesereprijs, spits havikskruid, stekelbrem, stijf havikskruid, stijve ogentroost s.l., tandjesgras, tormentil, trekrus, tweenervige zegge, veelbloemige veldbies, zaagblad, klokjesgentiaan, welriekende nachtorchis.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbha<br><strong>BWK:</strong> ha    </div>
+<strong>NATURA 2000:</strong> rbbha<br><strong>BWK CODE:</strong> ha    </div>
   </div>
 </div>
 
 <div class="step-container" id="step243">  <div class="step-header">
-<span class="step-number">Stap 243</span>    <div class="incoming-steps">Komt van: <a href="#step51" class="incoming-link">51</a>, <a href="#step101" class="incoming-link">101</a></div>
+<span class="step-number">STAP 243</span>    <div class="incoming-steps">Van: <a href="#step51" class="incoming-link">51</a>, <a href="#step101" class="incoming-link">101</a></div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Aandeel buntgras (en zandzegge) in de vegetatie ≥ 50% : (→ Index)</a>    <div class="answer-details-group">
-<div class="answer-remark">stap 25</div><div class="other-key">Gebruik sleutel: <strong>HEIDE</strong></div>    </div>
+<div class="answer-remark">stap 25</div><div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Bedekking bochtige smele ≥ 50% : (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>HEIDE</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step210" class="answer-link">Bedekking borstelgras ≥ 50% : (→ Stap 210)</a>  </div>
+<a href="#step210" class="answer-link">Bedekking borstelgras ≥ 50% : (→ 210)</a>  </div>
   <div class="answer-block">
-<a href="#step245" class="answer-link">Bedekking pijpenstrootje ≥ 30% : (→ Stap 245)</a>  </div>
+<a href="#step245" class="answer-link">Bedekking pijpenstrootje ≥ 30% : (→ 245)</a>  </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Abundant éénjarigen (ongeacht hun bedekking), waarbij vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en/of zandblauwtje tezamen frequent aanwezig zijn: (→ Index)</a>    <div class="answer-details-group">
-<div class="extra-info">Niet-limitatieve opsomming van veel voorkomende éénjarigen: veldereprijs, hazenpootje, Canadese fijnstraal, eenjarige hardbloem, rode schijnspurrie, akkerviooltje, zandmuur, reigersbek, heidespurrie, straatgras, zandraket, vroegeling, kleine leeuwenklauw, zachte ooievaarsbek, klein streepzaad, eekhoorngras, gewoon langbaardgras, zandhoornbloem, slofhak, …</div><div class="other-key">Gebruik sleutel: <strong>HEIDE</strong></div>    </div>
+<div class="extra-info">Niet-limitatieve opsomming van veel voorkomende éénjarigen: veldereprijs, hazenpootje, Canadese fijnstraal, eenjarige hardbloem, rode schijnspurrie, akkerviooltje, zandmuur, reigersbek, heidespurrie, straatgras, zandraket, vroegeling, kleine leeuwenklauw, zachte ooievaarsbek, klein streepzaad, eekhoorngras, gewoon langbaardgras, zandhoornbloem, slofhak, …</div><div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step245">  <div class="step-header">
-<span class="step-number">Stap 245</span>    <div class="incoming-steps">Komt van: <a href="#step243" class="incoming-link">243</a></div>
+<span class="step-number">STAP 245</span>    <div class="incoming-steps">Van: <a href="#step243" class="incoming-link">243</a></div>
   </div>
 <div class="question">Is pijpenstrootje in de grasmat niet pollenvormend EN er is weinig strooisel met minstens frequent heischrale soorten (tandjesgras, liggende vleugeltjesbloem, heidekartelblad, trekrus, gevlekte orchis, tweenervige zegge, klokjesgentiaan) EN is het aandeel van deze soorten > het aandeel typische soorten van natte heide (dophei, veenpluis, beenbreek, witte en bruine snavelbies) ?</div>  <div class="answer-block">
-<a href="#step210" class="answer-link">Ja (→ Stap 210)</a>  </div>
+<a href="#step210" class="answer-link">Ja (→ 210)</a>  </div>
   <div class="answer-block">
-<a href="#step246" class="answer-link">Nee (→ Stap 246)</a>  </div>
+<a href="#step246" class="answer-link">Nee (→ 246)</a>  </div>
 </div>
 
 <div class="step-container" id="step246">  <div class="step-header">
-<span class="step-number">Stap 246</span>    <div class="incoming-steps">Komt van: <a href="#step245" class="incoming-link">245</a></div>
+<span class="step-number">STAP 246</span>    <div class="incoming-steps">Van: <a href="#step245" class="incoming-link">245</a></div>
   </div>
 <div class="question">Is het aandeel in de vegetatie van pijpenstrootje tezamen met soorten van natte heide (dophei, blauwe zegge, veenpluis, veenbies, beenbreek, bruine en witte snavelbies, veenmos) ≥ 50% ?</div>  <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Ja (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>HEIDE</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>HEIDE</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step247" class="answer-link">Nee (→ Stap 247)</a>  </div>
+<a href="#step247" class="answer-link">Nee (→ 247)</a>  </div>
 </div>
 
 <div class="step-container" id="step247">  <div class="step-header">
-<span class="step-number">Stap 247</span>    <div class="incoming-steps">Komt van: <a href="#step240" class="incoming-link">240</a>, <a href="#step246" class="incoming-link">246</a></div>
+<span class="step-number">STAP 247</span>    <div class="incoming-steps">Van: <a href="#step240" class="incoming-link">240</a>, <a href="#step246" class="incoming-link">246</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Struisgrasland met minstens 2 soorten uit de rbbha-groep en/of heidesoorten elk frequent aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbha<br><strong>BWK:</strong> ha    </div>
+<strong>NATURA 2000:</strong> rbbha<br><strong>BWK CODE:</strong> ha    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Struisgrasland met soorten uit de rbbha-groep en/of de heidesoorten, OFWEL 1 soort frequent OFWEL 2 soortn elk occasioneel aanwezig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK:</strong> ha°    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ha°    </div>
   </div>
   <div class="answer-block">
-<a href="#step104" class="answer-link has-details">Anders: (→ Stap 104)</a>    <div class="answer-details-group">
+<a href="#step104" class="answer-link has-details">Anders: (→ 104)</a>    <div class="answer-details-group">
 <div class="extra-info">rbbha-groep: akkerhoornbloem, eekhoorngras, eenjarige hardbloem, driekleurig viooltje, gestreepte klaver, gewone veldbies, hazenpootje, klein vogelpootje, kleine leeuwentand, knolboterbloem, lathyruswikke, muizenoor, onderaardse klaver, ruwe klaver, schapenzuring, schermhavikskruid, vroege haver, zandhoornbloem, zilverhaver en korstmossen.
 heidesoorten: struikhei, rode/gewone dophei, trekrus, pilzegge, zandzegge, zandstruisgras, stekel- en kruipbrem, blauwe/rode bosbes, bochtige smele en gaspeldoorn</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step250">  <div class="step-header">
-<span class="step-number">Stap 250</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a>, <a href="#step41" class="incoming-link">41</a></div>
+<span class="step-number">STAP 250</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a>, <a href="#step41" class="incoming-link">41</a></div>
   </div>
 <h2>Kalkhoudende graslanden</h2>  <div class="answer-block">
 <div class="answer-link-terminal has-details">- op een van nature kalkrijkere bodem</div>    <div class="answer-details-group">
@@ -1280,166 +1300,166 @@ heidesoorten: struikhei, rode/gewone dophei, trekrus, pilzegge, zandzegge, zands
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Er is aan alle 4 de hoger vermelde voorwaarden voldaan:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6230_hnk<br><strong>BWK:</strong> hn    </div>
+<strong>NATURA 2000:</strong> 6230_hnk<br><strong>BWK CODE:</strong> hn    </div>
   </div>
   <div class="answer-block">
-<a href="#step251" class="answer-link">Anders: (→ Stap 251)</a>  </div>
+<a href="#step251" class="answer-link">Anders: (→ 251)</a>  </div>
 </div>
 
 <div class="step-container" id="step251">  <div class="step-header">
-<span class="step-number">Stap 251</span>    <div class="incoming-steps">Komt van: <a href="#step250" class="incoming-link">250</a></div>
+<span class="step-number">STAP 251</span>    <div class="incoming-steps">Van: <a href="#step250" class="incoming-link">250</a></div>
   </div>
 <div class="question">Zijn er minstens 2 soorten uit de hk-groep elk occasioneel aanwezig (enkel zuidoosten van Limburg en Voerstreek) ?</div>  <div class="answer-block">
-<a href="#step255" class="answer-link">Ja (→ Stap 255)</a>  </div>
+<a href="#step255" class="answer-link">Ja (→ 255)</a>  </div>
   <div class="answer-block">
-<a href="#step252" class="answer-link has-details">Nee (→ Stap 252)</a>    <div class="answer-details-group">
+<a href="#step252" class="answer-link has-details">Nee (→ 252)</a>    <div class="answer-details-group">
 <div class="extra-info">hk-groep: aarddistel, blauwgras, bergdravik, driedistel, duifkruid, geel zonneroosje, gevinde kortsteel, grote centaurie, kleine pimpernel, kalkwalstro, moeslook, ruige scheefkelk, smal fakkelgras, wondklaver</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step252">  <div class="step-header">
-<span class="step-number">Stap 252</span>    <div class="incoming-steps">Komt van: <a href="#step251" class="incoming-link">251</a></div>
+<span class="step-number">STAP 252</span>    <div class="incoming-steps">Van: <a href="#step251" class="incoming-link">251</a></div>
   </div>
   <div class="answer-block">
-<a href="#step258" class="answer-link has-details">Het is een begraasd grasland met kamgras en/of ruige weegbree samen frequent EN aarddistel, beemdkroon, gulden sleutelbloem, ruige leeuwentand en/of voorjaarszegge samen minstens occasioneel aanwezig (zuiden en oosten van Limburg en Voerstreek): (→ Stap 258)</a>    <div class="answer-details-group">
+<a href="#step258" class="answer-link has-details">Het is een begraasd grasland met kamgras en/of ruige weegbree samen frequent EN aarddistel, beemdkroon, gulden sleutelbloem, ruige leeuwentand en/of voorjaarszegge samen minstens occasioneel aanwezig (zuiden en oosten van Limburg en Voerstreek): (→ 258)</a>    <div class="answer-details-group">
 <div class="answer-remark">Het Galio-Trifolietum (6510_huk) is dikwijls beperkt tot taluds, perceel- en steilranden in graasweiden. Voor BWKeenheid => 258</div>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Het is een droog, open, bloemrijk grasland op zandige oeverwallen en dijken langs de Maas, vaak met een ruderaal karakter, met minstens 3 soorten uit de Sedo-Cerastion groep elk occasioneel:</div>    <div class="answer-details-group">
 <div class="extra-info">Sedo-Cerastion groep: cipreswolfsmelk, geel walstro, geoorde zuring, gestreepte klaver, grote tijm, harige ratelaar, hemelsleutel, kaal breukkruid, kleine pimpernel, kleine ratelaar, knikkende distel, knolbeemdgras, knolboterbloem, kruisdistel, lathyruswikke, moeslook, ronde ooievaarsbek, rozetsteenkers, sikkelklaver, slangenlook, smalle raai, tripmadam, veldsalie, viltganzerik, voorjaarszegge, wit vetkruid, zacht vetkruid, zachte haver</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6120<br><strong>BWK:</strong> hu    </div>
+<strong>NATURA 2000:</strong> 6120<br><strong>BWK CODE:</strong> hu    </div>
   </div>
   <div class="answer-block">
-<a href="#step253" class="answer-link">Anders: (→ Stap 253)</a>  </div>
+<a href="#step253" class="answer-link">Anders: (→ 253)</a>  </div>
 </div>
 
 <div class="step-container" id="step253">  <div class="step-header">
-<span class="step-number">Stap 253</span>    <div class="incoming-steps">Komt van: <a href="#step252" class="incoming-link">252</a></div>
+<span class="step-number">STAP 253</span>    <div class="incoming-steps">Van: <a href="#step252" class="incoming-link">252</a></div>
   </div>
 <div class="question">Zijn er uit de hm-groep (OFWEL 3 soorten occasioneel OFWEL 2 soorten frequent aanwezig) EN zijn er obligate freatofyten (zie lijst onder 250) aanwezig ?</div>  <div class="answer-block">
-<a href="#step254" class="answer-link">Ja (→ Stap 254)</a>  </div>
+<a href="#step254" class="answer-link">Ja (→ 254)</a>  </div>
   <div class="answer-block">
-<a href="#step45" class="answer-link has-details">Nee (→ Stap 45)</a>    <div class="answer-details-group">
+<a href="#step45" class="answer-link has-details">Nee (→ 45)</a>    <div class="answer-details-group">
 <div class="extra-info">hm-groep: addertong, blauwe knoop, blauwe zegge, bleke zegge, blonde zegge, bosanemoon, bosorchis, geelgroene zegge, gele zegge, gevlekte orchis s.l., klein glidkruid, kleine schorseneer, klimopklokje, klokjesgentiaan, kleine valeriaan, klimopklokje, kranskarwij, moerasstreepzaad, moerasviooltje, parnassia, pijpenstrootje (excl. zandige bodems), ruw walstro, schubzegge, spaanse ruiter, sterzegge, tandjesgras, teer guichelheil, tormentil, veelbloemige veldbies, veenmelkviooltje, vlozegge, welriekende nachtorchis, zaagblad</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step254">  <div class="step-header">
-<span class="step-number">Stap 254</span>    <div class="incoming-steps">Komt van: <a href="#step253" class="incoming-link">253</a></div>
+<span class="step-number">STAP 254</span>    <div class="incoming-steps">Van: <a href="#step253" class="incoming-link">253</a></div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">De bedekking van de mk-groep > hm-groep : (→ Index)</a>    <div class="answer-details-group">
-<div class="answer-remark">Bij twijfel: indien een goed ontwikkelde moslaag (uitgez. veenmos, klauwtjesmos, gewoon puntmos, groot laddermos en haakmos) aanwezig is, kies dan voor de moerassleutel.</div><div class="other-key">Gebruik sleutel: <strong>MOERAS</strong></div>    </div>
+<div class="answer-remark">Bij twijfel: indien een goed ontwikkelde moslaag (uitgez. veenmos, klauwtjesmos, gewoon puntmos, groot laddermos en haakmos) aanwezig is, kies dan voor de moerassleutel.</div><div class="other-key">Sleutel: <strong>MOERAS</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="#step223" class="answer-link has-details">Anders : (→ Stap 223)</a>    <div class="answer-details-group">
+<a href="#step223" class="answer-link has-details">Anders : (→ 223)</a>    <div class="answer-details-group">
 <div class="extra-info">mk-groep: Alpenrus, blonde zegge, breed wollegras, gele zegge, geveerd diknerfmos, groenknolorchis, grote muggenorchis, knopbies, moeraswespenorchis, moeraszoutgras, parnassia, schubzegge, teer guichelheil, tweehuizige zegge, vleeskleurige orchis</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step255">  <div class="step-header">
-<span class="step-number">Stap 255</span>    <div class="incoming-steps">Komt van: <a href="#step251" class="incoming-link">251</a></div>
+<span class="step-number">STAP 255</span>    <div class="incoming-steps">Van: <a href="#step251" class="incoming-link">251</a></div>
   </div>
 <div class="question">Zijn minstens OFWEL 3 soorten hk-orchideeën aanwezig OFWEL een populatie van één van de hk-orchideeën aanwezig ?</div>  <div class="answer-block">
-<a href="#step256" class="answer-link">Ja (→ Stap 256)</a>  </div>
+<a href="#step256" class="answer-link">Ja (→ 256)</a>  </div>
   <div class="answer-block">
-<a href="#step257" class="answer-link has-details">Nee (→ Stap 257)</a>    <div class="answer-details-group">
+<a href="#step257" class="answer-link has-details">Nee (→ 257)</a>    <div class="answer-details-group">
 <div class="extra-info">hk-orchideeën: poppenorchis, hondskruid, bokkenorchis, bijenorchis, vliegenorchis, mannetjesorchis, soldaatje, purperorchis, welriekende nacht- of bergnachtorchis</div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step256">  <div class="step-header">
-<span class="step-number">Stap 256</span>    <div class="incoming-steps">Komt van: <a href="#step255" class="incoming-link">255</a></div>
+<span class="step-number">STAP 256</span>    <div class="incoming-steps">Van: <a href="#step255" class="incoming-link">255</a></div>
   </div>
 <div class="question">Is de bedekking grassen > 50% ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6210_hk<br><strong>BWK:</strong> hk    </div>
+<strong>NATURA 2000:</strong> 6210_hk<br><strong>BWK CODE:</strong> hk    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Nee</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6210_hk<br><strong>BWK:</strong> hk*    </div>
+<strong>NATURA 2000:</strong> 6210_hk<br><strong>BWK CODE:</strong> hk*    </div>
   </div>
 </div>
 
 <div class="step-container" id="step257">  <div class="step-header">
-<span class="step-number">Stap 257</span>    <div class="incoming-steps">Komt van: <a href="#step255" class="incoming-link">255</a></div>
+<span class="step-number">STAP 257</span>    <div class="incoming-steps">Van: <a href="#step255" class="incoming-link">255</a></div>
   </div>
 <div class="question">Is de bedekking grassen > 50% ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6210_hk<br><strong>BWK:</strong> hk°    </div>
+<strong>NATURA 2000:</strong> 6210_hk<br><strong>BWK CODE:</strong> hk°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Nee</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6210_hk<br><strong>BWK:</strong> hk    </div>
+<strong>NATURA 2000:</strong> 6210_hk<br><strong>BWK CODE:</strong> hk    </div>
   </div>
 </div>
 
 <div class="step-container" id="step258">  <div class="step-header">
-<span class="step-number">Stap 258</span>    <div class="incoming-steps">Komt van: <a href="#step252" class="incoming-link">252</a></div>
+<span class="step-number">STAP 258</span>    <div class="incoming-steps">Van: <a href="#step252" class="incoming-link">252</a></div>
   </div>
 <div class="question">Zijn er minstens 5 soorten uit de Galio-Trifolietum-groep aanwezig ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6510_huk<br><strong>BWK:</strong> hu*    </div>
+<strong>NATURA 2000:</strong> 6510_huk<br><strong>BWK CODE:</strong> hu*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Nee</div>    <div class="answer-details-group">
 <div class="extra-info">Galio-Trifolietum-groep: aardbeiganzerik, aarddistel, beemdkroon, bevertjes, driedistel, duifkruid, geelhartje, gevinde kortsteel, gewone agrimonie, goudhaver, grote tijm, gulden sleutelbloem, kattendoorn, kleine bevernel, kleine pimpernel, knolboterbloem, kruipend stalkruid, ruige leeuwentand, ruige weegbree, voorjaarszegge, wilde marjolein, zachte haver, zeegroene zegge</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6510_huk<br><strong>BWK:</strong> hu    </div>
+<strong>NATURA 2000:</strong> 6510_huk<br><strong>BWK CODE:</strong> hu    </div>
   </div>
 </div>
 
 <div class="step-container" id="step280">  <div class="step-header">
-<span class="step-number">Stap 280</span>    <div class="incoming-steps">Komt van: <a href="#step0" class="incoming-link">0</a>, <a href="#step10" class="incoming-link">10</a></div>
+<span class="step-number">STAP 280</span>    <div class="incoming-steps">Van: <a href="#step0" class="incoming-link">0</a>, <a href="#step10" class="incoming-link">10</a></div>
   </div>
 <h2>Zilte graslanden</h2>  <div class="answer-block">
-<a href="#step281" class="answer-link has-details">Binnendijks gelegen grasland: (→ Stap 281)</a>    <div class="answer-details-group">
+<a href="#step281" class="answer-link has-details">Binnendijks gelegen grasland: (→ 281)</a>    <div class="answer-details-group">
 <div class="answer-remark">Binnendijks = niet rechtstreeks onder invloed van het getij, het betreft dus geen beweid schor.</div>    </div>
   </div>
   <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Anders: (→ Index)</a>    <div class="answer-details-group">
-<div class="other-key">Gebruik sleutel: <strong>MARIENE biotopen</strong></div>    </div>
+<div class="other-key">Sleutel: <strong>MARIENE biotopen</strong></div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step281">  <div class="step-header">
-<span class="step-number">Stap 281</span>    <div class="incoming-steps">Komt van: <a href="#step280" class="incoming-link">280</a></div>
+<span class="step-number">STAP 281</span>    <div class="incoming-steps">Van: <a href="#step280" class="incoming-link">280</a></div>
   </div>
   <div class="answer-block">
-<a href="#step282" class="answer-link">Een open pioniersvegetatie gedomineerd door zeekraal, klein schorrenkruid en/of onbegroeid slik: (→ Stap 282)</a>  </div>
+<a href="#step282" class="answer-link">Een open pioniersvegetatie gedomineerd door zeekraal, klein schorrenkruid en/of onbegroeid slik: (→ 282)</a>  </div>
   <div class="answer-block">
-<a href="#step283" class="answer-link">Anders: (→ Stap 283)</a>  </div>
+<a href="#step283" class="answer-link">Anders: (→ 283)</a>  </div>
 </div>
 
 <div class="step-container" id="step282">  <div class="step-header">
-<span class="step-number">Stap 282</span>    <div class="incoming-steps">Komt van: <a href="#step281" class="incoming-link">281</a></div>
+<span class="step-number">STAP 282</span>    <div class="incoming-steps">Van: <a href="#step281" class="incoming-link">281</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Aandeel van klein schorrenkruid en zeekraalsoorten in de vegetatie ≥ 90% :</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 1310_pol<br><strong>BWK:</strong> da    </div>
+<strong>NATURA 2000:</strong> 1310_pol<br><strong>BWK CODE:</strong> da    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 1310_pol<br><strong>BWK:</strong> da°    </div>
+<strong>NATURA 2000:</strong> 1310_pol<br><strong>BWK CODE:</strong> da°    </div>
   </div>
 </div>
 
 <div class="step-container" id="step283">  <div class="step-header">
-<span class="step-number">Stap 283</span>    <div class="incoming-steps">Komt van: <a href="#step281" class="incoming-link">281</a></div>
+<span class="step-number">STAP 283</span>    <div class="incoming-steps">Van: <a href="#step281" class="incoming-link">281</a></div>
   </div>
 <div class="question">Zijn er minstens 3 zilte soorten aanwezig EN zijn deze samen minstens abundant ?</div>  <div class="answer-block">
 <div class="answer-link-terminal">Ja</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 1330_hpr<br><strong>BWK:</strong> da    </div>
+<strong>NATURA 2000:</strong> 1330_hpr<br><strong>BWK CODE:</strong> da    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Nee</div>    <div class="answer-details-group">
 <div class="extra-info">Zilte soorten: blauw, stomp, gewoon en bleek kweldergras, beursjesganzenvoet, dunstaart, gerande en zilte schijnspurrie, klein schorrenkruid, kortarige en langarige zeekraal, melkkruid, moeraszoutgras, schorrenzoutgras, zilte rus, zilte zegge en zulte.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 1330_hpr<br><strong>BWK:</strong> da°    </div>
+<strong>NATURA 2000:</strong> 1330_hpr<br><strong>BWK CODE:</strong> da°    </div>
   </div>
 </div>
 
-<div class="back-to-index"><a href="../index.html">Terug naar Index</a></div>
+<div style="text-align:center; margin-top: 40px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
 </body>
 </html>

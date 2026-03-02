@@ -2,28 +2,28 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WATER Sleutel</title><style>
 
   body {
     font-family: -apple-system, system-ui, sans-serif;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 15px;
-    color: #334155;
+    line-height: 1.4;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 15px 15px 60px 15px;
+    color: #000000;
     background: #f1f5f9;
-    font-size: 18px; /* Increased base size */
+    font-size: 19px; /* Reduced by 30% from 27px */
   }
 
-  h1 { font-size: 1.8rem; color: #1e293b; border-bottom: 3px solid #27ae60; padding-bottom: 10px; text-align: center; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.3rem; }
+  h1 { font-size: 1.8rem; color: #1e293b; border-bottom: 4px solid #27ae60; padding-bottom: 8px; margin-top: 20px; }
+  h2 { font-size: 1.4rem; margin-top: 1.2rem; color: #0f172a; }
 
   /* Index Grid */
   .index-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
     margin-top: 30px;
   }
 
@@ -31,121 +31,141 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px; /* Larger touch target */
-    background: white;
-    border: 2px solid #e2e8f0;
+    height: 90px;
+    background: #ffffff;
+    border: 3px solid #1e293b;
     border-radius: 15px;
-    font-size: 1.4rem; /* Big text for index */
+    font-size: 1.3rem;
     text-decoration: none;
     color: #1e293b;
     font-weight: 800;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 0 #1e293b;
+    transition: all 0.1s ease;
   }
 
-  /* Containers */
+  .index-btn:hover, .answer-link:hover {
+    background: #dbeafe;
+    border-color: #2563eb;
+    color: #1e3a8a;
+  }
+
+  .index-btn:active, .answer-link:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1e293b;
+  }
+
+  /* Step Cards */
   .step-container {
-    background: white;
+    background: #ffffff;
     padding: 20px;
     margin-bottom: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    border-left: 8px solid #27ae60;
+    border-radius: 15px;
+    border: 2px solid #e2e8f0;
+    border-left: 12px solid #27ae60;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 
   .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-  .step-number { background: #27ae60; color: white; padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
-  .incoming-link { background: #e2e8f0; color: #2563eb; text-decoration: none; padding: 4px 10px; border-radius: 6px; font-size: 0.9rem; margin-left: 5px; }
+  .step-number { background: #27ae60; color: white; padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; }
+  .incoming-link { background: #334155; color: white; text-decoration: none; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; }
 
-  /* Answers & Navigation */
+  /* Question & Background */
+  .question { font-size: 1.3rem; font-weight: 800; margin: 15px 0; color: #000; line-height: 1.2; }
+  .background-box { background: #f0fdf4; border: 2px solid #27ae60; padding: 15px; border-radius: 10px; font-size: 0.9rem; color: #064e3b; margin-bottom: 15px; }
+
+  /* Answers */
   .answer-block { margin-bottom: 25px; }
 
   .answer-link, .answer-link-terminal {
     display: block;
-    background: #fff;
-    border: 2px solid #cbd5e1;
-    padding: 18px 20px; /* Larger padding for fingers */
+    background: #ffffff;
+    border: 3px solid #334155;
+    padding: 15px 20px;
     text-decoration: none;
-    color: #2563eb;
+    color: #1e293b;
     border-radius: 12px;
-    font-weight: 600;
-    font-size: 1.1rem; /* Clear answer text */
-    transition: 0.2s;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 0 #334155;
+    transition: all 0.1s ease;
   }
 
-  .answer-link-terminal { color: #1e293b; background: #f0fdf4; border-color: #27ae60; cursor: default; }
-  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 1px dashed #cbd5e1; }
+  .answer-link-terminal { background: #f0fdf4; border-color: #059669; box-shadow: none; cursor: default; }
+
+  /* Info Grouping */
+  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 3px dashed #334155; }
 
   .answer-details-group {
-    background: #ffffff;
-    border: 2px solid #cbd5e1;
+    background: #f8fafc;
+    border: 3px solid #334155;
     border-top: none;
     border-radius: 0 0 12px 12px;
     padding: 15px;
+    margin-top: -3px;
   }
 
   .extra-info {
-    background: #f0f9ff;
-    border-left: 5px solid #0ea5e9;
+    background: #fff;
+    border-left: 8px solid #2563eb;
     padding: 12px;
     margin-bottom: 10px;
-    font-size: 1rem;
-    color: #0369a1;
+    font-size: 0.9rem;
+    color: #1e3a8a;
+    font-weight: 600;
   }
 
   .result-box {
-    background: #27ae60;
-    color: white;
+    background: #064e3b;
+    color: #ffffff;
     padding: 15px;
     border-radius: 10px;
-    font-size: 1.05rem;
-    margin-top: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 1.1rem;
+    margin-top: 15px;
+    border: 2px solid #000;
   }
-  .result-box strong { color: #dcfce7; font-size: 0.85rem; text-transform: uppercase; }
+  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 0.75rem; display: block; margin-bottom: 4px; }
 
-  .answer-remark { font-style: italic; font-size: 0.95rem; color: #64748b; padding-top: 5px; }
-  .other-key { background: #fffbeb; border: 1px solid #fef3c7; color: #92400e; padding: 10px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px; }
+  .answer-remark { font-style: italic; font-size: 0.85rem; color: #475569; padding-top: 10px; border-top: 1px solid #e2e8f0; }
+  .other-key { background: #fffbeb; border: 2px solid #b45309; color: #78350f; padding: 10px; border-radius: 8px; font-size: 0.85rem; margin-top: 10px; }
 
-  .question { font-size: 1.4rem; font-weight: bold; margin: 20px 0; color: #0f172a; line-height: 1.3; }
-  .background-box { background: #f0fdf4; border: 1px solid #dcfce7; padding: 15px; border-radius: 8px; font-size: 1rem; margin-bottom: 15px; }
-  .back-to-index { display: inline-block; padding: 12px 24px; background: #e2e8f0; text-decoration: none; border-radius: 10px; color: #475569; font-weight: bold; font-size: 1rem; }
+  .back-to-index { display: inline-block; padding: 12px 24px; background: #1e293b; text-decoration: none; border-radius: 10px; color: #ffffff; font-weight: 900; font-size: 1rem; border-bottom: 5px solid #000; }
   
   </style>
 </head>
-<body><h1>Sleutel: WATER</h1><a href="../index.html" class="back-to-index">← Terug naar Index</a><hr>
+<body><h1>Sleutel: WATER</h1><div style="margin-bottom:20px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>
 <div class="step-container" id="step0">  <div class="step-header">
-<span class="step-number">Stap 0</span>  </div>
-<h2>Title 1</h2><h3>Title 2</h3><div class="background-box"><strong>Achtergrond:</strong><br>Background Information</div><div class="question">Question</div>  <div class="answer-block">
+<span class="step-number">STAP 0</span>  </div>
+<h2>Title 1</h2><h3>Title 2</h3><div class="background-box"><strong>INFO:</strong><br>Background Information</div><div class="question">Question</div>  <div class="answer-block">
 <a href="../index.html" class="answer-link has-details">Answer (→ Index)</a>    <div class="answer-details-group">
-<div class="extra-info">Information, vb. waterplanten: kikkerbeet, fonteinkruid (G), geleplomp, kroos (G), ...</div><div class="other-key">Gebruik sleutel: <strong>WATEREN</strong></div>    </div>
+<div class="extra-info">Information, vb. waterplanten: kikkerbeet, fonteinkruid (G), geleplomp, kroos (G), ...</div><div class="other-key">Sleutel: <strong>WATEREN</strong></div>    </div>
   </div>
 </div>
 
 <div class="step-container" id="step1">  <div class="step-header">
-<span class="step-number">Stap 1</span>  </div>
+<span class="step-number">STAP 1</span>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Mariene en estuariene habitats:</div>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Stromende wateren (waarneembare stroming), kanalen en dokken, al dan niet onder invloed van getijdengebied (W):</div>  </div>
   <div class="answer-block">
-<a href="#step2" class="answer-link">Stilstaande wateren (A): (→ Stap 2)</a>  </div>
+<a href="#step2" class="answer-link">Stilstaande wateren (A): (→ 2)</a>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal"></div>  </div>
 </div>
 
 <div class="step-container" id="step2">  <div class="step-header">
-<span class="step-number">Stap 2</span>    <div class="incoming-steps">Komt van: <a href="#step1" class="incoming-link">1</a></div>
+<span class="step-number">STAP 2</span>    <div class="incoming-steps">Van: <a href="#step1" class="incoming-link">1</a></div>
   </div>
 <h2>Stilstaande wateren</h2>  <div class="answer-block">
 <div class="answer-link-terminal">Brakke tot zoete stilstaande wateren, gelegen in de ecoregio polders met minstens één van volgende zouttolerante soorten: zilte waterranonkel, Ruppia spp., gesteelde zannichellia, zulte, kweldergrassen, melkkruid, zilt torkruid, zilte schijnspurrie, gerande schijnspurrie, zilte rus, zeerus, zeekraalsoorten of schorrenzoutgras.</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbah<br>    </div>
+<strong>NATURA 2000:</strong> rbbah<br>    </div>
   </div>
   <div class="answer-block">
-<a href="#step3" class="answer-link">Bovenstaande soorten afwezig OF niet gelegen in de ecoregio polders: (→ Stap 3)</a>  </div>
+<a href="#step3" class="answer-link">Bovenstaande soorten afwezig OF niet gelegen in de ecoregio polders: (→ 3)</a>  </div>
 </div>
 
 <div class="step-container" id="step3">  <div class="step-header">
-<span class="step-number">Stap 3</span>    <div class="incoming-steps">Komt van: <a href="#step2" class="incoming-link">2</a></div>
+<span class="step-number">STAP 3</span>    <div class="incoming-steps">Van: <a href="#step2" class="incoming-link">2</a></div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal"></div>  </div>
@@ -153,6 +173,6 @@
 <div class="answer-link-terminal"></div>  </div>
 </div>
 
-<div class="back-to-index"><a href="../index.html">Terug naar Index</a></div>
+<div style="text-align:center; margin-top: 40px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
 </body>
 </html>
