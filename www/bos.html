@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BOS</title><style>
+<title>BOS Sleutel</title><style>
 
   body {
     font-family: -apple-system, system-ui, sans-serif;
     line-height: 1.4;
     max-width: 900px;
-    margin: 10px auto;
-    padding: 15px;
-    color: #000000; /* Pure black text for contrast */
-    background: #ffffff; /* Pure white background */
-    font-size: 27px; /* 1.5x Bigger base size */
+    margin: 0 auto;
+    padding: 20px 15px 80px 15px;
+    color: #000000;
+    background: #f1f5f9; /* Subtle blue-gray background */
+    font-size: 27px;
   }
 
-  h1 { font-size: 2.2rem; color: #1a365d; border-bottom: 5px solid #27ae60; padding-bottom: 10px; }
-  h2 { font-size: 1.8rem; margin-top: 1.5rem; color: #1a202c; }
-  h3 { font-size: 1.5rem; color: #2d3748; }
+  h1 { font-size: 2.2rem; color: #1e293b; border-bottom: 6px solid #27ae60; padding-bottom: 10px; margin-top: 30px; }
+  h2 { font-size: 1.8rem; margin-top: 1.5rem; color: #0f172a; }
 
   /* Index Grid */
   .index-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 25px;
     margin-top: 40px;
   }
@@ -32,96 +31,118 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 120px;
-    background: #f8fafc;
-    border: 4px solid #1a365d; /* High contrast border */
+    height: 130px;
+    background: #ffffff;
+    border: 4px solid #1e293b;
     border-radius: 20px;
     font-size: 1.8rem;
     text-decoration: none;
-    color: #1a365d;
+    color: #1e293b;
     font-weight: 900;
-    box-shadow: 0 6px 0 #1a365d;
+    box-shadow: 0 8px 0 #1e293b;
+    transition: all 0.1s ease;
   }
-  .index-btn:active { transform: translateY(4px); box-shadow: none; }
 
-  /* Containers */
+  /* Hover & Active States */
+  .index-btn:hover, .answer-link:hover {
+    background: #dbeafe; /* Soft light blue on hover */
+    border-color: #2563eb;
+    color: #1e3a8a;
+    cursor: pointer;
+  }
+  .index-btn:active, .answer-link:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #1e293b;
+  }
+
+  /* Step Cards */
   .step-container {
     background: #ffffff;
-    padding: 25px;
+    padding: 30px;
     margin-bottom: 40px;
-    border-radius: 15px;
-    border: 3px solid #e2e8f0;
-    border-left: 15px solid #27ae60; /* Thicker accent for visibility */
+    border-radius: 20px;
+    border: 4px solid #e2e8f0;
+    border-left: 18px solid #27ae60;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 
-  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .step-number { background: #27ae60; color: white; padding: 8px 15px; border-radius: 10px; font-weight: bold; font-size: 1.2rem; }
-  .incoming-link { background: #2d3748; color: white; text-decoration: none; padding: 6px 14px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; }
+  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+  .step-number { background: #27ae60; color: white; padding: 10px 20px; border-radius: 12px; font-weight: bold; font-size: 1.3rem; }
+  .incoming-link { background: #334155; color: white; text-decoration: none; padding: 8px 16px; border-radius: 10px; font-size: 1.1rem; font-weight: bold; border-bottom: 4px solid #000; }
 
   /* Question & Background */
-  .question { font-size: 1.8rem; font-weight: 800; margin: 25px 0; color: #000; line-height: 1.2; }
-  .background-box { background: #f0fdf4; border: 3px solid #27ae60; padding: 20px; border-radius: 10px; font-size: 1.2rem; color: #064e3b; margin-bottom: 20px; }
+  .question { font-size: 1.8rem; font-weight: 800; margin: 30px 0; color: #000; line-height: 1.2; }
+  .background-box { background: #f0fdf4; border: 4px solid #27ae60; padding: 20px; border-radius: 12px; font-size: 1.2rem; color: #064e3b; margin-bottom: 25px; }
 
   /* Answers */
-  .answer-block { margin-bottom: 35px; }
+  .answer-block { margin-bottom: 40px; }
 
   .answer-link, .answer-link-terminal {
     display: block;
     background: #ffffff;
-    border: 4px solid #2d3748;
-    padding: 22px 25px;
+    border: 4px solid #334155;
+    padding: 25px;
     text-decoration: none;
-    color: #1a365d;
-    border-radius: 15px;
+    color: #1e293b;
+    border-radius: 18px;
     font-weight: 700;
-    font-size: 1.4rem;
-    box-shadow: 0 6px 0 #2d3748;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 0 #334155;
+    transition: all 0.1s ease;
   }
 
-  .answer-link:active { transform: translateY(4px); box-shadow: none; }
-  .answer-link-terminal { color: #000; background: #ecfdf5; border-color: #059669; box-shadow: none; cursor: default; }
+  .answer-link-terminal {
+    color: #000;
+    background: #f0fdf4;
+    border-color: #059669;
+    box-shadow: none;
+    cursor: default;
+    border-style: solid;
+  }
 
-  /* Details Grouping */
-  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 4px dashed #2d3748; }
+  /* Connector for Info Grouping */
+  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 4px dashed #334155; }
 
   .answer-details-group {
     background: #f8fafc;
-    border: 4px solid #2d3748;
+    border: 4px solid #334155;
     border-top: none;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 18px 18px;
     padding: 20px;
+    margin-top: -4px;
   }
 
   .extra-info {
     background: #fff;
-    border-left: 10px solid #2563eb;
-    padding: 15px;
+    border-left: 12px solid #2563eb;
+    padding: 18px;
     margin-bottom: 15px;
     font-size: 1.2rem;
     color: #1e3a8a;
-    font-weight: 500;
+    font-weight: 600;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
   }
 
-  /* Result Box - High Impact */
   .result-box {
     background: #064e3b;
     color: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    font-size: 1.3rem;
-    margin-top: 15px;
-    border: 2px solid #000;
+    padding: 25px;
+    border-radius: 15px;
+    font-size: 1.4rem;
+    margin-top: 20px;
+    border: 3px solid #000;
   }
-  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 1rem; display: block; margin-bottom: 5px; }
+  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 1rem; display: block; margin-bottom: 8px; letter-spacing: 1px; }
 
-  .answer-remark { font-style: italic; font-size: 1.1rem; color: #475569; padding-top: 10px; border-top: 2px solid #e2e8f0; }
-  .other-key { background: #fffbeb; border: 3px solid #b45309; color: #78350f; padding: 15px; border-radius: 10px; font-size: 1.1rem; margin-top: 15px; font-weight: bold;}
+  .answer-remark { font-style: italic; font-size: 1.1rem; color: #475569; padding-top: 15px; border-top: 2px solid #e2e8f0; }
+  .other-key { background: #fffbeb; border: 4px solid #b45309; color: #78350f; padding: 15px; border-radius: 12px; font-size: 1.1rem; margin-top: 15px; font-weight: bold;}
 
-  .back-to-index { display: inline-block; padding: 15px 30px; background: #2d3748; text-decoration: none; border-radius: 12px; color: #ffffff; font-weight: 900; font-size: 1.2rem; }
+  .back-to-index { display: inline-block; padding: 20px 40px; background: #1e293b; text-decoration: none; border-radius: 15px; color: #ffffff; font-weight: 900; font-size: 1.4rem; border-bottom: 8px solid #000; }
+  .back-to-index:active { transform: translateY(4px); border-bottom-width: 4px; }
   
   </style>
 </head>
-<body><h1>Sleutel: BOS</h1><a href="../index.html" class="back-to-index">← NAAR INDEX</a><hr>
+<body><h1>Sleutel: BOS</h1><div style="margin-bottom:30px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>
 <div class="step-container" id="step1">  <div class="step-header">
 <span class="step-number">STAP 1</span>  </div>
 <h2>BOOM & STRUWEELSOORTEN</h2><div class="background-box"><strong>INFO:</strong><br>De vegetatie voldoet aan de wettelijke definitie van een bos (conform bosdecreet). Ook bospercelen in woon- en kasteelparken, arboreta in bosverband, … voldoen aan de wettelijke definitie van een bos, en moeten dus via de bossleutel toegewezen worden. Sierbeplanting, korte omloophoutteelt, fruitboomgaard, kerstbomenkweek, boom- en plantenkwekerij en arboreta buiten het bos behoren niet tot de bosbiotopen, zie hoofdsleutel.
@@ -159,7 +180,7 @@ Voor kapvlaktes en verjonging geldt de regel voor minimale bedekking van 50% ‘
 Ook hoge (+1m) struwelen van bramen (agg. , inclusief framboos) worden hiertoe gerekend.</div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">De vegetatie bestaat uit opgaande bomen, maar voldoet niet aan de definitie van een bos: (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">De vegetatie bestaat uit opgaande bomen, maar voldoet niet aan de definitie van een bos: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="extra-info">kerstboomaanplanten, boomkwekerijen, laagstamboomgaarden, (zaad)boomgaarden, sierbeplanting, korte omloophoutteelt...</div><div class="answer-remark">geen bos, controle hoofdsleutel voor bepalen van de juiste biotoopgroep</div><div class="other-key">Sleutel: <strong>HOOFDSLEUTEL</strong></div>    </div>
   </div>
 </div>
@@ -189,7 +210,7 @@ Ook hoge (+1m) struwelen van bramen (agg. , inclusief framboos) worden hiertoe g
   <div class="answer-block">
 <a href="#step500" class="answer-link">Boszoom: ruigere gras- en kruidenvegetatie gelegen in een gradiënt van een bos naar een open terrein: (→ 500)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders: (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="extra-info">Ga naar de hoofdsleutel om uit te maken of de vegetatie onder een andere sleutel thuishoort (moeras, heide…). Zie echter stap 2c en voetnoot 2.</div><div class="other-key">Sleutel: <strong>HOOFDSLEUTEL</strong></div>    </div>
   </div>
 </div>
@@ -228,7 +249,7 @@ Ook hoge (+1m) struwelen van bramen (agg. , inclusief framboos) worden hiertoe g
   <div class="answer-block">
 <a href="#step10" class="answer-link">Droge tot matig vochtige (niet vallei) bossen op zand, (zand)leem, klei en mergelbodems van vlakte of plateau. Bossen op standplaatsen van het Quercion, Fagion en Carpinion. Er is een kruidlaag aanwezig maar de hierboven genoemde vochtindicatoren zijn niet of slechts occasioneel aanwezig: (→ 10)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Duinbossen: droge tot matig vochtige bossen in (de ecoregio van) de kustduinen: (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Duinbossen: droge tot matig vochtige bossen in (de ecoregio van) de kustduinen: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>KUSTDUINEN</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -265,7 +286,7 @@ Bramen kunnen in alle bostypes aspectbepalend zijn.</div>  <div class="answer-bl
 <div class="answer-link-terminal has-details">Oud-boslocatie niet in de Voerstreek gelegen + kruidlaag vertoont meeste overeenkomst met die van een eiken-berkenbos</div>    <div class="answer-details-group">
 <div class="extra-info">Eiken-berkenbos: pijpenstrootje, bochtige smele, struikhei, valse salie, blauwe bosbes, pilzegge, hengel, zandzegge, valse zandzegge, echte guldenroede, stijf havikskruid, boshavikskrui, schermhavikskruid. Ook rijkere soorten zoals adelaarsvaren, wilde kamperfoelie, dalkruid en valse salie kunnen occasioneel voorkomen, net als koningsvaren en veenmossen in de vochtige variant)</div><div class="answer-remark">BWK: qb, tenzij aandeel kenmerkende soorten Eiken-berkenbos in de kruidlaag < 30%, dan: qb°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9190<br><strong>BWK CODE:</strong> qb of qb°    </div>
+<strong>NATURA 2000:</strong> 9190<br><strong>BWK CODE:</strong> qb of qb°    </div>
   </div>
   <div class="answer-block">
 <a href="#step14" class="answer-link has-details">Oud-boslocatie niet in de Voerstreek gelegen + kruidlaag vertoont meeste overeenkomst met die van een wintereiken-beukenbos, zomereiken-beukenbos of gierstgras-beukenbos + niet in de Voerstreek gelegen (→ 14)</a>    <div class="answer-details-group">
@@ -303,13 +324,13 @@ Bramen kunnen in alle bostypes aspectbepalend zijn.</div>  <div class="answer-bl
 <div class="answer-link-terminal has-details">Het gaat om een oud bosbestand, waar bomen van minstens 100 jaar oud sporadisch voorkomen (enkele oude beuken, zomer- en/of wintereiken per hectare volstaan)</div>    <div class="answer-details-group">
 <div class="extra-info">Om in te schatten hoe oud de ‘oude’ bomen zijn kan men zich baseren op beheerplannen, oude kaarten en gegevens, of de dimensie van de bomen. Richtinggevend: op arme zandgronden kunnen eiken (en beuken) met DBH 40 cm al 100 jaar oud zijn; let ook op voor oude hakhoutstoven, die veel ouder zijn dan ze lijken. Dikke bomen in een dreef of op de perceelrand zijn meestal restanten van oude bomenrijen of houtkanten en zijn niet van tel bij het bepalen van de bestandsleeftijd.</div><div class="answer-remark">BWK: qb, tenzij aandeel kenmerkende soorten in de kruidlaag < 30%, dan: qb°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9190<br><strong>BWK CODE:</strong> qb of qb°    </div>
+<strong>NATURA 2000:</strong> 9190<br><strong>BWK CODE:</strong> qb of qb°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">De bomen zijn jonger, maar bomen met een DBH > 16 cm komen minstens frequent voor: geen habitatwaardig eiken- berkenbos</div>    <div class="answer-details-group">
 <div class="extra-info">Eiken-berkenbos: pijpenstrootje, bochtige smele, struikhei, valse salie, blauwe bosbes, pilzegge, hengel, zandzegge, valse zandzegge, echte guldenroede, stijf havikskruid, boshavikskrui, schermhavikskruid. Ook rijkere soorten zoals adelaarsvaren, wilde kamperfoelie, dalkruid en valse salie kunnen occasioneel voorkomen, net als koningsvaren en veenmossen in de vochtige variant)</div><div class="answer-remark">BWK: qb, tenzij aandeel kenmerkende soorten in de kruidlaag < 30%, dan: qb°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> qb of qb°    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> qb of qb°    </div>
   </div>
   <div class="answer-block">
 <a href="#step60" class="answer-link">Anders: (→ 60)</a>  </div>
@@ -395,19 +416,19 @@ Typische begeleiders in de kruidlaag zijn jonge, snel koloniserende bosplanten z
 + Minstens 1 van de kenmerkende kruidsoorten komt minimaal frequent voor.</div>    <div class="answer-details-group">
 <div class="extra-info">Kenmerkende kruidsoorten: vingerhelmbloem, gevlekte dovenetel, gewone vogelmelk, maarts viooltje, hondstarwegras, slangenlook, kraailook.</div><div class="answer-remark">Hardhout-ooibos langs de grote rivieren (Ulmenion minoris)</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 91F0<br><strong>BWK CODE:</strong> qa    </div>
+<strong>NATURA 2000:</strong> 91F0<br><strong>BWK CODE:</strong> qa    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Elders, op basenrijke bodem, met minstens 2 van de kenmerkende kruidsoorten minimaal frequent aanwezig</div>    <div class="answer-details-group">
 <div class="answer-remark">Ruderaal olmenbos (Violo-odoratae-Ulmetum)</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> ru    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> ru    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Elders, op basenrijke bodem, met 1 van de kenmerkende kruidsoorten minimaal frequent aanwezig</div>    <div class="answer-details-group">
 <div class="answer-remark">Ruderaal olmenbos (Violo-odoratae-Ulmetum)</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> ru°    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> ru°    </div>
   </div>
   <div class="answer-block">
 <a href="#step60" class="answer-link">Anders (→ 60)</a>  </div>
@@ -418,22 +439,22 @@ Typische begeleiders in de kruidlaag zijn jonge, snel koloniserende bosplanten z
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag gedomineerd door beuk EN aandeel sleutelsoorten van 9120 en 9190 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9120<br><strong>BWK CODE:</strong> fs    </div>
+<strong>NATURA 2000:</strong> 9120<br><strong>BWK CODE:</strong> fs    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag gedomineerd door beuk EN aandeel sleutelsoorten van 9120 en 9190 in de kruidlaag < 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9120<br><strong>BWK CODE:</strong> fs°    </div>
+<strong>NATURA 2000:</strong> 9120<br><strong>BWK CODE:</strong> fs°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag niet gedomineerd door beuk EN aandeel sleutelsoorten van 9120 en 9190 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9120<br><strong>BWK CODE:</strong> qs    </div>
+<strong>NATURA 2000:</strong> 9120<br><strong>BWK CODE:</strong> qs    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Boomlaag niet gedomineerd door beuk EN aandeel sleutelsoorten van 9120 en 9190 in de kruidlaag < 30%:</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten 9120: Adelaarsvaren, Bosanemoon, Bosgierstgras, Dalkruid, Dubbelloof, Gewone salomonszegel, Grote veldbies, Lelietje-van-dalen, Pilzegge, Ruige veldbies, Valse salie, Wilde kamperfoelie en Witte klaverzuring.
 Sleutelsoorten 9190: bochtige smele, blauwe bosbes, echte guldenroede, hengel, pijpenstrootje, struikhei, stijf havikskruid, boshavikskruid en schermhavikskruid.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9120<br><strong>BWK CODE:</strong> qs°    </div>
+<strong>NATURA 2000:</strong> 9120<br><strong>BWK CODE:</strong> qs°    </div>
   </div>
 </div>
 
@@ -442,21 +463,21 @@ Sleutelsoorten 9190: bochtige smele, blauwe bosbes, echte guldenroede, hengel, p
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag gedomineerd door beuk EN aandeel sleutelsoorten 9110 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9110<br><strong>BWK CODE:</strong> fl    </div>
+<strong>NATURA 2000:</strong> 9110<br><strong>BWK CODE:</strong> fl    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag gedomineerd door beuk EN aandeel sleutelsoorten 9110 in de kruidlaag < 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9110<br><strong>BWK CODE:</strong> fl°    </div>
+<strong>NATURA 2000:</strong> 9110<br><strong>BWK CODE:</strong> fl°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag niet gedomineerd door beuk EN aandeel sleutelsoorten 9110 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9110<br><strong>BWK CODE:</strong> ql    </div>
+<strong>NATURA 2000:</strong> 9110<br><strong>BWK CODE:</strong> ql    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Boomlaag niet gedomineerd door beuk EN aandeel sleutelsoorten 9110 in de kruidlaag < 30%:</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten 9110: adelaarsvaren, blauwe bosbes, bochtige smele, dalkruid, hengel, pilzegge, lelietje-van-dalen, grote veldbies, gewone salomonszegel, kranssalomonszegel, schaduwkruiskruid, valse salie en witte veldbies.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9110<br><strong>BWK CODE:</strong> ql°    </div>
+<strong>NATURA 2000:</strong> 9110<br><strong>BWK CODE:</strong> ql°    </div>
   </div>
 </div>
 
@@ -465,14 +486,14 @@ Sleutelsoorten 9190: bochtige smele, blauwe bosbes, echte guldenroede, hengel, p
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Aandeel sleutelsoorten van 9120 en 9190 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9120<br><strong>BWK CODE:</strong> fa    </div>
+<strong>NATURA 2000:</strong> 9120<br><strong>BWK CODE:</strong> fa    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Aandeel sleutelsoorten van 9120 en 9190 in de kruidlaag < 30%:</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten 9120: Adelaarsvaren, Bosanemoon, Bosgierstgras, Dalkruid, Dubbelloof, Gewone salomonszegel, Grote veldbies, Lelietje-van-dalen, Pilzegge, Ruige veldbies, Valse salie, Wilde kamperfoelie en Witte klaverzuring.
 Sleutelsoorten 9190: bochtige smele, blauwe bosbes, echte guldenroede, hengel, pijpenstrootje, struikhei, stijf havikskruid, boshavikskruid en schermhavikskruid.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9120<br><strong>BWK CODE:</strong> fa°    </div>
+<strong>NATURA 2000:</strong> 9120<br><strong>BWK CODE:</strong> fa°    </div>
   </div>
 </div>
 
@@ -481,21 +502,21 @@ Sleutelsoorten 9190: bochtige smele, blauwe bosbes, echte guldenroede, hengel, p
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag gedomineerd door beuk EN aandeel sleutelsoorten 9130 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> fe    </div>
+<strong>NATURA 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> fe    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag gedomineerd door beuk EN aandeel sleutelsoorten 9130 in de kruidlaag < 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> fe°    </div>
+<strong>NATURA 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> fe°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag niet gedomineerd door beuk EN aandeel sleutelsoorten 9130 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> qe    </div>
+<strong>NATURA 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> qe    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Boomlaag niet gedomineerd door beuk EN aandeel sleutelsoorten 9130 in de kruidlaag < 30%:</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten 9130: Aardbeiganzerik, Bosanemoon, Bosbingelkruid, Bosgierstgras, Daslook, Gevlekte aronskelk, Grote muur, Boszegge, Mannetjesvaren, Amandelwolfsmelk, Schedegeelster, Lievevrouwebedstro, Gele dovenetel, Eenbloemig parelgras, Eenbes, Gewone salomonszegel, Muskuskruid, Ruig klokje, Slanke sleutelbloem, Smalle stekelvaren, Heelkruid, Spekwortel, Kleine maagdenpalm, Vogelnestje, Wilde hyacint, Witte klaverzuring, Wilde narcis, Donkersporig en Bleeksporig bosviooltje.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> qe°    </div>
+<strong>NATURA 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> qe°    </div>
   </div>
 </div>
 
@@ -504,13 +525,13 @@ Sleutelsoorten 9190: bochtige smele, blauwe bosbes, echte guldenroede, hengel, p
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Aandeel sleutelsoorten 9160 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9160<br><strong>BWK CODE:</strong> qa    </div>
+<strong>NATURA 2000:</strong> 9160<br><strong>BWK CODE:</strong> qa    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Aandeel sleutelsoorten 9160 in de kruidlaag < 30%:</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten 9160: Aardbeiganzerik, Bosanemoon, Bosereprijs, Bosbingelkruid, Bosgierstgras, Boszegge, Daslook, Eenbes, Eenbloemig parelgras, Gele dovenetel, Gevlekte aronskelk, Gewone salomonszegel, Grote muur, Gulden boterbloem, Heelkruid, Kleine maagdenpalm, Lelietje-van-dalen, Mannetjesvaren, Ruige veldbies, Smalle stekelvaren, Schaduwgras, Slanke sleutelbloem, Witte klaverzuring, Donkersporig en Bleeksporig bosviooltje.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9160<br><strong>BWK CODE:</strong> qa°    </div>
+<strong>NATURA 2000:</strong> 9160<br><strong>BWK CODE:</strong> qa°    </div>
   </div>
 </div>
 
@@ -519,13 +540,13 @@ Sleutelsoorten 9190: bochtige smele, blauwe bosbes, echte guldenroede, hengel, p
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Aandeel sleutelsoorten 9130 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9130_fm<br><strong>BWK CODE:</strong> fm    </div>
+<strong>NATURA 2000:</strong> 9130_fm<br><strong>BWK CODE:</strong> fm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Aandeel sleutelsoorten 9130 in de kruidlaag < 30%:</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten 9130: Aardbeiganzerik, Bosanemoon, Bosbingelkruid, Bosgierstgras, Daslook, Gevlekte aronskelk, Grote muur, Boszegge, Mannetjesvaren, Amandelwolfsmelk, Schedegeelster, Lievevrouwebedstro, Gele dovenetel, Eenbloemig parelgras, Eenbes, Gewone salomonszegel, Muskuskruid, Ruig klokje, Slanke sleutelbloem, Smalle stekelvaren, Heelkruid, Spekwortel, Kleine maagdenpalm, Vogelnestje, Wilde hyacint, Witte klaverzuring, Wilde narcis, Donkersporig en Bleeksporig bosviooltje.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9130_fm<br><strong>BWK CODE:</strong> fm°    </div>
+<strong>NATURA 2000:</strong> 9130_fm<br><strong>BWK CODE:</strong> fm°    </div>
   </div>
 </div>
 
@@ -534,21 +555,21 @@ Sleutelsoorten 9190: bochtige smele, blauwe bosbes, echte guldenroede, hengel, p
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag gedomineerd door beuk EN aandeel sleutelsoorten 9150 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9150<br><strong>BWK CODE:</strong> fk    </div>
+<strong>NATURA 2000:</strong> 9150<br><strong>BWK CODE:</strong> fk    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag gedomineerd door beuk EN aandeel sleutelsoorten 9150 in de kruidlaag < 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9150<br><strong>BWK CODE:</strong> fk°    </div>
+<strong>NATURA 2000:</strong> 9150<br><strong>BWK CODE:</strong> fk°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag niet gedomineerd door beuk EN aandeel sleutelsoorten 9150 in de kruidlaag ≥ 30%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9150<br><strong>BWK CODE:</strong> qk    </div>
+<strong>NATURA 2000:</strong> 9150<br><strong>BWK CODE:</strong> qk    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Boomlaag niet gedomineerd door beuk EN aandeel sleutelsoorten 9150 in de kruidlaag < 30%:</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten 9150: Ruig klokje, Bleek bosvogeltje, Wit bosvogeltje, Bruinrode wespenorchis, Ruig hertshooi, Berghertshooi, Vliegenorchis, Mannetjesorchis, Purperorchis, Bergnachtorchis, Gulden sleutelbloem, Witte engbloem</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9150<br><strong>BWK CODE:</strong> qk°    </div>
+<strong>NATURA 2000:</strong> 9150<br><strong>BWK CODE:</strong> qk°    </div>
   </div>
 </div>
 
@@ -574,7 +595,7 @@ Door verstoring of eutrofiëring kan grote brandnetel aspectbepalend voorkomen.<
 <div class="extra-info">Kenmerkende soorten 91F0: vingerhelmbloem, gewone vogelmelk, gevlekte dovenetel, maarts viooltje, hondstarwegras, slangenlook, kraailook.</div><div class="answer-remark">Hardhout-ooibos langs de grote rivieren (Ulmenion minoris)
 Ook andere oud-bosplanten als bosanemoon, gevlekte aronskelk, gewone vogelmelk kunnen voorkomen.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 91F0<br><strong>BWK CODE:</strong> qa    </div>
+<strong>NATURA 2000:</strong> 91F0<br><strong>BWK CODE:</strong> qa    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Wilgenbos in de vallei van grote rivieren die onder invloed staan van getijdenwerking en bij springtij of die bij zomeroverstromingen onder water komen (langs de Beneden schelde, Durme, Nete en Grensmaas).
@@ -582,7 +603,7 @@ De boomlaag wordt gedomineerd door smalbladige wilgen. Grote brandnetel en reuze
 <div class="extra-info">Kenmerkende soorten 91E0_sf: spindotterbloem (Caltha palustris var. araneosa), bittere veldkers, bitterzoet, hop, gele lis, wolfspoot, riet, gele waterkers, waterpeper en zomerklokje.</div><div class="answer-remark">Zachthoutooibos (wilgenvloedbos; Salicetum albae)
 BWK: sf, tenzij aandeel kenmerkende soorten in kruidlaag < 30% dan sf°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 91E0_sf<br><strong>BWK CODE:</strong> sf of sf-    </div>
+<strong>NATURA 2000:</strong> 91E0_sf<br><strong>BWK CODE:</strong> sf of sf-    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Beekvalleitjes met permanent natte bron- en kwelzones met een typische vegetatie (soms punt- of lijnvormig). De boomlaag bestaat uit es en zwarte els, soms enkel met overscherming van bomen uit het aansluitend bos.
@@ -590,7 +611,7 @@ De kenmerkende kruidsoorten komen samen minimaal frequent voor:</div>    <div cl
 <div class="extra-info">Kenmerkende soorten 91E0_vc: verspreidbladig goudveil, paarbladig goudveil, bittere veldkers, reuzenpaardenstaart, hangende zegge en slanke zegge.</div><div class="answer-remark">Goudveil-essenbos of essenbronbos (Carici-Remotae fraxinetum)
 BWK: vc, tenzij aandeel kenmerkende soorten in kruidlaag < 30% dan vc°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 91E0_vc<br><strong>BWK CODE:</strong> vc of vc°    </div>
+<strong>NATURA 2000:</strong> 91E0_vc<br><strong>BWK CODE:</strong> vc of vc°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Alluvia van beken en kleinere rivieren, gekenmerkt door onregelmatige overstroming; voedselrijke, vochtige, alluviale bodems
@@ -600,7 +621,7 @@ Eén of meer van de vochtminnende oud-bosplanten komen (samen) minstens frequent
 Daarnaast komen in de kruidlaag ook ruwe smele, dotterbloem, speenkruid, pinksterbloem, bloedzuring, reuzenzwenkgras en een zomervegetatie van echte valeriaan, fluitenkruid, hop, koninginnenkruid, kale jonker en aalbes voor.</div><div class="answer-remark">Beekbegeleidend vogelkers-essenbos en essen-iepenbos (Pruno-Fraxinetum)
 BWK: va, tenzij aandeel kenmerkende soorten in kruidlaag < 30% dan va°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 91E0_va<br><strong>BWK CODE:</strong> va of va°    </div>
+<strong>NATURA 2000:</strong> 91E0_va<br><strong>BWK CODE:</strong> va of va°    </div>
   </div>
   <div class="answer-block">
 <a href="#step32" class="answer-link">Anders, controleer voor de permanent natte, venige bostypen: (→ 32)</a>  </div>
@@ -639,7 +660,7 @@ Minstens 2 van de voornoemde kenmerkende soorten in de kruidlaag zijn elk freque
 <div class="extra-info">Kenmerkende moerasbosplanten: blauw glidkruid, elzenzegge, grote boterbloem, kamvaren, melkeppe, moerasvaren, pluimzegge, slangenwortel, stijve zegge, waterviolier, bitterzoet, bosbies, dotterbloem, gele lis, grote wederik, hoge cyperzegge, holpijp, moerasviooltje, moeraswalstro, watermunt, wolfspoot en zwarte bes</div><div class="answer-remark">Mesotroof broekbos op matig voedselrijke standplaatsen (Carici elongatae-Alnetum)
 BWK: vm, tenzij aandeel kenmerkende moerasplanten in kruidlaag < 30% dan vm°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 91E0_vm<br><strong>BWK CODE:</strong> vm of vm°    </div>
+<strong>NATURA 2000:</strong> 91E0_vm<br><strong>BWK CODE:</strong> vm of vm°    </div>
   </div>
 </div>
 
@@ -653,7 +674,7 @@ BWK: vm, tenzij aandeel kenmerkende moerasplanten in kruidlaag < 30% dan vm°</d
 <div class="extra-info">Kenmerkende soorten in de kruidlaag zijn veenmossen (Sphagnum sp.), pijpenstrootje, moerasbasterdwederik, zompzegge, sterzegge, snavelzegge, koningsvaren en moerasviooltje.</div><div class="answer-remark">Oligotroof broekbos (Carici laevigata-Alnetum) 
 BWK: vo, tenzij aandeel kenmerkende soorten in de kruidlaag < 30% dan vo°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 91E0_vo<br><strong>BWK CODE:</strong> vo of vo°    </div>
+<strong>NATURA 2000:</strong> 91E0_vo<br><strong>BWK CODE:</strong> vo of vo°    </div>
   </div>
 </div>
 
@@ -683,7 +704,7 @@ Kenmerkende soorten in de struik- en boomlaag: zwarte els, es, iep, berk, Gelder
 <div class="answer-link-terminal has-details">Het gaat om een recenter loofbos met de hierboven vermelde kenmerkende soorten uit de kruidlaag samen frequent aanwezig en de vermelde boom-en struiksoorten ≥ 50% bedekkend:</div>    <div class="answer-details-group">
 <div class="extra-info">Kenmerkende soorten in de kruidlaag: aalbes, bitterzoet, bosbies, echte valeriaan, gele lis, grote kattenstaart, grote wederik, hop, kale jonker, koninginnekruid, moerasspirea, moeraswalstro, moeraszegge, moesdistel, melkeppe, oeverzegge, penningkruid, riet, ruwe smele, wolfspoot en zwarte bes of andere soorten uit de 91E0 subtypen.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> vr    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> vr    </div>
   </div>
   <div class="answer-block">
 <a href="#step60" class="answer-link">Anders: (→ 60)</a>  </div>
@@ -703,11 +724,11 @@ Kenmerkende soorten in de struik- en boomlaag: zwarte els, es, iep, berk, Gelder
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Ondergroei sterk verruigd, bedekking gewone braam, brede stekelvaren, grote brandnetel, kleefkruid, pitrus, hondsdraf en gewone vlier >50% :</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsf<br><strong>BWK CODE:</strong> sf°    </div>
+<strong>NATURA 2000:</strong> rbbsf<br><strong>BWK CODE:</strong> sf°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsf<br><strong>BWK CODE:</strong> sf    </div>
+<strong>NATURA 2000:</strong> rbbsf<br><strong>BWK CODE:</strong> sf    </div>
   </div>
 </div>
 
@@ -718,11 +739,11 @@ Kenmerkende soorten in de struik- en boomlaag: zwarte els, es, iep, berk, Gelder
 <div class="answer-link-terminal has-details">Aandeel vn-soorten in kruidlaag ≥ 30%:</div>    <div class="answer-details-group">
 <div class="extra-info">Kenmerkende soorten in de kruidlaag: aalbes, bitterzoet, bosbies, echte valeriaan, gele lis, grote kattenstaart, grote wederik, hop, kale jonker, koninginnekruid, moerasspirea, moeraswalstro, moeraszegge, moesdistel, melkeppe, oeverzegge, penningkruid, riet, ruwe smele, wolfspoot en zwarte bes of andere soorten uit de 91E0 subtypen.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 91E0_vn<br><strong>BWK CODE:</strong> vn    </div>
+<strong>NATURA 2000:</strong> 91E0_vn<br><strong>BWK CODE:</strong> vn    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 91E0_vn<br><strong>BWK CODE:</strong> vn°    </div>
+<strong>NATURA 2000:</strong> 91E0_vn<br><strong>BWK CODE:</strong> vn°    </div>
   </div>
 </div>
 
@@ -744,7 +765,7 @@ Kenmerkende soorten in de struik- en boomlaag: zwarte els, es, iep, berk, Gelder
 <div class="answer-link-terminal has-details">Op profielloze bodems in valleien, veen- en moerasgebieden (PNV1, 2, 3 en 4):</div>    <div class="answer-details-group">
 <div class="answer-remark">Geen verdere opsplitsing in subtypes 91E0 mogelijk</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 91E0_<br><strong>BWK CODE:</strong> v    </div>
+<strong>NATURA 2000:</strong> 91E0_<br><strong>BWK CODE:</strong> v    </div>
   </div>
   <div class="answer-block">
 <a href="#step42" class="answer-link">Op arme zandgronden en op stuifzanden (PNV 78 en 79): (→ 42)</a>  </div>
@@ -752,23 +773,23 @@ Kenmerkende soorten in de struik- en boomlaag: zwarte els, es, iep, berk, Gelder
 <div class="answer-link-terminal has-details">Op mineralenarme, zure zand(leem) en leembodems (PNV 68 en 69) in de Voerstreek:</div>    <div class="answer-details-group">
 <div class="answer-remark">BWK: fl° indien beuk dominant</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9110<br><strong>BWK CODE:</strong> ql°    </div>
+<strong>NATURA 2000:</strong> 9110<br><strong>BWK CODE:</strong> ql°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Op mineralenarme, zure zand(leem) en leembodems (PNV 68 en 69) buiten de Voerstreek:</div>    <div class="answer-details-group">
 <div class="answer-remark">BWK: fs° indien beuk dominant</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9120<br><strong>BWK CODE:</strong> qs°    </div>
+<strong>NATURA 2000:</strong> 9120<br><strong>BWK CODE:</strong> qs°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Op matig tot zeer voedselrijke (zand)leem- en mergelbodems (PNV 50) en binnen het natuurlijk verspreidingsgebied van wilde hyacint:</div>    <div class="answer-details-group">
 <div class="answer-remark">BWK: fe° indien beuk dominant</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> qe°    </div>
+<strong>NATURA 2000:</strong> 9130_end<br><strong>BWK CODE:</strong> qe°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op matig tot zeer voedselrijke (zand)leem- en mergelbodems (PNV 50) en buiten het natuurlijk verspreidingsgebied van wilde hyacint:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9160<br><strong>BWK CODE:</strong> qa°    </div>
+<strong>NATURA 2000:</strong> 9160<br><strong>BWK CODE:</strong> qa°    </div>
   </div>
 </div>
 
@@ -777,13 +798,13 @@ Kenmerkende soorten in de struik- en boomlaag: zwarte els, es, iep, berk, Gelder
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">In de Kempen, Heverleebos-Meerdaalwoud, Het Heidebos (Moerbeke) of op een diestiaanheuvel:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 9190<br><strong>BWK CODE:</strong> qb°    </div>
+<strong>NATURA 2000:</strong> 9190<br><strong>BWK CODE:</strong> qb°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Elders:</div>    <div class="answer-details-group">
 <div class="answer-remark">BWK: fs° indien beuk dominant</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9120<br><strong>BWK CODE:</strong> qs°    </div>
+<strong>NATURA 2000:</strong> 9120<br><strong>BWK CODE:</strong> qs°    </div>
   </div>
 </div>
 
@@ -795,7 +816,7 @@ Indien de kruidlaag voldoet aan de ondergrens van een loofboshabitattype, wordt 
 <div class="answer-link-terminal has-details">Boomkwekerij van coniferen (incl. kerstbomen)</div>    <div class="answer-details-group">
 <div class="answer-remark">Geen bos, zie ook sleutel ‘akkers en tuinbouw’</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> b.    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> b.    </div>
   </div>
   <div class="answer-block">
 <a href="#step46" class="answer-link">Grondvlak minstens 50% grove den (→ 46)</a>  </div>
@@ -810,17 +831,17 @@ Indien de kruidlaag voldoet aan de ondergrens van een loofboshabitattype, wordt 
 <div class="answer-link-terminal has-details">De boomlaag bestaat dominant uit zeer oude grove dennen (>130 jaar oud), ongeacht de bijhorende structuur of vegetatie:</div>    <div class="answer-details-group">
 <div class="answer-remark">BWK: sleutel verder vanaf 47 en voeg een * toe aan de karteringseenheid.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbppm<br>    </div>
+<strong>NATURA 2000:</strong> rbbppm<br>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">De boomlaag bestaat uit oude grove dennen (> 80 jaar oud) al dan niet in ijl verband, met daarbij een rijke tussen- en onderetage (≥ 30% bedekking van andere inheemse bomen en/of struiken, exclusief dwergstruiken) gedomineerd door inheems loofhout en/of een kruidlaag met abundant blauwe bosbes, struikheide en/of adelaarsvaren:</div>    <div class="answer-details-group">
 <div class="answer-remark">BWK: dien ook voorwaarde kruidlaag is voldaan: ppmb/qb</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbppm<br><strong>BWK CODE:</strong> ppmb    </div>
+<strong>NATURA 2000:</strong> rbbppm<br><strong>BWK CODE:</strong> ppmb    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">De boomlaag bestaat uit oude grove dennen (> 80 jaar oud) al dan niet in ijl verband en in de kruidlaag komt occasioneel Lelietje-van-dalen OF dalkruid OF ruige veldbies OF 3 van volgende soorten voor: bosgierstgras, wilde kamperfoelie, gladde witbol, dubbelloof, valse salie, pilzegge, adelaarsvaren, grote veldbies, witte veldbies, gewone salomonszegel, bosanemoon en witte klaverzurig:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbppm<br><strong>BWK CODE:</strong> ppm/qs    </div>
+<strong>NATURA 2000:</strong> rbbppm<br><strong>BWK CODE:</strong> ppm/qs    </div>
   </div>
   <div class="answer-block">
 <a href="#step47" class="answer-link">Anders: (→ 47)</a>  </div>
@@ -985,7 +1006,7 @@ Indien de kruidlaag voldoet aan de ondergrens van een loofboshabitattype, wordt 
 <div class="answer-link-terminal has-details">Spontane opslag van bomen en struiken na kap van een niet-habitatwaardig bos: bomen met een DBH > 15 cm komen minder dan frequent voor:</div>    <div class="answer-details-group">
 <div class="answer-remark">Check stap 6 bij dominantie van invasieve exoten of ‘tuinplanten’ voor gebruik van de code sz°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + sz    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + sz    </div>
   </div>
   <div class="answer-block">
 <a href="#step136" class="answer-link">Spontane opslag van bomen en struiken: bomen met een DBH > 15 cm komen minder dan frequent voor en voorheen was het perceel geen bos (< 20 j geleden): (→ 136)</a>  </div>
@@ -1047,35 +1068,35 @@ Indien de kruidlaag voldoet aan de ondergrens van een loofboshabitattype, wordt 
   </div>
 <div class="question">Bij wegdenken van de aangeplante populieren blijft over:</div>  <div class="answer-block">
 <div class="answer-link-terminal">Een natte ruigte met minstens 2 soorten hoge, vochtige ruigtekruiden, samen abundant:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/hf°    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/hf°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Een natte ruigte met minstens 2 soorten hoge, vochtige ruigtekruiden, samen (co)dominant:</div>    <div class="answer-details-group">
 <div class="extra-info">Hoge vochtige ruigtekruiden: adderwortel, echte valeriaan, gewone engelwortel, melkeppe, grote kattenstaart, grote wederik, harig wilgenroosje, hennegras, kale jonker, koninginnekruid, moerasspirea, moesdistel, poelruit, reuzenpaardenstaart, smeerwortel, wilde bertram.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/hf    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/hf    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Een grote zeggenvegetatie (vegetatie gedomineerd door oeverzegge, moeraszegge, scherpe zegge, hoge cyperzegge, stijve zegge en/of blaaszegge) vaak samen met andere moerasplanten:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/mc    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/mc    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Een vegetatie gedomineerd door soorten van de rietklasse (riet, bitterzoet, gele lis, grote egelskop, kleine en grote lisdodde, liesgras …)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/mr    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/mr    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Een vegetatie gedomineerd door rietgras en/of liesgras:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/mr°    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/mr°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Een rietruigte: vegetatie gedomineerd door een mix van soorten van de rietklasse (riet, bitterzoet, gele lis , liesgras …) en ruderale soorten (grote brandnetel, kleefkruid, …):</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/mru    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/mru    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Een grasland gedomineerd grassen en meerjarige kruiden (uitgezonderd grote brandnetel en kleefkruid); (tot zeer recent) in gebruik als graas-/hooiland. In verlaten graslanden of onder zeer extensieve begrazing kan een lage bedekking aan (jonge) bomen, struiken en bramen voorkomen</div>    <div class="answer-details-group">
 <div class="answer-remark">Controleer met de graslandsleutel of de vegetatie nog voldoende ontwikkeld is om tot een graslandtype te rekenen en noteer deze onder /, vb. lh/hp*</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/h.    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> lh/h.    </div>
   </div>
   <div class="answer-block">
 <a href="#step73" class="answer-link">Anders (een ruigte of verruigd grasland gedomineerd door ruderale, nitrofiele soorten of grassen (grote brandnetel, kleefkruid, hondsdraf, gewone berenklauw, kropaar, bramen, struisgrassen, …) indicatieve soorten voor vallei- en moerasbos, rietland, natte ruigte of grasland hooguit frequent aanwezig): (→ 73)</a>  </div>
@@ -1139,7 +1160,7 @@ Let op:
   <div class="answer-block">
 <a href="#step150" class="answer-link">in een bosrand (mantel): (→ 150)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">in een heidegebied met ≥ 10 jeneverbessen (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">in een heidegebied met ≥ 10 jeneverbessen (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>heidesleutel</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1171,11 +1192,11 @@ Let op:
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Ondergroei sterk verruigd, bedekking pijpenstrootje, bochtige smele, gewone braam, brede stekelvaren, grote brandnetel, kleefkruid, hondsdraf en gewone vlier > 50%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsg<br><strong>BWK CODE:</strong> sgu°    </div>
+<strong>NATURA 2000:</strong> rbbsg<br><strong>BWK CODE:</strong> sgu°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsg<br><strong>BWK CODE:</strong> sgu    </div>
+<strong>NATURA 2000:</strong> rbbsg<br><strong>BWK CODE:</strong> sgu    </div>
   </div>
 </div>
 
@@ -1186,11 +1207,11 @@ Let op:
 <div class="answer-link-terminal has-details">Ondergroei sterk verruigd, bedekking pijpenstrootje, bochtige smele, gewone braam, brede stekelvaren, grote brandnetel, kleefkruid, hondsdraf en gewone vlier > 50%:</div>    <div class="answer-details-group">
 <div class="answer-remark">BWK: bij een overkoepelende boomlaag van ≥ 10% wordt een ‘..b’ aan de BWK-eenheid toegevoegd (bijv. sgb° en sgb). ‘Bomen’ worden gedefinieerd als > 5m hoog en DBH > 15 cm (= groeiklasse 5 of hoger).</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbsg<br><strong>BWK CODE:</strong> sg°    </div>
+<strong>NATURA 2000:</strong> rbbsg<br><strong>BWK CODE:</strong> sg°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsg<br><strong>BWK CODE:</strong> sg    </div>
+<strong>NATURA 2000:</strong> rbbsg<br><strong>BWK CODE:</strong> sg    </div>
   </div>
 </div>
 
@@ -1211,7 +1232,7 @@ Let op:
 <div class="answer-remark">Indien bedekking bomen en struiken > 10%: sprb
 Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en andere invasieve bramenexoten): spr°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> spr    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> spr    </div>
   </div>
   <div class="answer-block">
 <a href="#step107" class="answer-link">Anders: (→ 107)</a>  </div>
@@ -1222,15 +1243,15 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Zeer jong doornstruweel (recent ontstaan door spontane opslag of aanplant, < 20j):</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sp°    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sp°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Ouder, soortenrijk doornstruweel (> 5 soorten doornstruiken of rozen) of aanwezigheid zeldzame rozen (kraagroos, viltroos,…):</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsp<br><strong>BWK CODE:</strong> sp*    </div>
+<strong>NATURA 2000:</strong> rbbsp<br><strong>BWK CODE:</strong> sp*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsp<br><strong>BWK CODE:</strong> sp    </div>
+<strong>NATURA 2000:</strong> rbbsp<br><strong>BWK CODE:</strong> sp    </div>
   </div>
 </div>
 
@@ -1239,17 +1260,17 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Gelegen in een kalkgrasland (hk):</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6210_sk<br><strong>BWK CODE:</strong> sk    </div>
+<strong>NATURA 2000:</strong> 6210_sk<br><strong>BWK CODE:</strong> sk    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Met een nog recent kalkgraslandverleden (enkel in de directe omgeving van de Tiendeberg, Kanne)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6210_sk<br><strong>BWK CODE:</strong> sk    </div>
+<strong>NATURA 2000:</strong> 6210_sk<br><strong>BWK CODE:</strong> sk    </div>
   </div>
   <div class="answer-block">
 <a href="#step109" class="answer-link">Ontstaan door terugzetten bosrand (→ 109)</a>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsp<br><strong>BWK CODE:</strong> sk    </div>
+<strong>NATURA 2000:</strong> rbbsp<br><strong>BWK CODE:</strong> sk    </div>
   </div>
 </div>
 
@@ -1258,11 +1279,11 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Als mantelvegetatie in of langs een kalkminnend beukenbos (9150):</div>    <div class="result-box">
-<strong>Natura 2000:</strong> habitattype 9150<br><strong>BWK CODE:</strong> sk    </div>
+<strong>NATURA 2000:</strong> habitattype 9150<br><strong>BWK CODE:</strong> sk    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Als mantelvegetatie in of langs een parelgras-beukenbos (9130_fm):</div>    <div class="result-box">
-<strong>Natura 2000:</strong> habitattype 9130_fm<br><strong>BWK CODE:</strong> sk    </div>
+<strong>NATURA 2000:</strong> habitattype 9130_fm<br><strong>BWK CODE:</strong> sk    </div>
   </div>
 </div>
 
@@ -1271,11 +1292,11 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">(co)dominant wilgensoorten:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> habitattype 91E0_sf<br><strong>BWK CODE:</strong> sf    </div>
+<strong>NATURA 2000:</strong> habitattype 91E0_sf<br><strong>BWK CODE:</strong> sf    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz    </div>
   </div>
 </div>
 
@@ -1297,7 +1318,7 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
 <div class="answer-link-terminal has-details">Struweel gedomineerd door wilgen en/of sporkehout:</div>    <div class="answer-details-group">
 <div class="answer-remark">Indien ondergroei sterk verruigd: bedekking gewone braam, brede stekelvaren, grote brandnetel, kleefkruid, pitrus, hondsdraf en gewone vlier >50% dan BWK: so°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbso<br><strong>BWK CODE:</strong> so    </div>
+<strong>NATURA 2000:</strong> rbbso<br><strong>BWK CODE:</strong> so    </div>
   </div>
 </div>
 
@@ -1305,7 +1326,7 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
 <span class="step-number">STAP 117</span>    <div class="incoming-steps">Van: <a href="#step116" class="incoming-link">116</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Gagelstruweel ijl EN ≤ 1m (boven maaiveld) in een natte heide EN boomlaag (≥ 6 m) < 50% bedekkend (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Gagelstruweel ijl EN ≤ 1m (boven maaiveld) in een natte heide EN boomlaag (≥ 6 m) < 50% bedekkend (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>heidesleutel</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1317,11 +1338,11 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Kroonsluiting boomlaag (≥ 6 m) < 10% EN ondergroei sterk verruigd: bedekking gewone braam, brede stekelvaren, grote brandnetel, kleefkruid, pitrus, hondsdraf en gewone vlier >50%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> sm°    </div>
+<strong>NATURA 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> sm°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Kroonsluiting boomlaag (≥ 6 m) 10 à 50% EN ondergroei sterk verruigd: bedekking gewone braam, brede stekelvaren, grote brandnetel, kleefkruid, pitrus, hondsdraf en gewone vlier >50%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> smb°    </div>
+<strong>NATURA 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> smb°    </div>
   </div>
   <div class="answer-block">
 <a href="#step120" class="answer-link">Kroonsluiting boomlaag (≥ 6 m) > 50% (→ 120)</a>  </div>
@@ -1334,11 +1355,11 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Kroonsluiting boomlaag (≥ 6 m) < 10%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> sm    </div>
+<strong>NATURA 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> sm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Kroonsluiting boomlaag (≥ 6 m) 10 à 50%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> smb    </div>
+<strong>NATURA 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> smb    </div>
   </div>
 </div>
 
@@ -1347,11 +1368,11 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">bomen met een DBH > 15 cm komen minder dan frequent voor</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> smb + boomcode    </div>
+<strong>NATURA 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> smb + boomcode    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">bomen met een DBH > 15 cm komen minstens frequent voor</div>    <div class="result-box">
-<strong>Natura 2000:</strong> habitattype 91E0_vo<br><strong>BWK CODE:</strong> vo + boomcode    </div>
+<strong>NATURA 2000:</strong> habitattype 91E0_vo<br><strong>BWK CODE:</strong> vo + boomcode    </div>
   </div>
 </div>
 
@@ -1415,7 +1436,7 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
 <div class="answer-link-terminal has-details">Anders (vooral nitrofiele en ruderale soorten in de kruidlaag):</div>    <div class="answer-details-group">
 <div class="answer-remark">o.a. wilgenstruwelen op drogere bodems en wilgenopslag op opgehoogde of gestoorde bodem</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz + sal    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz + sal    </div>
   </div>
 </div>
 
@@ -1424,11 +1445,11 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Ondergroei sterk verruigd, bedekking gewone braam, brede stekelvaren, grote brandnetel, kleefkruid, pitrus, hondsdraf en gewone vlier >50%:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsf<br><strong>BWK CODE:</strong> sf°    </div>
+<strong>NATURA 2000:</strong> rbbsf<br><strong>BWK CODE:</strong> sf°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsf<br><strong>BWK CODE:</strong> sf    </div>
+<strong>NATURA 2000:</strong> rbbsf<br><strong>BWK CODE:</strong> sf    </div>
   </div>
 </div>
 
@@ -1448,13 +1469,13 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
 <div class="answer-link-terminal has-details">een Natura 2000 boshabitat:</div>    <div class="answer-details-group">
 <div class="answer-remark">Een tijdelijke kapvlakte blijft een habitatwaardig bostype en de habitattypering blijft behouden</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9...<br><strong>BWK CODE:</strong> se + bostype    </div>
+<strong>NATURA 2000:</strong> 9...<br><strong>BWK CODE:</strong> se + bostype    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">een regionaal belangrijk biotoop:</div>    <div class="answer-details-group">
 <div class="answer-remark">Een tijdelijke kapvlakte blijft een rbb en de typering blijft behouden</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbb..<br><strong>BWK CODE:</strong> se + bostype    </div>
+<strong>NATURA 2000:</strong> rbb..<br><strong>BWK CODE:</strong> se + bostype    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">geen van beide:</div>    <div class="result-box">
@@ -1475,32 +1496,32 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
 <span class="step-number">STAP 136</span>    <div class="incoming-steps">Van: <a href="#step7" class="incoming-link">7</a>, <a href="#step60" class="incoming-link">60</a>, <a href="#step135" class="incoming-link">135</a></div>
   </div>
 <div class="question">Het perceel/de vegetatievlek is een:</div>  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">recent verboste open heide: minder dan 10% kroonsluiting van hogere bomen (> 6m) en in de kruidlaag in het aandeel struikhei, gewone dophei, rode dophei, beenbreek, veenpluis > het aandeel aan grassen, varens en bosplanten: (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">recent verboste open heide: minder dan 10% kroonsluiting van hogere bomen (> 6m) en in de kruidlaag in het aandeel struikhei, gewone dophei, rode dophei, beenbreek, veenpluis > het aandeel aan grassen, varens en bosplanten: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>heidesleutel</strong></div>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">recent verboste vergraste heide en kruidlaag gedomineerd door pijpenstrootje:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/cm    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/cm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">recent verboste vergraste heide en kruidlaag gedomineerd door bochtige smele:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/cd    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/cd    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">recent verboste, heide en kruidlaag gedomineerd door dwergstruiken:</div>    <div class="answer-details-group">
 <div class="answer-remark">(geen habitat), zie heidesleutel (De Saeger et al. 2016) voor onderscheid droge, natte of bosbesheide</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/cg of sz/ce of sz/cv    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/cg of sz/ce of sz/cv    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">recent verbost, soortenrijk, weinig verruigd grasland:</div>    <div class="answer-details-group">
 <div class="answer-remark">Bepaal het graslandtype in de ondergroei met de graslandsleutel.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/h    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/h    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">recent verboste moerasvegetatie: bepaal het moerastype met de moerassleutel:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/m    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> sz/m    </div>
   </div>
   <div class="answer-block">
 <a href="#step137" class="answer-link">Anders: (→ 137)</a>  </div>
@@ -1526,7 +1547,7 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
 <a href="#step151" class="answer-link">struweel > 5m breed en > 1.000m² (→ 151)</a>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal">anders (kleiner)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> maakt deel uit van het aanliggende bos(habitat) of is een klein landschapselement<br>    </div>
+<strong>NATURA 2000:</strong> maakt deel uit van het aanliggende bos(habitat) of is een klein landschapselement<br>    </div>
   </div>
 </div>
 
@@ -1535,7 +1556,7 @@ Indien gedomineerd door invasieve bramen (Dijkviltbraam - Rubus armeniacus en an
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Struweelfase ontstaan door terugzetten bosrand:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> maakt deel uit van het aanliggende boshabitat<br>    </div>
+<strong>NATURA 2000:</strong> maakt deel uit van het aanliggende boshabitat<br>    </div>
   </div>
   <div class="answer-block">
 <a href="#step101" class="answer-link">Anders: (→ 101)</a>  </div>
@@ -1558,7 +1579,7 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">< 1000 m²</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gaat op in de omliggende bosbiotoop<br>    </div>
+<strong>NATURA 2000:</strong> gaat op in de omliggende bosbiotoop<br>    </div>
   </div>
   <div class="answer-block">
 <a href="#step202" class="answer-link">≥ 1000 m² (→ 202)</a>  </div>
@@ -1571,7 +1592,7 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
 <div class="answer-link-terminal has-details">Een tijdelijke open plek in een groter bosbestand (vb. een kapvlakte van een groepenkap):</div>    <div class="answer-details-group">
 <div class="answer-remark">gaat op in de omliggende bosbiotoop en maakt als ontwikkelingsfase deel uit van de habitatvlek</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gaat op in de omliggende bosbiotoop<br>    </div>
+<strong>NATURA 2000:</strong> gaat op in de omliggende bosbiotoop<br>    </div>
   </div>
   <div class="answer-block">
 <a href="#step203" class="answer-link">Volledig bosbestand of gebruiksperceel: (→ 203)</a>  </div>
@@ -1584,13 +1605,13 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
 <div class="answer-link-terminal has-details">een Natura 2000 boshabitat:</div>    <div class="answer-details-group">
 <div class="answer-remark">kapvlakte blijft een habitatwaardig bos en de habitattypering en waardering blijft behouden</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9...<br><strong>BWK CODE:</strong> se + bostype    </div>
+<strong>NATURA 2000:</strong> 9...<br><strong>BWK CODE:</strong> se + bostype    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">een regionaal belangrijk struweelbiotoop (rbb):</div>    <div class="answer-details-group">
 <div class="answer-remark">kapvlakte blijft een habitatwaardig bos en de habitattypering en waardering blijft behouden</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbb..<br><strong>BWK CODE:</strong> se + struweeltype    </div>
+<strong>NATURA 2000:</strong> rbb..<br><strong>BWK CODE:</strong> se + struweeltype    </div>
   </div>
   <div class="answer-block">
 <a href="#step204" class="answer-link">geen van beide: (→ 204)</a>  </div>
@@ -1601,23 +1622,23 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Het is een recente kapvlakte, vegetatie is nagenoeg afwezig, bestaat uit (eenjarige) pioniers of storingssoorten, of is nog onvoldoende ontwikkeld voor uitspraak:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Het is een recente kapvlakte met spontane opslag van loofbomen en struiken:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + sz    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + sz    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Het is een recente kapvlakte met heraanplant van vnl. loofbomen en struiken:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + ni    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + ni    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Het is een recente kapvlakte met heraanplant van vnl. grove den:</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + ppi    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + ppi    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Het is een recente kapvlakte met heraanplant van vnl. naaldhout (uitgezonderd grove den):</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + pi    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> se + pi    </div>
   </div>
   <div class="answer-block">
 <a href="#step210" class="answer-link">Anders, bos is al langer geleden gekapt (> 5j) en actueel nog steeds een open biotoop (→ 210)</a>  </div>
@@ -1628,7 +1649,7 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Permanente open plek in het bos: < 400 m²</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gaat op in de omliggende bosbiotoop<br>    </div>
+<strong>NATURA 2000:</strong> gaat op in de omliggende bosbiotoop<br>    </div>
   </div>
   <div class="answer-block">
 <a href="#step211" class="answer-link">Permanente open plek in het bos: ≥ 400 m² à < 1000 m² (→ 211)</a>  </div>
@@ -1641,10 +1662,10 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">vegetatie van de open plek is gelijkaardig aan deze in de ondergroei van het omliggende bos</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gaat op in de omliggende bosbiotoop<br>    </div>
+<strong>NATURA 2000:</strong> gaat op in de omliggende bosbiotoop<br>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">vegetatie van de open plek is duidelijk verschillend van de ondergroei van het omliggende bos (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">vegetatie van de open plek is duidelijk verschillend van de ondergroei van het omliggende bos (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="answer-remark">Anders, geen bosbiotoop: sleutel eerst verder met de hoofdsleutel om de juiste biotoopgroep te bepalen</div><div class="other-key">Sleutel: <strong>hoofdsleutel</strong></div>    </div>
   </div>
 </div>
@@ -1655,7 +1676,7 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
   <div class="answer-block">
 <a href="#step213" class="answer-link">onbeheerde kapvlakte (> 5j), kroonsluiting < 50% en gedomineerd door adelaarsvaren (→ 213)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders, geen bosbiotoop (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders, geen bosbiotoop (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="answer-remark">Anders, geen bosbiotoop: sleutel eerst verder met de hoofdsleutel om de juiste biotoopgroep te bepalen</div><div class="other-key">Sleutel: <strong>hoofdsleutel</strong></div>    </div>
   </div>
 </div>
@@ -1667,13 +1688,13 @@ Hoe lang een kapvlakte tot het habitatwaardig bos gerekend wordt, hangt af van h
 <div class="answer-link-terminal has-details">Ja:</div>    <div class="answer-details-group">
 <div class="answer-remark">Vermeld in info: adelaarsvarenruigte</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 9120<br><strong>BWK CODE:</strong> se + qs°    </div>
+<strong>NATURA 2000:</strong> 9120<br><strong>BWK CODE:</strong> se + qs°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Nee:</div>    <div class="answer-details-group">
 <div class="answer-remark">Vermeld in info: permanent open plek in bos</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> cp    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> cp    </div>
   </div>
 </div>
 
@@ -1693,7 +1714,7 @@ Begeleidende soorten verbond van look- zonder-look: geel nagelkruid, dagkoekoeks
 
 Differentiërende soorten 6430_bz: steeneppe, kruidvlier, gevlekte dovenetel, kruisbladwalstro, groot glaskruid, muursla, reuzenzwenkgras, gewone vogelmelk, groot hoefblad, hondstarwegras, maarts viooltje, bosaardbei, grote bosaardbei, aardbeiganzerik, gulden boterbloem, ruig klokje, schaduwkruiskruid, groot warkruid, kleine kaardenbol, welriekende agrimonie, bosklit, donzige klit</div><div class="answer-remark">Boszomen die vegetatiekundig tot het moerasspireaverbond (Filipendulion) of het verbond van harig wilgenroosje (Epilobion hirsuti) behoren, worden respectievelijk tot de habitatsubtypen 6430_hf en 6430_hw gerekend (zie moerassleutel).</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6430_bz<br><strong>BWK CODE:</strong> hr*    </div>
+<strong>NATURA 2000:</strong> 6430_bz<br><strong>BWK CODE:</strong> hr*    </div>
   </div>
   <div class="answer-block">
 <a href="#step501" class="answer-link">Anders: (→ 501)</a>  </div>
@@ -1704,11 +1725,11 @@ Differentiërende soorten 6430_bz: steeneppe, kruidvlier, gevlekte dovenetel, kr
   <div class="answer-block">
 <a href="#step2" class="answer-link">Bedekking bomen en hoge struiken (> 6m) ≥ 50%: (→ 2)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders: (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="answer-remark">Geen habitatwaardige boszoom</div><div class="other-key">Sleutel: <strong>graslandsleutel</strong></div>    </div>
   </div>
 </div>
 
-<div style="text-align:center; margin-bottom: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
+<div style="text-align:center; margin-top: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
 </body>
 </html>

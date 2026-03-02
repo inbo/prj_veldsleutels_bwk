@@ -5,10 +5,10 @@ html_write_key_page <- function(key_name, key_data, folder = "") {
   cat('<!DOCTYPE html>\n<html lang="nl">\n<head>\n', file = fn, append = FALSE)
   cat('  <meta charset="UTF-8">\n', file = fn, append = TRUE)
   cat('  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\n', file = fn, append = TRUE)
-  cat(glue("  <title>{toupper(key_name)}</title>\n"), file = fn, append = TRUE)
+  cat(glue("  <title>{toupper(key_name)} Sleutel</title>\n"), file = fn, append = TRUE)
   cat(glue("  <style>\n{html_get_style()}\n  </style>\n</head>\n<body>\n"), file = fn, append = TRUE)
   cat(glue("<h1>Sleutel: {toupper(key_name)}</h1>\n"), file = fn, append = TRUE)
-  cat('<a href="../index.html" class="back-to-index">← NAAR INDEX</a><hr>\n', file = fn, append = TRUE)
+  cat('<div style="margin-bottom:30px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>\n', file = fn, append = TRUE)
 
   for (id in names(key_data)) {
     step <- key_data[[id]]
@@ -36,7 +36,7 @@ html_write_key_page <- function(key_name, key_data, folder = "") {
     }
     cat("  </div>\n", file = fn, append = TRUE)
 
-    # Content rows
+    # h2, h3, background, question
     if (!is.null(step$h2$name) && nzchar(step$h2$name)) cat(glue("  <h2>{step$h2$name}</h2>\n"), file = fn, append = TRUE)
     if (!is.null(step$h3$name) && nzchar(step$h3$name)) cat(glue("  <h3>{step$h3$name}</h3>\n"), file = fn, append = TRUE)
     if (!is.null(step$background$name) && nzchar(step$background$name)) {
@@ -60,7 +60,7 @@ html_write_key_page <- function(key_name, key_data, folder = "") {
           target <- NULL
         } else if (ns_val %in% c("SLEUTEL", "HOOFDSLEUTEL")) {
           target <- "../index.html"
-          label <- paste(label, "(→ Index)")
+          label <- paste(label, "(→ Hoofdsleutel)")
         } else {
           target <- paste0("#step", ns_val)
           label <- paste(label, glue("(→ {ns_val})"))
@@ -76,7 +76,6 @@ html_write_key_page <- function(key_name, key_data, folder = "") {
           cat(glue('    <div class="{t_class}">{label}</div>\n'), file = fn, append = TRUE)
         }
 
-        # Extra Info / Remarks / Other Keys
         if (has_extra_info) {
           cat('    <div class="answer-details-group">\n', file = fn, append = TRUE)
           if (nzchar(ans$info)) cat(glue('      <div class="extra-info">{ans$info}</div>\n'), file = fn, append = TRUE)
@@ -85,10 +84,9 @@ html_write_key_page <- function(key_name, key_data, folder = "") {
           cat("    </div>\n", file = fn, append = TRUE)
         }
 
-        # Result box (Only at terminal end)
         if (is_terminal && (nzchar(ans$n2000) || nzchar(ans$bwk))) {
           cat('    <div class="result-box">\n', file = fn, append = TRUE)
-          if (nzchar(ans$n2000)) cat(glue("      <strong>Natura 2000:</strong> {ans$n2000}<br>\n"), file = fn, append = TRUE)
+          if (nzchar(ans$n2000)) cat(glue("      <strong>NATURA 2000:</strong> {ans$n2000}<br>\n"), file = fn, append = TRUE)
           if (nzchar(ans$bwk)) cat(glue("      <strong>BWK CODE:</strong> {ans$bwk}\n"), file = fn, append = TRUE)
           cat("    </div>\n", file = fn, append = TRUE)
         }
@@ -97,5 +95,5 @@ html_write_key_page <- function(key_name, key_data, folder = "") {
     }
     cat("</div>\n\n", file = fn, append = TRUE)
   }
-  cat('<div style="text-align:center; margin-bottom: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>\n</body>\n</html>', file = fn, append = TRUE)
+  cat('<div style="text-align:center; margin-top: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>\n</body>\n</html>', file = fn, append = TRUE)
 }

@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>HEIDE</title><style>
+<title>HEIDE Sleutel</title><style>
 
   body {
     font-family: -apple-system, system-ui, sans-serif;
     line-height: 1.4;
     max-width: 900px;
-    margin: 10px auto;
-    padding: 15px;
-    color: #000000; /* Pure black text for contrast */
-    background: #ffffff; /* Pure white background */
-    font-size: 27px; /* 1.5x Bigger base size */
+    margin: 0 auto;
+    padding: 20px 15px 80px 15px;
+    color: #000000;
+    background: #f1f5f9; /* Subtle blue-gray background */
+    font-size: 27px;
   }
 
-  h1 { font-size: 2.2rem; color: #1a365d; border-bottom: 5px solid #27ae60; padding-bottom: 10px; }
-  h2 { font-size: 1.8rem; margin-top: 1.5rem; color: #1a202c; }
-  h3 { font-size: 1.5rem; color: #2d3748; }
+  h1 { font-size: 2.2rem; color: #1e293b; border-bottom: 6px solid #27ae60; padding-bottom: 10px; margin-top: 30px; }
+  h2 { font-size: 1.8rem; margin-top: 1.5rem; color: #0f172a; }
 
   /* Index Grid */
   .index-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 25px;
     margin-top: 40px;
   }
@@ -32,96 +31,118 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 120px;
-    background: #f8fafc;
-    border: 4px solid #1a365d; /* High contrast border */
+    height: 130px;
+    background: #ffffff;
+    border: 4px solid #1e293b;
     border-radius: 20px;
     font-size: 1.8rem;
     text-decoration: none;
-    color: #1a365d;
+    color: #1e293b;
     font-weight: 900;
-    box-shadow: 0 6px 0 #1a365d;
+    box-shadow: 0 8px 0 #1e293b;
+    transition: all 0.1s ease;
   }
-  .index-btn:active { transform: translateY(4px); box-shadow: none; }
 
-  /* Containers */
+  /* Hover & Active States */
+  .index-btn:hover, .answer-link:hover {
+    background: #dbeafe; /* Soft light blue on hover */
+    border-color: #2563eb;
+    color: #1e3a8a;
+    cursor: pointer;
+  }
+  .index-btn:active, .answer-link:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #1e293b;
+  }
+
+  /* Step Cards */
   .step-container {
     background: #ffffff;
-    padding: 25px;
+    padding: 30px;
     margin-bottom: 40px;
-    border-radius: 15px;
-    border: 3px solid #e2e8f0;
-    border-left: 15px solid #27ae60; /* Thicker accent for visibility */
+    border-radius: 20px;
+    border: 4px solid #e2e8f0;
+    border-left: 18px solid #27ae60;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 
-  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .step-number { background: #27ae60; color: white; padding: 8px 15px; border-radius: 10px; font-weight: bold; font-size: 1.2rem; }
-  .incoming-link { background: #2d3748; color: white; text-decoration: none; padding: 6px 14px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; }
+  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+  .step-number { background: #27ae60; color: white; padding: 10px 20px; border-radius: 12px; font-weight: bold; font-size: 1.3rem; }
+  .incoming-link { background: #334155; color: white; text-decoration: none; padding: 8px 16px; border-radius: 10px; font-size: 1.1rem; font-weight: bold; border-bottom: 4px solid #000; }
 
   /* Question & Background */
-  .question { font-size: 1.8rem; font-weight: 800; margin: 25px 0; color: #000; line-height: 1.2; }
-  .background-box { background: #f0fdf4; border: 3px solid #27ae60; padding: 20px; border-radius: 10px; font-size: 1.2rem; color: #064e3b; margin-bottom: 20px; }
+  .question { font-size: 1.8rem; font-weight: 800; margin: 30px 0; color: #000; line-height: 1.2; }
+  .background-box { background: #f0fdf4; border: 4px solid #27ae60; padding: 20px; border-radius: 12px; font-size: 1.2rem; color: #064e3b; margin-bottom: 25px; }
 
   /* Answers */
-  .answer-block { margin-bottom: 35px; }
+  .answer-block { margin-bottom: 40px; }
 
   .answer-link, .answer-link-terminal {
     display: block;
     background: #ffffff;
-    border: 4px solid #2d3748;
-    padding: 22px 25px;
+    border: 4px solid #334155;
+    padding: 25px;
     text-decoration: none;
-    color: #1a365d;
-    border-radius: 15px;
+    color: #1e293b;
+    border-radius: 18px;
     font-weight: 700;
-    font-size: 1.4rem;
-    box-shadow: 0 6px 0 #2d3748;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 0 #334155;
+    transition: all 0.1s ease;
   }
 
-  .answer-link:active { transform: translateY(4px); box-shadow: none; }
-  .answer-link-terminal { color: #000; background: #ecfdf5; border-color: #059669; box-shadow: none; cursor: default; }
+  .answer-link-terminal {
+    color: #000;
+    background: #f0fdf4;
+    border-color: #059669;
+    box-shadow: none;
+    cursor: default;
+    border-style: solid;
+  }
 
-  /* Details Grouping */
-  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 4px dashed #2d3748; }
+  /* Connector for Info Grouping */
+  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 4px dashed #334155; }
 
   .answer-details-group {
     background: #f8fafc;
-    border: 4px solid #2d3748;
+    border: 4px solid #334155;
     border-top: none;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 18px 18px;
     padding: 20px;
+    margin-top: -4px;
   }
 
   .extra-info {
     background: #fff;
-    border-left: 10px solid #2563eb;
-    padding: 15px;
+    border-left: 12px solid #2563eb;
+    padding: 18px;
     margin-bottom: 15px;
     font-size: 1.2rem;
     color: #1e3a8a;
-    font-weight: 500;
+    font-weight: 600;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
   }
 
-  /* Result Box - High Impact */
   .result-box {
     background: #064e3b;
     color: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    font-size: 1.3rem;
-    margin-top: 15px;
-    border: 2px solid #000;
+    padding: 25px;
+    border-radius: 15px;
+    font-size: 1.4rem;
+    margin-top: 20px;
+    border: 3px solid #000;
   }
-  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 1rem; display: block; margin-bottom: 5px; }
+  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 1rem; display: block; margin-bottom: 8px; letter-spacing: 1px; }
 
-  .answer-remark { font-style: italic; font-size: 1.1rem; color: #475569; padding-top: 10px; border-top: 2px solid #e2e8f0; }
-  .other-key { background: #fffbeb; border: 3px solid #b45309; color: #78350f; padding: 15px; border-radius: 10px; font-size: 1.1rem; margin-top: 15px; font-weight: bold;}
+  .answer-remark { font-style: italic; font-size: 1.1rem; color: #475569; padding-top: 15px; border-top: 2px solid #e2e8f0; }
+  .other-key { background: #fffbeb; border: 4px solid #b45309; color: #78350f; padding: 15px; border-radius: 12px; font-size: 1.1rem; margin-top: 15px; font-weight: bold;}
 
-  .back-to-index { display: inline-block; padding: 15px 30px; background: #2d3748; text-decoration: none; border-radius: 12px; color: #ffffff; font-weight: 900; font-size: 1.2rem; }
+  .back-to-index { display: inline-block; padding: 20px 40px; background: #1e293b; text-decoration: none; border-radius: 15px; color: #ffffff; font-weight: 900; font-size: 1.4rem; border-bottom: 8px solid #000; }
+  .back-to-index:active { transform: translateY(4px); border-bottom-width: 4px; }
   
   </style>
 </head>
-<body><h1>Sleutel: HEIDE</h1><a href="../index.html" class="back-to-index">← NAAR INDEX</a><hr>
+<body><h1>Sleutel: HEIDE</h1><div style="margin-bottom:30px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>
 <div class="step-container" id="step1">  <div class="step-header">
 <span class="step-number">STAP 1</span>  </div>
 <div class="question">Bedekking bomen en struiken (kroonprojectie; exclusief dwergstruiken):</div>  <div class="answer-block">
@@ -161,7 +182,7 @@
 <div class="answer-remark">Een recent verboste heide wordt nog als een heidehabitat aanzien als de ondergroei gedomineerd wordt door de typisch soorten van open heide.</div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">anders (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">anders (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOSSEN_STRUWELEN</strong></div>    </div>
   </div>
 </div>
@@ -217,13 +238,13 @@
 <div class="answer-link-terminal has-details">Vergraste landduinvegetatie: op profielloos landduin of droge profielloze zandgrond, EN met abundant soorten van het Buntgrasverbond: buntgras, ruig haarmos, vroege haver, zandzegge of korstmossen (o.a. Cladonia's en Cetraria's). Struikhei meestal minder dan 10% bedekkend.</div>    <div class="answer-details-group">
 <div class="answer-remark">Indien ≥ 10% open zand, dan wordt dm als eenh2 (kwaliteitsindicator) toegevoegd.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac°    </div>
+<strong>NATURA 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Vergraste dwerghavervegetatie: open, grazige vegetatie op kalkarme, droge zandgrond met minstens abundant éénjarigen, waarbij minstens 2 van de typische soorten vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en zandblauwtje tesamen frequent aanwezig zijn, naast de overblijvende soorten zoals struisgras spec, gewoon biggenkruid en schapenzuring.</div>    <div class="answer-details-group">
 <div class="answer-remark">Indien soorten van 2330_bu en 2330_dw samen voorkomen: wordt niet als een complex van beide subtypen gekarteerd; de soorten met het hoogste aandeel in de vegetatie bepalen het subtype.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat°    </div>
+<strong>NATURA 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat°    </div>
   </div>
   <div class="answer-block">
 <a href="#step12A" class="answer-link">Anders: (→ 12A)</a>  </div>
@@ -243,10 +264,10 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Vergraste heide, deel uitmakend van een groter heidegebied</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310,4030<br><strong>BWK CODE:</strong> ha    </div>
+<strong>NATURA 2000:</strong> 2310,4030<br><strong>BWK CODE:</strong> ha    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Struisgrasland (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Struisgrasland (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>GRASLANDEN</strong></div>    </div>
   </div>
 </div>
@@ -256,11 +277,11 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open vegetatie op profielloos landduin of droge profielloze zandgrond met aanwezigheid van typische soorten van landduinvegetaties (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> ha+cg    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> ha+cg    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> ha+cg    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> ha+cg    </div>
   </div>
 </div>
 
@@ -280,15 +301,15 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open vegetatie op profielloos landduin of droge profielloze zandgrond met aanwezigheid van typische soorten van landduinvegetaties (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> cd + cg    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> cd + cg    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op andere bodems en blauwe en/of rode bosbes domineren de dwergstruiklaag</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cd + cv    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cd + cv    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cd + cg    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cd + cg    </div>
   </div>
 </div>
 
@@ -296,20 +317,20 @@
 <span class="step-number">STAP 16</span>    <div class="incoming-steps">Van: <a href="#step14" class="incoming-link">14</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Grasland of zoom met minstens 3 typische soorten van heischraal grasland elk occasioneel aanwezig: (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Grasland of zoom met minstens 3 typische soorten van heischraal grasland elk occasioneel aanwezig: (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="extra-info">heischrale soorten: blauwe knoop, blauwe zegge, bleeksporig bosviooltje, borstelgras, dicht havikskruid, echte guldenroede, fijn schapengras, fraai hertshooi, gaspeldoorn, gelobde maanvaren, gevlekte orchis, heidekartelblad, hondsviooltje, kleine tijm, klokjesgentiaan, knollathyrus, kruipganzerik, liggend walstro, liggende vleugeltjesbloem, mannetjesereprijs, spits havikskruid, stekelbrem, stijf havikskruid, stijve ogentroost, tandjesgras, tormentil, trekrus, tweenervige zegge, veelbloemige veldbies, welriekende nachtorchis, zaagblad.</div><div class="other-key">Sleutel: <strong>GRASLAND_HT6230</strong></div>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Vergraste landduinvegetatie (landduin of droge profielloze zandgrond) en met minstens abundant soorten van het Buntgrasverbond: buntgras, ruig haarmos, vroege haver, zandzegge of korstmossen (o.a. Cladonia's en Cetraria's). Struikhei meestal minder dan 10% bedekkend.</div>    <div class="answer-details-group">
 <div class="answer-remark">Indien ≥ 10% open zand, dan wordt dm als eenh2 (kwaliteitsindicator) toegevoegd.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac°    </div>
+<strong>NATURA 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Open, grazige vegetatie op kalkarme, droge zandgrond met minstens abundant éénjarigen, waarbij de typische soorten vroege haver, klein vogelpootje, zilverhaver, klein tasjeskruid, dwergviltkruid, eekhoorngras en zandblauwtje tesamen minstens frequent aanwezig zijn, naast de soms aanwezige algemenere, overblijvende soorten zoals struisgras spec, gewoon biggenkruid en schapenzuring.</div>    <div class="answer-details-group">
 <div class="answer-remark">Indien soorten van 2330_bu en 2330_dw samen voorkomen, wordt dit niet als een complex van beide subtypen gekarteerd. De soorten met het hoogste aandeel in de vegetatie bepalen het subtype.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat°    </div>
+<strong>NATURA 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat°    </div>
   </div>
   <div class="answer-block">
 <a href="#step17" class="answer-link">Anders (→ 17)</a>  </div>
@@ -323,11 +344,11 @@
   <div class="answer-block">
 <a href="#step19" class="answer-link">een open plek omgeven door bos (→ 19)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">een tijdelijke kapvlakte (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">een tijdelijke kapvlakte (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOSSEN_STRUWELEN</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">de ondergroei van een (recente) bos(aanplant) (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">de ondergroei van een (recente) bos(aanplant) (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOSSEN_STRUWELEN</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -339,11 +360,11 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open vegetatie op profielloos landduin of droge profielloze zandgrond met aanwezigheid van typische soorten van landduinvegetaties (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> cd    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> cd    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cd    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cd    </div>
   </div>
 </div>
 
@@ -363,7 +384,7 @@
 <a href="#step18" class="answer-link">Struikhei minstens frequent aanwezig (→ 18)</a>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Struikhei afwezig of hooguit occasioneel aanwezig</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> cd    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> cd    </div>
   </div>
 </div>
 
@@ -381,21 +402,21 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op profielloos landduin of met frequent typische soorten van binnenlands (stuif)duin (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> cm + cg    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> cm + cg    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op drogere bodem, dwergstruiken gedomineerd door struikhei en typische natte heidesoorten (veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) < frequent</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cm + cg    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cm + cg    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op natte bodem en dwergstruiken gedomineerd door gewone dophei, de typische natte heidesoorten (veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) of andere vochtindicatoren (bijv. veenmossen, blauwe zegge, bruine snavelbies, pitrus ..)  ≥ frequent</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm + ce    </div>
+<strong>NATURA 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm + ce    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Op natte bodem met abundant bultvormende veenmossen (S. papillosum, S. magellanicum, S. rubellum); kleine veenbes, lavendelhei of eenarig wollegras kunnen aanwezig zijn</div>    <div class="answer-details-group">
 <div class="answer-remark">andere veenmossoorten zoals S. fallax en S. auriculatum zijn dan meestal ook abundant aanwezig</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> cm + ces    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> cm + ces    </div>
   </div>
   <div class="answer-block">
 <a href="#step28" class="answer-link">Rode bosbes frequent aanwezig (→ 28)</a>  </div>
@@ -407,7 +428,7 @@
 <span class="step-number">STAP 23</span>    <div class="incoming-steps">Van: <a href="#step21" class="incoming-link">21</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Pijpenstrootje in de grasmat niet pollenvormend, weinig strooisel en aandeel heischrale soorten zoals tandjesgras, borstelgras, tormentil, liggende vleugeltjesbloem, heidekartelblad, trekrus, stekelbrem, gevlekte orchis, tweenervige zegge > aandeel typische soorten natte heide: gewone dophei, veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Pijpenstrootje in de grasmat niet pollenvormend, weinig strooisel en aandeel heischrale soorten zoals tandjesgras, borstelgras, tormentil, liggende vleugeltjesbloem, heidekartelblad, trekrus, stekelbrem, gevlekte orchis, tweenervige zegge > aandeel typische soorten natte heide: gewone dophei, veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>GRASLAND_HT6230</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -423,10 +444,10 @@
 <div class="answer-link-terminal has-details">Met ≥ 20% gewone dophei, beenbreek, veenpluis, veenbies, snavelbiezen en/of zonnedauw</div>    <div class="answer-details-group">
 <div class="answer-remark">indien permanent natte slenken met snavelbies-vegetaties: aandeel 7150 toevoegen (zie 21)</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm+ce    </div>
+<strong>NATURA 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm+ce    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ven(oever): pijpenstro vormt (hoge) verspreid staande bulten met ruime open slenken; de gezamenlijke bedekking van deze slenken met open water, waterveenmos, veelstengelige waterbies, knolrus is ≥ 70% (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ven(oever): pijpenstro vormt (hoge) verspreid staande bulten met ruime open slenken; de gezamenlijke bedekking van deze slenken met open water, waterveenmos, veelstengelige waterbies, knolrus is ≥ 70% (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>WATEREN</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -446,11 +467,11 @@
 <div class="answer-link-terminal has-details">Op profielloos landduinen, met aandeel pioniersvegetaties van korstmossen, ruig haarmos, grijs kronkelsteeltje, buntgras, zandstruisgras, zandzegge, heidespurrie, klein tasjeskruid, vroege haver > aandeel struikhei.</div>    <div class="answer-details-group">
 <div class="answer-remark">Indien ≥ 10% open zand, dan wordt dm als eenh2 (kwaliteitsindicator) toegevoegd.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> cm    </div>
+<strong>NATURA 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> cm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> cm    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> cm    </div>
   </div>
 </div>
 
@@ -459,17 +480,17 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op vochtige tot natte bodem; pijpenstro vormt een ogenschijnlijk alles bedekkend geheel van hoge bulten met natte slenken waarin veenmossen, gewone dophei of typische soorten van natte heide (veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) aanwezig zijn</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm    </div>
+<strong>NATURA 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Op natte bodem met abundant bultvormende veenmossen (S. papillosum, S. magellanicum, S. rubellum); kleine veenbes, lavendelhei of eenarig wollegras kunnen aanwezig zijn</div>    <div class="answer-details-group">
 <div class="answer-remark">andere veenmossoorten zoals S. fallax en S. auriculatum zijn dan meestal ook abundant aanwezig</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> cm + ces°    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> cm + ces°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op droge bodem; geen uitgesproeken bulten-slenkenpatroon; soorten van droge heide (struikhei, blauwe bosbes, rode dophei, …) min. frequent aanwezig en typische soorten van natte heide (veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies ) afwezig</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cm    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cm    </div>
   </div>
   <div class="answer-block">
 <a href="#step27" class="answer-link">Anders (→ 27)</a>  </div>
@@ -480,16 +501,16 @@
   </div>
 <div class="question">De door Pijpenstrootje gedomineerde vegetatie maakt deel uit van:</div>  <div class="answer-block">
 <div class="answer-link-terminal">een groter heideterrein</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4010,4030<br><strong>BWK CODE:</strong> cm    </div>
+<strong>NATURA 2000:</strong> 4010,4030<br><strong>BWK CODE:</strong> cm    </div>
   </div>
   <div class="answer-block">
 <a href="#step29" class="answer-link">een open plek omgeven door bos (→ 29)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">een tijdelijke kapvlakte op kleine open plek (< 1000 m²) in het bos (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">een tijdelijke kapvlakte op kleine open plek (< 1000 m²) in het bos (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOSSEN_STRUWELEN</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">de ondergroei van een (recente) bos(aanplant) (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">de ondergroei van een (recente) bos(aanplant) (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOSSEN_STRUWELEN</strong></div>    </div>
   </div>
 </div>
@@ -499,11 +520,11 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Aanwezigheid van rode bosbes, in combinatie met grote wolfsklauw, klein wintergroen, veenmossen, gewone dophei, dubbelloof, stippelvaren.</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm + cv    </div>
+<strong>NATURA 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm + cv    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cm + cv    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cm + cv    </div>
   </div>
 </div>
 
@@ -512,11 +533,11 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Struikhei minstens frequent aanwezig</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cm    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Struikhei afwezig of hooguit occasioneel aanwezig</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> cm    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> cm    </div>
   </div>
 </div>
 
@@ -526,7 +547,7 @@
 <h2>heide met jeneverbes - Juniperus heathland</h2>  <div class="answer-block">
 <a href="#step36" class="answer-link">Bedekking boomlaag (excl. jeneverbes) < 50% (→ 36)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Bedekking boomlaag  (excl. jeneverbes) ≥ 50% (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Bedekking boomlaag  (excl. jeneverbes) ≥ 50% (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOSSEN_STRUWELEN</strong></div>    </div>
   </div>
 </div>
@@ -549,13 +570,13 @@
 <div class="answer-link-terminal has-details">Autochtone populatie binnen het gekende areal (zie Figuur 1)</div>    <div class="answer-details-group">
 <div class="answer-remark">Volg ook stap 1b voor het bepalen van het BWK-deel c..</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 5130_hei<br><strong>BWK CODE:</strong> c.. + jun    </div>
+<strong>NATURA 2000:</strong> 5130_hei<br><strong>BWK CODE:</strong> c.. + jun    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Geen zeer recente (< 10j) aanplant EN er is een plan tot herintrodoctie EN er is (actie tot het bevorderen van) verjonging</div>    <div class="answer-details-group">
 <div class="answer-remark">Volg ook stap 1b voor het bepalen van het BWK-deel c..</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 5130_hei<br><strong>BWK CODE:</strong> c.. + jun    </div>
+<strong>NATURA 2000:</strong> 5130_hei<br><strong>BWK CODE:</strong> c.. + jun    </div>
   </div>
   <div class="answer-block">
 <a href="#step5" class="answer-link has-details">Anders (→ 5)</a>    <div class="answer-details-group">
@@ -570,7 +591,7 @@
 <div class="answer-link-terminal has-details">Recent verbost jeneverbesstruweel: minimaal 10 jeneverbesstruiken komen gegroepeerd voor en bedekken ≥ 10%</div>    <div class="answer-details-group">
 <div class="answer-remark">Volg ook stap 1b voor het bepalen van het BWK-deel c..</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 5130_hei<br><strong>BWK CODE:</strong> sz/c. + jun    </div>
+<strong>NATURA 2000:</strong> 5130_hei<br><strong>BWK CODE:</strong> sz/c. + jun    </div>
   </div>
   <div class="answer-block">
 <a href="#step41" class="answer-link has-details">Recent verboste heide met jeneverbes, maar < 10 exemplaren of zeer ijl verspreid (→ 41)</a>    <div class="answer-details-group">
@@ -592,13 +613,13 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op profielloos landduin of met frequent typische soorten van binnenlands (stuif)duin (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> sz/cg + boomcode    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> sz/cg + boomcode    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Op andere droge bodems; ondergroei gedomineerd door struikhei en/of blauwe bosbes</div>    <div class="answer-details-group">
 <div class="answer-remark">Vermeld meest aanwezige (max. 2) boom- en/of struiksoort(en)</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> sz/cg + boomcode    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> sz/cg + boomcode    </div>
   </div>
   <div class="answer-block">
 <a href="#step42" class="answer-link">Op vochtige tot natte bodems; ondergroei gedomineerd door gewone dophei, veenpluis, gagel, veenmossen (→ 42)</a>  </div>
@@ -613,7 +634,7 @@
 <div class="answer-link-terminal has-details">Anders</div>    <div class="answer-details-group">
 <div class="answer-remark">Vermeld meest aanwezige (max. 2) boom- en/of struiksoort(en)</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> sz/ce + boomcode    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> sz/ce + boomcode    </div>
   </div>
 </div>
 
@@ -639,12 +660,12 @@
 <div class="answer-link-terminal has-details">Veenmosrijke heide met Sphagnum rubellum + slijkzegge</div>    <div class="answer-details-group">
 <div class="answer-remark">Enkel bekend van Ven onder de Berg</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7110<br><strong>BWK CODE:</strong> t    </div>
+<strong>NATURA 2000:</strong> 7110<br><strong>BWK CODE:</strong> t    </div>
   </div>
   <div class="answer-block">
 <a href="#step52" class="answer-link">Veenmosrijke heide met bultvormende veenmossen abundant (dikwijls is ook Beenbreek abundant aanwezig) (→ 52)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Heischraal grasland: aandeel heischrale soorten (tandjesgras, borstelgras, fijn schapenras, trekrus, tormentil, kruipganzerik, liggende vleugeltjesbloem, heidekartelblad, bleke zegge, veelbloemige veldbies, liggend walstro, tweenervige zegge, gevlekte orchis) > heidesoorten (dwergstruiken, veenmos, beenbreek, zonnedauw, snavelbiezen, veenbies) (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Heischraal grasland: aandeel heischrale soorten (tandjesgras, borstelgras, fijn schapenras, trekrus, tormentil, kruipganzerik, liggende vleugeltjesbloem, heidekartelblad, bleke zegge, veelbloemige veldbies, liggend walstro, tweenervige zegge, gevlekte orchis) > heidesoorten (dwergstruiken, veenmos, beenbreek, zonnedauw, snavelbiezen, veenbies) (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>GRASLAND</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -656,17 +677,17 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Veenmosrijke heide met aanwezigheid van kleine veenbes, lavendelheide en/of eenarig wollegras</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Veenmosrijke heide met hoogveenveenmossen (Sphagnum magellanicum en/of S. rubellum)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Veenmosrijke heide met abundant voorkomen van veenmosbulten van S. papillosum, zonder de hierboven vermelde soorten</div>    <div class="answer-details-group">
 <div class="answer-remark">andere veenmossen zoals S. auriculatum en S. fallax zijn meestal ook abundant aanwezig</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces°    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces°    </div>
   </div>
   <div class="answer-block">
 <a href="#step53" class="answer-link">Anders (→ 53)</a>  </div>
@@ -682,7 +703,7 @@
   <div class="answer-block">
 <a href="#step56" class="answer-link">Vochtige/natte bodem met dwergstruikenvegetatie van gewone dophei (dikwijls ook struikhei), vaak met goed ontwikkelde moslaag met veenmossen (o.a. S. compactum, S. molle, S. tenellum); ook pijpenstrootje, kleine en ronde zonnedauw, veenpluis, witte snavelbies, veenbies, beenbreek, klokjesgentiaan en/of tweenervige zegge (of andere freatofyten): (→ 56)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ven: tijdens het groeiseizoen is de gezamenlijke bedekking van het open water, waterveenmos, veelstengelige waterbies en knolrus > 70% (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ven: tijdens het groeiseizoen is de gezamenlijke bedekking van het open water, waterveenmos, veelstengelige waterbies en knolrus > 70% (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="answer-remark">opgelet, tijdens de winter kunnen ook natte heiden (4010, 7150) tijdelijk onder water staan.</div><div class="other-key">Sleutel: <strong>WATEREN</strong></div>    </div>
   </div>
 </div>
@@ -692,11 +713,11 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op profielloos landduin of met frequent typische soorten van binnenlands (stuif)duin (korstmossen, ruig haarmos, buntgras, zandzegge, klein tasjeskruid, vroege haver)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> cg    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> cg    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">op andere bodems</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cg    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cg    </div>
   </div>
 </div>
 
@@ -707,15 +728,15 @@
 <div class="answer-link-terminal has-details">Op stenige noordhellingen, met abundant rode bosbes, in combinatie met gewone dophei, veenmossen, dubbelloof, stippelvaren, grote wolfsklauw, klein wintergroen</div>    <div class="answer-details-group">
 <div class="answer-remark">vochtige bosbeshei</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4010<br><strong>BWK CODE:</strong> cv    </div>
+<strong>NATURA 2000:</strong> 4010<br><strong>BWK CODE:</strong> cv    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op (noordhelling van) landduinen; meestal met abundant rode bosbes</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> cv    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> cv    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cv    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cv    </div>
   </div>
 </div>
 
@@ -726,11 +747,11 @@
 <div class="answer-link-terminal has-details">Aanwezigheid van vegetatievlekken van minstens 4 m² met open, natte pioniersvegetaties, gekenmerkt door het samen minstens abundant aanwezig zijn van moeraswolfsklauw, kleine zonnedauw, witte en/of bruine snavelbies (op plagplekken, langs venoevers of in natte laagten). Typische soorten van natte heide (gewone dophei, veenpluis, beenbreek, klokjesgentiaan, veenbies, pijpenstrootje) nemen in deze zones een kleiner aandeel in dan de vermelde pioniersoorten.</div>    <div class="answer-details-group">
 <div class="answer-remark">Aandeel van beide habitattypen inschatten</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4010 + 7150<br><strong>BWK CODE:</strong> ce    </div>
+<strong>NATURA 2000:</strong> 4010 + 7150<br><strong>BWK CODE:</strong> ce    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Afwezigheid van de hierboven beschreven vegetatievlekken; de vermelde soorten komen verspreid in de natte heide voor, de vegetatievlekken zijn < 4 m²  of zijn afwezig</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4010<br><strong>BWK CODE:</strong> ce    </div>
+<strong>NATURA 2000:</strong> 4010<br><strong>BWK CODE:</strong> ce    </div>
   </div>
 </div>
 
@@ -749,7 +770,7 @@
   <div class="answer-block">
 <a href="#step64" class="answer-link">aandeel éénjarigen in de vegetatie 10% of meer (→ 64)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">aandeel éénjarigen in de vegetatie < 10% (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">aandeel éénjarigen in de vegetatie < 10% (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="extra-info">Niet-limitatieve opsomming van veel voorkomende éénjarigen: veldereprijs, hazenpootje, Canadese fijnstraal, eenjarige hardbloem, rode schijnspurrie, akkerviooltje, zandmuur, reigersbek, heidespurrie, straatgras, zandraket, vroegeling, kleine leeuwenklauw, zachte ooievaarsbek, klein streepzaad, eekhoorngras, gewoon langbaardgras, zandhoornbloem, slofhak, …</div><div class="other-key">Sleutel: <strong>GRASLANDEN</strong></div>    </div>
   </div>
 </div>
@@ -763,7 +784,7 @@
 <a href="#step63" class="answer-link">Open, zandplekken < 50% en aandeel struikhei < 50% (→ 63)</a>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open, zandplekken < 50% en aandeel struikhei ≥ 50%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> cg    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> cg    </div>
   </div>
 </div>
 
@@ -772,11 +793,11 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open, zand > 90%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> dm°    </div>
+<strong>NATURA 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> dm°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open, zandplekken ≥ 50% en ≤ 90%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> dm + hac    </div>
+<strong>NATURA 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> dm + hac    </div>
   </div>
 </div>
 
@@ -785,11 +806,11 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open, zandplekken < 10%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac    </div>
+<strong>NATURA 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open, zandplekken ≥ 10%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac + dm    </div>
+<strong>NATURA 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac + dm    </div>
   </div>
 </div>
 
@@ -798,20 +819,20 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open grazige vegetatie op van nature kalkarme, droge zandgrond met minstens 2 kensoorten van het dwerghaververbond tezamen frequent aanwezig</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat    </div>
+<strong>NATURA 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Open grazige vegetatie op van nature kalkarme, droge zandgrond met in de kruidlaag een aandeel van minstens 30% kensoorten van het dwerghaververbond</div>    <div class="answer-details-group">
 <div class="extra-info">kensoorten dwerghaververbond: Dwergviltkruid, Eekhoorngras, Klein vogelpootje, Klein tasjeskruid, Vroege haver, Zandblauwtjeen Zilverhaver.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat    </div>
+<strong>NATURA 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Open grazige vegetatie met soorten van dwerghaververbond zoals in 2 vorige keuzes beschreven, maar op een ander bodemtype</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbha<br><strong>BWK CODE:</strong> ha    </div>
+<strong>NATURA 2000:</strong> rbbha<br><strong>BWK CODE:</strong> ha    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>GRASLANDEN</strong></div>    </div>
   </div>
 </div>
@@ -821,12 +842,12 @@
   </div>
 <h2>heide met dominantie van adelaarsvaren</h2>  <div class="answer-block">
 <div class="answer-link-terminal">Kleine vlek (≤ 400 m²) in een groter heideterrein</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gaat op in de omliggend heide<br>    </div>
+<strong>NATURA 2000:</strong> gaat op in de omliggend heide<br>    </div>
   </div>
   <div class="answer-block">
 <a href="#step66" class="answer-link">Grotere vlek (> 400m²) in een groter heideterrein en met minstens frequent dwergstruikenb (struikhei, dophei, bosbes) (→ 66)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>RUIGTEN_PIONIER</strong></div>    </div>
   </div>
 </div>
@@ -836,11 +857,11 @@
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op profielloos landduin</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> cp    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> cp    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Op andere bodems</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cp    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cp    </div>
   </div>
 </div>
 
@@ -860,31 +881,31 @@
 <div class="answer-link-terminal has-details">Brand/plagplek in een natte heide</div>    <div class="answer-details-group">
 <div class="answer-remark">info: 'plagplek' of 'brandvlek'</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4010,7150<br><strong>BWK CODE:</strong> c    </div>
+<strong>NATURA 2000:</strong> 4010,7150<br><strong>BWK CODE:</strong> c    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Brand/plagplek in een droge heide op een profielloos landduin</div>    <div class="answer-details-group">
 <div class="answer-remark">info: 'plagplek' of 'brandvlek'</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2310,2330<br><strong>BWK CODE:</strong> c    </div>
+<strong>NATURA 2000:</strong> 2310,2330<br><strong>BWK CODE:</strong> c    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Brand/plagplek in een droge heide op andere bodems</div>    <div class="answer-details-group">
 <div class="answer-remark">info: 'plagplek' of 'brandvlek'</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> c    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> c    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Plagplek op een kapvlakte van een bos of struweel</div>    <div class="answer-details-group">
 <div class="answer-remark">info: plagplek</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> se    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> se    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Plagplek op een grasland, akker of ander niet-heide biotoop</div>    <div class="answer-details-group">
 <div class="answer-remark">info: plagplek</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> ku    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ku    </div>
   </div>
 </div>
 
@@ -895,7 +916,7 @@
 <div class="answer-link-terminal has-details">Pioniersvegetatie met een kruidlaag gedomineerd door witte en/of bruine snavelbies, moeraswolfsklauw en kleine zonnedauw; meestal met een hoog aandeel open bodem (al dan niet met wieren). De soorten van natte heide (gewone dophei, veenpluis, beenbreek, klokjesgentiaan, veenbies, pijpenstrootje) nemen een kleiner aandeel in dan de vermelde pionierssoorten.</div>    <div class="answer-details-group">
 <div class="answer-remark">In periodiek droogvallende heideslenken en op venoevers; Vaak tijdelijk op plagplekken = deel van omliggende heide.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7150<br><strong>BWK CODE:</strong> ce    </div>
+<strong>NATURA 2000:</strong> 7150<br><strong>BWK CODE:</strong> ce    </div>
   </div>
   <div class="answer-block">
 <a href="#step10" class="answer-link has-details">Vegetatiebedekking ≥ 30% EN aandeel van grassen in de kruidlaag is > 50%  (= vergraste heide) (→ 10)</a>    <div class="answer-details-group">
@@ -912,7 +933,7 @@
 <div class="answer-link-terminal has-details">Een jonge heide op vochtige tot natte bodem met abundant gewone dophei, veenpluis, veenbies, blauwe zegge, snavelbiezen, zonnedauw, … (aandeel natte heidesoorten > aandeel droge heidesoorten)</div>    <div class="answer-details-group">
 <div class="answer-remark">info: 'plagplek' of 'brandvlek'</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4010<br><strong>BWK CODE:</strong> ce°    </div>
+<strong>NATURA 2000:</strong> 4010<br><strong>BWK CODE:</strong> ce°    </div>
   </div>
   <div class="answer-block">
 <a href="#step74" class="answer-link">Een jonge heide op droge bodem met abundant struikhei, stekelbrem, vroege haver, buntgras, ruig haarmos, … (aandeel droge heidesoorten > aandeel natte heidesoorten) (→ 74)</a>  </div>
@@ -920,7 +941,7 @@
 <div class="answer-link-terminal has-details">Bij gelijk aandeel van kenmerkende soorten van droge en natte heide en deze samen ministens abundant</div>    <div class="answer-details-group">
 <div class="answer-remark">info: 'plagplek' of 'brandvlek'</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4010,4030<br><strong>BWK CODE:</strong> c    </div>
+<strong>NATURA 2000:</strong> 4010,4030<br><strong>BWK CODE:</strong> c    </div>
   </div>
   <div class="answer-block">
 <a href="#step75" class="answer-link">Anders (→ 75)</a>  </div>
@@ -933,19 +954,19 @@
 <div class="answer-link-terminal has-details">Op profielloos landduinen met aandeel struikhei > aandeel pioniersoorten</div>    <div class="answer-details-group">
 <div class="answer-remark">info: 'plagplek' of 'brandvlek'</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2310<br><strong>BWK CODE:</strong> cg°    </div>
+<strong>NATURA 2000:</strong> 2310<br><strong>BWK CODE:</strong> cg°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Op profielloos landduinen met aandeel pioniersoorten (buntgras, grijs kronkelsteeltje, vroege haver, heidespurrie, ruig haarmos) > aandeel struikhei</div>    <div class="answer-details-group">
 <div class="answer-remark">Indien ≥ 10% open zand, dan wordt dm als eenh2 toegevoegd; info: plagplek</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac    </div>
+<strong>NATURA 2000:</strong> 2330_bu<br><strong>BWK CODE:</strong> hac    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Op andere bodems</div>    <div class="answer-details-group">
 <div class="answer-remark">info: 'plagplek' of 'brandvlek'</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4030<br><strong>BWK CODE:</strong> cg°    </div>
+<strong>NATURA 2000:</strong> 4030<br><strong>BWK CODE:</strong> cg°    </div>
   </div>
 </div>
 
@@ -953,25 +974,25 @@
 <span class="step-number">STAP 75</span>    <div class="incoming-steps">Van: <a href="#step73" class="incoming-link">73</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Een plagplek op zeer natte bodem, bijna jaar rand onder water en hoofdzakelijk soorten van voedselarme wateren: open water, waterveenmos, vensikkelmos, knolrus (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Een plagplek op zeer natte bodem, bijna jaar rand onder water en hoofdzakelijk soorten van voedselarme wateren: open water, waterveenmos, vensikkelmos, knolrus (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>WATEREN</strong></div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Plagplek met vnl. opslag van jonge bomen, struiken en bramen; indicatieve heidesoorten hoogstens frequent aanwezig (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Plagplek met vnl. opslag van jonge bomen, struiken en bramen; indicatieve heidesoorten hoogstens frequent aanwezig (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOSSEN_STRUWELEN</strong></div>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Plagplek op van nature kalkarme, droge zandgrond met een kruidlaag gekenmerkt door een hoog aandeel éénjarigen (minstens 10%) waaronder minstens 2 kensoorten van het dwerghaververbond</div>    <div class="answer-details-group">
 <div class="extra-info">kensoorten dwerghaververbond: Dwergviltkruid, Eekhoorngras, Klein vogelpootje, Klein tasjeskruid, Vroege haver, Zandblauwtjeen Zilverhaver.</div><div class="answer-remark">info: 'plagplek'</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat    </div>
+<strong>NATURA 2000:</strong> 2330_dw<br><strong>BWK CODE:</strong> hat    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Plagplek in een heidegebied met kruidlaag gedomineerd door pijpenstrootje, bochtige smele, fijn schapengras en/of struisgrassen.</div>    <div class="answer-details-group">
 <div class="answer-remark">info: 'plagplek'; op basis van aanwezige
  heidesoorten en/of vorige kartering kan tot 4010 of 4030 beslist worden</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4010,4030<br><strong>BWK CODE:</strong> c    </div>
+<strong>NATURA 2000:</strong> 4010,4030<br><strong>BWK CODE:</strong> c    </div>
   </div>
   <div class="answer-block">
 <a href="#step76" class="answer-link has-details">Plagplek met indicatieve heidesoorten afwezig of hoogstens frequent aanwezig. (→ 76)</a>    <div class="answer-details-group">
@@ -988,17 +1009,17 @@
 Aanwezigheid van zeldzamere doelsoorten bij recente natuurontwikkeling.
 Indien één van volgende soorten aanwezig: wijdbloeiende rus, naaldwaterbies, geel cypergras, glaskroos, eivormige waterbies, draadgentiaan, dwergbloem, koprus, priemkruid of dwergrus: controleer ook met de watersleutel voor HT 3130_na.</div><div class="answer-remark">Indien deze soortenlijst in combinatie met hoge bedekking aan invasieve planten, wordt de karteringseenheid intermediair: ku</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> ku*    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ku*    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Aandeel aan uitheemse invasieve planten in de vegetatie ≥ 50% :</div>    <div class="answer-details-group">
 <div class="extra-info">Uitheemse (zeer) invasieve planten: aardpeer, Afghaanse duizendknoop, alsemambrosia, beklierde basterdwederik, bezemkruiskruid, bleek cypergras, Canadese en late guldenroede, Japanse/Boheemse/Sachalinse duizendknoop, kokardebloem, Nieuwnederlandse aster, reuzenbalsemien, reuzenberenklauw, rimpelroos, schijnaardbei, smalle aster, slipbladige rudbeckia, struikaster, teunisbloem spec., (valse) wingerd, vaste lupine, vlakke dwergmispel, vlinderstruik, wilgaster, zwart tandzaad.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> ku°    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ku°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> ku    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ku    </div>
   </div>
 </div>
 
@@ -1016,14 +1037,14 @@ Indien één van volgende soorten aanwezig: wijdbloeiende rus, naaldwaterbies, g
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag (≥ 6 m) < 10% bedekkend</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> sm    </div>
+<strong>NATURA 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> sm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Boomlaag (≥ 6 m) ≥ 10%, maar < 50% bedekkend</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> smb    </div>
+<strong>NATURA 2000:</strong> rbbsm<br><strong>BWK CODE:</strong> smb    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Boomlaag (≥ 6 m) ≥ 50% bedekkend (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Boomlaag (≥ 6 m) ≥ 50% bedekkend (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOSSEN_STRUWELEN</strong></div>    </div>
   </div>
 </div>
@@ -1032,7 +1053,7 @@ Indien één van volgende soorten aanwezig: wijdbloeiende rus, naaldwaterbies, g
 <span class="step-number">STAP 82</span>    <div class="incoming-steps">Van: <a href="#step80" class="incoming-link">80</a></div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Boomlaag (≥ 6 m) ≥ 50% bedekkend (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Boomlaag (≥ 6 m) ≥ 50% bedekkend (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>BOSSEN_STRUWELEN</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -1046,22 +1067,22 @@ Indien één van volgende soorten aanwezig: wijdbloeiende rus, naaldwaterbies, g
 <div class="answer-link-terminal has-details">Typische soorten van natte heide (gewone dophei, veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) minstens abundant in de ondergroei</div>    <div class="answer-details-group">
 <div class="answer-remark">gagelrijke natte heide</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4010<br><strong>BWK CODE:</strong> ce+myr    </div>
+<strong>NATURA 2000:</strong> 4010<br><strong>BWK CODE:</strong> ce+myr    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Typische soorten van natte heide (gewone dophei, veenpluis, beenbreek, zonnedauw, witte snavelbies, klokjesgentiaan of veenbies) hooguit frequent in de ondergroei</div>    <div class="answer-details-group">
 <div class="answer-remark">gagelrijke natte heide</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm+myr    </div>
+<strong>NATURA 2000:</strong> 4010<br><strong>BWK CODE:</strong> cm+myr    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Venige natte heide met abundant bultvormende veenmossen (S. papillosum, S. magellanicum, S. rubellum) en/of aanwezigheid van kleine veenbes, lavendelhei of eenarig wollegras</div>    <div class="answer-details-group">
 <div class="answer-remark">gagelrijk overgangsveen</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces+myr    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces+myr    </div>
   </div>
 </div>
 
-<div style="text-align:center; margin-bottom: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
+<div style="text-align:center; margin-top: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
 </body>
 </html>

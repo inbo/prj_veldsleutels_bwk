@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>MOERAS</title><style>
+<title>MOERAS Sleutel</title><style>
 
   body {
     font-family: -apple-system, system-ui, sans-serif;
     line-height: 1.4;
     max-width: 900px;
-    margin: 10px auto;
-    padding: 15px;
-    color: #000000; /* Pure black text for contrast */
-    background: #ffffff; /* Pure white background */
-    font-size: 27px; /* 1.5x Bigger base size */
+    margin: 0 auto;
+    padding: 20px 15px 80px 15px;
+    color: #000000;
+    background: #f1f5f9; /* Subtle blue-gray background */
+    font-size: 27px;
   }
 
-  h1 { font-size: 2.2rem; color: #1a365d; border-bottom: 5px solid #27ae60; padding-bottom: 10px; }
-  h2 { font-size: 1.8rem; margin-top: 1.5rem; color: #1a202c; }
-  h3 { font-size: 1.5rem; color: #2d3748; }
+  h1 { font-size: 2.2rem; color: #1e293b; border-bottom: 6px solid #27ae60; padding-bottom: 10px; margin-top: 30px; }
+  h2 { font-size: 1.8rem; margin-top: 1.5rem; color: #0f172a; }
 
   /* Index Grid */
   .index-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 25px;
     margin-top: 40px;
   }
@@ -32,96 +31,118 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 120px;
-    background: #f8fafc;
-    border: 4px solid #1a365d; /* High contrast border */
+    height: 130px;
+    background: #ffffff;
+    border: 4px solid #1e293b;
     border-radius: 20px;
     font-size: 1.8rem;
     text-decoration: none;
-    color: #1a365d;
+    color: #1e293b;
     font-weight: 900;
-    box-shadow: 0 6px 0 #1a365d;
+    box-shadow: 0 8px 0 #1e293b;
+    transition: all 0.1s ease;
   }
-  .index-btn:active { transform: translateY(4px); box-shadow: none; }
 
-  /* Containers */
+  /* Hover & Active States */
+  .index-btn:hover, .answer-link:hover {
+    background: #dbeafe; /* Soft light blue on hover */
+    border-color: #2563eb;
+    color: #1e3a8a;
+    cursor: pointer;
+  }
+  .index-btn:active, .answer-link:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #1e293b;
+  }
+
+  /* Step Cards */
   .step-container {
     background: #ffffff;
-    padding: 25px;
+    padding: 30px;
     margin-bottom: 40px;
-    border-radius: 15px;
-    border: 3px solid #e2e8f0;
-    border-left: 15px solid #27ae60; /* Thicker accent for visibility */
+    border-radius: 20px;
+    border: 4px solid #e2e8f0;
+    border-left: 18px solid #27ae60;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 
-  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .step-number { background: #27ae60; color: white; padding: 8px 15px; border-radius: 10px; font-weight: bold; font-size: 1.2rem; }
-  .incoming-link { background: #2d3748; color: white; text-decoration: none; padding: 6px 14px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; }
+  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+  .step-number { background: #27ae60; color: white; padding: 10px 20px; border-radius: 12px; font-weight: bold; font-size: 1.3rem; }
+  .incoming-link { background: #334155; color: white; text-decoration: none; padding: 8px 16px; border-radius: 10px; font-size: 1.1rem; font-weight: bold; border-bottom: 4px solid #000; }
 
   /* Question & Background */
-  .question { font-size: 1.8rem; font-weight: 800; margin: 25px 0; color: #000; line-height: 1.2; }
-  .background-box { background: #f0fdf4; border: 3px solid #27ae60; padding: 20px; border-radius: 10px; font-size: 1.2rem; color: #064e3b; margin-bottom: 20px; }
+  .question { font-size: 1.8rem; font-weight: 800; margin: 30px 0; color: #000; line-height: 1.2; }
+  .background-box { background: #f0fdf4; border: 4px solid #27ae60; padding: 20px; border-radius: 12px; font-size: 1.2rem; color: #064e3b; margin-bottom: 25px; }
 
   /* Answers */
-  .answer-block { margin-bottom: 35px; }
+  .answer-block { margin-bottom: 40px; }
 
   .answer-link, .answer-link-terminal {
     display: block;
     background: #ffffff;
-    border: 4px solid #2d3748;
-    padding: 22px 25px;
+    border: 4px solid #334155;
+    padding: 25px;
     text-decoration: none;
-    color: #1a365d;
-    border-radius: 15px;
+    color: #1e293b;
+    border-radius: 18px;
     font-weight: 700;
-    font-size: 1.4rem;
-    box-shadow: 0 6px 0 #2d3748;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 0 #334155;
+    transition: all 0.1s ease;
   }
 
-  .answer-link:active { transform: translateY(4px); box-shadow: none; }
-  .answer-link-terminal { color: #000; background: #ecfdf5; border-color: #059669; box-shadow: none; cursor: default; }
+  .answer-link-terminal {
+    color: #000;
+    background: #f0fdf4;
+    border-color: #059669;
+    box-shadow: none;
+    cursor: default;
+    border-style: solid;
+  }
 
-  /* Details Grouping */
-  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 4px dashed #2d3748; }
+  /* Connector for Info Grouping */
+  .has-details { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: 4px dashed #334155; }
 
   .answer-details-group {
     background: #f8fafc;
-    border: 4px solid #2d3748;
+    border: 4px solid #334155;
     border-top: none;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 18px 18px;
     padding: 20px;
+    margin-top: -4px;
   }
 
   .extra-info {
     background: #fff;
-    border-left: 10px solid #2563eb;
-    padding: 15px;
+    border-left: 12px solid #2563eb;
+    padding: 18px;
     margin-bottom: 15px;
     font-size: 1.2rem;
     color: #1e3a8a;
-    font-weight: 500;
+    font-weight: 600;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
   }
 
-  /* Result Box - High Impact */
   .result-box {
     background: #064e3b;
     color: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    font-size: 1.3rem;
-    margin-top: 15px;
-    border: 2px solid #000;
+    padding: 25px;
+    border-radius: 15px;
+    font-size: 1.4rem;
+    margin-top: 20px;
+    border: 3px solid #000;
   }
-  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 1rem; display: block; margin-bottom: 5px; }
+  .result-box strong { color: #4ade80; text-transform: uppercase; font-size: 1rem; display: block; margin-bottom: 8px; letter-spacing: 1px; }
 
-  .answer-remark { font-style: italic; font-size: 1.1rem; color: #475569; padding-top: 10px; border-top: 2px solid #e2e8f0; }
-  .other-key { background: #fffbeb; border: 3px solid #b45309; color: #78350f; padding: 15px; border-radius: 10px; font-size: 1.1rem; margin-top: 15px; font-weight: bold;}
+  .answer-remark { font-style: italic; font-size: 1.1rem; color: #475569; padding-top: 15px; border-top: 2px solid #e2e8f0; }
+  .other-key { background: #fffbeb; border: 4px solid #b45309; color: #78350f; padding: 15px; border-radius: 12px; font-size: 1.1rem; margin-top: 15px; font-weight: bold;}
 
-  .back-to-index { display: inline-block; padding: 15px 30px; background: #2d3748; text-decoration: none; border-radius: 12px; color: #ffffff; font-weight: 900; font-size: 1.2rem; }
+  .back-to-index { display: inline-block; padding: 20px 40px; background: #1e293b; text-decoration: none; border-radius: 15px; color: #ffffff; font-weight: 900; font-size: 1.4rem; border-bottom: 8px solid #000; }
+  .back-to-index:active { transform: translateY(4px); border-bottom-width: 4px; }
   
   </style>
 </head>
-<body><h1>Sleutel: MOERAS</h1><a href="../index.html" class="back-to-index">← NAAR INDEX</a><hr>
+<body><h1>Sleutel: MOERAS</h1><div style="margin-bottom:30px;"><a href="../index.html" class="back-to-index">← NAAR INDEX</a></div>
 <div class="step-container" id="step1">  <div class="step-header">
 <span class="step-number">STAP 1</span>  </div>
   <div class="answer-block">
@@ -170,32 +191,32 @@ Aquatische mossen: waterveenmos, dof veenmos, vensikkelmos, moerassikkelmos, ...
 <div class="answer-remark">door grote russen gedomineerde moerassen</div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Oevervegetatie in (permanent) contact met een oppervlaktewaterlichaam (kreek, poel, plas, waterloop) EN gedomineerd door geoord veenmos, fraai veenmos, ondergedoken veenmos) EN geen drijftil (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Oevervegetatie in (permanent) contact met een oppervlaktewaterlichaam (kreek, poel, plas, waterloop) EN gedomineerd door geoord veenmos, fraai veenmos, ondergedoken veenmos) EN geen drijftil (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="answer-remark">onderdeel van het waterlichaam</div><div class="other-key">Sleutel: <strong>WATEREN</strong></div>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Oevervegetatie in (permanent) contact met een oppervlaktewaterlichaam (kreek, poel, plas, waterloop) met soorten als wijdbloeiende rus, naaldwaterbies, geel cypergras, glaskroos, eivormige waterbies, draadgentiaan, dwergbloem, koprus, priemkruid, dwergrus, gewone waternavel, knolrus</div>    <div class="answer-details-group">
 <div class="answer-remark">onderdeel van het waterlichaam, zie verder in de watersleutel</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 3130<br>    </div>
+<strong>NATURA 2000:</strong> 3130<br>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Oevervegetatie in ecoregio kust en polders in (permanent) contact met een zilt of brak oppervlaktewaterlichaam (kreek, poel, plas, waterloop) met soorten als zilte waterranonkel, ruppia (G), gesteelde zannichellia, zulte, kweldergrassen, melkkruid, zilt torkruid, zilte schijnspurrie, gerande schijnspurrie, zilte rus, zeerus, zeekraal-soorten en schorrenzoutgras</div>    <div class="answer-details-group">
 <div class="answer-remark">onderdeel van het waterlichaam, zie verder in de watersleutel</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbah<br>    </div>
+<strong>NATURA 2000:</strong> rbbah<br>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Pioniergemeenschap gedomineerd door éénjarige soorten op oevers met slik of slib langs de Maas (inclusief (grind)plassen in permanente verbinding met de Maas) met soorten als spiesmelde, knikkend tandzaad, smal tandzaad, zwart tandzaad, veerdelig tandzaad, zwarte mosterd, kleine leeuwenbek, stippelganzenvoet, zeegroene ganzenvoet, rode ganzenvoet, korrelganzenvoet, riempjes, bruin cypergras, naaldwaterbies, rijstgras, slijkgroen, watertorkruid, goudzuring, moeraszuring, blauwe waterereprijs of rode waterereprijs</div>    <div class="answer-details-group">
 <div class="answer-remark">onderdeel van het waterlichaam, zie verder in de watersleutel</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 3270<br>    </div>
+<strong>NATURA 2000:</strong> 3270<br>    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">(Oever)Vegetatie gedomineerd door riet en/of lisdodde die met de voeten in een (habitatwaardig) waterlichaam staat, maar (nog) geen drijftil vormt</div>    <div class="answer-details-group">
 <div class="answer-remark">waterhabitattype te bepalen met de watersleutel</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> (31x0_rbbmr)<br><strong>BWK CODE:</strong> mr    </div>
+<strong>NATURA 2000:</strong> (31x0_rbbmr)<br><strong>BWK CODE:</strong> mr    </div>
   </div>
   <div class="answer-block">
 <a href="#step10" class="answer-link">Anders (→ 10)</a>  </div>
@@ -218,26 +239,26 @@ lisdodde ...) kunnen (veen)mossen een belangrijk deel van de vegetatie uitmaken.
 <div class="answer-link-terminal has-details">Drijftillen of verlandingszomen gedomineerd door sleutelsoorten van het Snavelbies-verbond</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten snavelbies-verbond: witte en bruine snavelbies, moeraswolfsklauw, kleine en ronde zonnedauw</div><div class="answer-remark">vaak in complex met natte heide, veenmosvegetaties en/of overgangsveen</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7150<br><strong>BWK CODE:</strong> md +ce    </div>
+<strong>NATURA 2000:</strong> 7150<br><strong>BWK CODE:</strong> md +ce    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Drijftillen of verlandingszomen met één of meer sleutelsoorten van het overgangsveen aanwezig en/of minimaal abundant (> 10% bedekkend) wrattig veenmos aanwezig</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten overgangsveen: lavendelheide, kleine veenbes, éénarig wollegras, hoogveenveenmos, rood veenmos, stijf veenmos</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> md + ces    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> md + ces    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Drijfillen of verlandingszomen met sleutelsoorten van zuur laagveen samen minimaal frequent voorkomend EN/OF begeleidende soorten samen minstens abundant aanwezig</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten zuur laagveen: draadrus, draadzegge, haakveenmos, moerasbasterdwederik, moerasviooltje, moeraswederik, slangenwortel, wateraardbei, waterdrieblad, waterscheerling, zompzegge
 Begeleiders zuur laagveen: blaaszegge, gewimperd veenmos, gewone waternavel, gewoon veenmos, grote wederik, hennegras, holpijp, koningsvaren, melkeppe, moerasstruisgras, pluimzegge, roodviltmos, schildereprijs, slank veenmos, snavelzegge, sterzegge, stijve zegge, veenpluis, zeegroene muur, zwarte zegge</div><div class="answer-remark">aanzienlijke veenmosontwikkeling is mogelijk maar het betreft niet de (hoogveen)veenmossen uit overgangsveen (7140_oli)</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_meso<br><strong>BWK CODE:</strong> md + ms    </div>
+<strong>NATURA 2000:</strong> 7140_meso<br><strong>BWK CODE:</strong> md + ms    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Drijftillen of verlandingszomen met sleutelsoorten van het alkalisch en/of neutraal trilveen</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten van het alkalisch en/of neutraal trilveen: ronde zegge, tweehuizige zegge, galigaan, moeraskartelblad, schorpioenmossen, goudmos (G), armbloemige waterbies, slank wollegras, parnassia, klein blaasjeskruid (niet in zuur, mineralenarm milieu), plat blaasjeskruid, groenknolorchis, goudmos (G)</div><div class="answer-remark">Veenmosontwikkeling is mogelijk (bv. glanzend veenmos, gewoon veenmos,trilveenveenmos ...)</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_base<br><strong>BWK CODE:</strong> md + mk    </div>
+<strong>NATURA 2000:</strong> 7140_base<br><strong>BWK CODE:</strong> md + mk    </div>
   </div>
   <div class="answer-block">
 <a href="#step23" class="answer-link">Anders (→ 23)</a>  </div>
@@ -257,7 +278,7 @@ Grote zeggesoorten: oeverzegge, moeraszegge, scherpe zegge, hoge cyperzegge, sti
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders (bijv. pitrus dominant met minder of geen van de bovenvermelde sleutelsoorten)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> md    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> md    </div>
   </div>
 </div>
 
@@ -268,11 +289,11 @@ Grote zeggesoorten: oeverzegge, moeraszegge, scherpe zegge, hoge cyperzegge, sti
 <div class="answer-link-terminal has-details">Eutrofiëringsindicatoren bedekken meer dan 30%</div>    <div class="answer-details-group">
 <div class="extra-info">Eutrofiëringsindicatoren: harig wilgenroosje, vlotgras (G), pitrus, eendenkroos, wolfspoot, rietgras, kruipende boterbloem, grote lisdodde, grote brandnetel, algen</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbmc<br><strong>BWK CODE:</strong> md + mc°    </div>
+<strong>NATURA 2000:</strong> rbbmc<br><strong>BWK CODE:</strong> md + mc°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbmc<br><strong>BWK CODE:</strong> md + mc    </div>
+<strong>NATURA 2000:</strong> rbbmc<br><strong>BWK CODE:</strong> md + mc    </div>
   </div>
 </div>
 
@@ -312,7 +333,7 @@ Grote zeggesoorten: oeverzegge, moeraszegge, scherpe zegge, hoge cyperzegge, sti
 <h2>ZILTE MOERASSEN</h2>  <div class="answer-block">
 <a href="#step31" class="answer-link">Ecoregio polders of Schelde-estuarium. Heen (co)-dominant. Vaak in combinatie met riet; soms ook veel spiesmelde en/of zilte rus; eventuele overige zilte soorten (bv. zulte, melkkruid, kweldergrassen, klein schorrenkruid) hooguit occasioneel aanwezig (→ 31)</a>  </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ecoregio polders of Schelde-estuarium. Minstens 2 zilte soorten zijn tezamen minstens frequent aanwezig (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ecoregio polders of Schelde-estuarium. Minstens 2 zilte soorten zijn tezamen minstens frequent aanwezig (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="extra-info">Zilte soorten: blauw, stomp en bleek kweldergras, dunstaart, gerande en zilte schijnspurrie, klein schorrenkruid, kortarige en langarige zeekraal, melkkruid, schorrenzoutgras, zilte rus en zulte</div><div class="answer-remark">Bij vernatting en/of verzoeting of wegvallen beheer kan riet een hoge bedekking halen in zilte graslanden/schorren</div><div class="other-key">Sleutel: <strong>ZILTE VEGETATIES</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -324,19 +345,19 @@ Grote zeggesoorten: oeverzegge, moeraszegge, scherpe zegge, hoge cyperzegge, sti
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Langs de Zeeschelde stroomafwaarts Burcht (mesohaliene deel)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 1330_da<br><strong>BWK CODE:</strong> mz    </div>
+<strong>NATURA 2000:</strong> 1330_da<br><strong>BWK CODE:</strong> mz    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">In of langs zilte schorvegetaties (IJzermonding, Zwin...)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 1330_da<br><strong>BWK CODE:</strong> mz    </div>
+<strong>NATURA 2000:</strong> 1330_da<br><strong>BWK CODE:</strong> mz    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">In de kustpolders in of langs zilte poldergraslanden</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 1330_hpr<br><strong>BWK CODE:</strong> mz    </div>
+<strong>NATURA 2000:</strong> 1330_hpr<br><strong>BWK CODE:</strong> mz    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbmr<br><strong>BWK CODE:</strong> mr    </div>
+<strong>NATURA 2000:</strong> rbbmr<br><strong>BWK CODE:</strong> mr    </div>
   </div>
 </div>
 
@@ -359,15 +380,15 @@ Sleutelsoorten riet-verbond: gele lis, grote boterbloem, grote egelskop, grote e
 <div class="answer-link-terminal has-details">Bedekking verruigingsindicatoren > 10%</div>    <div class="answer-details-group">
 <div class="extra-info">verruigingsindicatoren: hennegras, haagwinde, harig wilgenroosje, eendenkroos, veelwortelig kroos, wortelloos kroos, bitterzoet, grote lisdodde, grote brandnetel</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7210<br><strong>BWK CODE:</strong> mm°    </div>
+<strong>NATURA 2000:</strong> 7210<br><strong>BWK CODE:</strong> mm°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Bedekking riet > 30%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7210<br><strong>BWK CODE:</strong> mm°    </div>
+<strong>NATURA 2000:</strong> 7210<br><strong>BWK CODE:</strong> mm°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7210<br><strong>BWK CODE:</strong> mm    </div>
+<strong>NATURA 2000:</strong> 7210<br><strong>BWK CODE:</strong> mm    </div>
   </div>
 </div>
 
@@ -375,7 +396,7 @@ Sleutelsoorten riet-verbond: gele lis, grote boterbloem, grote egelskop, grote e
 <span class="step-number">STAP 40</span>    <div class="incoming-steps">Van: <a href="#step2" class="incoming-link">2</a>, <a href="#step33" class="incoming-link">33</a>, <a href="#step205" class="incoming-link">205</a></div>
   </div>
 <h2>ALKALISCHE VENEN</h2>  <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Ecoregio kustduinen EN sleutelsoorten van alkalische duinpanvegetaties en/of begeleiders aanwezig (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Ecoregio kustduinen EN sleutelsoorten van alkalische duinpanvegetaties en/of begeleiders aanwezig (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten alkalische duinpanvegetaties en/of begeleiders: bonte paardenstaart, drienervige zegge, duinrus, honingorchis, echt vetmos, goudmos (G), vierkantsmos, moeraswespenorchis, parnassia, rond wintergroen, weegbreefonteinkruid, blauwe zegge, dwergzegge, zeegroene zegge, moeraszoutgras, kruipwilg, paddenrus</div><div class="other-key">Sleutel: <strong>DUINEN</strong></div>    </div>
   </div>
   <div class="answer-block">
@@ -411,7 +432,7 @@ Sleutelsoorten (mossen) van alkalisch en neutrale (tril)venen: geveerd diknerfmo
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Sleutelsoorten alkalisch en neutraal trilveen minder dan frequent aanwezig EN begeleiders minder dan abundant aanwezig</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7140_base<br><strong>BWK CODE:</strong> mk°    </div>
+<strong>NATURA 2000:</strong> 7140_base<br><strong>BWK CODE:</strong> mk°    </div>
   </div>
 </div>
 
@@ -422,11 +443,11 @@ Sleutelsoorten (mossen) van alkalisch en neutrale (tril)venen: geveerd diknerfmo
 <div class="answer-link-terminal has-details">Bedekking verruigingsindicatoren > 10%</div>    <div class="answer-details-group">
 <div class="extra-info">Eutrofiëringsindicatoren: harig wilgenroosje, gele lis, vlotgras (G), pitrus, wolfspoot, rietgras, kruipende boterbloem, grote lisdodde, grote brandnetel, eendenkroos (G), algen</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_base<br><strong>BWK CODE:</strong> mk°    </div>
+<strong>NATURA 2000:</strong> 7140_base<br><strong>BWK CODE:</strong> mk°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7140_base<br><strong>BWK CODE:</strong> mk    </div>
+<strong>NATURA 2000:</strong> 7140_base<br><strong>BWK CODE:</strong> mk    </div>
   </div>
 </div>
 
@@ -443,7 +464,7 @@ Sleutelsoorten (mossen) van alkalisch en neutrale (tril)venen: geveerd diknerfmo
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7230<br><strong>BWK CODE:</strong> mk°    </div>
+<strong>NATURA 2000:</strong> 7230<br><strong>BWK CODE:</strong> mk°    </div>
   </div>
 </div>
 
@@ -454,11 +475,11 @@ Sleutelsoorten (mossen) van alkalisch en neutrale (tril)venen: geveerd diknerfmo
 <div class="answer-link-terminal has-details">Bedekking verruigingsindicatoren > 10%</div>    <div class="answer-details-group">
 <div class="extra-info">Eutrofiëringsindicatoren: harig wilgenroosje, gele lis, vlotgras (G), pitrus, wolfspoot, rietgras, kruipende boterbloem, lisdodde (G), grote brandnetel, ruw beemdgras, gestreepte witbol, paardenbloem, fioringras, waterkers (G), grote egelskop, paardenbloem, Klaver (G), fioringras, gewoon struisriet, gewone hoornbloem</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7230<br><strong>BWK CODE:</strong> mk°    </div>
+<strong>NATURA 2000:</strong> 7230<br><strong>BWK CODE:</strong> mk°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7230<br><strong>BWK CODE:</strong> mk    </div>
+<strong>NATURA 2000:</strong> 7230<br><strong>BWK CODE:</strong> mk    </div>
   </div>
 </div>
 
@@ -469,7 +490,7 @@ Sleutelsoorten (mossen) van alkalisch en neutrale (tril)venen: geveerd diknerfmo
 <div class="answer-link-terminal has-details">Sleutelsoorten snavelbies-verbond samen aspectbepalend (samen met open water, moslaag en/of open bodem co-)dominant t.o.v. de overige vegetatie)</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten snavelbies-verbond: witte en bruine snavelbies, moeraswolfsklauw, kleine en ronde zonnedauw</div><div class="answer-remark">Vaak in complex met natte heide, overgangsveenvegetaties (7140_oli) of in venoevers</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7150<br><strong>BWK CODE:</strong> ce    </div>
+<strong>NATURA 2000:</strong> 7150<br><strong>BWK CODE:</strong> ce    </div>
   </div>
   <div class="answer-block">
 <a href="#step65" class="answer-link">Anders (→ 65)</a>  </div>
@@ -491,7 +512,7 @@ Sleutelsoorten (mossen) van alkalisch en neutrale (tril)venen: geveerd diknerfmo
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Bedekking pijpenstrootje > 50%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> cm + ces    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> cm + ces    </div>
   </div>
   <div class="answer-block">
 <a href="#step67" class="answer-link">Bedekking pijpenstrootje <= 50% (→ 67)</a>  </div>
@@ -502,13 +523,13 @@ Sleutelsoorten (mossen) van alkalisch en neutrale (tril)venen: geveerd diknerfmo
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Sleutelsoorten van overgangsveen hooguit occasioneel aanwezig</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces°    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Sleutelsoorten van overgangsveen minimaal frequent aanwezig</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten overgangsveen: kleine veenbes, lavendelheide, éénarig wollegras, rood veenmos, hoogveenveenmos, stijf veenmos</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces    </div>
+<strong>NATURA 2000:</strong> 7140_oli<br><strong>BWK CODE:</strong> ces    </div>
   </div>
 </div>
 
@@ -622,11 +643,11 @@ Begeleiders van natte ruigten: haagwinde, heelblaadjes, hop, moeraskers, rietgra
 <div class="answer-link-terminal has-details">Bedekking eutrofiëringsindicatoren > 30%</div>    <div class="answer-details-group">
 <div class="extra-info">Eutrofiëringsindicatoren: ganzevoet (G), gewone hennepnetel, grote brandnetel, vlotgras (G), eendekroos (G), rietgras, kruipende boterbloem, blaartrekkende boterbloem, gele waterkers, kleefkruid, pitrus, grote lisdodde, bitterzoet</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbmc<br><strong>BWK CODE:</strong> mc°    </div>
+<strong>NATURA 2000:</strong> rbbmc<br><strong>BWK CODE:</strong> mc°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbmc<br><strong>BWK CODE:</strong> mc    </div>
+<strong>NATURA 2000:</strong> rbbmc<br><strong>BWK CODE:</strong> mc    </div>
   </div>
 </div>
 
@@ -658,11 +679,11 @@ Begeleiders van natte ruigten: haagwinde, heelblaadjes, hop, moeraskers, rietgra
 <div class="answer-link-terminal has-details">Verruigingsindicatoren bedekken meer dan 30%</div>    <div class="answer-details-group">
 <div class="extra-info">Verruigingsindicatoren: akkerdistel, kweek, heermoes, braam(G), ridderzuring, liesgras, grote brandnetel, rietgras</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6430_mr<br><strong>BWK CODE:</strong> mr°    </div>
+<strong>NATURA 2000:</strong> 6430_mr<br><strong>BWK CODE:</strong> mr°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6430_mr<br><strong>BWK CODE:</strong> mr    </div>
+<strong>NATURA 2000:</strong> 6430_mr<br><strong>BWK CODE:</strong> mr    </div>
   </div>
 </div>
 
@@ -673,11 +694,11 @@ Begeleiders van natte ruigten: haagwinde, heelblaadjes, hop, moeraskers, rietgra
 <div class="answer-link-terminal has-details">Eutrofiëringsindicatoren bedekken meer dan 10%</div>    <div class="answer-details-group">
 <div class="extra-info">Eutrofiëringsindicatoren: harig wilgenroosje, vlotgras(G), gele lis, pitrus, kroos (G), wolfspoot, rietgras, kruipende boterbloem, grote lisdodde, grote brandnetel, haagwinde, waterzuring</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_mrd<br><strong>BWK CODE:</strong> mr°    </div>
+<strong>NATURA 2000:</strong> 7140_mrd<br><strong>BWK CODE:</strong> mr°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7140_mrd<br><strong>BWK CODE:</strong> mr    </div>
+<strong>NATURA 2000:</strong> 7140_mrd<br><strong>BWK CODE:</strong> mr    </div>
   </div>
 </div>
 
@@ -736,13 +757,13 @@ Begeleidende soorten zuur laagveen: gewimperd veenmos, gewoon veenmos, blaaszegg
 <div class="answer-link-terminal has-details">Behalvet riet zijn sleutelsoorten van het riet-verbond samen minder dan frequent aanwezig of is hun voorkomen hoofdzakelijk beperkt tot grachten en sloten in het perceel. Het betreft veelal situaties met een graslandhistoriek</div>    <div class="answer-details-group">
 <div class="answer-remark">Indien de oorspronkelijke (grasland)vegetatie kan afgeleid worden o.b.v. voorkomen sleutelsoorten kan dergelijke situatie met behulp van een /-verhouding worden weergegeven. Hierbij dient wel voldaan aan de sleutelcriteria van dat specifieke graslandtype, bv. rietbedekking=50%, ondergroei met abundant veldrus, dotterbloem en bosbies: hr/hc°</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> hr    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> hr    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal has-details">Behalve riet zijn sleutelsoorten van het riet-verbond samen minder dan frequent aanwezig of is hun voorkomen hoofdzakelijk beperkt tot grachten en sloten in het perceel. Het betreft een situatie met een historische of recente antropogene bodemverstoring</div>    <div class="answer-details-group">
 <div class="extra-info">Sleutelsoorten riet-verbond: gele lis, grote boterbloem, grote egelskop, grote en kleine lisdodde, kalmoes, liesgras, lidsteng, mattenbies, riet, ruwe bies, vlotgras (G), watertorkruid, waterzuring, zwanenbloem</div><div class="answer-remark">Ook na braaklegging kan riet vanuit wortelstokken vanuit aangrenzende percelen een pioniervegetatie snel koloniseren.</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> gh<br><strong>BWK CODE:</strong> ku    </div>
+<strong>NATURA 2000:</strong> gh<br><strong>BWK CODE:</strong> ku    </div>
   </div>
   <div class="answer-block">
 <a href="#step320" class="answer-link">Anders (→ 320)</a>  </div>
@@ -753,11 +774,11 @@ Begeleidende soorten zuur laagveen: gewimperd veenmos, gewoon veenmos, blaaszegg
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Bedekking brandnetel, kleefkruid, distels, haagwinde en/of braam > 30%</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbmr<br><strong>BWK CODE:</strong> mru    </div>
+<strong>NATURA 2000:</strong> rbbmr<br><strong>BWK CODE:</strong> mru    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Buitendijks gelegen en (co)dominant invasieve exoten (reuzenbalsemien, Fallopia soorten)</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> ku°    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> ku°    </div>
   </div>
   <div class="answer-block">
 <a href="#step321" class="answer-link">Anders (→ 321)</a>  </div>
@@ -770,11 +791,11 @@ Begeleidende soorten zuur laagveen: gewimperd veenmos, gewoon veenmos, blaaszegg
 <div class="answer-link-terminal has-details">Eutrofiëringsindicatoren bedekken meer dan 30%</div>    <div class="answer-details-group">
 <div class="extra-info">Eutrofiëringsindicatoren: ganzenvoet(G), harig wilgenroosje, gewone hennepnetel, kleefkruid, vlotgras (G), pitrus, kroos (G), rietgras, kruipende boterbloem, blaartrekkende boterbloem, gele waterkers, bitterzoet, grote lisdodde, grote brandnetel, liesgras, kleefkruid, grote kattenstaart</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbmr<br><strong>BWK CODE:</strong> mr°    </div>
+<strong>NATURA 2000:</strong> rbbmr<br><strong>BWK CODE:</strong> mr°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbmr<br><strong>BWK CODE:</strong> mr    </div>
+<strong>NATURA 2000:</strong> rbbmr<br><strong>BWK CODE:</strong> mr    </div>
   </div>
 </div>
 
@@ -812,11 +833,11 @@ Begeleidende soorten zuur laagveen: gewimperd veenmos, gewoon veenmos, blaaszegg
 <div class="answer-link-terminal has-details">Verruigingsindicatoren bedekken meer dan 30%</div>    <div class="answer-details-group">
 <div class="extra-info">Verruigingsindicatoren: akkerdistel, kweek, heermoes, braam(G), ridderzuring, liesgras, grote brandnetel, rietgras</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6430_mr<br><strong>BWK CODE:</strong> mr°    </div>
+<strong>NATURA 2000:</strong> 6430_mr<br><strong>BWK CODE:</strong> mr°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6430_mr<br><strong>BWK CODE:</strong> mr    </div>
+<strong>NATURA 2000:</strong> 6430_mr<br><strong>BWK CODE:</strong> mr    </div>
   </div>
 </div>
 
@@ -825,11 +846,11 @@ Begeleidende soorten zuur laagveen: gewimperd veenmos, gewoon veenmos, blaaszegg
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Wilde bertram, grote wederik, melkeppe, hennegras, ruw walstro, wateraardbei, veenpluis, veenmos en zwarte zegge zijn samen (co)-dominant</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hfl    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hfl    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hfl°    </div>
+<strong>NATURA 2000:</strong> rbbhf<br><strong>BWK CODE:</strong> hfl°    </div>
   </div>
 </div>
 
@@ -883,7 +904,7 @@ Begeleidende soorten zuur laagveen: gewimperd veenmos, gewoon veenmos, blaaszegg
 <a href="#step300" class="answer-link">Bedekking van de sleutelsoorten van natte ruigten < abundant en bedekking van de sleutelsoorten van het rietverbond > 10% (→ 300)</a>  </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> hr    </div>
+<strong>NATURA 2000:</strong> geen habitat<br><strong>BWK CODE:</strong> hr    </div>
   </div>
 </div>
 
@@ -936,7 +957,7 @@ Begeleidende soorten zuur laagveen: gewimperd veenmos, gewoon veenmos, blaaszegg
 Basenminnende soorten: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene, bokkenorchis, borstelkrans, geel zonneroosje, gele morgenster, gevinde kortsteel, gewone agrimonie, goudhaver, grote centaurie, grote muggenorchis, grote pimpernel, gulden sleutelbloem, harlekijn, heelblaadjes, herfsttijloos, hokjespeul, hondskruid, klavervreter, kleine pimpernel, knikkende distel, mannetjesorchis, naakte lathyrus, paddenrus, ruige leeuwentand, ruige weegbree, schubzegge, sikkelklaver, soldaatje, veldsalie, wilde marjolein en zeegroene zegge</div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="other-key">Sleutel: <strong>GRASLAND</strong></div>    </div>
   </div>
 </div>
@@ -948,11 +969,11 @@ Basenminnende soorten: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene
 <div class="answer-link-terminal has-details">Er zijn minstens 4 soorten uit de schraalgrasland-groep aanwezig</div>    <div class="answer-details-group">
 <div class="extra-info">Schraalgrasland: blonde zegge, bosorchis, brede orchis, gele zegge, karwijselie, moerasstreepzaad, parnassia, schubzegge, teer guichelheil, addertong, blauwe knoop, blauwe zegge, bleke zegge, bosanemoon, geelgroene zegge, gevlekte orchis s.l., klein glidkruid, kleine schorseneer, kleine valeriaan, klimopklokje, kranskarwij, melkviooltje, moerasviooltje, pijpenstrootje (excl. zandige bodems), ruw walstro, Spaanse ruiter, tormentil, veelbloemige veldbies, vlozegge, zaagblad, borstelgras, gevlekte orchis, klokjesgentiaan, sterzegge, tandjesgras, welriekende nachtorchis</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6510_mo<br><strong>BWK CODE:</strong> hmm    </div>
+<strong>NATURA 2000:</strong> 6510_mo<br><strong>BWK CODE:</strong> hmm    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6510_mo<br><strong>BWK CODE:</strong> hmm°    </div>
+<strong>NATURA 2000:</strong> 6510_mo<br><strong>BWK CODE:</strong> hmm°    </div>
   </div>
 </div>
 
@@ -963,11 +984,11 @@ Basenminnende soorten: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene
 <div class="answer-link-terminal has-details">Er zijn minstens 4 soorten uit de schraalgrasland-groep aanwezig</div>    <div class="answer-details-group">
 <div class="extra-info">Schraalgrasland: blonde zegge, bosorchis, brede orchis, gele zegge, karwijselie, moerasstreepzaad, parnassia, schubzegge, teer guichelheil, addertong, blauwe knoop, blauwe zegge, bleke zegge, bosanemoon, geelgroene zegge, gevlekte orchis s.l., klein glidkruid, kleine schorseneer, kleine valeriaan, klimopklokje, kranskarwij, melkviooltje, moerasviooltje, pijpenstrootje (excl. zandige bodems), ruw walstro, Spaanse ruiter, tormentil, veelbloemige veldbies, vlozegge, zaagblad, borstelgras, gevlekte orchis, klokjesgentiaan, sterzegge, tandjesgras, welriekende nachtorchis</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 6510_mo<br><strong>BWK CODE:</strong> hme    </div>
+<strong>NATURA 2000:</strong> 6510_mo<br><strong>BWK CODE:</strong> hme    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 6510_mo<br><strong>BWK CODE:</strong> hme°    </div>
+<strong>NATURA 2000:</strong> 6510_mo<br><strong>BWK CODE:</strong> hme°    </div>
   </div>
 </div>
 
@@ -985,7 +1006,7 @@ Basenminnende soorten: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene
 <div class="extra-info">Soorten van het zilverschoon-verbond: aardbeiklaver, akkerkers, getand vlotgras, gewone waterbies, heelblaadjes, klein vlooienkruid, kruipend moerasscherm, moeras-/zompvergeet-me-nietje, moeraszoutgras (polderstreek), penningkruid, pijptorkruid, platte rus, polei, rode ogentroost, slanke waterbies, smalle rolklaver (polderstreek), valse voszegge, watermunt, zeegroene rus, zilte rus, zilte zegge (polderstreek), zilverschoon, zomprus ...</div>    </div>
   </div>
   <div class="answer-block">
-<a href="../index.html" class="answer-link has-details">Anders (→ Index)</a>    <div class="answer-details-group">
+<a href="../index.html" class="answer-link has-details">Anders (→ Hoofdsleutel)</a>    <div class="answer-details-group">
 <div class="answer-remark">Sleutel verder met de graslandsleutel vanaf stap 31</div><div class="other-key">Sleutel: <strong>GRASLAND</strong></div>    </div>
   </div>
 </div>
@@ -997,11 +1018,11 @@ Basenminnende soorten: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene
 <div class="answer-link-terminal has-details">Minstens 5 soorten van het dotterbloem-verbond komen elk minimaal occasioneel voor</div>    <div class="answer-details-group">
 <div class="extra-info">Soorten van het dotterbloem-verbond: veldrus, bosbies (k), echte koekoeksbloem, lidrus (k), grote ratelaar, ruwe smele, adderwortel (k), moeras/zompvergeet-me-nietje, kruipend zenegroen, moesdistel (k), tweerijige zegge (k), dotterbloem (k), brede orchis (k), gevleugeld hertshooi (k), herfsttijloos, kale jonker (k), moerasrolklaver, moerasstreepzaad (k), paddenrus (k), rietorchis, slanke sleutelbloem (k), waterkruiskruid</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbhc<br><strong>BWK CODE:</strong> hc    </div>
+<strong>NATURA 2000:</strong> rbbhc<br><strong>BWK CODE:</strong> hc    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbhc<br><strong>BWK CODE:</strong> hc°    </div>
+<strong>NATURA 2000:</strong> rbbhc<br><strong>BWK CODE:</strong> hc°    </div>
   </div>
 </div>
 
@@ -1012,11 +1033,11 @@ Basenminnende soorten: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene
 <div class="answer-link-terminal has-details">Minstens 5 soorten van het zilverschoonverbond komen elk minimaal frequent voor OF 6 soorten zijn minimaal occasioneel aanwezig</div>    <div class="answer-details-group">
 <div class="extra-info">Soorten van het zilverschoon-verbond: aardbeiklaver, akkerkers, getand vlotgras, gewone waterbies, heelblaadjes, klein vlooienkruid, kruipend moerasscherm, moeras-/zompvergeet-me-nietje, moeraszoutgras (polderstreek), penningkruid, pijptorkruid, platte rus, polei, rode ogentroost, slanke waterbies, smalle rolklaver (polderstreek), valse voszegge, watermunt, zeegroene rus, zilte rus, zilte zegge (polderstreek), zilverschoon, zomprus ...</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbzil<br><strong>BWK CODE:</strong> hc    </div>
+<strong>NATURA 2000:</strong> rbbzil<br><strong>BWK CODE:</strong> hc    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbzil<br><strong>BWK CODE:</strong> hc°    </div>
+<strong>NATURA 2000:</strong> rbbzil<br><strong>BWK CODE:</strong> hc°    </div>
   </div>
 </div>
 
@@ -1047,11 +1068,11 @@ Basenminnende soorten: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene
 <div class="answer-link-terminal has-details">Eutrofiëringsindicatoren overgangsveen bedekken meer dan 10%</div>    <div class="answer-details-group">
 <div class="extra-info">Eutrofiëringsindicatoren overgangsveen: harig wilgenroosje, vlotgras (G), gele lis, pitrus, eendekroos, wolfspoot, rietgras, kruipende boterbloem, grote lisdodde, grote brandnetel, algen</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> 7140_meso<br><strong>BWK CODE:</strong> ms°    </div>
+<strong>NATURA 2000:</strong> 7140_meso<br><strong>BWK CODE:</strong> ms°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> 7140_meso<br><strong>BWK CODE:</strong> ms    </div>
+<strong>NATURA 2000:</strong> 7140_meso<br><strong>BWK CODE:</strong> ms    </div>
   </div>
 </div>
 
@@ -1062,11 +1083,11 @@ Basenminnende soorten: aardaker, aarddistel, bevertjes, bijenorchis, blaassilene
 <div class="answer-link-terminal has-details">Eutrofiëringsindicatoren zuur laagveen bedekken meer dan 30%</div>    <div class="answer-details-group">
 <div class="extra-info">Eutrofiëringsindicatoren zuur laagveen: ganzenvoet (G), harig wilgenroosje, gewone hennepnetel, kleefkruid, vlotgras, gele lis, pitrus , kroos (G), wolfspoot, rietgras, waterpeper, kruipende boterbloem, blaartrekkende boterbloem, gele waterkers, bitterzoet, grote lisdodde, grote brandnetel</div>    </div>
     <div class="result-box">
-<strong>Natura 2000:</strong> rbbms<br><strong>BWK CODE:</strong> ms°    </div>
+<strong>NATURA 2000:</strong> rbbms<br><strong>BWK CODE:</strong> ms°    </div>
   </div>
   <div class="answer-block">
 <div class="answer-link-terminal">Anders</div>    <div class="result-box">
-<strong>Natura 2000:</strong> rbbms<br><strong>BWK CODE:</strong> ms    </div>
+<strong>NATURA 2000:</strong> rbbms<br><strong>BWK CODE:</strong> ms    </div>
   </div>
 </div>
 
@@ -1122,6 +1143,6 @@ Begeleidende soorten zuur laagveen: gewimperd veenmos, gewoon veenmos, blaaszegg
   </div>
 </div>
 
-<div style="text-align:center; margin-bottom: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
+<div style="text-align:center; margin-top: 50px;"><a href="../index.html" class="back-to-index">TERUG NAAR INDEX</a></div>
 </body>
 </html>
