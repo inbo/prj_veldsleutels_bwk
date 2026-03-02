@@ -30,6 +30,3 @@ read_gsheet_data <- function(df) {
   }
   sleutels
 }
-
-# sleutels[[sleutel]] <- parse_key_data(sheet_data)
-# attr(sleutels[[sleutel]], "meta") <- df_meta
