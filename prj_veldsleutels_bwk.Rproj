@@ -1,4 +1,8 @@
 Version: 1.0
+<<<<<<< HEAD
+=======
+ProjectId: b754011f-99f4-4fe1-89b5-7d7fcee6afef
+>>>>>>> 5758679b8a68b1034bda50da5b962f49b6279e7d
 
 RestoreWorkspace: Default
 SaveWorkspace: Default
@@ -9,8 +13,13 @@ UseSpacesForTab: Yes
 NumSpacesForTab: 2
 Encoding: UTF-8
 
+<<<<<<< HEAD
 RnwWeave: knitr
 LaTeX: XeLaTeX
 
 AutoAppendNewline: Yes
 StripTrailingWhitespace: Yes
+=======
+RnwWeave: Sweave
+LaTeX: pdfLaTeX
+>>>>>>> 5758679b8a68b1034bda50da5b962f49b6279e7d

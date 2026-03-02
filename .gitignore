@@ -33,4 +33,13 @@ docs/
 po/*~
 # RStudio Connect folder
 rsconnect/
-interim
+
+#documentatiefolder
+documents/
+
+#interim data
+interim/
+
+#file types
+*.pdf
+
