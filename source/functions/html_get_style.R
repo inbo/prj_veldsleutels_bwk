@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <style>
-
+# 2. CSS Styling (Added .answer-block and refined result-box)
+html_get_style <- function() {
+  "
   body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; color: #333; background: #f4f7f6; }
   h1 { color: #2c3e50; border-bottom: 2px solid #2c3e50; }
   .step-container { background: white; padding: 20px; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-left: 5px solid #27ae60; }
@@ -27,10 +24,5 @@
   .question { font-size: 1.2em; font-weight: bold; margin: 15px 0 20px 0; }
   .back-to-index { display: inline-block; margin: 20px 0; padding: 10px; background: #eee; text-decoration: none; border-radius: 4px; color: #333; }
   .index-btn { display: block; padding: 20px; margin: 10px 0; background: white; border: 1px solid #ddd; border-radius: 8px; font-size: 1.2em; text-decoration: none; color: #2c3e50; font-weight: bold; text-align: center; }
-  
-  </style>
-</head>
-<body>
-  <h1>Veldsleutels Index</h1>
-<a href="bos.html" class="index-btn">BOS</a><a href="grasland.html" class="index-btn">GRASLAND</a><a href="heide.html" class="index-btn">HEIDE</a><a href="moeras.html" class="index-btn">MOERAS</a><a href="water.html" class="index-btn">WATER</a></body>
-</html>
+  "
+}
