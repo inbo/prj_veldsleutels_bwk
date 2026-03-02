@@ -68,7 +68,7 @@ main_keys <- names(data) # bos, mrs, grl, wtr, hei
 for (k in main_keys) {
   html_write_key_page(k, data[[k]], "www")
 }
-html_write_index_page(main_keys, "www")
+html_write_index_page(main_keys, "")
 
 
 # //pdf render
