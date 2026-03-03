@@ -40,3 +40,6 @@ interim/
 #file types
 *.pdf
 test.yaml
+#quarto pdf output
+pdf_output/
+*.qmd

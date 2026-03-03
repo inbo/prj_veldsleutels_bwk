@@ -251,9 +251,13 @@ html_write_index_page(main_keys, folder = "", subfolder = "www")
 
 ### Step 7: Generate PDF Documentation
 
-Create a printable PDF version of all keys:
+There are two options for generating PDF documentation:
 
-```{r generate-pdf}
+#### Option A: Traditional R Markdown (Combined Document)
+
+Create a single PDF with all keys:
+
+```{r generate-pdf-rmd}
 # Create R Markdown file
 create_pdf_markdown(veldsleutels, rmdfile = "veldsleutels.Rmd")
 
@@ -265,6 +269,47 @@ rmarkdown::render("veldsleutels.Rmd")
 
 - **veldsleutels.Rmd**: R Markdown source file
 - **veldsleutels.pdf**: Compiled PDF with all keys
+
+#### Option B: Quarto with Flandersqmd Style (Individual Documents)
+
+Create separate PDFs for each key with INBO corporate identity:
+
+```{r generate-pdf-quarto}
+# Create Quarto documents
+create_quarto_pdf(veldsleutels, output_dir = "pdf_output", use_flandersqmd = TRUE)
+
+# Render individual keys to PDF using Quarto
+# (requires Quarto to be installed: https://quarto.org)
+system("quarto render pdf_output/bos.qmd")
+system("quarto render pdf_output/grasland.qmd")
+
+# Or render all at once
+system("cd pdf_output && quarto render")
+```
+
+**What is created**:
+
+- **pdf_output/bos.qmd**: Quarto source for forest key
+- **pdf_output/grasland.qmd**: Quarto source for grassland key  
+- **pdf_output/heide.qmd**: Quarto source for heathland key
+- **pdf_output/moeras.qmd**: Quarto source for wetland key
+- **pdf_output/water.qmd**: Quarto source for water key
+- **pdf_output/README.md**: Instructions for rendering
+- **PDF files**: One per key with INBO styling
+
+**Flandersqmd features**:
+
+- INBO/Flanders corporate identity styling
+- Professional cover pages
+- Formatted callout boxes for background info and results
+- Cross-references with hyperlinks
+- Table of contents
+- Proper typography and spacing
+
+To use flandersqmd styling, install the Quarto extension first:
+```bash
+quarto install extension inbo/flandersqmd-book
+```
 
 **PDF features**:
 
@@ -342,10 +387,18 @@ The HTML output provides an interactive web interface:
 
 The PDF output provides a printable reference:
 
-- Complete documentation of all keys
+**Option A (R Markdown):**
+- Combined document with all keys
 - Table of contents for easy navigation
 - Cross-references between steps
-- Formatted for professional presentation
+- Basic PDF formatting
+
+**Option B (Quarto with flandersqmd):**
+- Individual PDFs for each key
+- INBO/Flanders corporate identity styling
+- Professional cover pages and formatting
+- Enhanced callout boxes and visual elements
+- Better typography and spacing
 
 ## Customization
 
@@ -369,8 +422,14 @@ html_write_key_page("bos", veldsleutels[["bos"]], folder = "output/html")
 # Index in custom location
 html_write_index_page(main_keys, folder = "public", subfolder = "keys")
 
-# PDF with custom name
+# PDF with custom name or location
 create_pdf_markdown(veldsleutels, rmdfile = "my_keys.Rmd")
+
+# Quarto PDFs with custom settings
+create_quarto_pdf(veldsleutels, 
+                  output_dir = "custom_output",
+                  author_name = "Custom Author",
+                  use_flandersqmd = FALSE)
 ```
 
 ## Troubleshooting
@@ -441,12 +500,22 @@ check_logic(veldsleutels)
 
 # 7. Generate outputs
 main_keys <- names(veldsleutels)
+
+# HTML output
 for (k in main_keys) {
   html_write_key_page(k, veldsleutels[[k]], folder = "www")
 }
 html_write_index_page(main_keys, folder = "", subfolder = "www")
+
+# PDF output - choose one approach:
+
+# Option A: Traditional R Markdown (all keys in one PDF)
 create_pdf_markdown(veldsleutels, rmdfile = "veldsleutels.Rmd")
 rmarkdown::render("veldsleutels.Rmd")
+
+# Option B: Quarto with flandersqmd style (individual PDFs per key)
+create_quarto_pdf(veldsleutels, output_dir = "pdf_output")
+# Then render with: system("cd pdf_output && quarto render")
 ```
 
 ## Conclusion
@@ -455,7 +524,8 @@ This workflow provides a complete system for generating interactive field identi
 
 1. **Flexible**: Easy to update keys by editing Google Sheets
 2. **Validated**: Automatic logic checking catches errors
-3. **Multi-format**: Generates both interactive HTML and printable PDF
-4. **Maintainable**: Well-documented functions for each step
+3. **Multi-format**: Generates both interactive HTML and printable PDF (R Markdown or Quarto)
+4. **Professional**: Optional INBO corporate identity styling for PDFs via flandersqmd
+5. **Maintainable**: Well-documented functions for each step
 
 For questions or issues, consult the function documentation using `?function_name` or review the source code in `source/functions/`.
