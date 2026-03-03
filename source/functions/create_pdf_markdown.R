@@ -37,13 +37,10 @@ library(glue)
 #'
 #' @seealso \code{\link{parse_data}}, \code{\link{html_write_key_page}}
 create_pdf_markdown <- function(data, rmdfile) {
-  # 1. Load data
-  data <- data
-
-  # 2. Output Rmd file name
+  # 1. Output Rmd file name
   rmd_fn <- rmdfile
 
-  # 3. Write Rmd Header (YAML Metadata for PDF)
+  # 2. Write Rmd Header (YAML Metadata for PDF)
   cat('---
 title: "Veldsleutels BWK & Natura 2000"
 author: "Generatie Document"
@@ -60,7 +57,7 @@ output:
 
 ', file = rmd_fn, append = FALSE)
 
-  # 4. Loop through main keys (bos, mrs, grl, etc.)
+  # 3. Loop through main keys (bos, mrs, grl, etc.)
   main_keys <- names(data)
 
   for (k in main_keys) {
