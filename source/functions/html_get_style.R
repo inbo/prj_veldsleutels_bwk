@@ -1,3 +1,40 @@
+#' Get HTML Style for Field Key Pages
+#'
+#' Returns a CSS style string for formatting HTML field key pages with a modern,
+#' readable design including cards, buttons, and responsive layout.
+#'
+#' @return A character string containing CSS code for styling field key HTML pages.
+#'
+#' @details
+#' The style includes:
+#' \itemize{
+#'   \item Responsive grid layout for index buttons
+#'   \item Card-based design for steps with visual hierarchy
+#'   \item Color-coded elements (questions, answers, results)
+#'   \item Interactive button states (hover, active)
+#'   \item Clear visual distinction between terminal and navigation answers
+#'   \item Mobile-friendly responsive design
+#' }
+#'
+#' The style is designed for Dutch field identification keys with support for:
+#' \itemize{
+#'   \item Step containers with numbered headers
+#'   \item Question prompts in bold
+#'   \item Background information boxes
+#'   \item Answer buttons with navigation links
+#'   \item Result display boxes for classifications
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' # Get the CSS style
+#' css <- html_get_style()
+#'
+#' # Use in HTML document
+#' cat("<style>\n", css, "\n</style>", file = "style_test.html")
+#' }
+#'
+#' @seealso \code{\link{html_write_index_page}}, \code{\link{html_write_key_page}}
 html_get_style <- function() {
   "
   body {

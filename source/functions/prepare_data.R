@@ -1,3 +1,51 @@
+#' Prepare Raw Field Key Data for Parsing
+#'
+#' Validates, filters, and transforms raw field key data from Google Sheets
+#' into a standardized format ready for parsing. This includes type mapping,
+#' ID generation, and incoming step calculation.
+#'
+#' @param data A data frame containing raw field key data from Google Sheets.
+#'   Must include columns: STEP, TYPE, NAME, NEXT_STEP, CLASSIFICATION,
+#'   BWK_CODE, SUBKEY, REMARK, and KEY.
+#'
+#' @return A data frame with additional computed columns:
+#'   \itemize{
+#'     \item \code{.prev}: Previous step number (for change detection)
+#'     \item \code{.type}: Mapped type (h2, h3, h4, info, background, question, answer)
+#'     \item \code{.step}: Internal step ID (e.g., "bos0001")
+#'     \item \code{.nextstep}: Internal next step ID
+#'     \item \code{.incoming}: List of steps that reference this step
+#'   }
+#'   All NA values in text columns are replaced with empty strings.
+#'
+#' @details
+#' The function performs several data preparation tasks:
+#' \enumerate{
+#'   \item Validates that all required columns are present
+#'   \item Filters out rows with missing or excluded STEP values
+#'   \item Maps TYPE codes to semantic names:
+#'     \itemize{
+#'       \item T1 → h2 (level 2 header)
+#'       \item T2 → h3 (level 3 header)
+#'       \item T3 → h4 (level 4 header)
+#'       \item I → info (additional information)
+#'       \item BI → background (background information)
+#'       \item Q → question
+#'       \item A → answer
+#'     }
+#'   \item Creates zero-padded internal step IDs (e.g., "bos0001")
+#'   \item Calculates incoming steps (which steps link to each step)
+#'   \item Replaces NA values with empty strings
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' # Prepare data after reading from Google Sheets
+#' raw <- read_gsheet_data(sleutel_df)
+#' prepared <- lapply(raw, prepare_data)
+#' }
+#'
+#' @seealso \code{\link{read_gsheet_data}}, \code{\link{parse_data}}
 prepare_data <- function(data) {
   colnames <- c(
     "STEP", "TYPE", "NAME", "NEXT_STEP",

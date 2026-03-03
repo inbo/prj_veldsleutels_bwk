@@ -1,3 +1,32 @@
+#' Check Logic of Field Key Data
+#'
+#' Validates the logical structure of field key data by checking for stale
+#' answers (dead ends without results) and unreachable steps (steps that are
+#' never referenced by any answer).
+#'
+#' @param data A named list of key groups, where each key group contains steps.
+#'   Each step should have a step_number and optionally answers with nextstep
+#'   values and result codes (n2000, bwk).
+#'
+#' @return Invisible NULL. The function prints diagnostic messages to the console.
+#'
+#' @details
+#' The function performs two main checks:
+#' \itemize{
+#'   \item \strong{Stale Answers}: Identifies answers that have no next step and
+#'     no result codes, representing dead ends in the key.
+#'   \item \strong{Unreachable Steps}: Identifies steps that are never referenced
+#'     as a 'nextstep' value by any answer (excluding the first step which is
+#'     the entry point).
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' # Assuming 'veldsleutels' is parsed data from parse_data()
+#' check_logic(veldsleutels)
+#' }
+#'
+#' @seealso \code{\link{parse_data}}, \code{\link{prepare_data}}
 check_logic <- function(data) {
   for (key_group in names(data)) {
     cat("\n--- Analysing Key Group:", toupper(key_group), "---\n")

@@ -1,3 +1,38 @@
+#' Write HTML Index Page for Field Keys
+#'
+#' Creates an HTML index page with navigation buttons for all available field keys.
+#' This serves as the main entry point for the field key web interface.
+#'
+#' @param keys Character vector of key names (e.g., c("bos", "grasland", "heide")).
+#' @param folder Character string specifying the output directory. Default is ""
+#'   (current directory).
+#' @param subfolder Character string specifying the subdirectory where individual
+#'   key HTML files are located. Default is "www".
+#'
+#' @return Invisible NULL. The function writes the index.html file to disk.
+#'
+#' @details
+#' The function generates a responsive HTML page with:
+#' \itemize{
+#'   \item A centered title "VELDSLEUTELS INDEX"
+#'   \item A grid layout of buttons for each field key
+#'   \item Links to individual key pages in the specified subfolder
+#'   \item Embedded CSS styling from \code{\link{html_get_style}}
+#' }
+#'
+#' The output file is named "index.html" and placed in the specified folder.
+#'
+#' @examples
+#' \dontrun{
+#' # Create index in current directory linking to www/ subfolder
+#' keys <- c("bos", "grasland", "heide", "moeras", "water")
+#' html_write_index_page(keys, folder = "", subfolder = "www")
+#'
+#' # Create index in specific folder
+#' html_write_index_page(keys, folder = "output", subfolder = "www")
+#' }
+#'
+#' @seealso \code{\link{html_write_key_page}}, \code{\link{html_get_style}}
 html_write_index_page <- function(keys, folder = "", subfolder = "www") {
   fn <- if (nchar(folder)) file.path(folder, "index.html") else "index.html"
 

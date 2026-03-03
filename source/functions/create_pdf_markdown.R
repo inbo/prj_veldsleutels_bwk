@@ -1,7 +1,41 @@
 library(yaml)
 library(glue)
 
-
+#' Create PDF Markdown Document from Field Key Data
+#'
+#' Generates an R Markdown (.Rmd) file from field key data that can be rendered
+#' to PDF. The output includes a table of contents and structured sections for
+#' each key and step with internal cross-references.
+#'
+#' @param data A named list of key groups (e.g., bos, grasland, heide, moeras,
+#'   water), where each contains parsed step data with questions, answers, and
+#'   results.
+#' @param rmdfile Character string specifying the output .Rmd file path.
+#'
+#' @return Invisible NULL. The function writes the R Markdown file to disk.
+#'
+#' @details
+#' The function creates a PDF-formatted R Markdown document with:
+#' \itemize{
+#'   \item YAML header configured for PDF output via XeLaTeX
+#'   \item Table of contents with depth 2
+#'   \item Section headers for each field key
+#'   \item Step numbers with anchor tags for cross-referencing
+#'   \item Questions, answers, and navigation links between steps
+#'   \item Result codes (Natura 2000 and BWK classifications)
+#'   \item Page breaks between major sections
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' # Create markdown file from parsed data
+#' create_pdf_markdown(veldsleutels, "veldsleutels.Rmd")
+#'
+#' # Then render to PDF
+#' rmarkdown::render("veldsleutels.Rmd")
+#' }
+#'
+#' @seealso \code{\link{parse_data}}, \code{\link{html_write_key_page}}
 create_pdf_markdown <- function(data, rmdfile) {
   # 1. Load data
   data <- data
