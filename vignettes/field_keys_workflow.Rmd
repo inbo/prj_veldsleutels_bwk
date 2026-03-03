@@ -282,11 +282,11 @@ create_quarto_pdf(veldsleutels, output_dir = "pdf_output", use_flandersqmd = TRU
 # (requires Quarto to be installed: https://quarto.org)
 main_keys <- names(veldsleutels)
 for (key in main_keys) {
-  system(sprintf("quarto render pdf_output/%s.qmd", key))
+  system2("quarto", args = c("render", sprintf("pdf_output/%s.qmd", key)))
 }
 
-# Or render all at once
-system("cd pdf_output && quarto render")
+# Or render all at once from the output directory
+system2("quarto", args = "render", wd = "pdf_output")
 ```
 
 **What is created**:

@@ -91,6 +91,8 @@ create_quarto_pdf <- function(data,
     # Write YAML Header
     if (use_flandersqmd) {
       # Flandersqmd-style YAML header
+      # Note: Author structure follows flandersqmd pattern where organization
+      # name is placed in 'given' field (see flandersqmd-book examples)
       cat(glue('---
 title: "{key_title}"
 subtitle: "Veldsleutel voor habitatclassificatie BWK & Natura 2000"
