@@ -280,8 +280,10 @@ create_quarto_pdf(veldsleutels, output_dir = "pdf_output", use_flandersqmd = TRU
 
 # Render individual keys to PDF using Quarto
 # (requires Quarto to be installed: https://quarto.org)
-system("quarto render pdf_output/bos.qmd")
-system("quarto render pdf_output/grasland.qmd")
+main_keys <- names(veldsleutels)
+for (key in main_keys) {
+  system(sprintf("quarto render pdf_output/%s.qmd", key))
+}
 
 # Or render all at once
 system("cd pdf_output && quarto render")
@@ -290,10 +292,10 @@ system("cd pdf_output && quarto render")
 **What is created**:
 
 - **pdf_output/bos.qmd**: Quarto source for forest key
-- **pdf_output/grasland.qmd**: Quarto source for grassland key  
-- **pdf_output/heide.qmd**: Quarto source for heathland key
-- **pdf_output/moeras.qmd**: Quarto source for wetland key
-- **pdf_output/water.qmd**: Quarto source for water key
+- **pdf_output/grl.qmd**: Quarto source for grassland key  
+- **pdf_output/hei.qmd**: Quarto source for heathland key
+- **pdf_output/mrs.qmd**: Quarto source for wetland key
+- **pdf_output/wtr.qmd**: Quarto source for water key
 - **pdf_output/README.md**: Instructions for rendering
 - **PDF files**: One per key with INBO styling
 

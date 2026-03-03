@@ -104,8 +104,8 @@ flandersqmd:
   level: 2
   author:
     - name:
-        given: Research Institute for Nature and Forest
-        family: (INBO)
+        given: INBO
+        family: ""
       email: {author_email}
       corresponding: true
       affiliation:
