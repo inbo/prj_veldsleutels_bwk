@@ -1,6 +1,3 @@
-library(yaml)
-library(glue)
-
 #' Create PDF Markdown Document from Field Key Data
 #'
 #' Generates an R Markdown (.Rmd) file from field key data that can be rendered
@@ -25,6 +22,8 @@ library(glue)
 #'   \item Result codes (Natura 2000 and BWK classifications)
 #'   \item Page breaks between major sections
 #' }
+#'
+#' @note This function requires the \code{glue} package to be loaded.
 #'
 #' @examples
 #' \dontrun{

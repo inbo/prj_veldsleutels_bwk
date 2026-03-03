@@ -28,6 +28,8 @@
 #'
 #' The output file is named "\{key_name\}.html" and includes embedded CSS styling.
 #'
+#' @note This function requires the \code{glue} package to be loaded.
+#'
 #' @examples
 #' \dontrun{
 #' # Write HTML page for forest key

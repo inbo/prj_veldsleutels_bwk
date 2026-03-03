@@ -22,6 +22,8 @@
 #'
 #' The output file is named "index.html" and placed in the specified folder.
 #'
+#' @note This function requires the \code{glue} package to be loaded.
+#'
 #' @examples
 #' \dontrun{
 #' # Create index in current directory linking to www/ subfolder
