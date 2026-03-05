@@ -43,3 +43,6 @@ test.yaml
 #generated docx output
 output/
 *.docx
+veldsleutels.Rmd
+pdf_output
+veldsleutels.log
