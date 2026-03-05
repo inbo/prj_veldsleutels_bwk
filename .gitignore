@@ -40,3 +40,6 @@ interim/
 #file types
 *.pdf
 test.yaml
+#generated docx output
+output/
+*.docx
