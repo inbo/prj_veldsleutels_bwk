@@ -74,5 +74,11 @@ html_write_index_page(main_keys, "")
 # //pdf render
 #-------------
 
+# Option 1: Traditional R Markdown (combined document for all keys)
 create_pdf_markdown(data, "veldsleutels.Rmd")
 rmarkdown::render("veldsleutels.Rmd", )
+
+# Option 2: Quarto with flandersqmd style (individual documents per key)
+# Uncomment to use:
+# create_quarto_pdf(data, output_dir = "pdf_output", use_flandersqmd = TRUE)
+# Then render with: quarto render pdf_output/bos.qmd

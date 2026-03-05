@@ -1,3 +1,54 @@
+#' Parse Prepared Field Key Data into Structured Records
+#'
+#' Converts prepared field key data from a tabular format into a hierarchical
+#' list structure suitable for HTML rendering and further processing.
+#'
+#' @param data A data frame with prepared field key data, typically output from
+#'   \code{\link{prepare_data}}. Must include columns: STEP, .prev, .type, .step,
+#'   NAME, NEXT_STEP, CLASSIFICATION, BWK_CODE, SUBKEY, REMARK, and .incoming.
+#'
+#' @return A named list where each element represents a step, keyed by the
+#'   internal step ID (e.g., "bos0001"). Each step contains:
+#'   \itemize{
+#'     \item \code{step_number}: The display step number
+#'     \item \code{html_id}: The internal step identifier
+#'     \item \code{incoming_step}: List of steps that link to this step
+#'     \item \code{h2}, \code{h3}: Header information (name, remark)
+#'     \item \code{question}: Question text and remark
+#'     \item \code{background}: Background information
+#'     \item \code{answer}: List of answer objects, each containing:
+#'       \itemize{
+#'         \item \code{name}: Answer text
+#'         \item \code{nextstep}: Next step identifier or terminal value
+#'         \item \code{n2000}: Natura 2000 classification code
+#'         \item \code{bwk}: BWK classification code
+#'         \item \code{otherkey}: Reference to another key
+#'         \item \code{remark}: Additional remarks
+#'         \item \code{info}: Information text (from info rows)
+#'       }
+#'   }
+#'
+#' @details
+#' The function processes rows sequentially, detecting step changes and
+#' aggregating content by row type:
+#' \itemize{
+#'   \item Headers (h2, h3) are stored at the step level
+#'   \item Questions and background are stored at the step level
+#'   \item Answers are accumulated in a list
+#'   \item Info rows are appended to the previous answer
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' # After preparing data
+#' prepared <- prepare_data(raw_data)
+#' parsed <- parse_data(prepared)
+#'
+#' # Access a specific step
+#' step1 <- parsed[["bos0001"]]
+#' }
+#'
+#' @seealso \code{\link{prepare_data}}, \code{\link{html_write_key_page}}
 parse_data <- function(data) {
   records_list <- list()
   rec <- list()

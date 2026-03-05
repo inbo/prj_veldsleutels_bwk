@@ -1,3 +1,48 @@
+#' Write HTML Page for a Single Field Key
+#'
+#' Generates a complete HTML page for a single field identification key,
+#' including all steps, questions, answers, and navigation elements.
+#'
+#' @param key_name Character string with the name of the key (e.g., "bos", "grasland").
+#'   This is used for the page title and filename.
+#' @param key_data List containing the parsed step data for this key. Each element
+#'   should be a step with step_number, questions, answers, and optional metadata.
+#' @param folder Character string specifying the output directory. Default is ""
+#'   (current directory).
+#'
+#' @return Invisible NULL. The function writes the HTML file to disk and prints
+#'   the filename to the console.
+#'
+#' @details
+#' The function creates an interactive HTML page with:
+#' \itemize{
+#'   \item Page header with key name and back-to-index link
+#'   \item Step containers with numbered headers
+#'   \item Incoming step references (showing which previous steps link here)
+#'   \item Questions and background information
+#'   \item Clickable answer buttons with navigation to next steps
+#'   \item Terminal answers displaying result codes (Natura 2000 and BWK)
+#'   \item Additional information (remarks, related keys)
+#'   \item Internal anchor links for navigation within the page
+#' }
+#'
+#' The output file is named "\{key_name\}.html" and includes embedded CSS styling.
+#'
+#' @note This function requires the \code{glue} package to be loaded.
+#'
+#' @examples
+#' \dontrun{
+#' # Write HTML page for forest key
+#' html_write_key_page("bos", veldsleutels[["bos"]], folder = "www")
+#'
+#' # Write all keys
+#' for (k in names(veldsleutels)) {
+#'   html_write_key_page(k, veldsleutels[[k]], folder = "www")
+#' }
+#' }
+#'
+#' @seealso \code{\link{html_write_index_page}}, \code{\link{parse_data}},
+#'   \code{\link{html_get_style}}
 html_write_key_page <- function(key_name, key_data, folder = "") {
   fn <- file.path(folder, paste0(key_name, ".html"))
   cat("Generating:", fn, "\n")

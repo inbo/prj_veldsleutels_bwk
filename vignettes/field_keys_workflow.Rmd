@@ -1,0 +1,533 @@
+---
+title: "Complete Workflow for Field Key Generation"
+author: "INBO BWK Field Keys Project"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Complete Workflow for Field Key Generation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE  # Set to FALSE to prevent actual execution during build
+)
+```
+
+## Introduction
+
+This vignette demonstrates the complete workflow for generating interactive HTML field identification keys for habitat classification (BWK - Biologische Waarderingskaart). The workflow reads structured data from Google Sheets, processes it, validates the logic, and generates both HTML and PDF outputs.
+
+## Overview
+
+The field key system supports identification of 5 main habitat types:
+
+1. **Bos** (bos) - Forest key
+2. **Grasland** (grl) - Grassland key  
+3. **Heide** (hei) - Heathland key
+4. **Moeras** (mrs) - Wetland key
+5. **Water** (wtr) - Water key
+
+Each key consists of numbered steps with questions that guide users to habitat classifications according to BWK and Natura 2000 standards.
+
+## Prerequisites
+
+### Required Packages
+
+```{r packages}
+library(tidyverse)      # Data manipulation
+library(googlesheets4)  # Reading Google Sheets
+library(glue)           # String interpolation
+library(yaml)           # YAML export
+```
+
+### Authentication
+
+Before reading data from Google Sheets, you need to authenticate:
+
+```{r auth}
+# Replace with your email address
+gs4_auth(email = "your.email@inbo.be")
+```
+
+### Source Functions
+
+All functions are located in the `source/functions` directory:
+
+```{r source-functions}
+# Source all function files
+fun_path <- file.path("source", "functions")
+all_function_files <- list.files(
+  path = fun_path,
+  pattern = "^[^_].*\\.[rR]$",
+  full.names = TRUE
+)
+
+status <- lapply(all_function_files, FUN = source)
+```
+
+## Workflow Steps
+
+### Step 1: Define Field Keys
+
+Define the Google Sheets containing your field key data:
+
+```{r define-keys}
+sleutel_df <- tribble(
+  ~habitat, ~sheet_id, ~afkorting,
+  "bos", "11_sh5YYlc5RFY8v7ECecAlm-4Euo_4ph2CfIPWb6CBw", "bos",
+  "grasland", "1dgSVnJBSMm4G4nPNriDzfB1XhyV0xfo-1yqcgjWwr20", "grl",
+  "heide", "1d38qnUQXfEvkee0HtlI_L8aC76myZdSSAiWg_fLIEh0", "hei",
+  "moeras", "1eKtmWcgURTCZvshOQPS_IDOga8fC3ADmJ8-p4_rTkHo", "mrs",
+  "water", "17o7UHZipArEBwQiHKxIqHmnaL2YB84Y4x1dHkgSMDBk", "wtr"
+)
+```
+
+Each row specifies:
+
+- `habitat`: Full habitat name
+- `sheet_id`: Google Sheets document ID
+- `afkorting`: Abbreviated code used internally
+
+### Step 2: Read Data from Google Sheets
+
+The `read_gsheet_data()` function reads all sheets and returns a named list:
+
+```{r read-data}
+# Read raw data from Google Sheets
+veldsleutels_raw <- read_gsheet_data(sleutel_df)
+
+# Optionally save for offline work
+saveRDS(veldsleutels_raw, file.path("interim", "veldsleuteldata.RDS"))
+
+# Load saved data
+veldsleutels_raw <- readRDS(file.path("interim", "veldsleuteldata.RDS"))
+```
+
+**What happens**: For each habitat, the function:
+
+- Reads metadata from cells A1:B4
+- Reads key data from cells A5:H1000
+- Adds the abbreviated key code to each row
+- Returns a list with one data frame per habitat
+
+### Step 3: Prepare Data
+
+The `prepare_data()` function validates and transforms the raw data:
+
+```{r prepare-data}
+# Prepare all keys
+veldsleutels_prep <- lapply(veldsleutels_raw, prepare_data)
+
+# Check dimensions
+sapply(veldsleutels_prep, dim)
+```
+
+**What happens**: This function:
+
+- Validates required columns are present
+- Filters out invalid rows
+- Maps type codes (T1 → h2, Q → question, A → answer, etc.)
+- Creates internal step IDs (e.g., "bos0001")
+- Calculates incoming steps (which steps link to each step)
+- Replaces NA values with empty strings
+
+**Data structure after preparation**:
+
+```{r data-structure-prep, echo=FALSE}
+# Example of prepared data structure:
+# STEP  TYPE  NAME                NEXT_STEP  .type      .step     .nextstep
+# 1     T1    "Bostype bepalen"   NA         "h2"       "bos0001" ""
+# 1     Q     "Zijn er bomen?"    NA         "question" "bos0001" ""
+# 1     A     "Ja"                2          "answer"   "bos0001" "bos0002"
+# 1     A     "Nee"               5          "answer"   "bos0001" "bos0005"
+# 2     T1    "Loofbos?"          NA         "h2"       "bos0002" ""
+# 2     Q     "Overwegend loof?"  NA         "question" "bos0002" ""
+```
+
+### Step 4: Parse Data
+
+The `parse_data()` function converts tabular data to hierarchical structure:
+
+```{r parse-data}
+# Parse into nested lists
+veldsleutels <- lapply(veldsleutels_prep, parse_data)
+
+# Optionally export to YAML for inspection
+veldsleutels_yaml <- yaml::as.yaml(veldsleutels)
+cat(veldsleutels_yaml, file = "veldsleutels.yaml")
+```
+
+**What happens**: Creates a hierarchical structure where:
+
+- Each step becomes a list element keyed by internal ID
+- Headers, questions, and background info are nested
+- Answers are collected in arrays with navigation links
+- Info rows are attached to their preceding answer
+
+**Example parsed structure**:
+
+```{r parsed-structure, echo=FALSE}
+# veldsleutels[["bos"]][["bos0001"]] contains:
+# $step_number: "1"
+# $html_id: "bos0001"
+# $incoming_step: list()
+# $h2: list(name = "Bostype bepalen", remark = "")
+# $question: list(name = "Zijn er bomen?", remark = "")
+# $answer: list(
+#   list(name = "Ja", nextstep = "bos0002", n2000 = "", bwk = "", ...),
+#   list(name = "Nee", nextstep = "bos0005", n2000 = "", bwk = "", ...)
+# )
+```
+
+### Step 5: Validate Logic
+
+The `check_logic()` function validates the key structure:
+
+```{r check-logic}
+check_logic(veldsleutels)
+```
+
+**What it checks**:
+
+1. **Stale Answers**: Identifies answers that:
+   - Have no next step AND
+   - Have no result codes (n2000, bwk, or otherkey)
+   - These represent dead ends that should be fixed
+
+2. **Unreachable Steps**: Identifies steps that:
+   - Are never referenced as a 'nextstep' by any answer
+   - Cannot be reached by users
+   - Except the first step (entry point)
+
+**Example output**:
+
+```
+--- Analysing Key Group: BOS ---
+[OK] All steps are reachable.
+
+--- Analysing Key Group: GRASLAND ---
+[STALE ANSWER] Step 5, Answer 2 ('Onzeker') is a dead end.
+[UNREACHABLE STEPS]: The following step numbers are never called by an answer:
+12, 15
+```
+
+### Step 6: Generate HTML Pages
+
+Generate interactive HTML pages for each key:
+
+```{r generate-html}
+# Get list of all keys
+main_keys <- names(veldsleutels)  # c("bos", "grasland", "heide", "moeras", "water")
+
+# Generate individual key pages
+for (k in main_keys) {
+  html_write_key_page(k, veldsleutels[[k]], folder = "www")
+}
+
+# Generate index page
+html_write_index_page(main_keys, folder = "", subfolder = "www")
+```
+
+**What is created**:
+
+- **index.html**: Main landing page with buttons for each key
+- **www/bos.html**: Forest identification key
+- **www/grasland.html**: Grassland identification key
+- **www/heide.html**: Heathland identification key
+- **www/moeras.html**: Wetland identification key
+- **www/water.html**: Water identification key
+
+**HTML features**:
+
+- Responsive design with card-based layout
+- Clickable answer buttons that navigate between steps
+- Color-coded result boxes for terminal answers
+- Back links showing which steps can reach the current step
+- Additional information panels (info, remarks, related keys)
+
+### Step 7: Generate PDF Documentation
+
+There are two options for generating PDF documentation:
+
+#### Option A: Traditional R Markdown (Combined Document)
+
+Create a single PDF with all keys:
+
+```{r generate-pdf-rmd}
+# Create R Markdown file
+create_pdf_markdown(veldsleutels, rmdfile = "veldsleutels.Rmd")
+
+# Render to PDF
+rmarkdown::render("veldsleutels.Rmd")
+```
+
+**What is created**:
+
+- **veldsleutels.Rmd**: R Markdown source file
+- **veldsleutels.pdf**: Compiled PDF with all keys
+
+#### Option B: Quarto with Flandersqmd Style (Individual Documents)
+
+Create separate PDFs for each key with INBO corporate identity:
+
+```{r generate-pdf-quarto}
+# Create Quarto documents
+create_quarto_pdf(veldsleutels, output_dir = "pdf_output", use_flandersqmd = TRUE)
+
+# Render individual keys to PDF using Quarto
+# (requires Quarto to be installed: https://quarto.org)
+main_keys <- names(veldsleutels)
+for (key in main_keys) {
+  system2("quarto", args = c("render", sprintf("pdf_output/%s.qmd", key)))
+}
+
+# Or render all at once from the output directory
+system2("quarto", args = "render", wd = "pdf_output")
+```
+
+**What is created**:
+
+- **pdf_output/bos.qmd**: Quarto source for forest key
+- **pdf_output/grl.qmd**: Quarto source for grassland key  
+- **pdf_output/hei.qmd**: Quarto source for heathland key
+- **pdf_output/mrs.qmd**: Quarto source for wetland key
+- **pdf_output/wtr.qmd**: Quarto source for water key
+- **pdf_output/README.md**: Instructions for rendering
+- **PDF files**: One per key with INBO styling
+
+**Flandersqmd features**:
+
+- INBO/Flanders corporate identity styling
+- Professional cover pages
+- Formatted callout boxes for background info and results
+- Cross-references with hyperlinks
+- Table of contents
+- Proper typography and spacing
+
+To use flandersqmd styling, install the Quarto extension first:
+```bash
+quarto install extension inbo/flandersqmd-book
+```
+
+**PDF features**:
+
+- Table of contents with clickable links
+- One section per habitat key
+- Internal cross-references between steps
+- Formatted questions, answers, and results
+- Page breaks between major sections
+
+## Data Structure Requirements
+
+### Google Sheets Format
+
+Each Google Sheet should have:
+
+**Metadata (cells A1:B4)**:
+
+```
+Field       Value
+Title       Bossleutel
+Version     2.0
+Author      INBO
+Date        2024-01-15
+```
+
+**Data (starting at row 5)**:
+
+| STEP | TYPE | NAME | NEXT_STEP | CLASSIFICATION | BWK_CODE | SUBKEY | REMARK | KEY |
+|------|------|------|-----------|----------------|----------|--------|--------|-----|
+| 1 | T1 | Bostype | | | | | | bos |
+| 1 | Q | Zijn er bomen aanwezig? | | | | | | bos |
+| 1 | A | Ja | 2 | | | | | bos |
+| 1 | A | Nee | 5 | | | | | bos |
+| 2 | T1 | Loofbos of naaldbos? | | | | | | bos |
+| 2 | Q | Overwegend loofhout? | | | | | | bos |
+| 2 | A | Ja | 3 | | | | | bos |
+| 2 | A | Nee | 4 | | | | | bos |
+| 3 | T1 | Loofbos classificatie | | | | | | bos |
+| 3 | Q | Welk type loofbos? | | | | | | bos |
+| 3 | A | Eikenbos | | 9120 | lhb | | | bos |
+| 3 | A | Beukenbos | | 9130 | lhc | | | bos |
+
+### Column Descriptions
+
+- **STEP**: Step number (must be numeric)
+- **TYPE**: Row type code
+  - `T1`, `T2`, `T3`: Headers (levels 1-3)
+  - `Q`: Question
+  - `A`: Answer
+  - `I`: Additional info (attached to previous answer)
+  - `BI`: Background information
+- **NAME**: Display text for the row
+- **NEXT_STEP**: Step number to navigate to (for answers)
+- **CLASSIFICATION**: Natura 2000 habitat code (for terminal answers)
+- **BWK_CODE**: BWK classification code (for terminal answers)
+- **SUBKEY**: Reference to another key (for answers that redirect)
+- **REMARK**: Additional notes or clarifications
+- **KEY**: Abbreviated key code (e.g., "bos", "grl")
+
+## Output Examples
+
+### HTML Interface
+
+The HTML output provides an interactive web interface:
+
+1. **Index Page**: Grid of buttons for each habitat type
+2. **Key Pages**: Step-by-step navigation with:
+   - Question prompts
+   - Clickable answer buttons
+   - Automatic navigation between steps
+   - Result displays for classifications
+   - Background information panels
+
+### PDF Document
+
+The PDF output provides a printable reference:
+
+**Option A (R Markdown):**
+- Combined document with all keys
+- Table of contents for easy navigation
+- Cross-references between steps
+- Basic PDF formatting
+
+**Option B (Quarto with flandersqmd):**
+- Individual PDFs for each key
+- INBO/Flanders corporate identity styling
+- Professional cover pages and formatting
+- Enhanced callout boxes and visual elements
+- Better typography and spacing
+
+## Customization
+
+### Styling
+
+To customize the HTML appearance, modify `html_get_style()`:
+
+```{r custom-style, eval=FALSE}
+# Edit source/functions/html_get_style.R
+# Adjust colors, fonts, sizes, etc.
+```
+
+### Output Locations
+
+Control where files are generated:
+
+```{r custom-output, eval=FALSE}
+# HTML in custom directory
+html_write_key_page("bos", veldsleutels[["bos"]], folder = "output/html")
+
+# Index in custom location
+html_write_index_page(main_keys, folder = "public", subfolder = "keys")
+
+# PDF with custom name or location
+create_pdf_markdown(veldsleutels, rmdfile = "my_keys.Rmd")
+
+# Quarto PDFs with custom settings
+create_quarto_pdf(veldsleutels, 
+                  output_dir = "custom_output",
+                  author_name = "Custom Author",
+                  use_flandersqmd = FALSE)
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Authentication errors**:
+```{r troubleshoot-auth, eval=FALSE}
+# Clear authentication and re-authorize
+gs4_deauth()
+gs4_auth(email = "your.email@inbo.be")
+```
+
+**Missing columns error**:
+```
+Error: all columns must be present
+```
+- Check that your Google Sheet has all required columns
+- Column names are case-sensitive
+
+**Undefined TYPE error**:
+```
+Error: undefined TYPE found
+```
+- Check for typos in the TYPE column
+- Valid types: T1, T2, T3, Q, A, I, BI
+
+**Stale answers or unreachable steps**:
+- Review output from `check_logic()`
+- Verify NEXT_STEP values are correct
+- Ensure terminal answers have classification codes
+
+## Complete Example Script
+
+Here's a minimal complete script:
+
+```{r complete-example}
+# 1. Setup
+library(tidyverse)
+library(googlesheets4)
+library(glue)
+
+# 2. Source functions
+fun_path <- file.path("source", "functions")
+all_function_files <- list.files(
+  path = fun_path,
+  pattern = "^[^_].*\\.[rR]$",
+  full.names = TRUE
+)
+lapply(all_function_files, source)
+
+# 3. Authenticate
+gs4_auth(email = "your.email@inbo.be")
+
+# 4. Define keys
+sleutel_df <- tribble(
+  ~habitat, ~sheet_id, ~afkorting,
+  "bos", "11_sh5YYlc5RFY8v7ECecAlm-4Euo_4ph2CfIPWb6CBw", "bos"
+)
+
+# 5. Process data
+veldsleutels_raw <- read_gsheet_data(sleutel_df)
+veldsleutels_prep <- lapply(veldsleutels_raw, prepare_data)
+veldsleutels <- lapply(veldsleutels_prep, parse_data)
+
+# 6. Validate
+check_logic(veldsleutels)
+
+# 7. Generate outputs
+main_keys <- names(veldsleutels)
+
+# HTML output
+for (k in main_keys) {
+  html_write_key_page(k, veldsleutels[[k]], folder = "www")
+}
+html_write_index_page(main_keys, folder = "", subfolder = "www")
+
+# PDF output - choose one approach:
+
+# Option A: Traditional R Markdown (all keys in one PDF)
+create_pdf_markdown(veldsleutels, rmdfile = "veldsleutels.Rmd")
+rmarkdown::render("veldsleutels.Rmd")
+
+# Option B: Quarto with flandersqmd style (individual PDFs per key)
+create_quarto_pdf(veldsleutels, output_dir = "pdf_output")
+# Then render with: system("cd pdf_output && quarto render")
+```
+
+## Conclusion
+
+This workflow provides a complete system for generating interactive field identification keys from structured Google Sheets data. The process is:
+
+1. **Flexible**: Easy to update keys by editing Google Sheets
+2. **Validated**: Automatic logic checking catches errors
+3. **Multi-format**: Generates both interactive HTML and printable PDF (R Markdown or Quarto)
+4. **Professional**: Optional INBO corporate identity styling for PDFs via flandersqmd
+5. **Maintainable**: Well-documented functions for each step
+
+For questions or issues, consult the function documentation using `?function_name` or review the source code in `source/functions/`.
