@@ -43,3 +43,5 @@ test.yaml
 #quarto pdf output
 pdf_output/
 *.qmd
+veldsleutels.Rmd
+veldsleutels.log
