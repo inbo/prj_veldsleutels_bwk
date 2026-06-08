@@ -6,6 +6,9 @@ html_write_index_page <- function(keys, folder = "", subfolder = "www") {
   cat(glue("  <style>\n{html_get_style()}\n  </style>\n"), file = fn, append = TRUE)
   cat("</head>\n<body>\n  <h1>Veldsleutels Index</h1>\n", file = fn, append = TRUE)
 
+  cat("<p>Last Update: ", format(Sys.Date(), "%B %d, %Y"), "</p>\n",
+  file = fn, append = TRUE)
+
   # Start the grid
   cat('  <div class="index-grid">\n', file = fn, append = TRUE)
 
