@@ -76,3 +76,9 @@ html_write_index_page(main_keys, "")
 
 create_pdf_markdown(data, "veldsleutels.Rmd")
 rmarkdown::render("veldsleutels.Rmd", )
+
+
+# //docx render (one file per indicator)
+#----------------------------------------
+
+create_docx_markdown(data, output_dir = "output")
