@@ -6,7 +6,14 @@ html_write_index_page <- function(keys, folder = "", subfolder = "www") {
   cat('  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n', file = fn, append = TRUE)
   cat("  <title>Veldsleutels Index</title>\n", file = fn, append = TRUE)
   cat(glue("  <style>\n{html_get_style()}\n  </style>\n"), file = fn, append = TRUE)
-  cat('</head>\n<body>\n  <h1 style="text-align:center; margin-bottom:30px;">VELDSLEUTELS INDEX</h1>\n  <div class="index-grid">\n', file = fn, append = TRUE)
+
+  cat("</head>\n<body>\n  <h1>Veldsleutels Index</h1>\n", file = fn, append = TRUE)
+
+  cat("<p>Last Update: ", format(Sys.Date(), "%B %d, %Y"), "</p>\n",
+  file = fn, append = TRUE)
+
+  # Start the grid
+  cat('  <div class="index-grid">\n', file = fn, append = TRUE)
 
   for (k in keys) {
     target_path <- if (nchar(subfolder)) paste(subfolder, k, sep = "/") else k
