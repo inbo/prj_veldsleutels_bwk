@@ -9,7 +9,7 @@ html_write_index_page <- function(keys, folder = "", subfolder = "www") {
 
   cat("</head>\n<body>\n  <h1>Veldsleutels Index</h1>\n", file = fn, append = TRUE)
 
-  cat("<p>Last Update: ", format(Sys.Date(), "%B %d, %Y"), "</p>\n",
+  cat("<p>Laatst Gewijzigd: ", format(Sys.time(), "%A, %B %d, %Y - %H:%M"), "</p>\n",
   file = fn, append = TRUE)
 
   # Start the grid
